@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>마이페이지</title>
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet" />
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const navItems = ["뮤지컬/연극", "콘서트", "스포츠", "전시/행사", "레저", "테마/지역", "MD샵", "이벤트", "티켓오픈소식"];
+
+    const Header = () => (
+      <header className="bg-red-600 text-white p-2 flex items-center justify-between sticky top-0 z-50">
+        <div className="flex items-center space-x-4">
+          <img src="https://via.placeholder.com/40" alt="logo" className="w-10 h-10" />
+          <h1 className="text-xl font-bold">ticketpage</h1>
+        </div>
+        <div className="flex items-center space-x-2">
+          <input type="text" placeholder="검색어를 입력하세요" className="p-2 rounded w-96 text-black" />
+          <button className="p-2 bg-white text-black rounded">🔍</button>
+        </div>
+        <div className="flex items-center space-x-4">
+          <a href="#" className="hover:underline">로그인</a>
+          <a href="#" className="hover:underline">회원가입</a>
+          <img src="https://via.placeholder.com/30" alt="profile" className="w-8 h-8 rounded-full bg-gray-300" />
+        </div>
+      </header>
+    );
+
+    const NavigationBar = () => (
+      <nav className="bg-white text-black p-2 border-b sticky top-12 z-40">
+        <ul className="flex justify-between text-sm">
+          {navItems.map((item, index) => (
+            <li key={index} className="hover:text-red-600 flex-1 text-center">
+              <a href="#" className="block">{item}</a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    );
+
+    const UserInfo = () => (
+      <div className="flex rounded-lg overflow-hidden shadow w-full h-40">
+        <div className="flex items-center p-6 w-3/5 bg-gray-100">
+          <div className="w-24 h-24 bg-gray-300 rounded-full flex items-center justify-center mr-6">
+            <img src="https://via.placeholder.com/100" alt="Profile" className="w-24 h-24 rounded-full" />
+          </div>
+          <div className="flex flex-col justify-center">
+            <div className="flex items-center text-xl font-bold mb-4">
+              <img src="카카오톡.png" alt="kakao" className="w-6 h-6 mr-2" />
+              hyunseo@naver.com
+            </div>
+            <div className="flex space-x-4">
+              <button className="border border-gray-500 px-3 py-2 text-sm rounded hover:bg-gray-300">기본정보 관리</button>
+              <button className="border border-gray-500 px-3 py-2 text-sm rounded hover:bg-gray-300">배송지 관리</button>
+            </div>
+          </div>
+        </div>
+        <div className="grid grid-cols-3 divide-x w-2/5 bg-white text-center">
+          <div className="p-4">
+            <p className="text-2xl font-bold text-gray-600">2</p>
+            <p className="text-gray-600">예매내역</p>
+          </div>
+          <div className="p-4">
+            <p className="text-2xl font-bold text-gray-600">0</p>
+            <p className="text-gray-600">할인쿠폰</p>
+          </div>
+          <div className="p-4">
+            <p className="text-2xl font-bold text-gray-600">0</p>
+            <p className="text-gray-600">공연예매권</p>
+          </div>
+        </div>
+      </div>
+    );
+    const FooterInfo = () => (
+      <footer className="w-full border-t border-gray-300 mt-32 pt-6 px-8 text-xs text-gray-600">
+        {/* 상단 링크 메뉴 */}
+        <nav className="flex flex-wrap justify-center gap-x-20 gap-y-2 mb-4 text-gray-500">
+          {[
+            "회사소개",
+            "이용약관",
+            "개인정보처리방침",
+            "위치기반서비스 이용약관",
+            "여행약관",
+            "여행자보험 가입내역",
+            "티켓판매안내",
+            "공지사항",
+            "고객센터",
+          ].map((item) => (
+            <a href="#" key={item} className="hover:underline">
+              {item}
+            </a>
+          ))}
+        </nav>
+
+        {/* 하단 회사 및 고객센터 정보 */}
+        <div className="flex flex-wrap justify-between text-gray-600 px-16 gap-x-20">
+
+          <div className="w-[300px] mb-4">
+            <p className="font-bold mb-1">(주)숙명여자협회</p>
+            <p>주소 서울특별시 용산구 청파로</p>
+            <p>사업자등록번호 824-91-09283</p>
+            <p>통신판매업신고 2025-숙명-0504</p>
+            <p>관광사업등록번호 제2025-000001호</p>
+          </div>
+
+          <div className="w-[300px] mb-4">
+            <p className="font-bold mb-1">고객센터</p>
+            <p>1:1문의</p>
+            <p>팩스 02-842-1029</p>
+            <p>이메일 websystem@smu.ac.kr</p>
+          </div>
+
+          <div className="w-[300px] mb-4">
+            <p className="font-bold mb-1">전자금융거래 분쟁처리 담당정보</p>
+            <p>팩스 02-482-1203</p>
+            <p>이메일 may04@smu.ac.kr</p>
+            <p>개인정보보호책임자 privacy@smu.ac.kr</p>
+          </div>
+        </div>
+      </footer>
+    );
+
+    const App = () => (
+      <div>
+        <Header />
+        <NavigationBar />
+        <div className="max-w-7xl mx-auto flex gap-6 px-4 mt-6">
+          <div className="w-4/5">
+            <UserInfo />
+
+            <section className="mt-8">
+              <h2 className="text-lg font-semibold mb-2">최근 예매/취소</h2>
+              <div className="border rounded overflow-hidden">
+                <div className="grid grid-cols-4 text-center bg-gray-100 py-2 font-semibold border-b">
+                  <div>예매일</div>
+                  <div>공연정보</div>
+                  <div>예매정보</div>
+                  <div>상태</div>
+                </div>
+                <div className="grid grid-cols-4 gap-x-6 text-center py-4 items-start">
+                  <div className="text-sm flex items-center justify-center h-full">
+                      <div className="font-semibold mb-1">2025.05.21</div>
+                  </div>
+                  <div className="flex space-x-2 items-start">
+                    <img src="라이즈.jpg" alt="공연포스터" className="w-20 h-28 object-cover rounded" />
+                    <div className="text-left space-y-1">
+                      <span className="text-xs text-red-600 border border-red-600 rounded px-1">단독판매</span>
+                      <p className="font-semibold text-sm">2025 RIIZE CONCERT TOUR [RIIZING LOUD] IN SEOUL</p>
+                      <p className="text-xs text-gray-600">2025.07.04 ~ 2025.07.06</p>
+                      <p className="text-xs text-gray-600">KSPO DOME</p>
+                    </div>
+                  </div>
+                  <div className="text-left space-y-1 text-sm">
+                    <p><span className="font-semibold">예약번호</span> <span className="text-red-600">T149896801</span></p>
+                    <p><span className="font-semibold">관람일</span> 2025.07.05(토) 18:00</p>
+                    <p><span className="font-semibold">매수</span> 1매</p>
+                    <p><span className="font-semibold">취소가능</span> 2025.07.04(금) 17:00까지</p>
+                  </div>
+                  <div className="flex flex-col items-center justify-center space-y-2 text-sm h-full">
+                    <p className="font-semibold">예매완료(카드)</p>
+                    <button className="border px-2 py-1 rounded text-xs hover:bg-gray-100">예매 상세 &gt;</button>
+                  </div>
+                </div>
+                <hr className="my-2 border-t border-gray-300" />
+
+                <div className="grid grid-cols-4 gap-x-6 text-center py-4 items-start">
+                  <div className="text-sm flex items-center justify-center h-full">
+                    <div className="font-semibold mb-1">2024.11.22</div>
+                  </div>
+                  <div className="flex space-x-2 items-start">
+                    <img src="SMTOWN LIVE.jpg" alt="공연포스터" className="w-20 h-28 object-cover rounded" />
+                    <div className="text-left space-y-1">
+                      <span className="text-xs text-red-600 border border-red-600 rounded px-1">단독판매</span>
+                      <p className="font-semibold text-sm">SMTOWN LIVE 2025 [THE CULTURE, THE FUTURE] in SEOUL</p>
+                      <p className="text-xs text-gray-600">2025.01.11 ~ 2025.01.12</p>
+                      <p className="text-xs text-gray-600">고척스카이돔</p>
+                    </div>
+                  </div>
+                  <div className="text-left space-y-1 text-sm">
+                    <p><span className="font-semibold">예약번호</span> <span className="text-red-600">T135819142</span></p>
+                    <p><span className="font-semibold">관람일</span> 2025.01.11(토) 17:00</p>
+                    <p><span className="font-semibold">매수</span> 1매</p>
+                    <p><span className="font-semibold">취소가능</span> 2025.01.10(금) 17:00까지</p>
+                  </div>
+                  <div className="flex flex-col items-center justify-center space-y-2 text-sm h-full">
+                    <p className="font-semibold">예매완료(입금완료)</p>
+                    <button className="border px-2 py-1 rounded text-xs hover:bg-gray-100">예매 상세 &gt;</button>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section className="grid grid-cols-2 gap-6 mt-6 mb-12">
+              <div className="border rounded p-4">
+                <div className="flex justify-between mb-2">
+                  <h2 className="font-semibold">최근 참여 이벤트</h2>
+                  <a href="#" className="text-sm text-gray-500 hover:underline">더보기 &gt;</a>
+                </div>
+                <p className="font-semibold mb-1">응모 기록 <span className="text-xs bg-gray-300 px-2 py-0.5 rounded ml-1">선정중</span></p>
+                <p>YYYY.MM.DD ~ YYYY.MM.DD</p>
+              </div>
+              <div className="border rounded p-4">
+                <div className="flex justify-between mb-2">
+                  <h2 className="font-semibold">최근 1:1 문의</h2>
+                  <a href="#" className="text-sm text-gray-500 hover:underline">더보기 &gt;</a>
+                </div>
+                <div className="text-center text-gray-600 py-6">
+                  <p className="mb-4">문의하신 내역이 없습니다.</p>
+                  <button className="text-sm border px-4 py-1 rounded hover:bg-gray-100">1:1 문의/고객센터</button>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <aside className="w-36 shrink-0">
+            <div className="border rounded-lg p-4">
+              <div className="flex flex-col items-center mb-6">
+                <img src="firstshow.jpg" alt="첫공 초대권" className="w-28 h-36 object-cover rounded" />
+                <p className="text-red-500 text-sm mt-2 font-semibold">첫공 초대권 증정</p>
+              </div>
+              <hr className="my-4 border-gray-300" />
+              <div className="flex flex-col items-center mt-6">
+                <img src="timesale.jpg" alt="Time Sale" className="w-28 h-36 object-cover rounded" />
+                <p className="text-red-500 text-sm mt-2 font-semibold">Time Sale</p>
+              </div>
+            </div>
+          </aside>
+        </div>
+        <FooterInfo />
+      </div>
+    );
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
+</html>
