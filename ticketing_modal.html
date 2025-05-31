@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>좌석 선택 + 모달 결제창</title>
+<style>
+  body {
+    font-family: 'Arial', sans-serif;
+    background: #f7f7f7;
+    margin: 0; padding: 20px;
+  }
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 0;
+    box-shadow: 0 0 12px rgba(0,0,0,0.15);
+    display: flex;
+    padding: 20px;
+    gap: 30px;
+  }
+  .big-box {
+    flex: 1;
+  }
+  .seats-area {
+    padding-right: 0;
+  }
+  .stage {
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+  }
+  .floor {
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 40px;
+    position: relative;
+  }
+  .floor-label {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: #aaa;
+    color: white;
+    font-size: 0.85rem;
+    font-weight: 700;
+    padding: 4px 9px;
+    border-radius: 50%;
+    user-select: none;
+  }
+  .row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 6px;
+    justify-content: center;
+  }
+  .row-label {
+    width: 32px;
+    text-align: center;
+    font-size: 0.85rem;
+    color: #666;
+    user-select: none;
+    margin-right: 6px;
+  }
+  ul.seats {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 6px;
+  }
+  ul.seats li {
+    width: 28px;
+    height: 28px;
+    background: #b29759;
+    cursor: pointer;
+    border-radius: 0;
+    border: none;
+    box-sizing: border-box;
+    transition: box-shadow 0.3s ease;
+  }
+  ul.seats li.s-seat {
+    background-color: #7e57c2;
+  }
+  ul.seats li.a-seat {
+    background-color: #ec799b;
+  }
+  ul.seats li.selected {
+    box-shadow: 0 0 0 3px black;
+  }
+  ul.seats li.occupied {
+    background-color: #ddd;
+    cursor: not-allowed;
+  }
+  .info-box {
+    width: 280px;
+    border-left: 2px solid #ddd;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  .info-box h2 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    color: #333;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 8px;
+  }
+  .seat-grade {
+    margin-top: 0;
+    margin-bottom: 20px;
+  }
+  .seat-grade div {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 1rem;
+  }
+  .seat-grade .r {
+    color: #b29759;
+  }
+  .seat-grade .s {
+    color: #7e57c2;
+  }
+  .seat-grade .a {
+    color: #ec799b;
+  }
+  .selected-count {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    color: #222;
+  }
+  button.select-complete {
+    background-color: #4CAF50;
+    color: white;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 6px;
+    padding: 12px 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  button.select-complete:hover {
+    background-color: #45a049;
+  }
+  .mini-map {
+    margin-bottom: 4px;
+    text-align: center;
+    position: relative;
+    background-color: #f0f0f0;
+    border-radius: 12px;
+    box-shadow: inset 0 0 6px #ccc;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px 12px;
+    gap: 8px;
+  }
+  .mini-map img {
+    max-width: 220px;
+    max-height: 180px;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 0 6px rgba(0,0,0,0.1);
+  }
+  .stage-label {
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: bold;
+    font-size: 0.9rem;
+    color: #444;
+    background: rgba(255,255,255,0.8);
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+
+  /* 모달 스타일 */
+  #modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+  #modal.active {
+    display: flex;
+  }
+  #modal .modal-content {
+    background: white;
+    padding: 30px 30px 40px;
+    border-radius: 10px;
+    width: 400px;
+    max-width: 95%;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    position: relative;
+  }
+  #modal .close-btn {
+    position: absolute;
+    top: 10px; right: 14px;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    user-select: none;
+    color: #666;
+  }
+  #modal h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: #333;
+  }
+  #modal .seats-info {
+    margin-bottom: 15px;
+    font-size: 1rem;
+    color: #555;
+  }
+  #modal label {
+    display: block;
+    margin-top: 12px;
+    font-weight: 600;
+    color: #444;
+  }
+  #modal input[type="text"],
+  #modal input[type="tel"],
+  #modal input[type="month"],
+  #modal input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 6px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-size: 1rem;
+  }
+  #modal button.pay-btn {
+    margin-top: 25px;
+    width: 100%;
+    padding: 14px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  #modal button.pay-btn:hover {
+    background-color: #45a049;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="big-box">
+    <div class="seats-area">
+      <div class="stage">무대</div>
+
+      <div class="floor">
+        <div class="floor-label">1F</div>
+        <div class="row"><div class="row-label">1열</div>
+          <ul class="seats">
+            <li class="occupied r-seat"></li><li class="occupied r-seat"></li><li class="occupied r-seat"></li><li class="occupied r-seat"></li>
+            <li class="occupied r-seat"></li><li class="occupied r-seat"></li><li class="occupied r-seat"></li><li class="occupied r-seat"></li>
+            <li class="occupied r-seat"></li><li class="occupied r-seat"></li><li class="occupied r-seat"></li><li class="occupied r-seat"></li>
+          </ul>
+        </div>
+        <div class="row"><div class="row-label">2열</div>
+          <ul class="seats">
+            <li class="occupied r-seat"></li><li class="occupied r-seat"></li><li class="occupied r-seat"></li><li class="occupied r-seat"></li>
+            <li class="occupied r-seat"></li><li class="occupied r-seat"></li><li class="occupied r-seat"></li><li class="occupied r-seat"></li>
+            <li class="occupied r-seat"></li><li class="occupied r-seat"></li><li class="occupied r-seat"></li><li class="occupied r-seat"></li>
+          </ul>
+        </div>
+        <div class="row"><div class="row-label">3열</div>
+          <ul class="seats">
+            <li class="r-seat"></li><li class="r-seat"></li><li class="r-seat"></li><li class="r-seat"></li>
+            <li class="occupied r-seat"></li><li class="occupied r-seat"></li><li class="occupied r-seat"></li><li class="occupied r-seat"></li>
+            <li class="occupied r-seat"></li><li class="occupied r-seat"></li><li class="occupied r-seat"></li><li class="occupied r-seat"></li>
+          </ul>
+        </div>
+        <div class="row"><div class="row-label">4열</div>
+          <ul class="seats">
+            <li class="r-seat"></li><li class="r-seat"></li><li class="r-seat"></li>
+            <li class="occupied r-seat"></li><li class="occupied r-seat"></li><li class="occupied r-seat"></li><li class="occupied r-seat"></li><li class="occupied r-seat"></li>
+            <li class="r-seat"></li><li class="r-seat"></li><li class="r-seat"></li><li class="r-seat"></li>
+          </ul>
+        </div>
+        <div class="row"><div class="row-label">5열</div>
+          <ul class="seats">
+            <li class="r-seat"></li><li class="r-seat"></li><li class="r-seat"></li><li class="r-seat"></li><li class="r-seat"></li><li class="r-seat"></li><li class="r-seat"></li><li class="r-seat"></li><li class="r-seat"></li><li class="r-seat"></li><li class="r-seat"></li><li class="r-seat"></li>
+          </ul>
+        </div>
+        <div class="row"><div class="row-label">6열</div>
+          <ul class="seats">
+            <li class="r-seat"></li><li class="r-seat"></li><li class="r-seat"></li><li class="r-seat"></li><li class="r-seat"></li><li class="r-seat"></li><li class="r-seat"></li><li class="r-seat"></li><li class="r-seat"></li><li class="r-seat"></li><li class="r-seat"></li><li class="r-seat"></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="floor">
+        <div class="floor-label">2F</div>
+        <div class="row"><div class="row-label">1열</div>
+          <ul class="seats">
+            <li class="occupied s-seat"></li><li class="occupied s-seat"></li><li class="occupied s-seat"></li><li class="occupied s-seat"></li>
+            <li class="occupied s-seat"></li><li class="occupied s-seat"></li><li class="occupied s-seat"></li><li class="occupied s-seat"></li>
+            <li class="s-seat"></li><li class="s-seat"></li><li class="s-seat"></li><li class="s-seat"></li>
+          </ul>
+        </div>
+        <div class="row"><div class="row-label">2열</div>
+          <ul class="seats">
+            <li class="s-seat"></li><li class="occupied s-seat"></li><li class="occupied s-seat"></li><li class="occupied s-seat"></li>
+            <li class="occupied s-seat"></li><li class="occupied s-seat"></li><li class="occupied s-seat"></li><li class="occupied s-seat"></li>
+            <li class="s-seat"></li><li class="s-seat"></li><li class="s-seat"></li><li class="s-seat"></li>
+          </ul>
+        </div>
+        <div class="row"><div class="row-label">3열</div>
+          <ul class="seats">
+            <li class="a-seat"></li><li class="occupied a-seat"></li><li class="occupied a-seat"></li><li class="occupied a-seat"></li>
+            <li class="occupied a-seat"></li><li class="occupied a-seat"></li><li class="occupied a-seat"></li><li class="occupied a-seat"></li>
+            <li class="a-seat"></li><li class="a-seat"></li><li class="a-seat"></li><li class="a-seat"></li>
+          </ul>
+        </div>
+        <div class="row"><div class="row-label">4열</div>
+          <ul class="seats">
+            <li class="a-seat"></li><li class="a-seat"></li><li class="a-seat"></li>
+            <li class="occupied a-seat"></li><li class="occupied a-seat"></li><li class="occupied a-seat"></li><li class="occupied a-seat"></li>
+            <li class="a-seat"></li><li class="a-seat"></li><li class="a-seat"></li><li class="a-seat"></li><li class="a-seat"></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-box">
+    <div class="mini-map">
+      <img src="images/ticketing_minimap.png" alt="공연장 좌석 배치도" />
+      <div class="stage-label">무대</div>
+    </div>
+    <h2>좌석 등급 및 잔여석</h2>
+    <div class="seat-grade">
+      <div class="r">R석 <span>88,000원</span> <span id="r-left" style="color:green;">35석</span></div>
+      <div class="s">S석 <span>66,000원</span> <span id="s-left" style="color:green;">9석</span></div>
+      <div class="a">A석 <span>55,000원</span> <span id="a-left" style="color:green;">13석</span></div>
+    </div>
+    <div class="selected-count">선택한 좌석: <span id="selected-count">0</span>석</div>
+    <button class="select-complete" onclick="openModal()">좌석 선택 완료</button>
+  </div>
+</div>
+
+<!-- 모달 결제창 -->
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn">&times;</span>
+    <h2>결제하기</h2>
+    <div class="seats-info">
+      선택 좌석: <span id="modal-selected-seats">없음</span>
+    </div>
+
+    <form id="payment-form">
+      <label for="name">이름</label>
+      <input type="text" id="name" name="name" placeholder="예: 홍길동" required />
+
+      <label for="card-number">카드 번호</label>
+      <input type="tel" id="card-number" name="card-number" placeholder="1234 5678 9012 3456" pattern="[0-9\s]{13,19}" required />
+
+      <label for="expiry-date">유효 기간</label>
+      <input type="month" id="expiry-date" name="expiry-date" required />
+
+      <label for="cvc">CVC</label>
+      <input type="password" id="cvc" name="cvc" placeholder="123" pattern="\d{3,4}" required />
+
+      <button type="submit" class="pay-btn">결제 완료</button>
+    </form>
+  </div>
+</div>
+
+<style>
+  /* 모달 기본 스타일 */
+  #modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+  #modal.active {
+    display: flex;
+  }
+  #modal .modal-content {
+    background: white;
+    padding: 30px 30px 40px;
+    border-radius: 10px;
+    width: 400px;
+    max-width: 95%;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    position: relative;
+  }
+  #modal .close-btn {
+    position: absolute;
+    top: 10px; right: 14px;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    user-select: none;
+    color: #666;
+  }
+  #modal h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: #333;
+  }
+  #modal .seats-info {
+    margin-bottom: 15px;
+    font-size: 1rem;
+    color: #555;
+  }
+  #modal label {
+    display: block;
+    margin-top: 12px;
+    font-weight: 600;
+    color: #444;
+  }
+  #modal input[type="text"],
+  #modal input[type="tel"],
+  #modal input[type="month"],
+  #modal input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 6px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-size: 1rem;
+  }
+  #modal button.pay-btn {
+    margin-top: 25px;
+    width: 100%;
+    padding: 14px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  #modal button.pay-btn:hover {
+    background-color: #45a049;
+  }
+</style>
+
+<script>
+  const seats = document.querySelectorAll('.seats li');
+  const selectedCountSpan = document.getElementById('selected-count');
+  const modal = document.getElementById('modal');
+  const modalSelectedSeats = document.getElementById('modal-selected-seats');
+  const closeBtn = document.querySelector('.close-btn');
+  const paymentForm = document.getElementById('payment-form');
+
+  let selectedSeatsInfo = [];
+
+  seats.forEach(seat => {
+    seat.addEventListener('click', () => {
+      if (seat.classList.contains('occupied')) return;
+      seat.classList.toggle('selected');
+      updateSelectedSeats();
+    });
+  });
+
+  function updateSelectedSeats() {
+    const selectedSeats = document.querySelectorAll('.seats li.selected');
+    selectedCountSpan.textContent = selectedSeats.length;
+
+    selectedSeatsInfo = [];
+    selectedSeats.forEach(seat => {
+      const rowDiv = seat.closest('.row');
+      const rowLabel = rowDiv.querySelector('.row-label').textContent.trim();
+
+      const seatsInRow = rowDiv.querySelectorAll('ul.seats li');
+      const seatIndex = Array.from(seatsInRow).indexOf(seat) + 1;
+
+      selectedSeatsInfo.push(`${rowLabel}-${seatIndex}`);
+    });
+  }
+
+  function openModal() {
+    if(selectedSeatsInfo.length === 0){
+      alert('선택한 좌석이 없습니다.');
+      return;
+    }
+    modalSelectedSeats.textContent = selectedSeatsInfo.join(', ');
+    modal.classList.add('active');
+  }
+
+  closeBtn.addEventListener('click', () => {
+    modal.classList.remove('active');
+  });
+
+  window.addEventListener('click', e => {
+    if(e.target === modal){
+      modal.classList.remove('active');
+    }
+  });
+
+  paymentForm.addEventListener('submit', e => {
+    e.preventDefault();
+    alert('결제가 완료되었습니다!');
+    modal.classList.remove('active');
+    // 추가: 결제 후 처리 로직 구현 가능
+  });
+</script>
+
+</body>
+</html>
