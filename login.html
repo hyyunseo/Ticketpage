@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>로그인 | ticketpage</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+
+  <link rel="stylesheet" href="styles.css" />
+    <style>
+    /* <!-- 로그인 화면 UI --> */
+    #loginSection input:focus {
+      outline: none;
+      border-color: #f87171; /* tailwind red-400 */
+      box-shadow: 0 0 0 1px #f87171;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+
+  <!-- 로그인 박스 -->
+  <section id="loginSection" class="bg-white w-full max-w-md p-8 rounded shadow">
+    <h2 class="text-2xl font-bold mb-6 text-center text-red-600">로그인</h2>
+
+    <!-- 1. 아이디 / 비밀번호 입력 -->
+    <input type="text" id="userId" placeholder="아이디" class="w-full p-2 border rounded mb-3" />
+    <input type="password" id="password" placeholder="비밀번호" class="w-full p-2 border rounded mb-3" />
+
+    <!-- 2. 로그인 상태 유지 / 아이디 저장 -->
+    <div class="flex justify-between text-sm text-gray-600 mb-4">
+      <label><input type="checkbox" id="keepLogin" /> 로그인 상태 유지</label>
+      <label><input type="checkbox" id="saveId" /> 아이디 저장</label>
+    </div>
+
+    <!-- 3. 로그인 버튼 -->
+    <button id="loginBtn" class="bg-red-600 text-white w-full py-2 rounded hover:bg-red-700">로그인</button>
+
+    <!-- 4. 아이디/비밀번호 찾기, 회원가입 -->
+    <div class="flex justify-between text-sm text-gray-600 mt-4 mb-4">
+      <a href="#" class="hover:underline">아이디 찾기</a>
+      <a href="#" class="hover:underline">비밀번호 찾기</a>
+      <a href="signup.html" class="hover:underline">회원가입</a>
+    </div>
+
+    <!-- 5. 소셜 로그인 -->
+    <div class="flex justify-center space-x-4 mt-4">
+      <img src="images/ico_s_kakao_talk.png" alt="Kakao" id="kakaoLoginBtn" class="w-8 h-8 cursor-pointer" title="카카오 로그인"/>
+      <img src="https://cdn-icons-png.flaticon.com/512/300/300221.png" alt="Naver" class="w-8 h-8 cursor-pointer" title="네이버 로그인"/>
+      <img src="images/apple_icon.webp" alt="Apple" class="w-8 h-8 cursor-pointer" title="애플 로그인"/>
+    </div>
+
+    <!-- 6. 비회원 예약 조회 -->
+    <div class="text-center mt-6">
+      <a href="#" class="text-sm text-gray-600 underline">비회원 예약 내역 조회</a>
+    </div>
+  </section>
+
+<script>
+  // Kakao SDK 초기화
+  Kakao.init('여기에_너의_카카오_JavaScript_키'); // 실제 키로 바꿔 넣기
+  console.log('Kakao SDK 초기화:', Kakao.isInitialized()); // true 나오면 성공
+
+  // app.js에 있던 자바스크립트 내용을 여기 넣으면 됨
+  // 예) 로그인 버튼 클릭 이벤트 처리 예시
+  document.getElementById('loginBtn').addEventListener('click', function() {
+    const userId = document.getElementById('userId').value.trim();
+    const password = document.getElementById('password').value.trim();
+    if (!userId || !password) {
+      alert('아이디와 비밀번호를 모두 입력하세요.');
+      return;
+    }
+    // 실제 로그인 처리 로직 작성
+    console.log('로그인 시도:', userId, password);
+    // 예: 서버에 로그인 요청 보내기, 세션/쿠키 처리 등
+  });
+
+  // 카카오 로그인 버튼 클릭 이벤트
+  document.getElementById('kakaoLoginBtn').addEventListener('click', function() {
+    Kakao.Auth.login({
+      success: function(authObj) {
+        console.log('카카오 로그인 성공', authObj);
+        // 이후 사용자 정보 요청 및 처리
+      },
+      fail: function(err) {
+        console.error('카카오 로그인 실패', err);
+      },
+    });
+  });
+</script>
+
+</body>
+</html>
