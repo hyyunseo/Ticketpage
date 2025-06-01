@@ -47,7 +47,7 @@
 
     const UserInfo = () => (
       <div className="flex rounded-lg overflow-hidden shadow w-full h-40">
-        <div className="flex items-center p-6 w-3/5 bg-gray-100">
+        <div className="flex items-center p-6 w-3/5 bg-gray-200">
           <div className="w-24 h-24 bg-gray-300 rounded-full flex items-center justify-center mr-6">
             <img src="https://via.placeholder.com/100" alt="Profile" className="w-24 h-24 rounded-full" />
           </div>
@@ -128,7 +128,7 @@
     );
 
     const App = () => (
-      <div>
+      <div className="bg-gray-100">
         <Header />
         <NavigationBar />
         <div className="max-w-7xl mx-auto flex gap-6 px-4 mt-6">
@@ -137,8 +137,8 @@
 
             <section className="mt-8">
               <h2 className="text-lg font-semibold mb-2">최근 예매/취소</h2>
-              <div className="border rounded overflow-hidden">
-                <div className="grid grid-cols-4 text-center bg-gray-100 py-2 font-semibold border-b">
+              <div className="bg-white border rounded overflow-hidden">
+                <div className="grid grid-cols-4 text-center bg-gray-200 py-2 font-semibold border-b">
                   <div>예매일</div>
                   <div>공연정보</div>
                   <div>예매정보</div>
@@ -198,7 +198,7 @@
             </section>
 
             <section className="grid grid-cols-2 gap-6 mt-6 mb-12">
-              <div className="border rounded p-4">
+              <div className="bg-white border rounded p-4">
                 <div className="flex justify-between mb-2">
                   <h2 className="font-semibold">최근 참여 이벤트</h2>
                   <a href="#" className="text-sm text-gray-500 hover:underline">더보기 &gt;</a>
@@ -206,7 +206,7 @@
                 <p className="font-semibold mb-1">응모 기록 <span className="text-xs bg-gray-300 px-2 py-0.5 rounded ml-1">선정중</span></p>
                 <p>YYYY.MM.DD ~ YYYY.MM.DD</p>
               </div>
-              <div className="border rounded p-4">
+              <div className="bg-white border rounded p-4">
                 <div className="flex justify-between mb-2">
                   <h2 className="font-semibold">최근 1:1 문의</h2>
                   <a href="#" className="text-sm text-gray-500 hover:underline">더보기 &gt;</a>
@@ -220,7 +220,7 @@
           </div>
 
           <aside className="w-36 shrink-0">
-            <div className="border rounded-lg p-4">
+            <div className="bg-white border rounded-lg p-4">
               <div className="flex flex-col items-center mb-6">
                 <img src="firstshow.jpg" alt="첫공 초대권" className="w-28 h-36 object-cover rounded" />
                 <p className="text-red-500 text-sm mt-2 font-semibold">첫공 초대권 증정</p>
