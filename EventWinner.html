@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>당첨자 발표</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-black">
+
+  <!-- 헤더 -->
+  <header class="bg-red-600 text-white p-2 flex items-center justify-between">
+    <div class="flex items-center space-x-4">
+      <img src="https://via.placeholder.com/40" alt="logo" class="w-10 h-10" />
+      <h1 class="text-xl font-bold">ticketpage</h1>
+    </div>
+    <div class="flex items-center space-x-2">
+      <input type="text" placeholder="검색어를 입력하세요" class="p-2 rounded w-96 text-black" />
+      <button class="p-2 bg-white text-black rounded">🔍</button>
+    </div>
+    <div class="flex items-center space-x-4">
+      <a href="#" class="hover:underline">로그인</a>
+      <a href="#" class="hover:underline">회원가입</a>
+      <img src="https://via.placeholder.com/30" alt="profile" class="w-8 h-8 rounded-full bg-gray-300" />
+    </div>
+  </header>
+
+  <!-- 내비게이션 바 -->
+  <nav class="bg-white text-black p-2 border-b w-full">
+    <ul class="flex justify-between text-sm w-full">
+      <li class="hover:text-red-600 flex-1 text-center cursor-pointer">뮤지컬/연극</li>
+      <li class="hover:text-red-600 flex-1 text-center cursor-pointer">콘서트</li>
+      <li class="hover:text-red-600 flex-1 text-center cursor-pointer">스포츠</li>
+      <li class="hover:text-red-600 flex-1 text-center cursor-pointer">전시/행사</li>
+      <li class="hover:text-red-600 flex-1 text-center cursor-pointer">레저</li>
+      <li class="hover:text-red-600 flex-1 text-center cursor-pointer">테마/지역</li>
+      <li class="hover:text-red-600 flex-1 text-center cursor-pointer">MD샵</li>
+      <li class="text-red-600 font-semibold flex-1 text-center cursor-pointer">이벤트</li>
+      <li class="hover:text-red-600 flex-1 text-center cursor-pointer">티켓오픈소식</li>
+    </ul>
+  </nav>
+
+  <!-- 이벤트 서브탭 -->
+  <nav class="bg-gray-200 text-black border-b">
+    <div class="w-full max-w-[1000px] mx-auto">
+      <div class="w-fit ml-auto transform translate-x-[166px] flex space-x-12 py-2 text-sm">
+        <a href="#" class="hover:text-red-600">전체 이벤트</a>
+        <a href="#" class="text-red-600 font-bold">당첨자 발표</a>
+        <a href="#" class="hover:text-red-600">참여 이벤트</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 본문 내용 시작 -->
+  <main class="max-w-[1000px] mx-auto px-4">
+
+    <!-- 검색창 -->
+    <section class="pt-20 pb-6">
+      <div class="w-full flex justify-end">
+        <div class="flex mr-[0.25rem]">
+          <input type="text" placeholder="이벤트 검색" class="p-2 border rounded w-80" />
+          <button class="ml-2 px-4 py-2 bg-black text-white rounded">검색</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 테이블 -->
+    <section>
+      <table class="w-full border-t border-gray-300 table-fixed" id="winnerTable">
+        <thead>
+          <tr class="border-b border-gray-300 text-gray-600">
+            <th class="w-[60px] py-3"></th>
+            <th class="py-3 text-center">당첨자 발표</th>
+            <th class="py-3 text-center w-[120px]">발표일</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody" class="text-sm">
+          <!-- JS가 여기에 데이터 삽입 -->
+        </tbody>
+      </table>
+
+      <!-- 페이지네이션 -->
+      <div class="flex justify-center mt-6 space-x-2" id="pagination"></div>
+    </section>
+
+  </main>
+  <!-- 본문 내용 끝 -->
+
+  <!-- 푸터 (본문 바깥) -->
+<footer class="bg-gray-100 w-full border-t border-gray-300 mt-32 pt-6 px-8 text-xs text-gray-600">
+  <!-- 상단 링크 -->
+  <nav class="flex flex-wrap justify-center gap-x-20 gap-y-2 mb-4 text-gray-500">
+    <a href="#" class="hover:underline">회사소개</a>
+    <a href="#" class="hover:underline">이용약관</a>
+    <a href="#" class="hover:underline">개인정보처리방침</a>
+    <a href="#" class="hover:underline">위치기반서비스 이용약관</a>
+    <a href="#" class="hover:underline">여행약관</a>
+    <a href="#" class="hover:underline">여행자보험 가입내역</a>
+    <a href="#" class="hover:underline">티켓판매안내</a>
+    <a href="#" class="hover:underline">공지사항</a>
+    <a href="#" class="hover:underline">고객센터</a>
+  </nav>
+
+  <!-- 하단 회사 정보 -->
+  <div class="flex flex-wrap justify-between text-gray-600 px-16 gap-x-20">
+    <div class="w-[300px] mb-4">
+      <p class="font-bold mb-1">(주)숙명여자협회</p>
+      <p>주소 서울특별시 용산구 청파로</p>
+      <p>사업자등록번호 824-91-09283</p>
+      <p>통신판매업신고 2025-숙명-0504</p>
+      <p>관광사업등록번호 제2025-000001호</p>
+    </div>
+    <div class="w-[300px] mb-4 ml-[121.5px]">
+      <p class="font-bold mb-1">고객센터</p>
+      <p>1:1문의</p>
+      <p>팩스 02-842-1029</p>
+      <p>이메일 websystem@smu.ac.kr</p>
+    </div>
+    <div class="w-[300px] mb-4 relative left-[88px]">
+      <p class="font-bold mb-1">전자금융거래 분쟁처리 담당정보</p>
+      <p>팩스 02-482-1203</p>
+      <p>이메일 may04@smu.ac.kr</p>
+      <p>개인정보보호책임자 privacy@smu.ac.kr</p>
+    </div>
+  </div>
+</footer>
+  
+
+</footer>
+
+  <script>
+    let currentPage = 1;
+    const totalPages = 20;
+    let currentBlock = 1;
+    const pagesPerBlock = 10;
+
+    const data = {};
+    let num = totalPages * 10;
+    const startDate = new Date(2024, 0, 1); // Jan 1, 2024
+
+    for (let p = 1; p <= totalPages; p++) {
+      const pageData = [];
+      for (let i = 9; i >= 0; i--) {
+        const date = new Date(startDate);
+        date.setDate(date.getDate() + (num - 1));
+        const y = date.getFullYear();
+        const m = (date.getMonth() + 1).toString().padStart(2, '0');
+        const d = date.getDate().toString().padStart(2, '0');
+        pageData.push({
+          number: num,
+          title: `[이벤트] 기대평 이벤트 ${num}`,
+          date: `${y}.${m}.${d}`
+        });
+        num--;
+      }
+      data[p] = pageData;
+    }
+
+    function renderPagination() {
+      const container = document.getElementById("pagination");
+      container.innerHTML = "";
+
+      const startPage = (currentBlock - 1) * pagesPerBlock + 1;
+      const endPage = Math.min(currentBlock * pagesPerBlock, totalPages);
+
+      container.innerHTML += `<button onclick="goToPage(1)" class="px-3 py-1 rounded border border-gray-300 bg-white text-gray-400">&laquo;</button>`;
+      container.innerHTML += `<button onclick="goToPrevBlock()" class="px-3 py-1 rounded border border-gray-300 bg-white text-gray-400">&lt;</button>`;
+
+      for (let i = startPage; i <= endPage; i++) {
+        container.innerHTML += `<button id="page-btn-${i}" onclick="loadPage(${i})" class="pagination-btn px-3 py-1 bg-white rounded border border-gray-300">${i}</button>`;
+      }
+
+      container.innerHTML += `<button onclick="goToNextBlock()" class="px-3 py-1 rounded border border-gray-300 bg-white text-gray-500">&gt;</button>`;
+      container.innerHTML += `<button onclick="goToPage(totalPages)" class="px-3 py-1 rounded border border-gray-300 bg-white text-gray-500">&raquo;</button>`;
+    }
+
+    function loadPage(page) {
+      if (page < 1 || page > totalPages) return;
+      const body = document.getElementById("tableBody");
+      body.innerHTML = "";
+      data[page].forEach(row => {
+        body.innerHTML += `
+          <tr class="border-b">
+            <td class="py-3 pr-1 align-top">${row.number}</td>
+            <td class="py-3 pl-1 align-top">${row.title}</td>
+            <td class="py-3 px-2 text-center align-top">${row.date}</td>
+          </tr>
+        `;
+      });
+
+      document.querySelectorAll(".pagination-btn").forEach(btn => {
+        btn.classList.remove("text-green-600", "font-bold");
+      });
+      const current = document.querySelector(`#page-btn-${page}`);
+      if (current) {
+        current.classList.add("text-green-600", "font-bold");
+      }
+
+      currentPage = page;
+
+      const newBlock = Math.ceil(currentPage / pagesPerBlock);
+      if (newBlock !== currentBlock) {
+        currentBlock = newBlock;
+        renderPagination();
+        document.querySelector(`#page-btn-${page}`)?.classList.add("text-green-600", "font-bold");
+      }
+    }
+
+    function goToPage(page) {
+      if (page < 1 || page > totalPages) return;
+      loadPage(page);
+    }
+
+    function goToNextBlock() {
+      if (currentPage <= 10) {
+        loadPage(11);
+      }
+    }
+
+    function goToPrevBlock() {
+      if (currentPage > 10) {
+        loadPage(1);
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      renderPagination();
+      loadPage(1);
+    });
+  </script>
+
+</body>
+</html>
