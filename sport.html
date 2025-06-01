@@ -142,7 +142,7 @@
                 {rows.map((week, weekIdx) => (
                   <tr key={weekIdx}>
                     {week.map((date, dateIdx) => (
-                      <td key={dateIdx} className={`border h-24 w-32 text-left align-top pl-2 pt-2 ${date.isGray ? 'bg-gray-100' : ''}`}>
+                      <td key={dateIdx} className={`border h-24 w-32 text-left align-top pl-2 pt-2 ${date.isGray ? 'bg-gray-100' : 'bg-white'}`}>
                         {!date.isGray && (
                           <React.Fragment>
                             <div>{date.day}</div>
@@ -262,7 +262,7 @@ const FooterInfo = () => (
       });
 
       return (
-        <div>
+        <div className="bg-gray-100">
           <Header />
           <NavigationBar />
           <SportsSubNav />
