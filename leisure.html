@@ -60,22 +60,22 @@
           <div className="p-8 max-w-7xl mx-auto">
             {/* 메인 이미지와 카드 리스트 */}
             <div className="grid grid-cols-4 gap-4 mb-4">
-              <div className="border p-4">
+              <div className="border p-4 bg-white">
                 <img src="에버랜드.webp" alt="에버랜드"/>
                 <h3 className="font-bold mt-2">에버랜드 튤립축제</h3>
                 <p className="text-gray-600">2025.3.21 ~ 6.15</p>
               </div>
-              <div className="border p-4">
+              <div className="border p-4 bg-white">
                 <img src="https://via.placeholder.com/200x250" alt="행사 이름" />
                 <h3 className="font-bold mt-2">한강 요트 투어</h3>
                 <p className="text-gray-600">2025.4.15 ~ 9.15</p>
               </div>
-              <div className="border p-4">
+              <div className="border p-4 bg-white">
                 <img src="https://via.placeholder.com/200x250" alt="행사 이름" />
                 <h3 className="font-bold mt-2">송도 국제캠핑장</h3>
                 <p className="text-gray-600">2025.6.1 ~ 10.1</p>
               </div>
-              <div className="border p-4">
+              <div className="border p-4 bg-white">
                 <img src="https://via.placeholder.com/200x250" alt="행사 이름" />
                 <h3 className="font-bold mt-2">키자니아</h3>
                 <p className="text-gray-600">2025.8.1 ~ 11.31</p>
@@ -188,7 +188,7 @@
                         {Object.keys(leisureData).map((category) => (
                             <button
                                 key={category}
-                                className={`px-4 py-2 border rounded-full hover:bg-gray-100 ${
+                                className={`px-4 py-2 border rounded-full bg-white hover:bg-gray-100 ${
                                     activeCategory === category ? "bg-gray-200" : ""
                                 }`}
                                 onClick={() => setActiveCategory(category)}
@@ -202,7 +202,7 @@
 
                     <div className="grid grid-cols-2 gap-4">
                         {leisureData[activeCategory].map((item) => (
-                            <div key={item.id} className="border p-4">
+                            <div key={item.id} className="border p-4 bg-white">
                                 <img src={item.image} alt={item.title} className="w-full h-40 object-cover mb-2" />
                                 <h3 className="font-bold mt-2">{item.title}</h3>
                                 <p className="text-gray-600">{item.date}</p>
@@ -216,7 +216,7 @@
 
         /* 메인 렌더링 */
         const App = () => (
-          <div>
+          <div className="bg-gray-100">
             <Header />
             <NavigationBar />
             <LeisurePage />
