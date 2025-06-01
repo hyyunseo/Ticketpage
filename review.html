@@ -70,7 +70,7 @@ const toggleOptions = (index) => {
           {/* 왼쪽 영역 */}
           <div className="flex-1 space-y-8">
             {/* 베스트 후기 */}
-            <div className="border p-4 rounded shadow">
+            <div className="bg-white border p-4 rounded shadow">
               <div className="flex items-center mb-2">
                 <span className="text-lg font-bold mr-2">⭐ 베스트 후기</span>
               </div>
@@ -100,7 +100,7 @@ const toggleOptions = (index) => {
             </div>
 
             {/* 조회수 높은 관람후기 */}
-            <div className="border p-4 rounded shadow">
+            <div className="bg-white border p-4 rounded shadow">
                 <h2 className="text-lg font-bold mb-2">조회수 높은 관람후기</h2>
 
                 {/* 1위 후기 */}
@@ -128,7 +128,7 @@ const toggleOptions = (index) => {
                 </div>
               </div>
 {/* 내가 작성한 관람후기 별도 박스 */}
-<div className="border p-4 rounded shadow mt-8">
+<div className="bg-white border p-4 rounded shadow mt-8">
   <h2 className="text-lg font-bold mb-4">내가 작성한 관람후기</h2>
   {userReviews.length === 0 ? (
     <p className="text-sm text-gray-500">아직 작성한 후기가 없습니다.</p>
@@ -177,7 +177,7 @@ const toggleOptions = (index) => {
           </div>
           {/* 오른쪽 영역 */}
           <aside className="w-80">
-            <div className="border p-4 rounded shadow w-64">
+            <div className="bg-white border p-4 rounded shadow w-64">
                 <h2 className="text-lg font-bold mb-2">공연 평점 랭킹</h2>
 
                 <ul className="space-y-2">
@@ -334,7 +334,7 @@ const handleDelete = (index) => {
 };
 
   return (
-    <div>
+    <div className="bg-gray-100">
       <Header />
       <NavigationBar />
       <ReviewPage
