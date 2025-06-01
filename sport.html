@@ -126,7 +126,7 @@
             </div>
 
           <div className="p-0 m-0 mb-10">
-            <table className="w-full text-center border border-gray-300 border-collapse">
+            <table className="bg-white w-full text-center border border-gray-300 border-collapse">
               <thead>
                 <tr>
                   <th className="border p-2">월요일</th>
@@ -142,7 +142,7 @@
                 {rows.map((week, weekIdx) => (
                   <tr key={weekIdx}>
                     {week.map((date, dateIdx) => (
-                      <td key={dateIdx} className={`border h-24 w-32 text-left align-top pl-2 pt-2 ${date.isGray ? 'bg-gray-100' : 'bg-white'}`}>
+                      <td key={dateIdx} className={`border h-24 w-32 text-left align-top pl-2 pt-2 ${date.isGray ? 'bg-white' : 'bg-white'}`}>
                         {!date.isGray && (
                           <React.Fragment>
                             <div>{date.day}</div>
