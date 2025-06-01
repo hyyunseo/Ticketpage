@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MD샵 페이지 UI</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    /* 작품 리스트 선택 스타일 */
+    #workList li.selected {
+      background-color: #e5e7eb; /* Tailwind gray-200 */
+      font-weight: 600;
+    }
+
+    /* 네비게이션 활성 메뉴 */
+    nav ul li.active {
+      color: #dc2626; /* Tailwind red-600 */
+      border-bottom: 2px solid #dc2626;
+    }
+
+    /* 위시리스트 미리보기 박스 */
+    #wishlistPreview {
+      user-select: none;
+      font-size: 1rem;
+      cursor: pointer;
+      border: 2px solid #dc2626; /* 진한 빨강 테두리 */
+      border-radius: 0.375rem;
+      padding: 0.75rem;
+      margin-top: 0.5rem;
+      color: #b91c1c; /* 진한 빨강 텍스트 */
+      text-align: center;
+      transition: background-color 0.3s ease;
+    }
+    #wishlistPreview:hover {
+      background-color: #fee2e2; /* 연한 빨강 배경 */
+    }
+
+    /* 위시리스트 모달 배경 */
+    #wishlistModal {
+      /* 기본 hidden 상태는 inline style로 처리 */
+    }
+
+    /* 모달 내부 스크롤 */
+    #wishlistContent {
+      max-height: 70vh;
+      overflow-y: auto;
+      padding-right: 0.5rem;
+    }
+
+    /* 모달 컨테이너 */
+    #wishlistModal > div {
+      /* 이미 Tailwind로 스타일링됨 */
+    }
+
+    /* 좋아요 버튼 기본 스타일 (필요시 추가) */
+    .like-btn {
+      transition: color 0.3s ease;
+    }
+    .md-item img {
+      width: 100%;
+      height: 180px; /* 고정 높이 */
+      object-fit: contain; /* 이미지 비율 유지하며 박스 안에 맞춤 */
+      border-radius: 0.375rem; /* 둥근 모서리 */
+    }
+  </style>
+
+<header class="bg-red-600 text-white p-2 flex items-center justify-between sticky top-0 z-50">
+  {/* 로고 영역: finalmain.html로 정상 링크 */}
+  <a href="finalmain.html" className="flex items-center space-x-4">
+    <img src="https://via.placeholder.com/40" alt="logo" className="w-10 h-10" />
+    <h1 className="text-xl font-bold">ticketpage</h1>
+  </a>
+
+  {/* 검색창 */}
+  <div className="flex items-center space-x-2">
+    <input
+      type="text"
+      placeholder="검색어를 입력하세요"
+      className="p-2 rounded w-96"
+    />
+    <button className="p-2 bg-white text-black rounded">🔍</button>
+  </div>
+
+  {/* 로그인 */}
+  <div className="flex items-center space-x-4">
+    <a href="login.html" className="hover:underline">로그인</a>
+    <img
+      src="https://via.placeholder.com/30"
+      alt="profile"
+      className="w-8 h-8 rounded-full bg-gray-300"
+    />
+  </div>
+</header>
+
+const NavigationBar = () => (
+  <nav className="bg-white text-black p-2 border-b sticky top-12 z-50">
+    <ul className="flex justify-between text-sm">
+      {navItems.map((item, index) => (
+        <li
+          key={index}
+          className={`hover:text-red-600 flex-1 text-center ${
+            item === "MD샵" ? "text-red-600 font-bold" : ""
+          }`}
+        >
+          <a href="#" className="block">
+            {item}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+);
+
+
+  <!-- 본문 -->
+  <main class="flex p-6 gap-6 max-w-[1200px] mx-auto">
+    <!-- 작품 리스트 + 위시리스트 박스 -->
+    <aside class="w-48 bg-white rounded shadow p-4 flex flex-col" id="workList">
+      <ul class="flex-grow overflow-auto mb-4">
+        <li class="py-2 px-3 cursor-pointer hover:bg-gray-100 rounded flex justify-between items-center font-semibold selected">[콘서트] 자우림 <span>&gt;</span></li>
+        <li class="py-2 px-3 cursor-pointer hover:bg-gray-100 rounded flex justify-between items-center">[콘서트] 르세라핌 <span>&gt;</span></li>
+        <li class="py-2 px-3 cursor-pointer hover:bg-gray-100 rounded flex justify-between items-center">작품 이름3 <span>&gt;</span></li>
+        <li class="py-2 px-3 cursor-pointer hover:bg-gray-100 rounded flex justify-between items-center">작품 이름4 <span>&gt;</span></li>
+        <li class="py-2 px-3 cursor-pointer hover:bg-gray-100 rounded flex justify-between items-center">작품 이름5 <span>&gt;</span></li>
+        <li class="py-2 px-3 cursor-pointer hover:bg-gray-100 rounded flex justify-between items-center">작품 이름6 <span>&gt;</span></li>
+        <li class="py-2 px-3 cursor-pointer hover:bg-gray-100 rounded flex justify-between items-center">작품 이름7 <span>&gt;</span></li>
+        <li class="py-2 px-3 cursor-pointer hover:bg-gray-100 rounded flex justify-between items-center">작품 이름8 <span>&gt;</span></li>
+      </ul>
+
+      <!-- 위시리스트 미리보기 박스 -->
+      <section id="wishlistPreview" class="cursor-pointer border-2 border-red-600 rounded p-3 mt-2 text-red-700 font-semibold text-center hover:bg-red-100 transition">
+        위시리스트
+      </section>
+    </aside>
+
+    <!-- MD 아이템 그리드 -->
+    <section class="flex-1 grid grid-cols-4 gap-6" id="mdGrid">
+      <!-- JS가 12개 동적으로 넣음 -->
+    </section>
+  </main>
+
+  <!-- 위시리스트 모달 -->
+  <div id="wishlistModal" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 hidden">
+    <div class="bg-white rounded-lg w-96 max-h-[70vh] p-6 flex flex-col shadow-lg overflow-hidden">
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="text-xl font-bold text-red-600">내 위시리스트</h2>
+        <button id="closeWishlist" class="text-red-600 hover:text-red-800 font-bold text-2xl cursor-pointer">&times;</button>
+      </div>
+      <div id="wishlistContent" class="flex-1 overflow-y-auto space-y-3 text-gray-700 text-sm">
+        <p class="italic text-gray-400">위시리스트가 비어 있습니다.</p>
+      </div>
+    </div>
+  </div>
+
+<script type="module">
+  // 작품별 상품 데이터 직접 선언 (import 대신)
+  const worksMD = {
+    "[콘서트] 자우림": [
+      {
+        id: "1-1",
+        name: "HAPPY 25th JAURIM - POSTER SET (5종)",
+        img: "./images/happy_25th_jaurim_poster_set_5.png"
+      },
+      {
+        id: "1-2",
+        name: "HAPPY 25th JAURIM - T-SHIRTS",
+        img: "./images/happy_25th_jaurim_tshirts.png"
+      },
+      {
+        id: "1-3",
+        name: "HAPPY 25th JAURIM - 극세사 SLOGAN",
+        img: "./images/happy_25th_jaurim_slogan.png"
+      },
+      {
+        id: "1-4",
+        name: "JAURIM OFFICIAL LIGHT STICK",
+        img: "./images/JAURIM_OFFICIAL_LIGHT_STICK.png"
+      },
+      {
+        id: "1-5",
+        name: "JAURIM TOWEL SLOGAN",
+        img: "./images/JAURIM_TOWEL_SLOGAN.png"
+      },
+      {
+        id: "1-6",
+        name: "MERRY_SPOOKY_X-MAS_HOODY",
+        img: "./images/MERRY_SPOOKY_X-MAS_HOODY.png"
+      },
+      {
+        id: "1-7",
+        name: "MERRY SPOOKY X-MAS - MINI POSTER SET (5종)",
+        img: "./images/merry_spooky_xmas_mini_poster_set_5.png"
+      },
+      {
+        id: "1-8",
+        name: "MERRY SPOOKY X-MAS - PHOTO CARD+STICKER SET",
+        img: "./images/merry_spooky_xmas_photo_card_sticker_set.png"
+      },
+      {
+        id: "1-9",
+        name: "MIDNIGHT EXPRESS - KEYRING",
+        img: "./images/midnight_express_keyring.png"
+      },
+      {
+        id: "1-10",
+        name: "MIDNIGHT EXPRESS - MINI POSTER + STICKER",
+        img: "./images/midnight_express_mini_poster_sticker.png"
+      },
+      {
+        id: "1-11",
+        name: "MIDNIGHT EXPRESS - T-SHIRTS (BLACK)",
+        img: "./images/midnight_express_tshirts_black.png"
+      },
+      {
+        id: "1-12",
+        name: "MIDNIGHT EXPRESS - T-SHIRTS (GREY)",
+        img: "./images/midnight_express_tshirts_grey.png"
+      }
+    ],
+    // 다른 작품 데이터 추가 가능
+  };
+
+  // DOM 요소들 선택
+  const workListUl = document.querySelector("#workList > ul");
+  const mdGrid = document.getElementById("mdGrid");
+  const wishlistPreview = document.getElementById("wishlistPreview");
+  const wishlistModal = document.getElementById("wishlistModal");
+  const closeWishlistBtn = document.getElementById("closeWishlist");
+  const wishlistContent = document.getElementById("wishlistContent");
+
+  // 위시리스트 저장 (id 기준)
+  let wishlistItems = [];
+
+  // MD 아이템 렌더링 함수
+  function renderMDItems(mdItems) {
+    mdGrid.innerHTML = "";
+    mdItems.forEach(item => {
+      const div = document.createElement("div");
+      div.className = "bg-white p-3 rounded shadow relative cursor-pointer md-item";
+      div.setAttribute("data-id", item.id);
+
+      const isLiked = wishlistItems.some(w => w.id === item.id);
+
+      div.innerHTML = `
+        <img src="${item.img}" alt="${item.name}" class="w-full h-28 object-cover rounded" />
+        <div class="mt-2 text-sm font-semibold font-bold">${item.name}</div>
+        <button class="absolute top-2 right-2 ${isLiked ? 'text-red-600' : 'text-gray-400'} hover:text-red-600 like-btn">
+          ${isLiked ? '❤️' : '🤍'}
+        </button>
+      `;
+
+      mdGrid.appendChild(div);
+    });
+    bindLikeButtons();
+  }
+
+  // 좋아요 버튼 이벤트 등록
+  function bindLikeButtons() {
+    document.querySelectorAll(".like-btn").forEach(btn => {
+      btn.onclick = e => {
+        e.stopPropagation();
+        const parent = btn.closest("div.bg-white");
+        if (!parent) return;
+
+        const id = parent.getAttribute("data-id");
+        const name = parent.querySelector("div.mt-2").textContent;
+        const img = parent.querySelector("img").src;
+
+        const existIndex = wishlistItems.findIndex(w => w.id === id);
+
+        if (existIndex === -1) {
+          wishlistItems.push({ id, name, img });
+          btn.textContent = "❤️";
+          btn.classList.remove("text-gray-400");
+          btn.classList.add("text-red-600");
+        } else {
+          wishlistItems.splice(existIndex, 1);
+          btn.textContent = "🤍";
+          btn.classList.remove("text-red-600");
+          btn.classList.add("text-gray-400");
+        }
+      };
+    });
+  }
+
+  // 작품 리스트 클릭 시 MD 상품 갱신
+  workListUl.querySelectorAll("li").forEach(li => {
+    li.addEventListener("click", () => {
+      workListUl.querySelectorAll("li").forEach(i => i.classList.remove("selected"));
+      li.classList.add("selected");
+
+      let workName = li.textContent.trim();
+      if (workName.endsWith(">")) {
+        workName = workName.slice(0, -1).trim();
+      }
+      if (worksMD[workName]) {
+        renderMDItems(worksMD[workName]);
+      } else {
+        renderMDItems([]);
+      }
+    });
+  });
+
+  // 초기 로드 시 기본 작품 MD 렌더링
+  renderMDItems(worksMD["[콘서트] 자우림"] || []);
+
+  // 검색 버튼 이벤트 (예시)
+  const searchBtn = document.getElementById("searchBtn");
+  const searchInput = document.getElementById("searchInput");
+  searchBtn.addEventListener("click", () => {
+    alert(`검색어: ${searchInput.value}`);
+  });
+
+  // 위시리스트 박스 클릭시 모달 열기
+  wishlistPreview.addEventListener("click", () => {
+    wishlistModal.classList.remove("hidden");
+    renderWishlistItems();
+  });
+
+  // 모달 닫기 버튼 이벤트
+  closeWishlistBtn.addEventListener("click", () => {
+    wishlistModal.classList.add("hidden");
+  });
+
+  // 모달 바깥 클릭 시 닫기
+  wishlistModal.addEventListener("click", e => {
+    if (e.target === wishlistModal) {
+      wishlistModal.classList.add("hidden");
+    }
+  });
+
+  // 위시리스트 모달 내 아이템 렌더링
+  function renderWishlistItems() {
+    wishlistContent.innerHTML = "";
+    if (wishlistItems.length === 0) {
+      wishlistContent.innerHTML = '<p class="italic text-gray-400">위시리스트가 비어 있습니다.</p>';
+      return;
+    }
+    wishlistItems.forEach(item => {
+      const div = document.createElement("div");
+      div.className = "flex items-center gap-3 p-2 border-b border-gray-200";
+      div.innerHTML = `
+        <img src="${item.img}" alt="${item.name}" class="w-12 h-12 rounded object-cover" />
+        <div>
+          <div class="font-semibold text-red-600">${item.name}</div>
+        </div>
+        <button class="ml-auto text-red-600 hover:text-red-800 cursor-pointer">삭제</button>
+      `;
+
+      div.querySelector("button").addEventListener("click", () => {
+        wishlistItems = wishlistItems.filter(w => w.id !== item.id);
+        renderWishlistItems();
+        updateMDLikeButtons();
+      });
+
+      wishlistContent.appendChild(div);
+    });
+  }
+
+  // 위시리스트 변경 시 MD 아이템 좋아요 상태 업데이트
+  function updateMDLikeButtons() {
+    document.querySelectorAll(".like-btn").forEach(btn => {
+      const parent = btn.closest("div.bg-white");
+      if (!parent) return;
+
+      const id = parent.getAttribute("data-id");
+      const liked = wishlistItems.some(w => w.id === id);
+
+      btn.textContent = liked ? "❤️" : "🤍";
+      btn.classList.toggle("text-red-600", liked);
+      btn.classList.toggle("text-gray-400", !liked);
+    });
+  }
+
+  // 네비게이션 메뉴 토글
+  const navList = document.getElementById("navList");
+  navList.querySelectorAll("li").forEach(li => {
+    li.addEventListener("click", () => {
+      navList.querySelectorAll("li").forEach(i => {
+        i.classList.remove("active");
+        i.classList.remove("text-red-600");
+        i.classList.remove("border-b-2");
+        i.classList.remove("border-red-600");
+        i.classList.add("hover:text-red-600");
+      });
+      li.classList.add("active");
+      li.classList.add("text-red-600");
+      li.classList.add("border-b-2");
+      li.classList.add("border-red-600");
+      li.classList.remove("hover:text-red-600");
+    });
+  });
+</script>
+
+</body>
+</html>

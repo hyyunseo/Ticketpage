@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MD샵 페이지 UI</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <style>
+    #workList li.selected {
+      background-color: #e5e7eb;
+      font-weight: 600;
+    }
+    .like-btn {
+      transition: color 0.3s ease;
+    }
+    .md-item img {
+      width: 100%;
+      height: 180px;
+      object-fit: contain;
+      border-radius: 0.375rem;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 min-h-screen">
+  <div id="root"></div>
+
+  <script type="text/babel">
+
+    const navItems = [
+      "뮤지컬/연극", "콘서트", "스포츠", "전시/행사",
+      "레저", "테마/지역", "MD샵", "이벤트", "티켓오픈소식"
+    ];
+
+    const worksMD = {
+      "[콘서트] 자우림": [
+        { id: "1-1", name: "HAPPY 25th JAURIM - POSTER SET (5종)", img: "./images/happy_25th_jaurim_poster_set_5.png" },
+        { id: "1-2", name: "HAPPY 25th JAURIM - T-SHIRTS", img: "./images/happy_25th_jaurim_tshirts.png" },
+        { id: "1-3", name: "HAPPY 25th JAURIM - 극세사 SLOGAN", img: "./images/happy_25th_jaurim_slogan.png" },
+        { id: "1-4", name: "JAURIM OFFICIAL LIGHT STICK", img: "./images/JAURIM_OFFICIAL_LIGHT_STICK.png" },
+        { id: "1-5", name: "JAURIM TOWEL SLOGAN", img: "./images/JAURIM_TOWEL_SLOGAN.png" },
+        { id: "1-6", name: "MERRY_SPOOKY_X-MAS_HOODY", img: "./images/MERRY_SPOOKY_X-MAS_HOODY.png" },
+        { id: "1-7", name: "MERRY SPOOKY X-MAS - MINI POSTER SET (5종)", img: "./images/merry_spooky_xmas_mini_poster_set_5.png" },
+        { id: "1-8", name: "MERRY SPOOKY X-MAS - PHOTO CARD+STICKER SET", img: "./images/merry_spooky_xmas_photo_card_sticker_set.png" },
+        { id: "1-9", name: "MIDNIGHT EXPRESS - KEYRING", img: "./images/midnight_express_keyring.png" },
+        { id: "1-10", name: "MIDNIGHT EXPRESS - MINI POSTER + STICKER", img: "./images/midnight_express_mini_poster_sticker.png" },
+        { id: "1-11", name: "MIDNIGHT EXPRESS - T-SHIRTS (BLACK)", img: "./images/midnight_express_tshirts_black.png" },
+        { id: "1-12", name: "MIDNIGHT EXPRESS - T-SHIRTS (GREY)", img: "./images/midnight_express_tshirts_grey.png" }
+      ],
+      "[콘서트] 르세라핌": [
+    { id: "2-1", name: "LE SSERAFIM - OFFICIAL ALBUM", img: "./images/lesserafim_album.png" },
+    { id: "2-2", name: "LE SSERAFIM - LIGHT STICK", img: "./images/lesserafim_lightstick.png" },
+    /* 르세라핌 MD 상품들 더 추가 가능 */
+  ],
+  "[콘서트] 라이즈": [
+    { id: "3-1", name: "LE SSERAFIM - OFFICIAL ALBUM", img: "./images/lesserafim_album.png" },
+    { id: "3-2", name: "LE SSERAFIM - LIGHT STICK", img: "./images/lesserafim_lightstick.png" },
+    ],
+      "[콘서트] 보이넥스트도어": [
+    { id: "4-1", name: "LE SSERAFIM - OFFICIAL ALBUM", img: "./images/lesserafim_album.png" },
+    { id: "4-2", name: "LE SSERAFIM - LIGHT STICK", img: "./images/lesserafim_lightstick.png" },
+    ],
+      "[콘서트] 에스파": [
+    { id: "5-1", name: "LE SSERAFIM - OFFICIAL ALBUM", img: "./images/lesserafim_album.png" },
+    { id: "5-2", name: "LE SSERAFIM - LIGHT STICK", img: "./images/lesserafim_lightstick.png" },
+    ],
+    };
+
+        const Header = () => (
+          <header className="bg-red-600 text-white p-2 flex items-center justify-between sticky top-0 z-50">
+            <div className="flex items-center space-x-4">
+              <img src="https://via.placeholder.com/40" alt="logo" className="w-10 h-10" />
+              <h1 className="text-xl font-bold">ticketpage</h1>
+            </div>
+            <div className="flex items-center space-x-2">
+              <input
+                type="text"
+                placeholder="검색어를 입력하세요"
+                className="p-2 rounded w-96"
+              />
+              <button className="p-2 bg-white text-black rounded">🔍</button>
+            </div>
+            <div className="flex items-center space-x-4">
+              <a href="login.html" className="hover:underline">로그인</a>
+              <a href="#" className="hover:underline">회원가입</a>
+              <img src="https://via.placeholder.com/30" alt="profile" className="w-8 h-8 rounded-full bg-gray-300" />
+            </div>
+          </header>
+        );
+
+        /* Navigation Component */
+        const NavigationBar = () => (
+          <nav className="bg-white text-black p-2 border-b sticky top-12 z-50">
+            <ul className="flex justify-between text-sm">
+              {navItems.map((item, index) => (
+                <li key={index} className={`hover:text-red-600 flex-1 text-center ${item === "MD샵" ? "text-red-600 font-bold" : ""}`}>
+                  <a href="#" className="block">{item}</a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        );
+
+    const App = () => {
+      const [activeNav, setActiveNav] = React.useState("MD샵");
+      const [selectedWork, setSelectedWork] = React.useState(Object.keys(worksMD)[0] || "");
+      const [wishlistItems, setWishlistItems] = React.useState([]);
+      
+// 추가: 위시리스트 모달 열림 상태
+const [isWishlistOpen, setIsWishlistOpen] = React.useState(false);
+  const openWishlist = () => setIsWishlistOpen(true);
+  const closeWishlist = () => setIsWishlistOpen(false);
+
+      const mdItems = worksMD[selectedWork] || [];
+
+      // 작품 리스트 클릭 핸들러
+      const onWorkClick = (workName) => {
+        setSelectedWork(workName);
+      };
+
+      // 좋아요 토글
+const toggleLike = (id) => {
+  setWishlistItems(prev => {
+    if (prev.some(item => item.id === id)) {
+      return prev.filter(item => item.id !== id);
+    } else {
+      const likedItem = mdItems.find(item => item.id === id);
+      return likedItem ? [...prev, likedItem] : prev;
+    }
+  });
+};
+
+
+      // 작품 리스트 li 렌더링
+      const renderWorkList = () => {
+        const works = Object.keys(worksMD);
+        const listItems = [];
+        for (const workName in worksMD) {
+          for (let i=0; i<worksMD[workName].length; i++) {
+            if(!listItems.includes(workName)) {
+              listItems.push(workName);
+            }
+          }
+        }
+        return listItems.map(workName => (
+          <li
+            key={workName}
+            className={`py-2 px-3 cursor-pointer hover:bg-gray-100 rounded flex justify-between items-center font-semibold
+              ${selectedWork === workName ? "selected" : ""}`}
+            onClick={() => onWorkClick(workName)}
+          >
+            {workName} <span>&gt;</span>
+          </li>
+        ));
+      };
+
+      return (
+        <>
+          <Header />
+          <NavigationBar activeItem={activeNav} onClick={setActiveNav} />
+
+          <main className="flex p-6 gap-6 max-w-[1200px] mx-auto">
+            {/* 작품 리스트 + 위시리스트 박스 */}
+            <aside className="w-48 bg-white rounded shadow p-4 flex flex-col" id="workList">
+              <ul className="flex-grow overflow-auto mb-4">
+                {renderWorkList()}
+              </ul>
+              <section
+                id="wishlistPreview"
+                className="cursor-pointer border-2 border-red-600 rounded p-3 mt-2 text-red-700 font-semibold text-center hover:bg-red-100 transition"
+                onClick={openWishlist} 
+              >
+                위시리스트
+              </section>
+            </aside>
+
+            {/* MD 아이템 그리드 */}
+            <section className="flex-1 grid grid-cols-4 gap-6" id="mdGrid">
+              {mdItems.map(item => {
+                const liked = wishlistItems.some(w => w.id === item.id);
+                return (
+                  <div
+                    key={item.id}
+                    className="bg-white p-3 rounded shadow relative cursor-pointer md-item"
+                  >
+                    <img src={item.img} alt={item.name} className="w-full h-28 object-cover rounded" />
+                    <div className="mt-2 text-sm font-semibold font-bold">{item.name}</div>
+                    <button
+  className={`absolute top-2 right-2 hover:text-red-600 like-btn ${liked ? "text-red-600" : "text-gray-400"}`}
+  onClick={() => toggleLike(item.id)}
+                    >
+                      {liked ? "❤️" : "🤍"}
+                    </button>
+                  </div>
+                );
+              })}
+            </section>
+          </main>
+          {isWishlistOpen && (
+  <div
+    id="wishlistModal"
+    className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50"
+    onClick={(e) => { if (e.target.id === "wishlistModal") closeWishlist(); }}  // 배경 클릭시 닫힘 처리
+  >
+    <div className="bg-white rounded-lg w-96 max-h-[70vh] p-6 flex flex-col shadow-lg overflow-hidden">
+      <div className="flex justify-between items-center mb-4">
+        <h2 className="text-xl font-bold text-red-600">내 위시리스트</h2>
+        <button
+          id="closeWishlist"
+          className="text-red-600 hover:text-red-800 font-bold text-2xl cursor-pointer"
+          onClick={closeWishlist}  // 닫기 버튼 이벤트
+        >
+          &times;
+        </button>
+      </div>
+      <div className="flex-1 overflow-y-auto space-y-3 text-gray-700 text-sm">
+        {wishlistItems.length === 0 ? (
+          <p className="italic text-gray-400">위시리스트가 비어 있습니다.</p>
+        ) : (
+          wishlistItems.map(item => (
+            <div key={item.id} className="flex items-center gap-3 p-2 border-b border-gray-200">
+              <img src={item.img} alt={item.name} className="w-12 h-12 rounded object-cover" />
+              <div>
+                <div className="font-semibold text-red-600">{item.name}</div>
+              </div>
+              <button
+                className="ml-auto text-red-600 hover:text-red-800 cursor-pointer"
+                onClick={() => toggleLike(item.id)}  // 삭제 버튼 역할
+              >
+                삭제
+              </button>
+            </div>
+          ))
+        )}
+      </div>
+    </div>
+  </div>
+)}
+
+        </>
+      );
+    };
+
+    ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+
+  </script>
+</body>
+</html>
