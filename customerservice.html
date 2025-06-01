@@ -63,6 +63,53 @@
         </ul>
       </nav>
     );
+  // 푸터 컴포넌트
+    const FooterInfo = () => (
+  <footer className="bg-gray-100 w-full border-t border-gray-300 mt-56 pt-6 px-8 text-xs text-gray-600"> {/* mt-56로 여백을 크게 설정 */}
+    {/* 상단 링크 메뉴 */}
+    <nav className="flex flex-wrap justify-center gap-x-20 gap-y-2 mb-4 text-gray-500">
+      {[
+        "회사소개", "이용약관", "개인정보처리방침", "위치기반서비스 이용약관",
+        "여행약관", "여행자보험 가입내역", "티켓판매안내", "공지사항", "고객센터"
+      ].map((item) => (
+        <a href="#" key={item} className="hover:underline">
+          {item}
+        </a>
+      ))}
+    </nav>
+
+    {/* 하단 회사 및 고객센터 정보 */}
+    <div className="flex flex-wrap justify-between text-gray-600 px-16 gap-x-20">
+      <div className="w-[300px] mb-4">
+        <p className="font-bold mb-1">(주)숙명여자협회</p>
+        <p>주소 서울특별시 용산구 청파로</p>
+        <p>사업자등록번호 824-91-09283</p>
+        <p>통신판매업신고 2025-숙명-0504</p>
+        <p>관광사업등록번호 제2025-000001호</p>
+      </div>
+      <div className="w-[300px] mb-4">
+        <p className="font-bold mb-1">고객센터</p>
+        <p>1:1문의</p>
+        <p>팩스 02-842-1029</p>
+        <p>이메일 websystem@smu.ac.kr</p>
+      </div>
+      <div className="w-[300px] mb-4">
+        <p className="font-bold mb-1">전자금융거래 분쟁처리 담당정보</p>
+        <p>팩스 02-482-1203</p>
+        <p>이메일 may04@smu.ac.kr</p>
+        <p>개인정보보호책임자 privacy@smu.ac.kr</p>
+      </div>
+    </div>
+  </footer>
+);
+
+
+
+
+
+
+
+
 
     const CustomerCenterTopBar = () => {
       const [selectedMenu, setSelectedMenu] = useState("고객센터 홈");
@@ -181,6 +228,7 @@
           <Header />
           <NavigationBar activeItem={activeNav} onSelect={setActiveNav} />
           <CustomerCenterTopBar />
+          <FooterInfo />
         </div>
 
       );

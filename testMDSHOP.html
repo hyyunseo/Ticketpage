@@ -29,6 +29,7 @@
   <div id="root"></div>
 
   <script type="text/babel">
+    const { useState } = React;
 
     const navItems = [
       "뮤지컬/연극", "콘서트", "스포츠", "전시/행사",
@@ -51,101 +52,111 @@
         { id: "1-12", name: "MIDNIGHT EXPRESS - T-SHIRTS (GREY)", img: "./images/midnight_express_tshirts_grey.png" }
       ],
       "[콘서트] 르세라핌": [
-    { id: "2-1", name: "LE SSERAFIM - OFFICIAL ALBUM", img: "./images/lesserafim_album.png" },
-    { id: "2-2", name: "LE SSERAFIM - LIGHT STICK", img: "./images/lesserafim_lightstick.png" },
-    /* 르세라핌 MD 상품들 더 추가 가능 */
-  ],
-  "[콘서트] 라이즈": [
-    { id: "3-1", name: "LE SSERAFIM - OFFICIAL ALBUM", img: "./images/lesserafim_album.png" },
-    { id: "3-2", name: "LE SSERAFIM - LIGHT STICK", img: "./images/lesserafim_lightstick.png" },
-    ],
-      "[콘서트] 보이넥스트도어": [
-    { id: "4-1", name: "LE SSERAFIM - OFFICIAL ALBUM", img: "./images/lesserafim_album.png" },
-    { id: "4-2", name: "LE SSERAFIM - LIGHT STICK", img: "./images/lesserafim_lightstick.png" },
-    ],
-      "[콘서트] 에스파": [
-    { id: "5-1", name: "LE SSERAFIM - OFFICIAL ALBUM", img: "./images/lesserafim_album.png" },
-    { id: "5-2", name: "LE SSERAFIM - LIGHT STICK", img: "./images/lesserafim_lightstick.png" },
-    ],
+        { id: "2-1", name: "LE SSERAFIM - OFFICIAL ALBUM", img: "./images/lesserafim_album.png" },
+        { id: "2-2", name: "LE SSERAFIM - LIGHT STICK", img: "./images/lesserafim_lightstick.png" },
+      ]
     };
 
-        const Header = () => (
-          <header className="bg-red-600 text-white p-2 flex items-center justify-between sticky top-0 z-50">
-            <div className="flex items-center space-x-4">
-              <img src="https://via.placeholder.com/40" alt="logo" className="w-10 h-10" />
-              <h1 className="text-xl font-bold">ticketpage</h1>
-            </div>
-            <div className="flex items-center space-x-2">
-              <input
-                type="text"
-                placeholder="검색어를 입력하세요"
-                className="p-2 rounded w-96"
-              />
-              <button className="p-2 bg-white text-black rounded">🔍</button>
-            </div>
-            <div className="flex items-center space-x-4">
-              <a href="login.html" className="hover:underline">로그인</a>
-              <a href="#" className="hover:underline">회원가입</a>
-              <img src="https://via.placeholder.com/30" alt="profile" className="w-8 h-8 rounded-full bg-gray-300" />
-            </div>
-          </header>
-        );
+    const Header = () => (
+      <header className="bg-red-600 text-white p-2 flex items-center justify-between sticky top-0 z-50">
+        <div className="flex items-center space-x-4">
+          <img src="https://via.placeholder.com/40" alt="logo" className="w-10 h-10" />
+          <h1 className="text-xl font-bold">ticketpage</h1>
+        </div>
+        <div className="flex items-center space-x-2">
+          <input type="text" placeholder="검색어를 입력하세요" className="p-2 rounded w-96 text-black" />
+          <button className="p-2 bg-white text-black rounded">🔍</button>
+        </div>
+        <div className="flex items-center space-x-4">
+          <a href="login.html" className="hover:underline">로그인</a>
+          <a href="#" className="hover:underline">회원가입</a>
+          <img src="https://via.placeholder.com/30" alt="profile" className="w-8 h-8 rounded-full bg-gray-300" />
+        </div>
+      </header>
+    );
 
-        /* Navigation Component */
-        const NavigationBar = () => (
-          <nav className="bg-white text-black p-2 border-b sticky top-12 z-50">
-            <ul className="flex justify-between text-sm">
-              {navItems.map((item, index) => (
-                <li key={index} className={`hover:text-red-600 flex-1 text-center ${item === "MD샵" ? "text-red-600 font-bold" : ""}`}>
-                  <a href="#" className="block">{item}</a>
-                </li>
-              ))}
-            </ul>
-          </nav>
-        );
+    const NavigationBar = () => (
+      <nav className="bg-white text-black p-2 border-b sticky top-12 z-50">
+        <ul className="flex justify-between text-sm">
+          {navItems.map((item, index) => (
+            <li key={index} className={`hover:text-red-600 flex-1 text-center ${item === "MD샵" ? "text-red-600 font-bold" : ""}`}>
+              <a href="#" className="block">{item}</a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    );
+
+    // 푸터 컴포넌트
+    const FooterInfo = () => (
+  <footer className="bg-gray-100 w-full border-t border-gray-300 mt-48 pt-6 px-8 text-xs text-gray-600"> {/* mt-48로 여백을 크게 설정 */}
+    {/* 상단 링크 메뉴 */}
+    <nav className="flex flex-wrap justify-center gap-x-20 gap-y-2 mb-4 text-gray-500">
+      {[
+        "회사소개", "이용약관", "개인정보처리방침", "위치기반서비스 이용약관",
+        "여행약관", "여행자보험 가입내역", "티켓판매안내", "공지사항", "고객센터"
+      ].map((item) => (
+        <a href="#" key={item} className="hover:underline">
+          {item}
+        </a>
+      ))}
+    </nav>
+
+    {/* 하단 회사 및 고객센터 정보 */}
+    <div className="flex flex-wrap justify-between text-gray-600 px-16 gap-x-20">
+      <div className="w-[300px] mb-4">
+        <p className="font-bold mb-1">(주)숙명여자협회</p>
+        <p>주소 서울특별시 용산구 청파로</p>
+        <p>사업자등록번호 824-91-09283</p>
+        <p>통신판매업신고 2025-숙명-0504</p>
+        <p>관광사업등록번호 제2025-000001호</p>
+      </div>
+      <div className="w-[300px] mb-4">
+        <p className="font-bold mb-1">고객센터</p>
+        <p>1:1문의</p>
+        <p>팩스 02-842-1029</p>
+        <p>이메일 websystem@smu.ac.kr</p>
+      </div>
+      <div className="w-[300px] mb-4">
+        <p className="font-bold mb-1">전자금융거래 분쟁처리 담당정보</p>
+        <p>팩스 02-482-1203</p>
+        <p>이메일 may04@smu.ac.kr</p>
+        <p>개인정보보호책임자 privacy@smu.ac.kr</p>
+      </div>
+    </div>
+  </footer>
+);
+
 
     const App = () => {
-      const [activeNav, setActiveNav] = React.useState("MD샵");
-      const [selectedWork, setSelectedWork] = React.useState(Object.keys(worksMD)[0] || "");
-      const [wishlistItems, setWishlistItems] = React.useState([]);
-      
-// 추가: 위시리스트 모달 열림 상태
-const [isWishlistOpen, setIsWishlistOpen] = React.useState(false);
-  const openWishlist = () => setIsWishlistOpen(true);
-  const closeWishlist = () => setIsWishlistOpen(false);
+      const [activeNav, setActiveNav] = useState("MD샵");
+      const [selectedWork, setSelectedWork] = useState(Object.keys(worksMD)[0] || "");
+      const [wishlistItems, setWishlistItems] = useState([]);
+      const [isWishlistOpen, setIsWishlistOpen] = useState(false);
+
+      const openWishlist = () => setIsWishlistOpen(true);
+      const closeWishlist = () => setIsWishlistOpen(false);
 
       const mdItems = worksMD[selectedWork] || [];
 
-      // 작품 리스트 클릭 핸들러
       const onWorkClick = (workName) => {
         setSelectedWork(workName);
       };
 
-      // 좋아요 토글
-const toggleLike = (id) => {
-  setWishlistItems(prev => {
-    if (prev.some(item => item.id === id)) {
-      return prev.filter(item => item.id !== id);
-    } else {
-      const likedItem = mdItems.find(item => item.id === id);
-      return likedItem ? [...prev, likedItem] : prev;
-    }
-  });
-};
+      const toggleLike = (id) => {
+        setWishlistItems(prev => {
+          if (prev.some(item => item.id === id)) {
+            return prev.filter(item => item.id !== id);
+          } else {
+            const likedItem = mdItems.find(item => item.id === id);
+            return likedItem ? [...prev, likedItem] : prev;
+          }
+        });
+      };
 
-
-      // 작품 리스트 li 렌더링
       const renderWorkList = () => {
         const works = Object.keys(worksMD);
-        const listItems = [];
-        for (const workName in worksMD) {
-          for (let i=0; i<worksMD[workName].length; i++) {
-            if(!listItems.includes(workName)) {
-              listItems.push(workName);
-            }
-          }
-        }
-        return listItems.map(workName => (
+        return works.map(workName => (
           <li
             key={workName}
             className={`py-2 px-3 cursor-pointer hover:bg-gray-100 rounded flex justify-between items-center font-semibold
@@ -160,10 +171,8 @@ const toggleLike = (id) => {
       return (
         <>
           <Header />
-          <NavigationBar activeItem={activeNav} onClick={setActiveNav} />
-
+          <NavigationBar activeItem={activeNav} onSelect={setActiveNav} />
           <main className="flex p-6 gap-6 max-w-[1200px] mx-auto">
-            {/* 작품 리스트 + 위시리스트 박스 */}
             <aside className="w-48 bg-white rounded shadow p-4 flex flex-col" id="workList">
               <ul className="flex-grow overflow-auto mb-4">
                 {renderWorkList()}
@@ -171,26 +180,22 @@ const toggleLike = (id) => {
               <section
                 id="wishlistPreview"
                 className="cursor-pointer border-2 border-red-600 rounded p-3 mt-2 text-red-700 font-semibold text-center hover:bg-red-100 transition"
-                onClick={openWishlist} 
+                onClick={openWishlist}
               >
                 위시리스트
               </section>
             </aside>
 
-            {/* MD 아이템 그리드 */}
             <section className="flex-1 grid grid-cols-4 gap-6" id="mdGrid">
               {mdItems.map(item => {
                 const liked = wishlistItems.some(w => w.id === item.id);
                 return (
-                  <div
-                    key={item.id}
-                    className="bg-white p-3 rounded shadow relative cursor-pointer md-item"
-                  >
+                  <div key={item.id} className="bg-white p-3 rounded shadow relative cursor-pointer md-item">
                     <img src={item.img} alt={item.name} className="w-full h-28 object-cover rounded" />
                     <div className="mt-2 text-sm font-semibold font-bold">{item.name}</div>
                     <button
-  className={`absolute top-2 right-2 hover:text-red-600 like-btn ${liked ? "text-red-600" : "text-gray-400"}`}
-  onClick={() => toggleLike(item.id)}
+                      className={`absolute top-2 right-2 hover:text-red-600 like-btn ${liked ? "text-red-600" : "text-gray-400"}`}
+                      onClick={() => toggleLike(item.id)}
                     >
                       {liked ? "❤️" : "🤍"}
                     </button>
@@ -199,53 +204,51 @@ const toggleLike = (id) => {
               })}
             </section>
           </main>
+          <FooterInfo />
           {isWishlistOpen && (
-  <div
-    id="wishlistModal"
-    className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50"
-    onClick={(e) => { if (e.target.id === "wishlistModal") closeWishlist(); }}  // 배경 클릭시 닫힘 처리
-  >
-    <div className="bg-white rounded-lg w-96 max-h-[70vh] p-6 flex flex-col shadow-lg overflow-hidden">
-      <div className="flex justify-between items-center mb-4">
-        <h2 className="text-xl font-bold text-red-600">내 위시리스트</h2>
-        <button
-          id="closeWishlist"
-          className="text-red-600 hover:text-red-800 font-bold text-2xl cursor-pointer"
-          onClick={closeWishlist}  // 닫기 버튼 이벤트
-        >
-          &times;
-        </button>
-      </div>
-      <div className="flex-1 overflow-y-auto space-y-3 text-gray-700 text-sm">
-        {wishlistItems.length === 0 ? (
-          <p className="italic text-gray-400">위시리스트가 비어 있습니다.</p>
-        ) : (
-          wishlistItems.map(item => (
-            <div key={item.id} className="flex items-center gap-3 p-2 border-b border-gray-200">
-              <img src={item.img} alt={item.name} className="w-12 h-12 rounded object-cover" />
-              <div>
-                <div className="font-semibold text-red-600">{item.name}</div>
+            <div
+              id="wishlistModal"
+              className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50"
+              onClick={(e) => { if (e.target.id === "wishlistModal") closeWishlist(); }}
+            >
+              <div className="bg-white rounded-lg w-96 max-h-[70vh] p-6 flex flex-col shadow-lg overflow-hidden">
+                <div className="flex justify-between items-center mb-4">
+                  <h2 className="text-xl font-bold text-red-600">내 위시리스트</h2>
+                  <button
+                    className="text-red-600 hover:text-red-800 font-bold text-2xl cursor-pointer"
+                    onClick={closeWishlist}
+                  >
+                    &times;
+                  </button>
+                </div>
+                <div className="flex-1 overflow-y-auto space-y-3 text-gray-700 text-sm">
+                  {wishlistItems.length === 0 ? (
+                    <p className="italic text-gray-400">위시리스트가 비어 있습니다.</p>
+                  ) : (
+                    wishlistItems.map(item => (
+                      <div key={item.id} className="flex items-center gap-3 p-2 border-b border-gray-200">
+                        <img src={item.img} alt={item.name} className="w-12 h-12 rounded object-cover" />
+                        <div>
+                          <div className="font-semibold text-red-600">{item.name}</div>
+                        </div>
+                        <button
+                          className="ml-auto text-red-600 hover:text-red-800 cursor-pointer"
+                          onClick={() => toggleLike(item.id)}
+                        >
+                          삭제
+                        </button>
+                      </div>
+                    ))
+                  )}
+                </div>
               </div>
-              <button
-                className="ml-auto text-red-600 hover:text-red-800 cursor-pointer"
-                onClick={() => toggleLike(item.id)}  // 삭제 버튼 역할
-              >
-                삭제
-              </button>
             </div>
-          ))
-        )}
-      </div>
-    </div>
-  </div>
-)}
-
+          )}
         </>
       );
     };
 
     ReactDOM.createRoot(document.getElementById("root")).render(<App />);
-
   </script>
 </body>
 </html>
