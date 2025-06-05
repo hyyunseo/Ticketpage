@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>회원가입 | ticketpage</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    #signupSection input:focus {
+      outline: none;
+      border-color: #f87171; /* tailwind red-400 */
+      box-shadow: 0 0 0 1px #f87171;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+
+  <!-- 회원가입 박스 -->
+  <section id="signupSection" class="bg-white w-full max-w-md p-8 rounded shadow">
+    <h2 class="text-2xl font-bold mb-6 text-center text-red-600">회원가입</h2>
+
+    <input type="text" id="newUserId" placeholder="아이디" class="w-full p-2 border rounded mb-3" />
+    <input type="password" id="newPassword" placeholder="비밀번호" class="w-full p-2 border rounded mb-3" />
+    <input type="password" id="confirmPassword" placeholder="비밀번호 확인" class="w-full p-2 border rounded mb-4" />
+
+    <!-- 회원가입 버튼 색상을 빨간 계열로 변경 -->
+    <button id="signupBtn" class="bg-red-600 text-white w-full py-2 rounded hover:bg-red-700">회원가입</button>
+
+    <p class="text-center text-sm text-gray-600 mt-4">
+      이미 계정이 있으신가요?
+      <a href="login.html" class="text-blue-500 hover:underline">로그인하기</a>
+    </p>
+  </section>
+
+  <script>
+    document.getElementById('signupBtn').addEventListener('click', function() {
+      const id = document.getElementById('newUserId').value.trim();
+      const pw = document.getElementById('newPassword').value.trim();
+      const confirmPw = document.getElementById('confirmPassword').value.trim();
+
+      if (!id || !pw || !confirmPw) {
+        alert('모든 항목을 입력하세요.');
+        return;
+      }
+
+      if (pw !== confirmPw) {
+        alert('비밀번호가 일치하지 않습니다.');
+        return;
+      }
+
+      // 이미 존재하는 아이디 확인
+      if (localStorage.getItem(id)) {
+        alert('이미 존재하는 아이디입니다.');
+        return;
+      }
+
+      // 회원정보 저장
+      localStorage.setItem(id, JSON.stringify({ password: pw }));
+      alert('회원가입이 완료되었습니다!');
+      window.location.href = 'login.html'; // 회원가입 후 로그인 페이지로 리디렉션
+    });
+  </script>
+
+</body>
+</html>
