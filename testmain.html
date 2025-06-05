@@ -18,6 +18,19 @@
 
   <script type="text/babel">
 
+    // 메뉴 이름과 실제 HTML 파일명을 매핑
+const navLinkMap = {
+  "뮤지컬/연극": "under_construction.html",
+  "콘서트":     "under_construction.html",
+  "스포츠":     "sport.html",
+  "전시/행사":   "under_construction.html",
+  "레저":       "leisure.html",
+  "테마/지역":   "theme.html",
+  "MD샵":      "testMDSHOP.html",
+  "이벤트":     "EventALL.html",
+  "티켓오픈소식": "TicketOpen.html",
+};
+
      /* 네비게이션 메뉴 목록>> 이렇~게 이렇게? 흠 흠흠흠흠*/
         const navItems = [
           "뮤지컬/연극", "콘서트", "스포츠", "전시/행사", 
@@ -47,29 +60,31 @@
           </header>
         );
 
-        const NavigationBar = ({ activeHeader, setActiveHeader }) => (
-   <nav className="bg-white text-black p-2 border-b sticky top-12 z-50">
-    <ul className="flex justify-between text-sm">
-      {navItems.map((item, idx) => (
-        <li
-          key={idx}
-          className={`hover:text-red-600 flex-1 text-center ${
-            activeHeader === item ? "text-red-600 font-bold" : ""
-          }`}
-          onClick={() => setActiveHeader(item)}
-        >
-          {item === "MD샵" ? (
-            <a href="MDSHOP.html" className="block">{item}</a>
-          ) : item === "이벤트" ? (
-            <a href="EventALL.html" className="block">{item}</a>
-          ) : (
-            item
-          )}
-        </li>
-      ))}
-    </ul>
-  </nav>
-);
+    const NavigationBar = ({ activeHeader, setActiveHeader }) => (
+      <nav className="bg-white text-black p-2 border-b sticky top-12 z-50">
+        <ul className="flex justify-between text-sm">
+          {navItems.map((item, idx) => {
+            // navLinkMap에서 해당 메뉴의 href를 가져오고, 없다면 "#"
+            const href = navLinkMap[item] || "#";
+
+            return (
+              <li
+                key={idx}
+                className={`
+                  hover:text-red-600 flex-1 text-center cursor-pointer
+                  ${activeHeader === item ? "text-red-600 font-bold" : ""}
+                `}
+                onClick={() => setActiveHeader(item)}
+              >
+                <a href={href} className="block">
+                  {item}
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </nav>
+    );
 
 
 
@@ -301,9 +316,11 @@ const handleShowLess = () => {
                   ))}
                 </div>
                 <div className="col-span-5 text-center mt-10">
-    <button className="bg-white px-5 py-2 border rounded-lg hover:bg-gray-100 transition">
-      리뷰 전체 보기 &gt;
-    </button>
+    <a href="review.html" className="inline-block">
+          <button className="bg-white px-5 py-2 border rounded-lg hover:bg-gray-100 transition">
+            리뷰 전체 보기 &gt;
+          </button>
+        </a>
   </div>
                 
               </section>

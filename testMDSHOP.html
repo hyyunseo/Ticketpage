@@ -31,6 +31,18 @@
   <script type="text/babel">
     const { useState } = React;
 
+    const navLinkMap = {
+  "뮤지컬/연극": "under_construction.html",
+  "콘서트":     "under_construction.html",
+  "스포츠":     "sport.html",
+  "전시/행사":   "under_construction.html",
+  "레저":       "leisure.html",
+  "테마/지역":   "theme.html",
+  "MD샵":      "testMDSHOP.html",  // 현재 보고 있는 페이지
+  "이벤트":     "EventALL.html",
+  "티켓오픈소식": "TicketOpen.html",
+};
+
     const navItems = [
       "뮤지컬/연극", "콘서트", "스포츠", "전시/행사",
       "레저", "테마/지역", "MD샵", "이벤트", "티켓오픈소식"
@@ -76,16 +88,29 @@
     );
 
     const NavigationBar = () => (
-      <nav className="bg-white text-black p-2 border-b sticky top-12 z-50">
-        <ul className="flex justify-between text-sm">
-          {navItems.map((item, index) => (
-            <li key={index} className={`hover:text-red-600 flex-1 text-center ${item === "MD샵" ? "text-red-600 font-bold" : ""}`}>
-              <a href="#" className="block">{item}</a>
+    <nav className="bg-white text-black p-2 border-b sticky top-12 z-50">
+      <ul className="flex justify-between text-sm">
+        {navItems.map((item, index) => {
+          // 실제 링크를 꺼내고, 없으면 "#" 처리
+          const href = navLinkMap[item] || "#";
+
+          return (
+            <li
+              key={index}
+              className={`
+                hover:text-red-600 flex-1 text-center cursor-pointer
+                ${item === "MD샵" ? "text-red-600 font-bold" : ""}
+              `}
+            >
+              <a href={href} className="block">
+                {item}
+              </a>
             </li>
-          ))}
-        </ul>
-      </nav>
-    );
+          );
+        })}
+      </ul>
+    </nav>
+  );
 
     // 푸터 컴포넌트
     const FooterInfo = () => (
