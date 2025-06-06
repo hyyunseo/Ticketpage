@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>예매 페이지</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
   <style>
     #calendar span {
       text-decoration: none !important;
@@ -13,51 +17,99 @@
   </style>
 </head>
 <body class="bg-gray-100 text-black">
-  <!-- 헤더 -->
-  <header class="bg-red-600 text-white p-2 flex items-center justify-between">
-    <a href="testmain.html" class="flex items-center space-x-4">
-    <img src="https://via.placeholder.com/40" alt="logo" class="w-10 h-10" />
-    <h1 class="text-xl font-bold">ticketpage</h1>
-  </a>
-    <div class="flex items-center space-x-2">
-      <input type="text" placeholder="검색어를 입력하세요" class="p-2 rounded w-96 text-black" />
-      <button class="p-2 bg-white text-black rounded">🔍</button>
-    </div>
-    <div class="flex items-center space-x-4">
-      <a href="login.html" className="hover:underline">로그인</a>
-              <a href="login.html" className="hover:underline">회원가입</a>
-      <a href="mypage.html">
-    <img src="https://via.placeholder.com/30" alt="profile" class="w-8 h-8 rounded-full bg-gray-300" />
-  </a>
-    </div>
-  </header>
+     <div id="root"></div>
 
-  <!-- 내비게이션 바 -->
-<nav class="bg-white text-black p-2 border-b w-full relative z-0">
-  <ul class="flex justify-between text-sm w-full">
-    <li class="text-red-600 font-semibold flex-1 text-center">뮤지컬/연극</li>
-    <li class="hover:text-red-600 flex-1 text-center cursor-pointer">콘서트</li>
-    <li class="hover:text-red-600 flex-1 text-center cursor-pointer">스포츠</li>
-    <li class="hover:text-red-600 flex-1 text-center cursor-pointer">전시/행사</li>
-    <li class="hover:text-red-600 flex-1 text-center cursor-pointer">레저</li>
-    <li class="hover:text-red-600 flex-1 text-center cursor-pointer">테마/지역</li>
-    <li class="hover:text-red-600 flex-1 text-center cursor-pointer">MD샵</li>
-    <li class="flex-1 text-center cursor-pointer">이벤트</li>
-    <li class="hover:text-red-600 flex-1 text-center cursor-pointer">티켓오픈소식</li>
-  </ul>
-</nav>
 
+<script type="text/babel">
+  const { useState } = React;
+
+  const navItems = [
+    "뮤지컬/연극", "콘서트", "스포츠", "전시/행사", "레저", "테마/지역", "MD샵", "이벤트", "티켓오픈소식"
+  ];
+
+  const navLinkMap = {
+    "뮤지컬/연극": "Reservation.html",
+    "콘서트": "under_construction.html",
+    "스포츠": "sport.html",
+    "전시/행사": "under_construction.html",
+    "레저": "leisure.html",
+    "테마/지역": "theme.html",
+    "MD샵": "testMDSHOP.html",
+    "이벤트": "EventALL.html",
+    "티켓오픈소식": "TicketOpen.html"
+  };
+
+  const Header = () => (
+    <header className="bg-red-600 text-white p-2 flex items-center justify-between sticky top-0 z-50">
+      <a href="testmain.html" className="flex items-center space-x-4">
+        <img src="https://via.placeholder.com/40" alt="logo" className="w-10 h-10" />
+        <h1 className="text-xl font-bold">ticketpage</h1>
+      </a>
+      <div className="flex items-center space-x-2">
+        <input type="text" placeholder="검색어를 입력하세요" className="p-2 rounded w-96 text-black" />
+        <button className="p-2 bg-white text-black rounded">🔍</button>
+      </div>
+      <div className="flex items-center space-x-4">
+        <a href="#" className="hover:underline">로그인</a>
+        <a href="#" className="hover:underline">회원가입</a>
+        <a href="mypage.html">
+          <img src="https://via.placeholder.com/30" alt="profile" className="w-8 h-8 rounded-full bg-gray-300" />
+        </a>
+      </div>
+    </header>
+  );
+
+  const NavigationBar = ({ activeHeader, setActiveHeader }) => (
+    <nav className="bg-white text-black p-2 border-b sticky top-12 z-50">
+      <ul className="flex justify-between text-sm w-full">
+        {navItems.map((item, idx) => {
+          const href = navLinkMap[item] || "#";
+          return (
+            <li
+              key={idx}
+              className={`flex-1 text-center cursor-pointer ${
+                activeHeader === item ? "text-red-600 font-bold" : "hover:text-red-600"
+              }`}
+              onClick={() => setActiveHeader(item)}
+            >
+              <a href={href} className="block w-full h-full">{item}</a>
+            </li>
+          );
+        })}
+      </ul>
+    </nav>
+  );
+
+  const App = () => {
+    const [activeHeader, setActiveHeader] = useState("뮤지컬/연극");
+    return (
+      <>
+        <Header />
+        <NavigationBar activeHeader={activeHeader} setActiveHeader={setActiveHeader} />
+      </>
+    );
+  };
+
+  const root = document.getElementById("root");
+  if (root) {
+    const rootRender = ReactDOM.createRoot(root);
+    rootRender.render(<App />);
+  }
+</script>
+
+
+</script>
   <!-- 콘텐츠 영역 -->
   <main class="max-w-[1000px] mx-auto px-4 py-6 ">
-    <h2 class="text-2xl font-bold mb-4">이름 &lt;이름&gt;</h2>
+    <h2 class="text-2xl font-bold mb-4">쇼뮤지컬 어게인 &lt;드림하이&gt;</h2>
     <div class="flex flex-wrap lg:flex-nowrap lg:space-x-8">
       <!-- 이미지와 정보 -->
       <div class="w-full lg:w-1/3 mb-6 lg:mb-0">
-        <img src="dreamhigh.jpg" alt="포스터" class="w-full h-[460px] object-cover rounded" />
+        <img src="dreamhigh.jpg" alt="드림하이" class="w-full h-[460px] object-cover rounded" />
       </div>
       <div class="w-full lg:flex-1 space-y-2 text-sm">
-        <div><span class="inline-block w-20">장소</span>어딘가</div>
-        <div><span class="inline-block w-20">공연기간</span>2025.XX.XX ~ 2025.XX.XX</div>
+        <div><span class="inline-block w-20">장소</span>올림픽공원 우리금융아트홀</div>
+        <div><span class="inline-block w-20">공연기간</span>2025.04.05 ~ 2025.06.01</div>
         <div><span class="inline-block w-20">공연시간</span>150분</div>
         <div><span class="inline-block w-20">관람연령</span>8세 이상</div>
         <div class="flex items-start">
@@ -76,7 +128,7 @@
       </div>
 
       <!-- 날짜 선택 + 회차 영역 -->
-      <div class="w-full lg:w-[28%] border rounded p-4 space-y-4 bg-white relative z-10">
+      <div class="w-full lg:w-1/4 border rounded p-4 space-y-4 bg-white relative z-10">
         <div class="flex justify-between items-center text-center text-sm font-semibold">
           <button id="prevMonth" class="px-2">&lt;</button>
           <div id="monthDisplay">2025. 4</div>
@@ -90,12 +142,9 @@
         <div id="showtime" class="border border-red-600 text-red-600 rounded px-3 py-1 text-sm w-fit">날짜를 선택하세요</div>
 
         <div class="space-y-2 pt-4">
-  <!-- “예매하기” 버튼을 ticketing_modal.html로 연결 -->
-  <a href="ticketing_modal.html">
-    <button class="w-full bg-red-600 text-white py-2 rounded mb-2">예매하기</button>
-  </a>
-</div>
-
+          <button class="w-full bg-red-600 text-white py-2 rounded">예매하기</button>
+          <button class="w-full border border-red-600 text-red-600 py-2 rounded">BOOKING</button>
+        </div>
       </div>
     </div>
     <!-- 탭 바 -->
@@ -317,7 +366,7 @@
   });
 
 </script>
-
 </body>
 </html>
+
 
