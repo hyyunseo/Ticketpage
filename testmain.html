@@ -120,39 +120,42 @@ const navLinkMap = {
 
     // 장르별 더미 데이터 (탭 메뉴 및 작품 리스트용) >>>> 포스터 사이즈 수정 예정!!
     const genreData = {
-      "뮤지컬/연극": [
-        { id: 1, title: "빨래", location: "XX대학로 아트센터 대극장", date: "2025.5.XX ~ 5.XX", image: "https://via.placeholder.com/150" },
-        { id: 2, title: "지킬 앤 하이드", location: "XX대학로 아트센터 대극장", date: "2025.5.XX ~ 5.XX", image: "https://via.placeholder.com/150" },
-        { id: 3, title: "얼음", location: "XX아트센터 드림X관", date: "2025.5.XX ~ 5.XX", image: "https://via.placeholder.com/150" },
-        { id: 4, title: "82년생 김지영", location: "XX대학로 아트센터 대극장", date: "2025.5.XX ~ 5.XX", image: "https://via.placeholder.com/150" },
-        { id: 5, title: "코펜하겐", location: "XX스퀘어 광장", date: "2025.5.XX ~ 5.XX", image: "https://via.placeholder.com/150" },
-        { id: 6, title: "뮤지컬 6", location: "XX대학로 아트센터 대극장", date: "2025.5.XX ~ 5.XX", image: "https://via.placeholder.com/150" },
-        { id: 7, title: "뮤지컬 7", location: "XX대학로 아트센터 대극장", date: "2025.5.XX ~ 5.XX", image: "https://via.placeholder.com/150" },
-        { id: 8, title: "뮤지컬 8", location: "XX대학로 아트센터 대극장", date: "2025.5.XX ~ 5.XX", image: "https://via.placeholder.com/150" },
-        { id: 9, title: "뮤지컬 9", location: "XX대학로 아트센터 대극장", date: "2025.5.XX ~ 5.XX", image: "https://via.placeholder.com/150" },
-        { id: 10, title: "뮤지컬 10", location: "XX대학로 아트센터 대극장", date: "2025.5.XX ~ 5.XX", image: "https://via.placeholder.com/150" },
-      ],
+  "뮤지컬/연극": [
+    { id: 1, title: "드림하이", location: "LG아트센터", date: "2025.1.15 ~ 2.20", image: "main_드림하이.webp" },
+    { id: 2, title: "지킬 앤 하이드", location: "샤롯데씨어터", date: "2025.2.5 ~ 3.10", image: "main_지킬앤하이드.webp" },
+    { id: 3, title: "얼음", location: "블루스퀘어 인터파크홀", date: "2025.3.12 ~ 4.18", image: "main_얼음.jpg" },
+    { id: 4, title: "82년생 김지영", location: "예스24라이브홀", date: "2025.4.2 ~ 5.9", image: "https://via.placeholder.com/150" },
+    { id: 5, title: "코펜하겐", location: "충무아트센터 대극장", date: "2025.5.8 ~ 6.14", image: "https://via.placeholder.com/150" },
+    { id: 6, title: "뮤지컬 6", location: "두산아트센터 연강홀", date: "2025.6.1 ~ 7.3", image: "https://via.placeholder.com/150" },
+    { id: 7, title: "뮤지컬 7", location: "예술의전당 오페라극장", date: "2025.7.7 ~ 8.15", image: "https://via.placeholder.com/150" },
+    { id: 8, title: "뮤지컬 8", location: "이화여대 삼성홀", date: "2025.8.10 ~ 9.18", image: "https://via.placeholder.com/150" },
+    { id: 9, title: "뮤지컬 9", location: "국립극장 해오름극장", date: "2025.9.20 ~ 10.25", image: "https://via.placeholder.com/150" },
+    { id: 10, title: "뮤지컬 10", location: "롯데콘서트홀", date: "2025.10.5 ~ 11.11", image: "https://via.placeholder.com/150" }
+  ],
 
-      "콘서트": [
-        { id: 1, title: "2025 TWS TOUR ‘24/7:WITH:US’ IN SEOUL", location: "잠실실내 체육관", date: "2025.5.XX ~ 5.XX", image: "mainimage/mainconcert_TWS.gif" },
-        { id: 2, title: "BLACKPINK WORLD TOUR〈DEADLINE〉IN GOYANG", location: "고양종합운동장 주경기장", date: "2025.5.XX ~ 5.XX", image: "mainimage/mainconcert_blackpink.gif" },
-        { id: 3, title: "2025 RIIZE CONCERT TOUR [RIIZING LOUD] IN SEOUL", location: "KSPO DOME", date: "2025.5.XX ~ 5.XX", image: "mainimage/mainconcert_RIIZE.jpg" },
-        { id: 4, title: "2025 DOH KYUNG SOO ASIA CONCERT TOUR 〈DO it! in Seoul〉", location: "고려대학교 화정체육관관", date: "2025.5.XX ~ 5.XX", image: "mainimage/mainconcert_DO.jpg" },
-        { id: 5, title: "BOYNEXTDOOR TOUR ‘KNOCK ON Vol.1’ FINAL", location: "KSPO DOME", date: "2025.5.XX ~ 5.XX", image: "mainimage/mainconcert_BND.gif" },
-        { id: 6, title: "콘서트 6", location: "XX대학로 아트센터 대극장", date: "2025.5.XX ~ 5.XX", image: "https://via.placeholder.com/150" },
-    { id: 7, title: "콘서트 7", location: "XX대학로 아트센터 대극장", date: "2025.5.XX ~ 5.XX", image: "https://via.placeholder.com/150" },
-    { id: 8, title: "콘서트 8", location: "XX대학로 아트센터 대극장", date: "2025.5.XX ~ 5.XX", image: "https://via.placeholder.com/150" },
-    { id: 9, title: "콘서트 9", location: "XX대학로 아트센터 대극장", date: "2025.5.XX ~ 5.XX", image: "https://via.placeholder.com/150" },
-    { id: 10, title: "콘서트 10", location: "XX대학로 아트센터 대극장", date: "2025.5.XX ~ 5.XX", image: "https://via.placeholder.com/150" },
-      ],
-      "스포츠": [
-        { id: 1, title: "스포츠 이벤트 1", location: "서울 월드컵 경기장", date: "2025.5.XX ~ 5.XX", image: "https://via.placeholder.com/150" },
-        { id: 2, title: "스포츠 이벤트 2", location: "잠실 올림픽 경기장", date: "2025.5.XX ~ 5.XX", image: "https://via.placeholder.com/150" }
-      ],
-      "전시/행사": [],
-      "레저": [],
-      "테마/지역": []
-    };
+  "콘서트": [
+    { id: 1, title: "2025 TWS TOUR ‘24/7:WITH:US’ IN SEOUL", location: "올림픽공원 체조경기장", date: "2025.1.20 ~ 2.22", image: "mainimage/mainconcert_TWS.gif" },
+    { id: 2, title: "BLACKPINK WORLD TOUR〈DEADLINE〉IN GOYANG", location: "고양아람누리 아람극장", date: "2025.2.14 ~ 3.19", image: "mainimage/mainconcert_blackpink.gif" },
+    { id: 3, title: "2025 RIIZE CONCERT TOUR [RIIZING LOUD] IN SEOUL", location: "KSPO DOME", date: "2025.3.5 ~ 4.7", image: "mainimage/mainconcert_RIIZE.jpg" },
+    { id: 4, title: "2025 DOH KYUNG SOO ASIA CONCERT TOUR 〈DO it! in Seoul〉", location: "세종문화회관 대극장", date: "2025.4.10 ~ 5.12", image: "mainimage/mainconcert_DO.jpg" },
+    { id: 5, title: "BOYNEXTDOOR TOUR ‘KNOCK ON Vol.1’ FINAL", location: "경희대학교 평화의전당", date: "2025.5.15 ~ 6.17", image: "mainimage/mainconcert_BND.gif" },
+    { id: 6, title: "콘서트 6", location: "부산 벡스코 오디토리움", date: "2025.6.9 ~ 7.10", image: "https://via.placeholder.com/150" },
+    { id: 7, title: "콘서트 7", location: "광주 문화예술회관", date: "2025.7.21 ~ 8.23", image: "https://via.placeholder.com/150" },
+    { id: 8, title: "콘서트 8", location: "대전 예술의전당 앙상블홀", date: "2025.8.3 ~ 9.4", image: "https://via.placeholder.com/150" },
+    { id: 9, title: "콘서트 9", location: "인천 문학경기장", date: "2025.9.12 ~ 10.13", image: "https://via.placeholder.com/150" },
+    { id: 10, title: "콘서트 10", location: "서울 롯데월드 공연장", date: "2025.10.18 ~ 11.20", image: "https://via.placeholder.com/150" }
+  ],
+
+  "스포츠": [
+    { id: 1, title: "스포츠 이벤트 1", location: "잠실야구장", date: "2025.2.2 ~ 2.28", image: "https://via.placeholder.com/150" },
+    { id: 2, title: "스포츠 이벤트 2", location: "서울월드컵경기장", date: "2025.3.15 ~ 3.30", image: "https://via.placeholder.com/150" }
+  ],
+
+  "전시/행사": [],
+  "레저": [],
+  "테마/지역": []
+};
+
 
 
 
@@ -224,13 +227,12 @@ const handleShowLess = () => {
  {/* 장르별 상자 */}
 <section className="bg-gray-100 grid grid-cols-5 gap-6 justify-center max-w-7xl mx-auto">
   {displayData.map((item, index) => (
-    <div
-      key={item.id}
-      className="bg-white border rounded-lg p-4 shadow-md relative w-60 h-90 flex flex-col"
-    >
+    <a key={item.id} href="Reservation.html" className="block focus:outline-none border-0"          // 전체 영역이 클릭되도록 block 처리
+>
+    <div className="bg-white rounded-lg p-4 shadow-md relative w-60 h-90 flex flex-col border-0">
       <img
         src={item.image}
-        className="w-full h-48 object-cover mb-3 rounded-sm flex-shrink-0"
+        className="w-full h-52 object-cover mb-3 rounded-sm flex-shrink-0"
       />
       <div
         className="absolute left-3 top-3 text-3xl font-bold text-white bg-black p-2 rounded-full select-none"
@@ -245,6 +247,7 @@ const handleShowLess = () => {
         <p className="text-gray-500 text-sm">{item.date}</p>
       </div>
     </div>
+    </a>
   ))}
 
   {/* '전체 보기' 버튼 */}
@@ -270,10 +273,6 @@ const handleShowLess = () => {
       </div>
   )}
 </section>
-
-
-
-
             {/* 베스트 리뷰 */}
           <BestReviewSection />
 
@@ -340,26 +339,26 @@ const handleShowLess = () => {
 //키워드별
 const recommendedByKeyword = {
   "재관람률 높은": [
-    { id: 1, category: "뮤지컬", title: "<모리스>", location: "XX대 대학로 아트센터 대극장", date: "2025.5.XX ~ 5.XX", image: "mainimage/musical_moris.gif" },
-    { id: 2, category: "뮤지컬", title: "<알라딘>", location: "XX대 대학로 아트센터 대극장", date: "2025.5.XX ~ 5.XX", image: "mainimage/musical_aladdin.gif" },
-    { id: 3, category: "연극", title: "<렛미인>", location: "XX아트센터 드림X관", date: "2025.5.XX ~ 5.XX", image: "mainimage/act_letmein.gif" },
-    { id: 4, category: "발레", title: "<헨젤과 그레텔>", location: "XX대 대학로 아트센터 대극장", date: "2025.5.XX ~ 5.XX", image: "mainimage/bal_hansel.gif" },
-    { id: 5, category: "뮤지컬", title: "<지킬앤하이드>", location: "XX스퀘어 광장", date: "2025.5.XX ~ 5.XX", image: "mainimage/musical_jekyll.gif" },
+    { id: 1, category: "뮤지컬", title: "<모리스>", location: "LG아트센터", date: "2025.1.18 ~ 2.22", image: "mainimage/musical_moris.gif" },
+    { id: 2, category: "뮤지컬", title: "<알라딘>", location: "블루스퀘어 인터파크홀", date: "2025.3.2 ~ 4.5", image: "mainimage/musical_aladdin.gif" },
+    { id: 3, category: "연극", title: "<렛미인>", location: "대학로 드림홀", date: "2025.4.10 ~ 5.15", image: "mainimage/act_letmein.gif" },
+    { id: 4, category: "발레", title: "<헨젤과 그레텔>", location: "충무아트센터 대극장", date: "2025.6.7 ~ 7.12", image: "mainimage/bal_hansel.gif" },
+    { id: 5, category: "뮤지컬", title: "<지킬앤하이드>", location: "샤롯데씨어터", date: "2025.2.5 ~ 3.10", image: "mainimage/musical_jekyll.gif" }
   ],
   "아이와 함께": [
-    { id: 1, category: "아직수정", title: "<이름>", location: "XX대 대학로 아트센터 대극장", date: "2025.5.XX ~ 5.XX", image: "https://via.placeholder.com/300x200" },
-    { id: 2, category: "안함", title: "<티니핑>", location: "XX대 대학로 아트센터 대극장", date: "2025.5.XX ~ 5.XX", image: "https://via.placeholder.com/300x200" },
-    { id: 3, category: "연극", title: "<이름>", location: "XX아트센터 드림X관", date: "2025.5.XX ~ 5.XX", image: "https://via.placeholder.com/300x200" },
-    { id: 4, category: "행사", title: "<이름>", location: "XX대 대학로 아트센터 대극장", date: "2025.5.XX ~ 5.XX", image: "https://via.placeholder.com/300x200" },
-    { id: 5, category: "뮤지컬", title: "<이름>", location: "XX스퀘어 광장", date: "2025.5.XX ~ 5.XX", image: "https://via.placeholder.com/300x200" },
+    { id: 1, category: "아직수정", title: "<이름>", location: "KT&G 상상마당 대치아트홀", date: "2025.2.14 ~ 3.20", image: "https://via.placeholder.com/300x200" },
+    { id: 2, category: "안함", title: "<티니핑>", location: "광림아트센터 BBCH홀", date: "2025.3.5 ~ 4.1", image: "https://via.placeholder.com/300x200" },
+    { id: 3, category: "연극", title: "<이름>", location: "이화여대 삼성홀", date: "2025.4.12 ~ 5.18", image: "https://via.placeholder.com/300x200" },
+    { id: 4, category: "행사", title: "<이름>", location: "세종문화회관 M씨어터", date: "2025.6.2 ~ 6.30", image: "https://via.placeholder.com/300x200" },
+    { id: 5, category: "뮤지컬", title: "<이름>", location: "예술의전당 CJ토월극장", date: "2025.7.7 ~ 8.9", image: "https://via.placeholder.com/300x200" }
   ],
   "대학로 연극 추천": [
-    { id: 1, category: "어쩌고링대학로", title: "<이름>", location: "XX대 대학로 아트센터 대극장", date: "2025.5.XX ~ 5.XX", image: "https://via.placeholder.com/300x200" },
-    { id: 2, category: "뮤지컬", title: "<이름>", location: "XX대 대학로 아트센터 대극장", date: "2025.5.XX ~ 5.XX", image: "https://via.placeholder.com/300x200" },
-    { id: 3, category: "연극", title: "<이름>", location: "XX아트센터 드림X관", date: "2025.5.XX ~ 5.XX", image: "https://via.placeholder.com/300x200" },
-    { id: 4, category: "행사", title: "<이름>", location: "XX대 대학로 아트센터 대극장", date: "2025.5.XX ~ 5.XX", image: "https://via.placeholder.com/300x200" },
-    { id: 5, category: "뮤지컬", title: "<이름>", location: "XX스퀘어 광장", date: "2025.5.XX ~ 5.XX", image: "https://via.placeholder.com/300x200" },
-  ],
+    { id: 1, category: "어쩌고링대학로", title: "<이름>", location: "한양레퍼토리씨어터", date: "2025.1.10 ~ 2.14", image: "https://via.placeholder.com/300x200" },
+    { id: 2, category: "뮤지컬", title: "<이름>", location: "두산아트센터 연강홀", date: "2025.2.20 ~ 3.25", image: "https://via.placeholder.com/300x200" },
+    { id: 3, category: "연극", title: "<이름>", location: "대학로 뮤즈라이브홀", date: "2025.4.5 ~ 5.10", image: "https://via.placeholder.com/300x200" },
+    { id: 4, category: "행사", title: "<이름>", location: "드림아트센터 1관", date: "2025.6.15 ~ 7.20", image: "https://via.placeholder.com/300x200" },
+    { id: 5, category: "뮤지컬", title: "<이름>", location: "아트원씨어터 3관", date: "2025.8.3 ~ 9.8", image: "https://via.placeholder.com/300x200" }
+  ]
 };
  
 const keywordList = [
@@ -406,10 +405,8 @@ const RecommendedSection = () => {
           <p className="col-span-5 text-gray-500">해당 카테고리에 추천 아이템이 없습니다.</p>
         ) : (
           filteredItems.map((item) => (
-            <div
-              key={item.id}
-              className="bg-white border rounded-lg p-4 shadow-md relative w-60 h-90 flex flex-col"
-            >
+            <a  key={item.id} href="Reservation.html" className="block focus:outline-none border-0">
+              <div className="bg-white border rounded-lg p-4 shadow-md relative w-60 h-90 flex flex-col">
               <img
                 src={item.image}
                 
@@ -423,6 +420,7 @@ const RecommendedSection = () => {
                 <p className="text-gray-500 text-sm">{item.date}</p>
               </div>
             </div>
+            </a>
           ))
         )}
       </div>
