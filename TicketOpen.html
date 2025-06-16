@@ -135,35 +135,74 @@
     </div>
   </footer>
 
-  <script>
-    const hotItems = Array.from({ length: 8 }, (_, i) => ({
-      title: `<콘서트 이름 ${i + 1}>`,
-      date: `[오픈]25.05.${(i + 10).toString().padStart(2, '0')}(금)`
-    }));
+   <script>
+ const hotItems = [
+  {
+    title: `TONE STUDIO LIVE…`,
+    date: `[오픈]25.05.01(목)`,
+    img: `ticketopen image/ticketopen1.jpeg`
+  },
+  {
+    title: `NMIXX 1ST FAN ME…`,
+    date: `[오픈]25.05.01(목)`,
+    img: `ticketopen image/ticketopen2.jpg`
+  },
+  {
+    title: `뮤지컬 <멤피스> 3차…`,
+    date: `오픈 일정 보기 >`,
+    img: `ticketopen image/ticketopen3.gif`
+  },
+  {
+    title: `먼데이프로젝트 IN…`,
+    date: `[오픈]25.05.02(금)`,
+    img: `ticketopen image/ticketopen4.jpg`
+  },
+  {
+    title: `백아 단독 콘서트…`,
+    date: `[오픈]25.05.03(토)`,
+    img: `ticketopen image/ticketopen5.webp`
+  },
+  {
+    title: `Pinyo Live Tour 2025…`,
+    date: `[오픈]25.05.03(토)`,
+    img: `ticketopen image/ticketopen6.webp`
+  },
+  {
+    title: `낯선 섬 티켓 오픈…`,
+    date: `[오픈]25.05.03(토)`,
+    img: `ticketopen image/ticketopen7.jpg`
+  },
+  {
+    title: `블랙홀 단독콘서트…`,
+    date: `[오픈]25.05.04(일)`,
+    img: `ticketopen image/ticketopen8.jpeg`
+  }
+];
+
 
     let currentHotPage = 1;
     const hotItemsPerPage = 4;
     const totalHotPages = Math.ceil(hotItems.length / hotItemsPerPage);
 
     function renderHotItems() {
-      const container = document.getElementById("hotItems");
-      container.innerHTML = "";
-      const start = (currentHotPage - 1) * hotItemsPerPage;
-      const end = start + hotItemsPerPage;
-      const pageItems = hotItems.slice(start, end);
+  const container = document.getElementById("hotItems");
+  container.innerHTML = "";
+  const start = (currentHotPage - 1) * hotItemsPerPage;
+  const end = start + hotItemsPerPage;
+  const pageItems = hotItems.slice(start, end);
 
-      pageItems.forEach((item, i) => {
-        container.innerHTML += `
-          <div class="text-center">
-            <div class="bg-gray-200 h-60 w-full mb-2"></div>
-            <div class="font-semibold">${item.title}</div>
-            <div class="text-sm text-gray-600">${i === 2 && currentHotPage === 1 ? '오픈일정 보기 &gt;' : item.date}</div>
-          </div>
-        `;
-      });
+  pageItems.forEach((item, i) => {
+    container.innerHTML += `
+      <div class="text-center">
+        <img src="${item.img}" alt="${item.title}" class="h-60 w-full object-cover mb-2 rounded" />
+        <div class="font-semibold">${item.title}</div>
+        <div class="text-sm text-gray-600">${i === 2 && currentHotPage === 1 ? '오픈일정 보기 &gt;' : item.date}</div>
+      </div>
+    `;
+  });
 
-      document.getElementById("hotPageIndicator").textContent = `${currentHotPage} / ${totalHotPages}`;
-    }
+  document.getElementById("hotPageIndicator").textContent = `${currentHotPage} / ${totalHotPages}`;
+}
 
     function changeHotPage(direction) {
       if (direction === 'prev' && currentHotPage > 1) currentHotPage--;
@@ -172,26 +211,30 @@
     }
 
     let currentPage = 1;
-    const totalPages = 20;
+    const totalPages = 5;
     let currentBlock = 1;
-    const pagesPerBlock = 10;
+    const pagesPerBlock = 5;
     const data = {};
     let totalItems = totalPages * 10;
-    for (let p = 1; p <= totalPages; p++) {
-      const page = [];
-      for (let i = 0; i < 10; i++) {
-        const number = totalItems--;
-        page.push({
-          title: `콘서트 이름 ${number}`,
-          date: `2025.05.${(number % 30 + 1).toString().padStart(2, '0')}`,
-          regDate: `2025.05.${(Math.max(1, (number % 30 - 3))).toString().padStart(2, '0')}`,
-          time: `20:00`,
-          views: Math.floor(Math.random() * 100 + 10),
-          isExclusive: number % 3 !== 0
-        });
-      }
-      data[p] = page;
-    }
+  for (let p = 1; p <= totalPages; p++) {
+  const page = [];
+  for (let i = 0; i < 10; i++) {
+    const number = totalItems--;
+    const dateMonth = number < 30 ? '05' : '06';
+    const dateDay = (number % 30 + 1).toString().padStart(2, '0');
+
+    page.push({
+      title: `콘서트 이름 ${number}`,
+      date: `2025.${dateMonth}.${dateDay}`,
+      regDate: `2025.${dateMonth}.${(Math.max(1, number % 30 - 3)).toString().padStart(2, '0')}`,
+      time: `20:00`,
+      views: Math.floor(Math.random() * 100 + 10),
+      isExclusive: number % 3 !== 0
+    });
+  }
+  data[p] = page;
+}
+
 
     function renderPagination() {
       const container = document.getElementById("pagination");
