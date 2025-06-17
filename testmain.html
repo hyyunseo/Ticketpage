@@ -53,17 +53,12 @@ const navLinkMap = {
               <button className="p-2 bg-white text-black rounded">🔍</button>
             </div>
             <div className="flex items-center space-x-4">
-<<<<<<< HEAD
-              <a href="login_cookie.html" className="hover:underline">로그인</a>
-              <a href="login_cookie.html" className="hover:underline">회원가입</a>
-              <img src="https://via.placeholder.com/30" alt="profile" className="w-8 h-8 rounded-full bg-gray-300" />
-=======
+          
               <a href="login.html" className="hover:underline">로그인</a>
               <a href="login.html" className="hover:underline">회원가입</a>
               <a href="mypage.html">
     <img src="https://via.placeholder.com/30" alt="profile" class="w-8 h-8 rounded-full bg-gray-300" />
   </a>
->>>>>>> 5ad0aa48988de99bc28881c7f986679a110d92b8
             </div>
           </header>
         );
@@ -127,38 +122,51 @@ const navLinkMap = {
     // 장르별 더미 데이터 (탭 메뉴 및 작품 리스트용) >>>> 포스터 사이즈 수정 예정!!
     const genreData = {
   "뮤지컬/연극": [
-    { id: 1, title: "드림하이", location: "LG아트센터", date: "2025.1.15 ~ 2.20", image: "main/드림하이.webp" },
-    { id: 2, title: "지킬 앤 하이드", location: "샤롯데씨어터", date: "2025.2.5 ~ 3.10", image: "main/지킬앤하이드.webp" },
-    { id: 3, title: "얼음", location: "블루스퀘어 인터파크홀", date: "2025.3.12 ~ 4.18", image: "main/얼음.jpg" },
-    { id: 4, title: "82년생 김지영", location: "예스24라이브홀", date: "2025.4.2 ~ 5.9", image: "https://via.placeholder.com/150" },
-    { id: 5, title: "코펜하겐", location: "충무아트센터 대극장", date: "2025.5.8 ~ 6.14", image: "https://via.placeholder.com/150" },
-    { id: 6, title: "뮤지컬 6", location: "두산아트센터 연강홀", date: "2025.6.1 ~ 7.3", image: "https://via.placeholder.com/150" },
-    { id: 7, title: "뮤지컬 7", location: "예술의전당 오페라극장", date: "2025.7.7 ~ 8.15", image: "https://via.placeholder.com/150" },
-    { id: 8, title: "뮤지컬 8", location: "이화여대 삼성홀", date: "2025.8.10 ~ 9.18", image: "https://via.placeholder.com/150" },
-    { id: 9, title: "뮤지컬 9", location: "국립극장 해오름극장", date: "2025.9.20 ~ 10.25", image: "https://via.placeholder.com/150" },
-    { id: 10, title: "뮤지컬 10", location: "롯데콘서트홀", date: "2025.10.5 ~ 11.11", image: "https://via.placeholder.com/150" }
+    { id: 1, title: "노트르담 드 파리", location: "LG아트센터", date: "2025.1.15 ~ 2.20", image: "main/노트르담드파리.gif" },
+    { id: 2, title: "지킬 앤 하이드", location: "샤롯데씨어터", date: "2025.2.5 ~ 3.10", image: "main/지킬앤.gif" },
+    { id: 3, title: "매디슨 카운티의 다리", location: "블루스퀘어 인터파크홀", date: "2025.3.12 ~ 4.18", image: "main/매디슨카운티의다리.gif" },
+    { id: 4, title: "팬텀", location: "예스24라이브홀", date: "2025.4.2 ~ 5.9", image: "main/phanton.gif" },
+    { id: 5, title: "위키드", location: "충무아트센터 대극장", date: "2025.5.8 ~ 6.14", image: "main/위키드.gif" },
+    { id: 6, title: "맘마미아", location: "두산아트센터 연강홀", date: "2025.6.1 ~ 7.3", image: "main/맘마미아.gif" },
+    { id: 7, title: "멤피스", location: "예술의전당 오페라극장", date: "2025.7.7 ~ 8.15", image: "main/멤피스.gif" },
+    { id: 8, title: "플레임즈", location: "이화여대 삼성홀", date: "2025.8.10 ~ 9.18", image: "main/플레임즈.gif" },
+    { id: 9, title: "등등곡", location: "국립극장 해오름극장", date: "2025.9.20 ~ 10.25", image: "main/등등곡.gif" },
+    { id: 10, title: "다시, 동물원", location: "롯데콘서트홀", date: "2025.10.5 ~ 11.11", image: "main/다시, 동물원.gif" }
   ],
 
   "콘서트": [
-    { id: 1, title: "2025 TWS TOUR ‘24/7:WITH:US’ IN SEOUL", location: "올림픽공원 체조경기장", date: "2025.1.20 ~ 2.22", image: "mainimage/mainconcert_TWS.gif" },
-    { id: 2, title: "BLACKPINK WORLD TOUR〈DEADLINE〉IN GOYANG", location: "고양아람누리 아람극장", date: "2025.2.14 ~ 3.19", image: "mainimage/mainconcert_blackpink.gif" },
-    { id: 3, title: "2025 RIIZE CONCERT TOUR [RIIZING LOUD] IN SEOUL", location: "KSPO DOME", date: "2025.3.5 ~ 4.7", image: "mainimage/mainconcert_RIIZE.jpg" },
-    { id: 4, title: "2025 DOH KYUNG SOO ASIA CONCERT TOUR 〈DO it! in Seoul〉", location: "세종문화회관 대극장", date: "2025.4.10 ~ 5.12", image: "mainimage/mainconcert_DO.jpg" },
-    { id: 5, title: "BOYNEXTDOOR TOUR ‘KNOCK ON Vol.1’ FINAL", location: "경희대학교 평화의전당", date: "2025.5.15 ~ 6.17", image: "mainimage/mainconcert_BND.gif" },
-    { id: 6, title: "콘서트 6", location: "부산 벡스코 오디토리움", date: "2025.6.9 ~ 7.10", image: "https://via.placeholder.com/150" },
-    { id: 7, title: "콘서트 7", location: "광주 문화예술회관", date: "2025.7.21 ~ 8.23", image: "https://via.placeholder.com/150" },
-    { id: 8, title: "콘서트 8", location: "대전 예술의전당 앙상블홀", date: "2025.8.3 ~ 9.4", image: "https://via.placeholder.com/150" },
-    { id: 9, title: "콘서트 9", location: "인천 문학경기장", date: "2025.9.12 ~ 10.13", image: "https://via.placeholder.com/150" },
-    { id: 10, title: "콘서트 10", location: "서울 롯데월드 공연장", date: "2025.10.18 ~ 11.20", image: "https://via.placeholder.com/150" }
+    { id: 1, title: "HOSHI X WOOZI FAN CONCERT [WARNING] - SEOUL", location: "잠실실내체육관", date: "2025.7.11 ~ 7.13", image: "main/호시우지.gif" },
+    { id: 2, title: "ENHYPEN WORLD TOUR ‘WALK THE LINE’ IN JAPAN", location: "고양아람누리 아람극장", date: "2025.2.14 ~ 3.19", image: "main/엔하이픈.gif" },
+    { id: 3, title: "2025 TWS TOUR ‘24/7:WITH:US’ IN SEOUL", location: "KSPO DOME", date: "2025.3.5 ~ 4.7", image: "main/투어스.gif" },
+    { id: 4, title: "2025 O3ohn X Car, the garden 단독공연 〈STEREO TWO〉", location: "KSPO DOME", date: "2025.7.4 ~ 7.6", image: "main/스테로투.gif" },
+    { id: 5, title: "BOYNEXTDOOR TOUR ‘KNOCK ON Vol.1’ FINAL", location: "경희대학교 평화의전당", date: "2025.5.15 ~ 6.17", image: "main/보넥도.gif" },
+    { id: 6, title: "Gen Hoshino presents MAD HOPE Asia Tour in SEOUL", location: "올림픽공원 올림픽홀", date: "2025.9.13", image: "main/호시노겐.gif" },
+    { id: 7, title: "2025 차학연 팬미팅 ［Channel A! CHA HAK YEON］", location: "광주 문화예술회관", date: "2025.7.21 ~ 8.23", image: "main/차학연.gif" },
+    { id: 8, title: "ZICO FANMEETING 〈COMvenience〉in SEOUL", location: "대전 예술의전당 앙상블홀", date: "2025.8.3 ~ 9.4", image: "main/지아코.gif" },
+    { id: 9, title: "OASIS Live ’25 CONCERT IN SOUTH KOREA", location: "인천 문학경기장", date: "2025.9.12 ~ 10.13", image: "main/오아시스.gif" },
+    { id: 10, title: "JEON SOMI 2025 FAN MEETING ［CHAOS］ IN SEOUL", location: "서울 롯데월드 공연장", date: "2025.10.18 ~ 11.20", image: "main/전소미.gif" }
   ],
 
   "스포츠": [
-    { id: 1, title: "스포츠 이벤트 1", location: "잠실야구장", date: "2025.2.2 ~ 2.28", image: "https://via.placeholder.com/150" },
-    { id: 2, title: "스포츠 이벤트 2", location: "서울월드컵경기장", date: "2025.3.15 ~ 3.30", image: "https://via.placeholder.com/150" }
+    { id: 1, title: "[축구] 수원 K리그 하나원큐 파이널 홈 경기", location: "잠실야구장", date: "2025.2.2 ~ 2.28", image: "main/수원축구.jpg" },
+    { id: 2, title: "[격투기] TOP FC EDGE OF PRIDE", location: "서울월드컵경기장", date: "2025.3.15 ~ 3.30", image: "main/복싱빨간거.jpg" }
   ],
 
-  "전시/행사": [],
-  "레저": [],
+  "전시/행사": [
+
+  ],
+  "레저": [
+      { id: 1, title: "［경기 가평］ 남이섬 입장권 (~25.06.30)", location: "남이섬", date: "2025.6.11 ~ 6.30", image: "main/남이섬.gif" },
+    { id: 2, title: "［충남/보령］ 제28회 보령머드축제 일반존", location: "충남/보령", date: "2025.2.14 ~ 3.19", image: "main/보령.gif" },
+    { id: 3, title: "설악 워터피아 미들시즌 입장권 (~7/11)", location: "설악 워터피아", date: "2025.5.30 ~ 7.11", image: "main/설악.gif" },
+    { id: 4, title: "［서울］주렁주렁 실내 동물원 영등포점", location: "대전 예술의전당 앙상블홀", date: "2025.8.3 ~ 9.4", image: "main/카피바라동물원.gif" },
+    { id: 5, title: "OASIS Live ’25 CONCERT IN SOUTH KOREA", location: "인천 문학경기장", date: "2025.9.12 ~ 10.13", image: "main/통영 카트인.gif" },
+    { id: 6, title: "2025 파주시 공릉캠핑장 (~25.07.31)", location: "올림픽공원 올림픽홀", date: "2025.05.19 ~ 07.31", image: "main/캠핑장공릉.gif" },
+    { id: 7, title: "서천 금빛노을 서울캠핑장 (~25.07.31)", location: "서천 금빛노을 서울캠핑장", date: "2025.05.19 ~ 07.31", image: "main/캠핑장서천.gif" },
+    { id: 8, title: "인천대공원 캠핑장(너나들이 캠핑장)", location: "KSPO DOME", date: "2025.7.4 ~ 7.6", image: "main/캠핑장인천.gif" },
+    { id: 9, title: "안성맞춤 남사당공연장 ［남사당놀이 6마당］", location: "남사당 공연장", date: "2025.5.15 ~ 6.17", image: "main/남사당.gif" },
+    { id: 10, title: "JEON SOMI 2025 FAN MEETING ［CHAOS］ IN SEOUL", location: "서울 롯데월드 공연장", date: "2025.10.18 ~ 11.20", image: "main/전소미.gif" }
+  ],
   "테마/지역": []
 };
 
@@ -238,7 +246,7 @@ const handleShowLess = () => {
     <div className="bg-white rounded-lg p-4 shadow-md relative w-60 h-90 flex flex-col border-0">
       <img
         src={item.image}
-        className="w-full h-52 object-cover mb-3 rounded-sm flex-shrink-0"
+        className="w-full h-65 object-cover mb-3 rounded-sm flex-shrink-0"
       />
       <div
         className="absolute left-3 top-3 text-3xl font-bold text-white bg-black p-2 rounded-full select-none"
