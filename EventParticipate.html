@@ -77,30 +77,35 @@
     );
 
     const SubNavigationBar = () => {
-      const [activeSubTab, setActiveSubTab] = useState("참여 이벤트");
-      const subTabs = ["전체 이벤트", "당첨자 발표", "참여 이벤트"];
+  const [activeSubTab, setActiveSubTab] = useState("참여 이벤트");
 
-      return (
-        <nav className="bg-gray-200 text-black border-b">
-          <div className="w-full max-w-[1000px] mx-auto">
-            <div className="w-fit ml-auto transform translate-x-[166px] flex space-x-12 py-2 text-sm">
-              {subTabs.map((tab, idx) => (
-                <a
-                  key={idx}
-                  href="#"
-                  onClick={() => setActiveSubTab(tab)}
-                  className={`${
-                    activeSubTab === tab ? "text-red-600 font-bold" : "hover:text-red-600"
-                  }`}
-                >
-                  {tab}
-                </a>
-              ))}
-            </div>
-          </div>
-        </nav>
-      );
-    };
+  const subTabs = [
+    { name: "전체 이벤트", link: "EventALL.html" },
+    { name: "당첨자 발표", link: "EventWinner.html" },
+    { name: "참여 이벤트", link: "Eventparticipate.html" }
+  ];
+
+  return (
+    <nav className="bg-gray-200 text-black border-b">
+      <div className="w-full max-w-[1000px] mx-auto">
+        <div className="w-fit ml-auto transform translate-x-[166px] flex space-x-12 py-2 text-sm">
+          {subTabs.map((tab, idx) => (
+            <a
+              key={idx}
+              href={tab.link}
+              className={`${
+                activeSubTab === tab.name ? "text-red-600 font-bold" : "hover:text-red-600"
+              }`}
+            >
+              {tab.name}
+            </a>
+          ))}
+        </div>
+      </div>
+    </nav>
+  );
+};
+
 const Footer = () => (
   <footer className="bg-gray-100 w-full border-t border-gray-300 mt-32 pt-6 px-8 text-xs text-gray-600">
     <nav className="flex flex-wrap justify-center gap-x-20 gap-y-2 mb-4 text-gray-500">
