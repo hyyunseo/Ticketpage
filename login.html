@@ -45,9 +45,9 @@
 
     <!-- 5. 소셜 로그인 -->
     <div class="flex justify-center space-x-4 mt-4">
-      <img src="images/ico_s_kakao_talk.png" alt="Kakao" id="kakaoLoginBtn" class="w-8 h-8 cursor-pointer" title="카카오 로그인"/>
+      <img src="main/ico_s_kakao_talk.png" alt="Kakao" id="kakaoLoginBtn" class="w-8 h-8 cursor-pointer" title="카카오 로그인"/>
       <img src="https://cdn-icons-png.flaticon.com/512/300/300221.png" alt="Naver" class="w-8 h-8 cursor-pointer" title="네이버 로그인"/>
-      <img src="images/apple_icon.webp" alt="Apple" class="w-8 h-8 cursor-pointer" title="애플 로그인"/>
+      <img src="main/apple_icon.webp" alt="Apple" class="w-8 h-8 cursor-pointer" title="애플 로그인"/>
     </div>
 
     <!-- 6. 비회원 예약 조회 -->
@@ -83,7 +83,7 @@
     localStorage.setItem('loggedInUser', userId);
 
     alert('로그인 성공!');
-    window.location.href = 'index.html'; // 로그인 후 홈으로 리디렉션
+    window.location.href = 'testmain.html'; // 로그인 후 홈으로 리디렉션
   });
 
   // 카카오 로그인 버튼 클릭 이벤트
@@ -97,7 +97,7 @@
         localStorage.setItem('loggedInUser', kakaoUserId); // 카카오 아이디로 로그인 저장
 
         alert('카카오 로그인 성공!');
-        window.location.href = 'index.html'; // 로그인 후 홈으로 리디렉션
+        window.location.href = 'testmain.html'; // 로그인 후 홈으로 리디렉션
       },
       fail: function(err) {
         console.error('카카오 로그인 실패', err);

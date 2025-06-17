@@ -31,7 +31,7 @@
     const Header = () => (
       <header className="bg-red-600 text-white p-2 flex items-center justify-between sticky top-0 z-50">
         <a href="testmain.html" class="flex items-center space-x-4">
-    <img src="https://via.placeholder.com/40" alt="logo" class="w-10 h-10" />
+    <img src="logo.png" alt="logo" class="w-10 h-10" />
     <h1 class="text-xl font-bold">ticketpage</h1>
   </a>
         <div className="flex items-center space-x-2">
@@ -42,7 +42,7 @@
           <a href="login.html" className="hover:underline">로그인</a>
               <a href="login.html" className="hover:underline">회원가입</a>
           <a href="mypage.html">
-    <img src="https://via.placeholder.com/30" alt="profile" class="w-8 h-8 rounded-full bg-gray-300" />
+    <img src="my.png" alt="profile" class="w-8 h-8 rounded-full bg-gray-300" />
   </a>
         </div>
       </header>
@@ -196,52 +196,45 @@ const getRandomVenue = (region) => {
   return venues[Math.floor(Math.random() * venues.length)];
 };
 const rawItems = [
-  { id: 1, title: "작품 1", theme: "내한공연", genre: "콘서트", region: "서울", status: "판매중", popularity: 85, date: new Date(2025, 6, 4), createdAt: new Date(2025, 4, 1) },
-  { id: 2, title: "작품 2", theme: "내한공연", genre: "뮤지컬/연극", region: "경기/인천", status: "판매예정", popularity: 72, date: new Date(2025, 7, 21), createdAt: new Date(2025, 4, 5) },
-  { id: 3, title: "작품 3", theme: "홍대/소극장", genre: "팬클럽/팬미팅", region: "부산/대구/경상", status: "판매중", popularity: 60, date: new Date(2025, 5, 15), createdAt: new Date(2025, 4, 10) },
-  { id: 4, title: "작품 4", theme: "홍대/소극장", genre: "클래식", region: "광주/전라/제주", status: "판매예정", popularity: 95, date: new Date(2025, 8, 12), createdAt: new Date(2025, 4, 12) },
-  { id: 5, title: "작품 5", theme: "아이돌", genre: "전시/행사", region: "서울", status: "판매중", popularity: 78, date: new Date(2025, 9, 1), createdAt: new Date(2025, 4, 15) },
-  { id: 6, title: "작품 6", theme: "아이돌", genre: "클래식", region: "경기/인천", status: "판매예정", popularity: 88, date: new Date(2025, 7, 30), createdAt: new Date(2025, 4, 18) },
-  { id: 7, title: "작품 7", theme: "효 콘서트", genre: "전시/행사", region: "부산/대구/경상", status: "판매중", popularity: 67, date: new Date(2025, 6, 20), createdAt: new Date(2025, 4, 20) },
-  { id: 8, title: "작품 8", theme: "효 콘서트", genre: "뮤지컬/연극", region: "광주/전라/제주", status: "판매예정", popularity: 74, date: new Date(2025, 9, 18), createdAt: new Date(2025, 4, 22) },
-  { id: 9, title: "작품 9", theme: "페스티벌/콜라보", genre: "팬클럽/팬미팅", region: "서울", status: "판매중", popularity: 81, date: new Date(2025, 10, 5), createdAt: new Date(2025, 4, 25) },
-  { id: 10, title: "작품 10", theme: "페스티벌/콜라보", genre: "클래식", region: "경기/인천", status: "판매예정", popularity: 53, date: new Date(2025, 11, 10), createdAt: new Date(2025, 4, 28) },
-  { id: 11, title: "작품 11", theme: "키즈/패밀리", genre: "전시/행사", region: "부산/대구/경상", status: "판매중", popularity: 92, date: new Date(2025, 5, 25), createdAt: new Date(2025, 5, 1) },
-  { id: 12, title: "작품 12", theme: "키즈/패밀리", genre: "뮤지컬/연극", region: "광주/전라/제주", status: "판매예정", popularity: 79, date: new Date(2025, 6, 10), createdAt: new Date(2025, 5, 5) },
-  { id: 13, title: "작품 13", theme: "내한공연", genre: "전시/행사", region: "서울", status: "판매중", popularity: 84, date: new Date(2025, 7, 15), createdAt: new Date(2025, 5, 8) },
-  { id: 14, title: "작품 14", theme: "홍대/소극장", genre: "클래식", region: "경기/인천", status: "판매예정", popularity: 65, date: new Date(2025, 8, 20), createdAt: new Date(2025, 5, 12) },
-  { id: 15, title: "작품 15", theme: "아이돌", genre: "뮤지컬/연극", region: "부산/대구/경상", status: "판매중", popularity: 71, date: new Date(2025, 9, 25), createdAt: new Date(2025, 5, 15) },
-  { id: 16, title: "작품 16", theme: "효 콘서트", genre: "팬클럽/팬미팅", region: "광주/전라/제주", status: "판매예정", popularity: 90, date: new Date(2025, 10, 30), createdAt: new Date(2025, 5, 18) },
-  { id: 17, title: "작품 17", theme: "페스티벌/콜라보", genre: "전시/행사", region: "서울", status: "판매중", popularity: 66, date: new Date(2025, 11, 5), createdAt: new Date(2025, 5, 20) },
-  { id: 18, title: "작품 18", theme: "키즈/패밀리", genre: "클래식", region: "경기/인천", status: "판매예정", popularity: 83, date: new Date(2025, 6, 15), createdAt: new Date(2025, 5, 22) },
-  { id: 19, title: "작품 19", theme: "내한공연", genre: "팬클럽/팬미팅", region: "부산/대구/경상", status: "판매중", popularity: 75, date: new Date(2025, 7, 20), createdAt: new Date(2025, 5, 25) },
-  { id: 20, title: "작품 20", theme: "홍대/소극장", genre: "뮤지컬/연극", region: "광주/전라/제주", status: "판매예정", popularity: 69, date: new Date(2025, 8, 25), createdAt: new Date(2025, 5, 28) },
-  { id: 21, title: "작품 21", theme: "내한공연", genre: "전시/행사", region: "서울", status: "판매중", popularity: 82, date: new Date(2025, 6, 4), createdAt: new Date(2025, 4, 30) },
-  { id: 22, title: "작품 22", theme: "홍대/소극장", genre: "클래식", region: "경기/인천", status: "판매예정", popularity: 77, date: new Date(2025, 7, 12), createdAt: new Date(2025, 5, 2) },
-  { id: 23, title: "작품 23", theme: "아이돌", genre: "팬클럽/팬미팅", region: "대전/충청/강원", status: "판매중", popularity: 74, date: new Date(2025, 8, 5), createdAt: new Date(2025, 5, 4) },
-  { id: 24, title: "작품 24", theme: "효 콘서트", genre: "전시/행사", region: "부산/대구/경상", status: "판매예정", popularity: 69, date: new Date(2025, 9, 14), createdAt: new Date(2025, 5, 6) },
-  { id: 25, title: "앤들링스", image: "theme/제주아트센터2.jpg", theme: "페스티벌/콜라보", genre: "뮤지컬/연극", region: "광주/전라/제주", status: "판매중", popularity: 91, date: new Date(2025, 10, 2), createdAt: new Date(2025, 5, 8) },
-  { id: 26, title: "작품 26", theme: "키즈/패밀리", genre: "클래식", region: "서울", status: "판매예정", popularity: 87, date: new Date(2025, 11, 18), createdAt: new Date(2025, 5, 10) },
-  { id: 27, title: "작품 27", theme: "내한공연", genre: "뮤지컬/연극", region: "경기/인천", status: "판매중", popularity: 80, date: new Date(2025, 12, 9), createdAt: new Date(2025, 5, 12) },
-  { id: 28, title: "작품 28", theme: "홍대/소극장", genre: "전시/행사", region: "대전/충청/강원", status: "판매예정", popularity: 85, date: new Date(2026, 1, 6), createdAt: new Date(2025, 5, 14) },
-  { id: 29, title: "작품 29", theme: "아이돌", genre: "클래식", region: "부산/대구/경상", status: "판매중", popularity: 89, date: new Date(2026, 2, 24), createdAt: new Date(2025, 5, 16) },
-  { id: 30, title: "작품 30", theme: "효 콘서트", genre: "팬클럽/팬미팅", region: "광주/전라/제주", status: "판매예정", popularity: 86, date: new Date(2026, 3, 15), createdAt: new Date(2025, 5, 18) }
-].map(item => ({ ...item, endDate: getRandomEndDate(item.date) }));
+  { id: 1, title: "2025 JUNG YONG HWA LIVE ‘Director’s Cut : Our Fine Days’", image: "theme/서콘1.jpg", theme: "아이돌", genre: "콘서트", region: "서울", venue: "올림픽공원 올림픽홀", status: "판매중", popularity: 85, date: new Date(2025, 6, 4), createdAt: new Date(2025, 4, 1) },
+  { id: 2, title: "사운드 플래닛 페스티벌 2025", image: "theme/경기페스티벌.png", theme: "페스티벌/콜라보", genre: "콘서트", region: "경기/인천", venue: "인천 파라다이스시티", status: "판매예정", popularity: 72, date: new Date(2025, 7, 21), createdAt: new Date(2025, 4, 5) },
+  { id: 3, title: "중식이밴드 대도시 클럽 투어 - 부산", image: "theme/부산콘서트3.jpg", theme: "", genre: "콘서트", region: "부산/대구/경상", venue: "바이널 언더그라운드", status: "판매중", popularity: 60, date: new Date(2025, 5, 15), createdAt: new Date(2025, 4, 10) },
+  { id: 4, title: "뮤지컬 <프리다>", theme: "홍대/소극장", image: "theme/프리다.jpg", genre: "뮤지컬/연극", region: "서울", venue: "NOL 유니플렉스 1관(구 인터파크 유니플렉스)", status: "판매예정", popularity: 95, date: new Date(2025, 8, 12), createdAt: new Date(2025, 4, 12) },
+  { id: 5, title: "NMIXX 1ST FAN MEETING ‘NSWER VACATION’", image: "theme/서콘2.jpg", theme: "아이돌", genre: "콘서트", region: "서울", venue: "고려대학교 화정체육관", status: "판매중", popularity: 78, date: new Date(2025, 9, 1), createdAt: new Date(2025, 4, 15) },
+  { id: 6, title: "해리 포터와 죽음의 성물™ Part I 인 콘서트", image: "theme/해리포터.jpg", theme: "", genre: "클래식", region: "서울", venue: "세종문화회관 대극장", status: "판매예정", popularity: 88, date: new Date(2025, 7, 30), createdAt: new Date(2025, 4, 18) },
+  { id: 7, title: "워터밤 부산 2025", image: "theme/부산워터밤.jpg", theme: "페스티벌/콜라보", genre: "콘서트", region: "부산/대구/경상", venue: "부산항 제1부두", status: "판매중", popularity: 99, date: new Date(2025, 6, 26), createdAt: new Date(2025, 4, 20) },
+  { id: 8, title: "뮤지컬 〈팬텀〉 10주년 기념 공연", image: "theme/팬텀.jpg", theme: "", genre: "뮤지컬/연극", region: "서울", venue: "세종문화회관 대극장", status: "판매예정", popularity: 74, date: new Date(2025, 9, 18), createdAt: new Date(2025, 4, 22) },
+  { id: 9, title: "2025 CRAVITY CONCERT [Dare to Crave]", image: "theme/서콘3.jpg", theme: "아이돌", genre: "콘서트", region: "서울", venue: "올림픽공원 핸드볼경기장", status: "판매중", popularity: 81, date: new Date(2025, 10, 5), createdAt: new Date(2025, 4, 25) },
+  { id: 10, title: "SOUNDBERRY FESTA’ 25", image: "theme/경기페스타.jpg", theme: "페스티벌/콜라보", genre: "콘서트", region: "경기/인천", venue: "일산 킨텍스(KINTEX) 제2전시장 9홀", status: "판매예정", popularity: 53, date: new Date(2025, 11, 10), createdAt: new Date(2025, 4, 28) },
+  { id: 11, title: "나윤권 소극장 전국투어 〈여름산책〉 - 부산", image: "theme/부산콘서트.jpg", theme: "", genre: "콘서트", region: "부산/대구/경상", venue: " KT&G 상상마당 부산 라이브홀", status: "판매중", popularity: 92, date: new Date(2025, 5, 25), createdAt: new Date(2025, 5, 1) },
+  { id: 12, title: "연극 〈셰익스피어 인 러브〉", image: "theme/셰익.jpg", theme: "", genre: "뮤지컬/연극", region: "서울", venue: "예술의전당 CJ 토월극장", status: "판매예정", status: "판매예정", popularity: 79, date: new Date(2025, 6, 10), createdAt: new Date(2025, 5, 5) },
+  { id: 13, title: "2025 NCT DREAM TOUR 〈THE DREAM SHOW 4 : DREAM THE FUTURE〉", image: "theme/서콘4.jpg", theme: "아이돌", genre: "콘서트", region: "서울", venue: "고척스카이돔", status: "판매중", popularity: 84, date: new Date(2025, 7, 15), createdAt: new Date(2025, 5, 8) },
+  { id: 14, title: "정효빈 단독 콘서트 [Our Summer]", image: "theme/홍대콘서트.jpg", theme: "홍대/소극장", genre: "콘서트", region: "서울", venue: "KT&G 상상마당 홍대 라이브홀", status: "판매예정", popularity: 65, date: new Date(2025, 8, 20), createdAt: new Date(2025, 5, 12) },
+  { id: 15, title: "2025 대구 힙합페스티벌", image: "theme/대구콘서트.jpg", theme: "페스티벌/콜라보", genre: "콘서트", region: "부산/대구/경상", venue: "대구 엑스포(EXPO)", status: "판매중", popularity: 71, date: new Date(2025, 5, 28), createdAt: new Date(2025, 5, 15) },
+  { id: 16, title: "117회 정기연주회", image: "theme/제주아트센터3.jpg", theme: "", genre: "클래식", region: "광주/전라/제주", venue: "제주아트센터", status: "판매예정", popularity: 90, date: new Date(2025, 5, 19), createdAt: new Date(2025, 5, 18) },
+  { id: 17, title: "2025 SEVENUS FANMEETING [7 DAYS]", image: "theme/팬미팅.jpg", theme: "아이돌", genre: "팬클럽/팬미팅", region: "서울", venue: "올림픽공원 KSPO DOME", status: "판매중", popularity: 66, date: new Date(2025, 11, 5), createdAt: new Date(2025, 5, 20) },
+  { id: 18, title: "윤종신 전국투어 콘서트 '그때' - 용인", image: "theme/윤종신.jpg", theme: "", genre: "콘서트", region: "경기/인천", venue: "용인 포은아트홀", status: "판매예정", popularity: 83, date: new Date(2025, 6, 15), createdAt: new Date(2025, 5, 22) },
+  { id: 19, title: "2025 UmYull 2nd Concert [Wishes of The Youth] Tour - 부산", image: "theme/부산콘서트2.jpg", theme: "", genre: "콘서트", region: "부산/대구/경상", venue: " KT&G 상상마당 부산 라이브홀", status: "판매중", popularity: 75, date: new Date(2025, 7, 20), createdAt: new Date(2025, 5, 25) },
+  { id: 20, title: "JUMF2025 전주얼티밋뮤직페스티벌", image: "theme/전주페스티벌.jpg", theme: "페스티벌/콜라보", genre: "콘서트", region: "광주/전라/제주", venue: "전북대학교 대운동장", status: "판매예정", popularity: 69, date: new Date(2025, 8, 25), createdAt: new Date(2025, 5, 28) },
+  { id: 21, title: "David Salle: Under One Roof", image: "theme/전시.jpg", theme: "", genre: "전시/행사", region: "서울", venue: "현대카드 스토리지", status: "판매중", popularity: 82, date: new Date(2025, 6, 4), createdAt: new Date(2025, 4, 30) },
+  { id: 22, title: "SOMEDAY PLEROMA 2025", image: "theme/경기콘서트.jpg", theme: "아이돌", genre: "콘서트", region: "경기/인천", venue: "일산 킨텍스(KINTEX) 제2전시장 10홀", status: "판매예정", popularity: 77, date: new Date(2025, 7, 12), createdAt: new Date(2025, 5, 2) },
+  { id: 23, title: "극동아시아타이거즈 전국투어〈호랑이 소리를 찾아서〉- 춘천", image: "theme/춘천콘서트.jpg", theme: "", genre: "콘서트", region: "대전/충청/강원", venue: "KT&G 상상마당 춘천 사운드홀", status: "판매중", popularity: 74, date: new Date(2025, 8, 5), createdAt: new Date(2025, 5, 4) },
+  { id: 24, title: "신화 : 시작하는 이야기", image: "theme/울산연극.jpg", theme: "", genre: "전시/행사", region: "부산/대구/경상", venue: "울산문화예술회관", status: "판매예정", popularity: 69, date: new Date(2025, 9, 14), createdAt: new Date(2025, 5, 6) },
+  { id: 25, title: "엔들링스", image: "theme/제주아트센터2.jpg", theme: "", genre: "뮤지컬/연극", region: "광주/전라/제주", venue: "제주아트센터", status: "판매중", popularity: 91, date: new Date(2025, 5, 27), createdAt: new Date(2025, 5, 8) },
+  { id: 26, title: "알렉산더 에크만의 ‘해머’, 예테보리 오페라 댄스컴퍼니", image: "theme/내한.jpg", theme: "내한공연", genre: "클래식", region: "서울", venue: "LG아트센터 서울 LG SIGNATURE 홀", status: "판매예정", popularity: 87, date: new Date(2025, 11, 18), createdAt: new Date(2025, 5, 10) },
+  { id: 27, title: "뮤지컬 〈매디슨 카운티의 다리〉", image: "theme/매디슨.jpg", theme: "", genre: "뮤지컬/연극", region: "서울", venue: "광림아트센터 BBCH홀", status: "판매중", popularity: 80, date: new Date(2025, 12, 9), createdAt: new Date(2025, 5, 12) },
+  { id: 28, title: "2025 UmYull 2nd Concert [Wishes of The Youth] Tour - 대전", image: "theme/대전콘서트.jpg", theme: "", genre: "콘서트", region: "대전/충청/강원", venue: "인터플레이", status: "판매예정", popularity: 85, date: new Date(2026, 1, 6), createdAt: new Date(2025, 5, 14) },
+  { id: 29, title: "아빠와 난 초등학교 1학년", image: "theme/울산연극1.jpg", theme: "키즈/패밀리", genre: "뮤지컬/연극", region: "부산/대구/경상", venue: "울산 중구 문화의전당", status: "판매중", popularity: 89, date: new Date(2025, 6, 25), createdAt: new Date(2025, 5, 16) },
+  { id: 30, title: "제 17회 정기연주회 제주나눔오케스트라", image: "theme/제주아트센터1.jpg", theme: "", genre: "클래식", region: "광주/전라/제주", venue: "제주아트센터", status: "판매예정", popularity: 86, date: new Date(2025, 5, 22), createdAt: new Date(2025, 5, 18) }
+];
 
-
-      const regionVenues = {
-  '서울': ['세종문화회관 체임버홀', '고척스카이돔', '올림픽공원 KSPO DOME', '잠실실내체육관'],
-  '경기/인천': ['경기아트센터 대극장', '인천아트센터', '수원SK아트리움'],
-  '대전/충청/강원': ['대전예술의전당 아트홀', '청주예술의전당', '춘천문화예술회관'],
-  '부산/대구/경상': ['부산문화회관 대극장', '대구오페라하우스', '울산문화예술회관'],
-  '광주/전라/제주': ['광주문화예술회관 대극장', '전주한국소리문화의전당', '제주아트센터']
-};
 
 const items = rawItems.map(item => ({
   ...item,
-  venue: getRandomVenue(item.region),
+  venue: item.venue || getRandomVenue(item.region), // venue 없을 때만 랜덤
   endDate: getRandomEndDate(item.date)
 }));
+
 
 
       const handleSearch = () => {
@@ -326,7 +319,7 @@ const handleSortChange = (newSort) => {
                   <div className="grid grid-cols-4 gap-6">
   {filteredItems.map(item => (
     <div key={item.id} className="border">
-      <img src={item.image} alt={item.title} className="w-full h-48 object-cover" />
+      <img src={item.image} alt={item.title} className="block mx-auto mt-4 w-[200px] h-[275px]" />
       <div className="p-4">
         <div className="font-bold text-base truncate">{item.title}</div>
         <div className="text-sm text-gray-500 mt-1">
