@@ -36,7 +36,10 @@ const navLinkMap = {
           "뮤지컬/연극", "콘서트", "스포츠", "전시/행사", 
           "레저", "테마/지역", "MD샵", "이벤트", "티켓오픈소식"
         ];
-
+ const navranking = [
+          "뮤지컬/연극", "콘서트", "아동/가족", "전시/행사", 
+          "레저/캠핑", "클래식/무용", "MD샵", "이벤트", "티켓오픈소식"
+        ];
         /* Header Component */
         const Header = () => (
           <header className="bg-red-600 text-white p-2 flex items-center justify-between sticky top-0 z-50">
@@ -55,7 +58,7 @@ const navLinkMap = {
             <div className="flex items-center space-x-4">
           
               <a href="login.html" className="hover:underline">로그인</a>
-              <a href="login.html" className="hover:underline">회원가입</a>
+              <a href="signup.html" className="hover:underline">회원가입</a>
               <a href="mypage.html">
     <img src="https://via.placeholder.com/30" alt="profile" class="w-8 h-8 rounded-full bg-gray-300" />
   </a>
@@ -96,19 +99,19 @@ const navLinkMap = {
     title: "제1회 눈송이 잘그리기 대회",
     subtitle: "내 최애 눈송이에게 투표하고 경품도 받자!",
     period: "ticketpage | 2025.01.01 - 2025.01.31",
-    bgImage: "mainimage/banner_snowdrawing.png"
+    bgImage: "main/banner_snowdrawing.png"
   },
   {
     title: "제2회 눈송이 축제",
     subtitle: "눈송이들과 함께하는 겨울 축제!",
     period: "ticketpage | 2025.02.01 - 2025.02.28",
-    bgImage: "mainimage/banner_snowfesti.png"
+    bgImage: "main/banner_snowfesti.png"
   },
   {
     title: "제3회 눈송이 조각 대회",
     subtitle: "눈송이들의 조각 대회에 참여하고 승리를 거둬보세요!",
     period: "ticketpage | 2025.03.01 - 2025.03.31",
-    bgImage: "mainimage/banner_snowmake.png"
+    bgImage: "main/banner_snowmake.png"
   },
 ];
 
@@ -147,27 +150,45 @@ const navLinkMap = {
     { id: 10, title: "JEON SOMI 2025 FAN MEETING ［CHAOS］ IN SEOUL", location: "서울 롯데월드 공연장", date: "2025.10.18 ~ 11.20", image: "main/전소미.gif" }
   ],
 
-  "스포츠": [
-    { id: 1, title: "[축구] 수원 K리그 하나원큐 파이널 홈 경기", location: "잠실야구장", date: "2025.2.2 ~ 2.28", image: "main/수원축구.jpg" },
-    { id: 2, title: "[격투기] TOP FC EDGE OF PRIDE", location: "서울월드컵경기장", date: "2025.3.15 ~ 3.30", image: "main/복싱빨간거.jpg" }
+  "아동/가족": [
+      { id: 1, title: "〈로보카폴리 - 브룸스타운의 에너지를 지켜라!〉", location: "영등포아트홀", date: "2025.08.30 ~2025.08.31", image: "main/로보카폴리.gif" },
+    { id: 2, title: "뮤지컬쇼 〈아기상어와 반짝반짝 최고의 파티〉", location: "연세대학교 백주년 기념관", date: "2025.07.04 ~2025.08.03", image: "main/아기상어.gif" },
+    { id: 3, title: "베베핀 뮤지컬 〈우당탕탕 패밀리〉 - 광주앵콜", location: "광주빛고을", date: "2025.06.28 ~ 08.03", image: "main/베베핀.gif" },
+    { id: 4, title: "당신의 특별한 부탁 <시간을 파는 상점>", location: "피랑씨어터", date: "2025.9.13", image: "main/시사점.gif" },
+    { id: 5, title: "뮤지컬 〈알사탕〉 - 대구 수성아트홀", location: "수성아트홀 대극장", date: "2025.06.01 ~07.31", image: "main/알사탕.gif" }
   ],
 
   "전시/행사": [
-
+    { id: 1, title: "문도 픽사(Mundo Pixar): 픽사, 상상의 세계로", location: "성수문화예술마당", date: "2025.05.05 ~ 07.31", image: "main/픽사.gif" },
+    { id: 2, title: "［HYBE INSIGHT］ 제이홉 전시 ‘AND WHAT？’", location: "AK 플라자 홍대점", date: "2025.05.30 ~06.22", image: "main/제이홉전시.gif" },
+    { id: 3, title: "크리스챤 디올 : 디자이너 오브 드림스", location: "동대문 디자인플라자 아트홀", date: "2025.06.28 ~ 08.03", image: "main/디올전시.gif" },
+    { id: 4, title: "얼리버드 〈취향가옥 2 : Art in Life〉", location: "디뮤지엄", date: "2025.5.15 ~ 6.17", image: "main/얼리버드.gif" },
+    { id: 5, title: "［6~7월 입장권］ 워너 브롱크호스트", location: "그라운드 시소 서촌", date: "2025.06.01 ~07.31", image: "main/브롱크.gif" },
+    { id: 6, title: "마르크 샤갈 특별전 : BEYOND TIME", location: "예술의 전당", date: "2025.9.13", image: "main/마르크.gif" },
+    { id: 7, title: "아니메쥬와 지브리展 : 지브리 탄생의 비밀", location: "대원 뮤지엄", date: "2025.7.21 ~ 8.23", image: "main/지브리.gif" },
+    { id: 8, title: "［여름 전시］ 앨리스 달튼 브라운 회고전", location: "더현대 서울", date: "2025.06.13 ~09.20", image: "main/앨리스.gif" },
+    { id: 9, title: "대구_환상 속 공룡세상 탐험展. 다이노 판타지", location: "이월드 83타워", date: "2025.9.12 ~ 10.13", image: "main/다이노.gif" },
+    { id: 10, title: "Keiichi Tanaami : I‘M THE ORIGIN", location: "대림미술관", date: "2024.12.14 ~2025.06.29", image: "main/타나이미.gif" }
   ],
-  "레저": [
-      { id: 1, title: "［경기 가평］ 남이섬 입장권 (~25.06.30)", location: "남이섬", date: "2025.6.11 ~ 6.30", image: "main/남이섬.gif" },
+  "레저/캠핑": [
+    { id: 1, title: "［경기 가평］ 남이섬 입장권 (~25.06.30)", location: "남이섬", date: "2025.6.11 ~ 6.30", image: "main/남이섬.gif" },
     { id: 2, title: "［충남/보령］ 제28회 보령머드축제 일반존", location: "충남/보령", date: "2025.2.14 ~ 3.19", image: "main/보령.gif" },
     { id: 3, title: "설악 워터피아 미들시즌 입장권 (~7/11)", location: "설악 워터피아", date: "2025.5.30 ~ 7.11", image: "main/설악.gif" },
     { id: 4, title: "［서울］주렁주렁 실내 동물원 영등포점", location: "대전 예술의전당 앙상블홀", date: "2025.8.3 ~ 9.4", image: "main/카피바라동물원.gif" },
-    { id: 5, title: "OASIS Live ’25 CONCERT IN SOUTH KOREA", location: "인천 문학경기장", date: "2025.9.12 ~ 10.13", image: "main/통영 카트인.gif" },
+    { id: 5, title: "［경남］ 통영가볼만한곳! 더카트인 통영", location: "더카트인 통영", date: "2024.01.04 ~08.31", image: "main/통영 카트인.gif" },
     { id: 6, title: "2025 파주시 공릉캠핑장 (~25.07.31)", location: "올림픽공원 올림픽홀", date: "2025.05.19 ~ 07.31", image: "main/캠핑장공릉.gif" },
     { id: 7, title: "서천 금빛노을 서울캠핑장 (~25.07.31)", location: "서천 금빛노을 서울캠핑장", date: "2025.05.19 ~ 07.31", image: "main/캠핑장서천.gif" },
     { id: 8, title: "인천대공원 캠핑장(너나들이 캠핑장)", location: "KSPO DOME", date: "2025.7.4 ~ 7.6", image: "main/캠핑장인천.gif" },
     { id: 9, title: "안성맞춤 남사당공연장 ［남사당놀이 6마당］", location: "남사당 공연장", date: "2025.5.15 ~ 6.17", image: "main/남사당.gif" },
-    { id: 10, title: "JEON SOMI 2025 FAN MEETING ［CHAOS］ IN SEOUL", location: "서울 롯데월드 공연장", date: "2025.10.18 ~ 11.20", image: "main/전소미.gif" }
+    { id: 10, title: "상주 감꽃마을 서울캠핑장", location: "상주 감꽃마을 서울캠핑장", date: "2025.05.01 ~07.31", image: "main/캠핑장 상주.gif" }
   ],
-  "테마/지역": []
+  "클래식/무용": [
+    { id: 1, title: "파리 오페라 발레 에투알 갈라 2025", location: "예술의전당 오페라극장", date: "2025.6.11 ~ 6.30", image: "main/에투알.gif" },
+    { id: 2, title: "제22회 한국을 빛내는 해외무용스타 초청공연", location: "나루아트센터", date: "2025.2.14 ~ 3.19", image: "main/해외무용스타.gif" },
+    { id: 3, title: "신카이 마코토 하이라이트 필름 콘서트", location: "롯데콘서트홀", date: "2025.5.30 ~ 7.11", image: "main/신카이마코토.gif" },
+    { id: 4, title: "2025 유니버설발레단 〈백조의 호수〉", location: "예술의전당 오페라극장", date: "2025.8.3 ~ 9.4", image: "main/백조의호수.gif" },
+    { id: 5, title: "스미노 하야토 피아노 리사이틀", location: "예술의전당 콘서트홀", date: "2024.01.04 ~08.31", image: "main/스미노.gif" },
+  ],
 };
 
 
@@ -176,9 +197,9 @@ const navLinkMap = {
 const keywords = [
   { id: 1, label: "뮤지컬" },
   { id: 2, label: "콘서트" },
-  { id: 3, label: "스포츠" },
+  { id: 3, label: "아동/가족" },
   { id: 4, label: "전시/행사" },
-  { id: 5, label: "레저" },
+  { id: 5, label: "클래식/무용" },
 ];
 
 
@@ -223,7 +244,7 @@ const handleShowLess = () => {
       </section>
       {/* 장르별 탭 메뉴 */}
       <nav className="bg-gray-100 flex justify-center space-x-4 mb-8">
-        {navItems.slice(0, 6).map((item) => (
+        {navranking.slice(0, 6).map((item) => (
           <button
             key={item}
             className={`p-2 px-4 rounded-full border transition ${
@@ -306,10 +327,10 @@ const handleShowLess = () => {
 // 베스트 리뷰 섹션 >> 안에 베스트 제목 뽑고 이런식으로 내용수정 예정정
     const BestReviewSection = () => {
       const reviews = [
-        { id: 1, category: "스포츠", title: "SK vs LG - 챔피언 결정전", text: "열정 넘쳤던 경기!", img: "mainimage/sport_baseball.jpg" },
-        { id: 2, category: "뮤지컬", title: "<구텐버그>", text: "내 최고의 깔깔극, 매회차 너무 재미있고 어디서 웃길지 예상할 수 없어서 더 기대되고 즐거워요ㅋㅋㅋㅋ", img: "mainimage/musical_gutenbug.gif"},
-        { id: 3, category: "뮤지컬", title: "<위대한개츠비>", text: "역시 뮤지컬은 위대한 개츠비", img: "mainimage/musical_thegreat.gif" },
-        { id: 4, category: "연극", title: "<보호받지 못한 사람들 ORPHANS>", text: "큰 기대 안 하고 봤던 연극입니다...", img: "mainimage/act_orphans.gif" },
+        { id: 1, category: "스포츠", title: "2025 FInal K League : 경남FC vs 성남FC", text: "열정 넘쳤던 경기!", img: "main/수원축구.jpg" },
+        { id: 2, category: "뮤지컬", title: "<구텐버그>", text: "내 최고의 깔깔극, 매회차 너무 재미있고 어디서 웃길지 예상할 수 없어서 더 기대되고 즐거워요ㅋㅋㅋㅋ", img: "main/musical_gutenbug.gif"},
+        { id: 3, category: "콘서트", title: "2025 RIIZE CONCERT TOUR [RIIZING LOUD] IN SEOUL", text: "원빈 너무 잘생겼네요...허거걱", img: "main/라이즈.jpg" },
+        { id: 4, category: "연극", title: "<보호받지 못한 사람들 ORPHANS>", text: "큰 기대 안 하고 봤던 연극입니다...눈물이 나왔네요", img: "main/act_orphans.gif" },
       ];
 
       return (
@@ -347,31 +368,31 @@ const handleShowLess = () => {
     const AdBanner = () => (
       <div className="bg-red-600 text-white text-center py-8 -mt-4 text-lg font-bold flex items-center justify-center space-x-3">
         <span className="text-red-100">관람 후기/기대평</span> 작성하고 <span className="text-yellow-300">공연 초대장 받아가세요!</span>
-        <img src="/path/to/ticket-icon.png" alt="ticket icon" className="w-8 h-8" />
+        <img src="main/ticket.png" alt="ticket icon" className="w-12 h-12" />
       </div>
     );
 //키워드별
 const recommendedByKeyword = {
   "재관람률 높은": [
-    { id: 1, category: "뮤지컬", title: "<모리스>", location: "LG아트센터", date: "2025.1.18 ~ 2.22", image: "mainimage/musical_moris.gif" },
-    { id: 2, category: "뮤지컬", title: "<알라딘>", location: "블루스퀘어 인터파크홀", date: "2025.3.2 ~ 4.5", image: "mainimage/musical_aladdin.gif" },
-    { id: 3, category: "연극", title: "<렛미인>", location: "대학로 드림홀", date: "2025.4.10 ~ 5.15", image: "mainimage/act_letmein.gif" },
-    { id: 4, category: "발레", title: "<헨젤과 그레텔>", location: "충무아트센터 대극장", date: "2025.6.7 ~ 7.12", image: "mainimage/bal_hansel.gif" },
-    { id: 5, category: "뮤지컬", title: "<지킬앤하이드>", location: "샤롯데씨어터", date: "2025.2.5 ~ 3.10", image: "mainimage/musical_jekyll.gif" }
+    { id: 1, category: "연극", title: "<모리스>", location: "LG아트센터", date: "2025.1.18 ~ 2.22", image: "main/musical_moris.gif" },
+    { id: 2, category: "뮤지컬", title: "<알라딘>", location: "블루스퀘어 인터파크홀", date: "2025.3.2 ~ 4.5", image: "main/musical_aladdin.gif" },
+    { id: 3, category: "연극", title: "<렛미인>", location: "대학로 드림홀", date: "2025.4.10 ~ 5.15", image: "main/act_letmein.gif" },
+    { id: 4, category: "발레", title: "<헨젤과 그레텔>", location: "충무아트센터 대극장", date: "2025.6.7 ~ 7.12", image: "main/bal_hansel.gif" },
+    { id: 5, category: "뮤지컬", title: "<지킬앤하이드>", location: "샤롯데씨어터", date: "2025.2.5 ~ 3.10", image: "main/musical_jekyll.gif" }
   ],
   "아이와 함께": [
-    { id: 1, category: "아직수정", title: "<이름>", location: "KT&G 상상마당 대치아트홀", date: "2025.2.14 ~ 3.20", image: "https://via.placeholder.com/300x200" },
-    { id: 2, category: "안함", title: "<티니핑>", location: "광림아트센터 BBCH홀", date: "2025.3.5 ~ 4.1", image: "https://via.placeholder.com/300x200" },
-    { id: 3, category: "연극", title: "<이름>", location: "이화여대 삼성홀", date: "2025.4.12 ~ 5.18", image: "https://via.placeholder.com/300x200" },
-    { id: 4, category: "행사", title: "<이름>", location: "세종문화회관 M씨어터", date: "2025.6.2 ~ 6.30", image: "https://via.placeholder.com/300x200" },
-    { id: 5, category: "뮤지컬", title: "<이름>", location: "예술의전당 CJ토월극장", date: "2025.7.7 ~ 8.9", image: "https://via.placeholder.com/300x200" }
+    { id: 1, title: "〈로보카폴리 - 브룸스타운의 에너지를 지켜라!〉", location: "영등포아트홀", date: "2025.08.30 ~2025.08.31", image: "main/로보카폴리.gif" },
+    { id: 2, title: "뮤지컬쇼 〈아기상어와 반짝반짝 최고의 파티〉", location: "연세대학교 백주년 기념관", date: "2025.07.04 ~2025.08.03", image: "main/아기상어.gif" },
+    { id: 3, title: "베베핀 뮤지컬 〈우당탕탕 패밀리〉 - 광주앵콜", location: "광주빛고을", date: "2025.06.28 ~ 08.03", image: "main/베베핀.gif" },
+    { id: 4, title: "당신의 특별한 부탁 <시간을 파는 상점>", location: "피랑씨어터", date: "2025.9.13", image: "main/시사점.gif" },
+    { id: 5, title: "뮤지컬 〈알사탕〉 - 대구 수성아트홀", location: "수성아트홀 대극장", date: "2025.06.01 ~07.31", image: "main/알사탕.gif" }
   ],
   "대학로 연극 추천": [
-    { id: 1, category: "어쩌고링대학로", title: "<이름>", location: "한양레퍼토리씨어터", date: "2025.1.10 ~ 2.14", image: "https://via.placeholder.com/300x200" },
-    { id: 2, category: "뮤지컬", title: "<이름>", location: "두산아트센터 연강홀", date: "2025.2.20 ~ 3.25", image: "https://via.placeholder.com/300x200" },
-    { id: 3, category: "연극", title: "<이름>", location: "대학로 뮤즈라이브홀", date: "2025.4.5 ~ 5.10", image: "https://via.placeholder.com/300x200" },
-    { id: 4, category: "행사", title: "<이름>", location: "드림아트센터 1관", date: "2025.6.15 ~ 7.20", image: "https://via.placeholder.com/300x200" },
-    { id: 5, category: "뮤지컬", title: "<이름>", location: "아트원씨어터 3관", date: "2025.8.3 ~ 9.8", image: "https://via.placeholder.com/300x200" }
+    { id: 1, category: "연극 : ", title: "모리스", location: "LG아트센터", date: "2025.1.18 ~ 2.22", image: "main/musical_moris.gif" },
+    { id: 2, category: "연극 : ",  title: "위키드", location: "충무아트센터 대극장", date: "2025.5.8 ~ 6.14", image: "main/위키드.gif" },
+    { id: 3,  category: "연극 :", title: "맘마미아", location: "두산아트센터 연강홀", date: "2025.6.1 ~ 7.3", image: "main/맘마미아.gif" },
+    { id: 4,  category: "연극 :", title: "멤피스", location: "예술의전당 오페라극장", date: "2025.7.7 ~ 8.15", image: "main/멤피스.gif" },
+    { id: 5,  category: "연극 :", title: "플레임즈", location: "이화여대 삼성홀", date: "2025.8.10 ~ 9.18", image: "main/플레임즈.gif" },
   ]
 };
  
@@ -424,7 +445,7 @@ const RecommendedSection = () => {
               <img
                 src={item.image}
                 
-                className="w-full h-48 object-cover mb-3 rounded-sm flex-shrink-0"
+                className="w-full h-65 object-cover mb-3 rounded-sm flex-shrink-0"
               />
               <div className="flex-grow text-left">
                 <p className="font-extrabold text-lg mb-1">
