@@ -33,11 +33,13 @@
   </section>
 
   <script>
+    // 회원가입 버튼 클릭 이벤트 처리
     document.getElementById('signupBtn').addEventListener('click', function() {
       const id = document.getElementById('newUserId').value.trim();
       const pw = document.getElementById('newPassword').value.trim();
       const confirmPw = document.getElementById('confirmPassword').value.trim();
 
+      // 입력값 검증
       if (!id || !pw || !confirmPw) {
         alert('모든 항목을 입력하세요.');
         return;
@@ -48,14 +50,15 @@
         return;
       }
 
-      // 이미 존재하는 아이디 확인
+      // 이미 존재하는 아이디 확인 (로컬스토리지에서 확인)
       if (localStorage.getItem(id)) {
         alert('이미 존재하는 아이디입니다.');
         return;
       }
 
-      // 회원정보 저장
-      localStorage.setItem(id, JSON.stringify({ password: pw }));
+      // 회원정보 로컬스토리지에 저장
+      localStorage.setItem(id, pw); // 로컬스토리지에 아이디와 비밀번호 저장
+
       alert('회원가입이 완료되었습니다!');
       window.location.href = 'login.html'; // 회원가입 후 로그인 페이지로 리디렉션
     });
