@@ -15,6 +15,41 @@
     <script type="text/babel">
       const { useState } = React;
 
+ const customTitles = [
+    "[컴튼 투 서울] 진짜 힙합페스티벌, 백스테이지 PASS를 잡아라",
+    "뮤지컬 <난쟁이들> 기대평을 남겨주세요!",
+    "멜론티켓 카카오 플러스친구 런칭 EVENT",
+    "연극 <슈퍼맨닷컴> 커튼콜 인증 이벤트",
+    "대림미술관 SUNDAY LIVE 예매 인증 이벤트",
+    "HPHOPPLAYA FESTIVAL 초대 이벤트",
+    "뮤지컬 <닥터지바고> M/V 공개! 기대평 초대 이벤트",
+    "연극 <룸넘버13> 초대 이벤트",
+    "뮤지컬 <엑스칼리버> 멜론티켓 회원 초대 이벤트",
+    "쿠키와 함께하는 시리즈 페스티벌 (홍대야 놀자) 초대 이벤트",
+
+    "[집콘] 초대 이벤트 - 문화가 있는 날",
+    "멜론티켓 플친하고 멜뮤어 같이가요!",
+    "뮤지컬 <천사에 관하여: 타락천사 편> 관람후기 이벤트",
+    "연극 <쉬어매드니스> 초대 이벤트",
+    "이선희 콘서트 <Climax> 관람 후기 이벤트",
+    "아드만 애니메이션 윌레스 & 그로밋과 친구들 초대 이벤트",
+    "창작가무극 <나빌레라> 멜론티켓 회원 초대 이벤트",
+    "필름콘서트 <해리포터와 마법사의 돌> 기대평 이벤트",
+    "뮤지컬 <엑스칼리버> 리허설 초대 이벤트",
+    "[폴라로이드 추첨] 재관람 고객 대상 단독 이벤트!",
+
+    "뮤지컬 <보디가드> 콘서트 초대 이벤트",
+    "카카오 베스트 캐릭터상 투표하고 초대권 받기!",
+    "[관람후기 이벤트] 뮤지컬 <모차르트!> 10주년 기념 공연",
+    "[경품] 모노극 <그라운디드> 관람후기 이벤트",
+    "신비아파트 미디어 어드벤처 : 내가 구하리! 기대평 이벤트",
+    "[초대] 헐리우드 필름 콘서트 기대평 이벤트",
+    "[경품] 뮤지컬 <몬테크리스토> 기대평 이벤트",
+    "[경품] 뮤지컬 <모차르트!> 예매자 대상 이벤트",
+    "[초대권 증정] 뮤지컬 <멤피스> 기대평 이벤트",
+    "[초대권 증정] 뮤지컬 <프라다> 기대평 이벤트"
+  ];
+
       const navItems = [
         "뮤지컬/연극", "콘서트", "스포츠", "전시/행사", "레저", "테마/지역", "MD샵", "이벤트", "티켓오픈소식"
       ];
@@ -34,7 +69,7 @@
       const Header = () => (
         <header className="bg-red-600 text-white p-2 flex items-center justify-between">
           <a href="testmain.html" className="flex items-center space-x-4">
-            <img src="https://via.placeholder.com/40" alt="logo" className="w-10 h-10" />
+            <img src="logo.png" alt="logo" className="w-10 h-10" />
             <h1 className="text-xl font-bold">ticketpage</h1>
           </a>
           <div className="flex items-center space-x-2">
@@ -45,7 +80,7 @@
             <a href="#" className="hover:underline">로그인</a>
             <a href="#" className="hover:underline">회원가입</a>
             <a href="mypage.html">
-              <img src="https://via.placeholder.com/30" alt="profile" className="w-8 h-8 rounded-full bg-gray-300" />
+              <img src="my.png" alt="profile" className="w-8 h-8 rounded-full" />
             </a>
           </div>
         </header>
@@ -195,36 +230,38 @@
 };
 
     // 데이터 생성 함수
-    const generateData = (totalPages = 20) => {
-      const data = {};
-      let num = totalPages * 10;
-      const startDate = new Date(2024, 0, 1);
+   const generateData = (totalPages = 20) => {
+  const data = {};
+  let num = totalPages * 10;
+  const startDate = new Date(2025, 3, 1);
 
-      for (let p = 1; p <= totalPages; p++) {
-        const pageData = [];
-        for (let i = 9; i >= 0; i--) {
-          const date = new Date(startDate);
-          date.setDate(date.getDate() + (num - 1));
-          const y = date.getFullYear();
-          const m = (date.getMonth() + 1).toString().padStart(2, '0');
-          const d = date.getDate().toString().padStart(2, '0');
-          pageData.push({
-            number: num,
-            title: `[이벤트] 기대평 이벤트 ${num}`,
-            date: `${y}.${m}.${d}`
-          });
-          num--;
-        }
-        data[p] = pageData;
-      }
-      return data;
-    };
+  for (let p = 1; p <= totalPages; p++) {
+    const pageData = [];
+    for (let i = 9; i >= 0; i--) {
+      const date = new Date(startDate);
+      date.setDate(date.getDate() + (num - 1));
+      const y = date.getFullYear();
+      const m = (date.getMonth() + 1).toString().padStart(2, '0');
+      const d = date.getDate().toString().padStart(2, '0');
+
+      pageData.push({
+        number: num,
+        title: customTitles[num - 1] || `[이벤트] 기대평 이벤트 ${num}`, // ✅ 변경된 부분
+        date: `${y}.${m}.${d}`
+      });
+      num--;
+    }
+    data[p] = pageData;
+  }
+  return data;
+};
+
 
     // 전체 App 구성
     const App = () => {
       const [activeHeader, setActiveHeader] = useState("이벤트");
       const [currentPage, setCurrentPage] = useState(1);
-      const totalPages = 20;
+      const totalPages = 3;
       const data = generateData(totalPages);
 
       return (

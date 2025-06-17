@@ -248,13 +248,13 @@ const FooterInfo = () => (
 
     const App = () => {
       const matches = [
-        { date: "05.27", day: "화", time: "19:00", homeName: "FC 서울", homeLogo: "fc서울.svg", awayName: "수원", awayLogo: "수원.svg", stadium: "서울월드컵경기장", status: "예매하기" },
-        { date: "06.17", day: "토", time: "16:30", homeName: "FC 서울", homeLogo: "fc서울.svg", awayName: "울산", awayLogo: "울산.svg", stadium: "울산문수축구경기장", status: "오픈예정" },
-        { date: "06.27", day: "화", time: "19:30", homeName: "FC 서울", homeLogo: "fc서울.svg", awayName: "전북", awayLogo: "전북.svg", stadium: "서울월드컵경기장", status: "오픈예정" },
-        { date: "07.08", day: "일", time: "19:00", homeName: "FC 서울", homeLogo: "fc서울.svg", awayName: "안양", awayLogo: "안양.svg", stadium: "안양종합운동장", status: "오픈예정" },
-        { date: "06.04", day: "일", time: "18:00", homeName: "수원 FC", homeLogo: "수원.svg", awayName: "울산 HD FC", awayLogo: "울산.svg", stadium: "수원월드컵경기장", status: "예매하기" },
-        { date: "06.05", day: "월", time: "17:00", homeName: "울산 HD FC", homeLogo: "울산.svg", awayName: "전북 현대 모터스", awayLogo: "전북.svg", stadium: "울산문수축구경기장", status: "오픈예정" },
-        { date: "06.06", day: "화", time: "19:00", homeName: "전북 현대 모터스", homeLogo: "전북.svg", awayName: "FC 안양", awayLogo: "안양.svg", stadium: "전주월드컵경기장", status: "오픈예정" }
+        { date: "05.27", day: "화", time: "19:00", homeName: "FC 서울", homeLogo: "sport/서울.svg", awayName: "수원", awayLogo: "sport/수원.svg", stadium: "서울월드컵경기장", status: "예매하기" },
+        { date: "06.17", day: "토", time: "16:30", homeName: "FC 서울", homeLogo: "sport/서울.svg", awayName: "울산", awayLogo: "sport/울산.svg", stadium: "울산문수축구경기장", status: "오픈예정" },
+        { date: "06.27", day: "화", time: "19:30", homeName: "FC 서울", homeLogo: "sport/서울.svg", awayName: "전북", awayLogo: "sport/전북.svg", stadium: "서울월드컵경기장", status: "오픈예정" },
+        { date: "07.08", day: "일", time: "19:00", homeName: "FC 서울", homeLogo: "sport/서울.svg", awayName: "안양", awayLogo: "sport/안양.svg", stadium: "안양종합운동장", status: "오픈예정" },
+        { date: "06.04", day: "일", time: "18:00", homeName: "수원 FC", homeLogo: "sport/수원.svg", awayName: "울산 HD FC", awayLogo: "sport/울산.svg", stadium: "수원월드컵경기장", status: "예매하기" },
+        { date: "06.05", day: "월", time: "17:00", homeName: "울산 HD FC", homeLogo: "sport/울산.svg", awayName: "전북 현대 모터스", awayLogo: "sport/전북.svg", stadium: "울산문수축구경기장", status: "오픈예정" },
+        { date: "06.06", day: "화", time: "19:00", homeName: "전북 현대 모터스", homeLogo: "sport/전북.svg", awayName: "FC 안양", awayLogo: "sport/안양.svg", stadium: "전주월드컵경기장", status: "오픈예정" }
       ];
 
       const teamStadiums = {
@@ -266,11 +266,11 @@ const FooterInfo = () => (
       };
 
       const teamInfo = {
-        "FC 서울": { logo: "fc서울.svg", color: "#000000" },
-        "수원 FC": { logo: "수원.svg", color: "#E6002D" },
-        "울산 HD FC": { logo: "울산.svg", color: "#003F87" },
-        "전북 현대 모터스": { logo: "전북.svg", color: "#005F38" },
-        "FC 안양": { logo: "안양.svg", color: "#4B1C7F" }
+        "FC 서울": { logo: "sport/서울.svg", color: "#000000" },
+        "수원 FC": { logo: "sport/수원.svg", color: "#E6002D" },
+        "울산 HD FC": { logo: "sport/울산.svg", color: "#003F87" },
+        "전북 현대 모터스": { logo: "sport/전북.svg", color: "#005F38" },
+        "FC 안양": { logo: "sport/안양.svg", color: "#4B1C7F" }
       };
 
       const [isOpen, setIsOpen] = React.useState(false);
