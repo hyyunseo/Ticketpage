@@ -24,33 +24,61 @@
 
     const Header = () => (
       <header className="bg-red-600 text-white p-2 flex items-center justify-between sticky top-0 z-50">
-        <div className="flex items-center space-x-4">
-          <img src="https://via.placeholder.com/40" alt="logo" className="w-10 h-10" />
-          <h1 className="text-xl font-bold">ticketpage</h1>
-        </div>
+        <a href="testmain.html" class="flex items-center space-x-4">
+    <img src="https://via.placeholder.com/40" alt="logo" class="w-10 h-10" />
+    <h1 class="text-xl font-bold">ticketpage</h1>
+  </a>
         <div className="flex items-center space-x-2">
           <input type="text" placeholder="검색어를 입력하세요" className="p-2 rounded w-96 text-black" />
           <button className="p-2 bg-white text-black rounded">🔍</button>
         </div>
         <div className="flex items-center space-x-4">
-          <a href="#" className="hover:underline">로그인</a>
-          <a href="#" className="hover:underline">회원가입</a>
-          <img src="https://via.placeholder.com/30" alt="profile" className="w-8 h-8 rounded-full bg-gray-300" />
+          <a href="login.html" className="hover:underline">로그인</a>
+              <a href="login.html" className="hover:underline">회원가입</a>
+          <a href="mypage.html">
+    <img src="https://via.placeholder.com/30" alt="profile" class="w-8 h-8 rounded-full bg-gray-300" />
+  </a>
         </div>
       </header>
     );
 
-    const NavigationBar = () => (
-      <nav className="bg-white text-black p-2 border-b sticky top-12 z-40">
-        <ul className="flex justify-between text-sm">
-          {navItems.map((item, index) => (
-            <li key={index} className={`hover:text-red-600 flex-1 text-center ${item === "스포츠" ? "text-red-600 font-bold" : ""}`}>
-              <a href="#" className="block">{item}</a>
-            </li>
-          ))}
-        </ul>
-      </nav>
-    );
+    const navLinkMap = {
+  "뮤지컬/연극": "under_construction.html",
+  "콘서트":     "under_construction.html",
+  "스포츠":     "sport.html",
+  "전시/행사":   "under_construction.html",
+  "레저":       "leisure.html",
+  "테마/지역":   "theme.html",
+  "MD샵":      "testMDSHOP.html",
+  "이벤트":     "EventALL.html",
+  "티켓오픈소식": "TicketOpen.html",
+};
+
+const NavigationBar = () => (
+  <nav className="bg-white text-black p-2 border-b sticky top-12 z-40">
+    <ul className="flex justify-between text-sm">
+      {navItems.map((item, index) => {
+        // 실제 이동할 href를 꺼냄. 없으면 "#" 처리
+        const href = navLinkMap[item] || "#";
+
+        return (
+          <li
+            key={index}
+            className={`
+              hover:text-red-600 flex-1 text-center cursor-pointer
+              ${item === "스포츠" ? "text-red-600 font-bold" : ""}
+            `}
+          >
+            <a href={href} className="block">
+              {item}
+            </a>
+          </li>
+        );
+      })}
+    </ul>
+  </nav>
+);
+
 
     const SportsSubNav = () => (
       <nav className="bg-gray-200 text-black border-b">
@@ -126,7 +154,7 @@
             </div>
 
           <div className="p-0 m-0 mb-10">
-            <table className="w-full text-center border border-gray-300 border-collapse">
+            <table className="bg-white w-full text-center border border-gray-300 border-collapse">
               <thead>
                 <tr>
                   <th className="border p-2">월요일</th>
@@ -142,7 +170,7 @@
                 {rows.map((week, weekIdx) => (
                   <tr key={weekIdx}>
                     {week.map((date, dateIdx) => (
-                      <td key={dateIdx} className={`border h-24 w-32 text-left align-top pl-2 pt-2 ${date.isGray ? 'bg-gray-100' : ''}`}>
+                      <td key={dateIdx} className={`border h-24 w-32 text-left align-top pl-2 pt-2 ${date.isGray ? 'bg-white' : 'bg-white'}`}>
                         {!date.isGray && (
                           <React.Fragment>
                             <div>{date.day}</div>
@@ -262,7 +290,7 @@ const FooterInfo = () => (
       });
 
       return (
-        <div>
+        <div className="bg-gray-100">
           <Header />
           <NavigationBar />
           <SportsSubNav />

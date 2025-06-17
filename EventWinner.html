@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>당첨자 발표</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body class="bg-gray-100 text-black">
+   <div id="root"></div>
+
+    <script type="text/babel">
+      const { useState } = React;
+
+      const navItems = [
+        "뮤지컬/연극", "콘서트", "스포츠", "전시/행사", "레저", "테마/지역", "MD샵", "이벤트", "티켓오픈소식"
+      ];
+
+      const navLinkMap = {
+        "뮤지컬/연극": "Reservation.html",
+        "콘서트": "under_construction.html",
+        "스포츠": "sport.html",
+        "전시/행사": "under_construction.html",
+        "레저": "leisure.html",
+        "테마/지역": "theme.html",
+        "MD샵": "testMDSHOP.html",
+        "이벤트": "EventALL.html",
+        "티켓오픈소식": "TicketOpen.html"
+      };
+
+      const Header = () => (
+        <header className="bg-red-600 text-white p-2 flex items-center justify-between">
+          <a href="testmain.html" className="flex items-center space-x-4">
+            <img src="https://via.placeholder.com/40" alt="logo" className="w-10 h-10" />
+            <h1 className="text-xl font-bold">ticketpage</h1>
+          </a>
+          <div className="flex items-center space-x-2">
+            <input type="text" placeholder="검색어를 입력하세요" className="p-2 rounded w-96 text-black" />
+            <button className="p-2 bg-white text-black rounded">🔍</button>
+          </div>
+          <div className="flex items-center space-x-4">
+            <a href="#" className="hover:underline">로그인</a>
+            <a href="#" className="hover:underline">회원가입</a>
+            <a href="mypage.html">
+              <img src="https://via.placeholder.com/30" alt="profile" className="w-8 h-8 rounded-full bg-gray-300" />
+            </a>
+          </div>
+        </header>
+      );
+
+      const NavigationBar = ({ activeHeader, setActiveHeader }) => (
+        <nav className="bg-white text-black p-2 border-b">
+          <ul className="flex justify-between text-sm w-full">
+            {navItems.map((item, idx) => (
+              <li
+                key={idx}
+                className={`flex-1 text-center cursor-pointer ${
+                  activeHeader === item ? "text-red-600 font-bold" : "hover:text-red-600"
+                }`}
+                onClick={() => setActiveHeader(item)}
+              >
+                <a href={navLinkMap[item] || "#"} className="block w-full h-full">{item}</a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      );
+
+      const SubNavigationBar = () => {
+        const [activeSubTab, setActiveSubTab] = useState("당첨자 발표");
+        const subTabs = ["전체 이벤트", "당첨자 발표", "참여 이벤트"];
+
+        return (
+          <nav className="bg-gray-200 text-black border-b">
+            <div className="w-full max-w-[1000px] mx-auto">
+              <div className="w-fit ml-auto transform translate-x-[166px] flex space-x-12 py-2 text-sm">
+                {subTabs.map((tab, idx) => (
+                  <a
+                    key={idx}
+                    href="#"
+                    onClick={() => setActiveSubTab(tab)}
+                    className={`${
+                      activeSubTab === tab ? "text-red-600 font-bold" : "hover:text-red-600"
+                    }`}
+                  >
+                    {tab}
+                  </a>
+                ))}
+              </div>
+            </div>
+          </nav>
+        );
+      };
+
+      const Footer = () => (
+        <footer className="bg-gray-100 w-full border-t border-gray-300 mt-32 pt-6 px-8 text-xs text-gray-600">
+          <nav className="flex flex-wrap justify-center gap-x-20 gap-y-2 mb-4 text-gray-500">
+            <a href="#" className="hover:underline">회사소개</a>
+            <a href="#" className="hover:underline">이용약관</a>
+            <a href="#" className="hover:underline">개인정보처리방침</a>
+            <a href="#" className="hover:underline">위치기반서비스 이용약관</a>
+            <a href="#" className="hover:underline">여행약관</a>
+            <a href="#" className="hover:underline">여행자보험 가입내역</a>
+            <a href="#" className="hover:underline">티켓판매안내</a>
+            <a href="#" className="hover:underline">공지사항</a>
+            <a href="#" className="hover:underline">고객센터</a>
+          </nav>
+          <div className="flex flex-wrap justify-between text-gray-600 px-16 gap-x-20">
+            <div className="w-[300px] mb-4">
+              <p className="font-bold mb-1">(주)숙명여자협회</p>
+              <p>주소 서울특별시 용산구 청파로</p>
+              <p>사업자등록번호 824-91-09283</p>
+              <p>통신판매업신고 2025-숙명-0504</p>
+              <p>관광사업등록번호 제2025-000001호</p>
+            </div>
+            <div className="w-[300px] mb-4 ml-[121.5px]">
+              <p className="font-bold mb-1">고객센터</p>
+              <p>1:1문의</p>
+              <p>팩스 02-842-1029</p>
+              <p>이메일 websystem@smu.ac.kr</p>
+            </div>
+            <div className="w-[300px] mb-4 relative left-[88px]">
+              <p className="font-bold mb-1">전자금융거래 분쟁처리 담당정보</p>
+              <p>팩스 02-482-1203</p>
+              <p>이메일 may04@smu.ac.kr</p>
+              <p>개인정보보호책임자 privacy@smu.ac.kr</p>
+            </div>
+          </div>
+        </footer>
+      );
+
+    // 검색창 컴포넌트
+    const SearchBar = () => (
+      <section className="pt-20 pb-6 max-w-[1000px] mx-auto px-4">
+        <div className="w-full flex justify-end">
+          <div className="flex mr-1">
+            <input type="text" placeholder="이벤트 검색" className="p-2 border rounded w-80" />
+            <button className="ml-2 px-4 py-2 bg-black text-white rounded">검색</button>
+          </div>
+        </div>
+      </section>
+    );
+
+    // 당첨자 테이블 컴포넌트
+    const WinnerTable = ({ data }) => (
+      <table className="w-full border-t border-gray-300 table-fixed" id="winnerTable">
+        <thead>
+          <tr className="border-b border-gray-300 text-gray-600">
+            <th className="w-[60px] py-3"></th>
+            <th className="py-3 text-center">당첨자 발표</th>
+            <th className="py-3 text-center w-[120px]">발표일</th>
+          </tr>
+        </thead>
+        <tbody className="text-sm">
+          {data.map((row) => (
+            <tr className="border-b" key={row.number}>
+              <td className="py-3 pr-1 align-top">{row.number}</td>
+              <td className="py-3 pl-1 align-top">{row.title}</td>
+              <td className="py-3 px-2 text-center align-top">{row.date}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    );
+
+    // 페이지네이션 컴포넌트
+   const Pagination = ({ currentPage, totalPages, onPageChange }) => {
+  const pagesPerBlock = 10;
+  const currentBlock = Math.ceil(currentPage / pagesPerBlock);
+  const startPage = (currentBlock - 1) * pagesPerBlock + 1;
+  const endPage = Math.min(currentBlock * pagesPerBlock, totalPages);
+
+  return (
+    <div className="flex justify-center mt-6 space-x-2">
+      <button onClick={() => onPageChange(1)} className="px-3 py-1 border rounded bg-white text-gray-400">&laquo;</button>
+      <button onClick={() => onPageChange(startPage - pagesPerBlock)} className="px-3 py-1 border rounded bg-white text-gray-400">&lt;</button>
+      {Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i).map((page) => (
+        <button
+          key={page}
+          onClick={() => onPageChange(page)}
+          className={`px-3 py-1 border rounded bg-white ${
+            currentPage === page ? "text-green-600 font-bold" : "text-black"
+          }`}
+        >
+          {page}
+        </button>
+      ))}
+      <button onClick={() => onPageChange(endPage + 1)} className="px-3 py-1 border rounded bg-white text-gray-500">&gt;</button>
+      <button onClick={() => onPageChange(totalPages)} className="px-3 py-1 border rounded bg-white text-gray-500">&raquo;</button>
+    </div>
+  );
+};
+
+    // 데이터 생성 함수
+    const generateData = (totalPages = 20) => {
+      const data = {};
+      let num = totalPages * 10;
+      const startDate = new Date(2024, 0, 1);
+
+      for (let p = 1; p <= totalPages; p++) {
+        const pageData = [];
+        for (let i = 9; i >= 0; i--) {
+          const date = new Date(startDate);
+          date.setDate(date.getDate() + (num - 1));
+          const y = date.getFullYear();
+          const m = (date.getMonth() + 1).toString().padStart(2, '0');
+          const d = date.getDate().toString().padStart(2, '0');
+          pageData.push({
+            number: num,
+            title: `[이벤트] 기대평 이벤트 ${num}`,
+            date: `${y}.${m}.${d}`
+          });
+          num--;
+        }
+        data[p] = pageData;
+      }
+      return data;
+    };
+
+    // 전체 App 구성
+    const App = () => {
+      const [activeHeader, setActiveHeader] = useState("이벤트");
+      const [currentPage, setCurrentPage] = useState(1);
+      const totalPages = 20;
+      const data = generateData(totalPages);
+
+      return (
+        <>
+          <Header />
+          <NavigationBar activeHeader={activeHeader} setActiveHeader={setActiveHeader} />
+          <SubNavigationBar />
+          <main className="max-w-[1000px] mx-auto px-4">
+            <SearchBar />
+            <WinnerTable data={data[currentPage] || []} />
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={(page) => {
+                if (page >= 1 && page <= totalPages) setCurrentPage(page);
+              }}
+            />
+          </main>
+          <Footer />
+        </>
+      );
+    };
+
+    ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+  </script>
+</body>
+</html>

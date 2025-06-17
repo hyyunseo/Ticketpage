@@ -13,41 +13,68 @@
   <div id="root"></div>
 
   <script type="text/babel">
+    const navLinkMap = {
+  "뮤지컬/연극": "under_construction.html",
+  "콘서트":     "under_construction.html",
+  "스포츠":     "sport.html",
+  "전시/행사":   "under_construction.html",
+  "레저":       "leisure.html",
+  "테마/지역":   "theme.html",
+  "MD샵":      "testMDSHOP.html",  // 현재 보고 있는 페이지
+  "이벤트":     "EventALL.html",
+  "티켓오픈소식": "TicketOpen.html",
+};
+
     const navItems = ["뮤지컬/연극", "콘서트", "스포츠", "전시/행사", "레저", "테마/지역", "MD샵", "이벤트", "티켓오픈소식"];
 
     const Header = () => (
       <header className="bg-red-600 text-white p-2 flex items-center justify-between sticky top-0 z-50">
-        <div className="flex items-center space-x-4">
-          <img src="https://via.placeholder.com/40" alt="logo" className="w-10 h-10" />
-          <h1 className="text-xl font-bold">ticketpage</h1>
-        </div>
+        <a href="testmain.html" class="flex items-center space-x-4">
+    <img src="https://via.placeholder.com/40" alt="logo" class="w-10 h-10" />
+    <h1 class="text-xl font-bold">ticketpage</h1>
+  </a>
         <div className="flex items-center space-x-2">
           <input type="text" placeholder="검색어를 입력하세요" className="p-2 rounded w-96 text-black" />
           <button className="p-2 bg-white text-black rounded">🔍</button>
         </div>
         <div className="flex items-center space-x-4">
-          <a href="#" className="hover:underline">로그인</a>
-          <a href="#" className="hover:underline">회원가입</a>
-          <img src="https://via.placeholder.com/30" alt="profile" className="w-8 h-8 rounded-full bg-gray-300" />
+          <a href="login.html" className="hover:underline">로그인</a>
+              <a href="login.html" className="hover:underline">회원가입</a>
+          <a href="mypage.html">
+    <img src="https://via.placeholder.com/30" alt="profile" class="w-8 h-8 rounded-full bg-gray-300" />
+  </a>
         </div>
       </header>
     );
 
-    const NavigationBar = () => (
-      <nav className="bg-white text-black p-2 border-b sticky top-12 z-40">
-        <ul className="flex justify-between text-sm">
-          {navItems.map((item, index) => (
-            <li key={index} className="hover:text-red-600 flex-1 text-center">
-              <a href="#" className="block">{item}</a>
-            </li>
-          ))}
-        </ul>
-      </nav>
-    );
+   const NavigationBar = () => (
+  <nav className="bg-white text-black p-2 border-b sticky top-12 z-50">
+    <ul className="flex justify-between text-sm">
+      {navItems.map((item, index) => {
+        // 실제 링크를 꺼내고, 없으면 "#" 처리
+        const href = navLinkMap[item] || "#";
+
+        return (
+          <li
+            key={index}
+            className={`
+              hover:text-red-600 flex-1 text-center cursor-pointer
+              ${item === "프로필" ? "text-red-600 font-bold" : ""}
+            `}
+          >
+            <a href={href} className="block">
+              {item}
+            </a>
+          </li>
+        );
+      })}
+    </ul>
+  </nav>
+);
 
     const UserInfo = () => (
       <div className="flex rounded-lg overflow-hidden shadow w-full h-40">
-        <div className="flex items-center p-6 w-3/5 bg-gray-100">
+        <div className="flex items-center p-6 w-3/5 bg-gray-200">
           <div className="w-24 h-24 bg-gray-300 rounded-full flex items-center justify-center mr-6">
             <img src="https://via.placeholder.com/100" alt="Profile" className="w-24 h-24 rounded-full" />
           </div>
@@ -128,7 +155,7 @@
     );
 
     const App = () => (
-      <div>
+      <div className="bg-gray-100">
         <Header />
         <NavigationBar />
         <div className="max-w-7xl mx-auto flex gap-6 px-4 mt-6">
@@ -137,8 +164,8 @@
 
             <section className="mt-8">
               <h2 className="text-lg font-semibold mb-2">최근 예매/취소</h2>
-              <div className="border rounded overflow-hidden">
-                <div className="grid grid-cols-4 text-center bg-gray-100 py-2 font-semibold border-b">
+              <div className="bg-white border rounded overflow-hidden">
+                <div className="grid grid-cols-4 text-center bg-gray-200 py-2 font-semibold border-b">
                   <div>예매일</div>
                   <div>공연정보</div>
                   <div>예매정보</div>
@@ -198,7 +225,7 @@
             </section>
 
             <section className="grid grid-cols-2 gap-6 mt-6 mb-12">
-              <div className="border rounded p-4">
+              <div className="bg-white border rounded p-4">
                 <div className="flex justify-between mb-2">
                   <h2 className="font-semibold">최근 참여 이벤트</h2>
                   <a href="#" className="text-sm text-gray-500 hover:underline">더보기 &gt;</a>
@@ -206,21 +233,26 @@
                 <p className="font-semibold mb-1">응모 기록 <span className="text-xs bg-gray-300 px-2 py-0.5 rounded ml-1">선정중</span></p>
                 <p>YYYY.MM.DD ~ YYYY.MM.DD</p>
               </div>
-              <div className="border rounded p-4">
+              <div className="bg-white border rounded p-4">
                 <div className="flex justify-between mb-2">
                   <h2 className="font-semibold">최근 1:1 문의</h2>
                   <a href="#" className="text-sm text-gray-500 hover:underline">더보기 &gt;</a>
                 </div>
                 <div className="text-center text-gray-600 py-6">
                   <p className="mb-4">문의하신 내역이 없습니다.</p>
-                  <button className="text-sm border px-4 py-1 rounded hover:bg-gray-100">1:1 문의/고객센터</button>
+                  <button
+  className="text-sm border px-4 py-1 rounded hover:bg-gray-100"
+  onClick={() => window.location.href = 'customerservice.html'}
+>
+  1:1 문의/고객센터
+</button>
                 </div>
               </div>
             </section>
           </div>
 
           <aside className="w-36 shrink-0">
-            <div className="border rounded-lg p-4">
+            <div className="bg-white border rounded-lg p-4">
               <div className="flex flex-col items-center mb-6">
                 <img src="firstshow.jpg" alt="첫공 초대권" className="w-28 h-36 object-cover rounded" />
                 <p className="text-red-500 text-sm mt-2 font-semibold">첫공 초대권 증정</p>
