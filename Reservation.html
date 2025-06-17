@@ -15,18 +15,20 @@
 <body class="bg-gray-100 text-black">
   <!-- 헤더 -->
   <header class="bg-red-600 text-white p-2 flex items-center justify-between">
-    <div class="flex items-center space-x-4">
-      <img src="https://via.placeholder.com/40" alt="logo" class="w-10 h-10" />
-      <h1 class="text-xl font-bold">ticketpage</h1>
-    </div>
+    <a href="testmain.html" class="flex items-center space-x-4">
+    <img src="https://via.placeholder.com/40" alt="logo" class="w-10 h-10" />
+    <h1 class="text-xl font-bold">ticketpage</h1>
+  </a>
     <div class="flex items-center space-x-2">
       <input type="text" placeholder="검색어를 입력하세요" class="p-2 rounded w-96 text-black" />
       <button class="p-2 bg-white text-black rounded">🔍</button>
     </div>
     <div class="flex items-center space-x-4">
-      <a href="#" class="hover:underline">로그인</a>
-      <a href="#" class="hover:underline">회원가입</a>
-      <img src="https://via.placeholder.com/30" alt="profile" class="w-8 h-8 rounded-full bg-gray-300" />
+      <a href="login.html" className="hover:underline">로그인</a>
+              <a href="login.html" className="hover:underline">회원가입</a>
+      <a href="mypage.html">
+    <img src="https://via.placeholder.com/30" alt="profile" class="w-8 h-8 rounded-full bg-gray-300" />
+  </a>
     </div>
   </header>
 
@@ -47,15 +49,15 @@
 
   <!-- 콘텐츠 영역 -->
   <main class="max-w-[1000px] mx-auto px-4 py-6 ">
-    <h2 class="text-2xl font-bold mb-4">쇼뮤지컬 어게인 &lt;드림하이&gt;</h2>
+    <h2 class="text-2xl font-bold mb-4">이름 &lt;이름&gt;</h2>
     <div class="flex flex-wrap lg:flex-nowrap lg:space-x-8">
       <!-- 이미지와 정보 -->
       <div class="w-full lg:w-1/3 mb-6 lg:mb-0">
-        <img src="dreamhigh.jpg" alt="드림하이" class="w-full h-[460px] object-cover rounded" />
+        <img src="dreamhigh.jpg" alt="포스터" class="w-full h-[460px] object-cover rounded" />
       </div>
       <div class="w-full lg:flex-1 space-y-2 text-sm">
-        <div><span class="inline-block w-20">장소</span>올림픽공원 우리금융아트홀</div>
-        <div><span class="inline-block w-20">공연기간</span>2025.04.05 ~ 2025.06.01</div>
+        <div><span class="inline-block w-20">장소</span>어딘가</div>
+        <div><span class="inline-block w-20">공연기간</span>2025.XX.XX ~ 2025.XX.XX</div>
         <div><span class="inline-block w-20">공연시간</span>150분</div>
         <div><span class="inline-block w-20">관람연령</span>8세 이상</div>
         <div class="flex items-start">
@@ -74,7 +76,7 @@
       </div>
 
       <!-- 날짜 선택 + 회차 영역 -->
-      <div class="w-full lg:w-1/4 border rounded p-4 space-y-4 bg-white relative z-10">
+      <div class="w-full lg:w-[28%] border rounded p-4 space-y-4 bg-white relative z-10">
         <div class="flex justify-between items-center text-center text-sm font-semibold">
           <button id="prevMonth" class="px-2">&lt;</button>
           <div id="monthDisplay">2025. 4</div>
@@ -88,9 +90,12 @@
         <div id="showtime" class="border border-red-600 text-red-600 rounded px-3 py-1 text-sm w-fit">날짜를 선택하세요</div>
 
         <div class="space-y-2 pt-4">
-          <button class="w-full bg-red-600 text-white py-2 rounded">예매하기</button>
-          <button class="w-full border border-red-600 text-red-600 py-2 rounded">BOOKING</button>
-        </div>
+  <!-- “예매하기” 버튼을 ticketing_modal.html로 연결 -->
+  <a href="ticketing_modal.html">
+    <button class="w-full bg-red-600 text-white py-2 rounded mb-2">예매하기</button>
+  </a>
+</div>
+
       </div>
     </div>
     <!-- 탭 바 -->

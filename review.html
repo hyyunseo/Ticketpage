@@ -13,37 +13,65 @@
   <div id="root"></div>
 
   <script type="text/babel">
+    const navLinkMap = {
+  "뮤지컬/연극": "under_construction.html",
+  "콘서트":     "under_construction.html",
+  "스포츠":     "sport.html",
+  "전시/행사":   "under_construction.html",
+  "레저":       "leisure.html",
+  "테마/지역":   "theme.html",
+  "MD샵":      "testMDSHOP.html",  // 현재 보고 있는 페이지
+  "이벤트":     "EventALL.html",
+  "티켓오픈소식": "TicketOpen.html",
+};
+
     const navItems = ["뮤지컬/연극", "콘서트", "스포츠", "전시/행사", "레저", "테마/지역", "MD샵", "이벤트", "티켓오픈소식"];
 
     const Header = () => (
       <header className="bg-red-600 text-white p-2 flex items-center justify-between sticky top-0 z-50">
-        <div className="flex items-center space-x-4">
-          <img src="https://via.placeholder.com/40x40?text=logo" alt="logo" className="w-10 h-10"/>
-          <h1 className="text-xl font-bold">ticketpage</h1>
-        </div>
+        <a href="testmain.html" class="flex items-center space-x-4">
+    <img src="https://via.placeholder.com/40" alt="logo" class="w-10 h-10" />
+    <h1 class="text-xl font-bold">ticketpage</h1>
+  </a>
         <div className="flex items-center space-x-2">
           <input type="text" placeholder="검색어를 입력하세요" className="p-2 rounded w-96"/>
           <button className="p-2 bg-white text-black rounded">🔍</button>
         </div>
         <div className="flex items-center space-x-4">
-          <a href="#" className="hover:underline">로그인</a>
-          <a href="#" className="hover:underline">회원가입</a>
-          <img src="https://via.placeholder.com/30" alt="profile" className="w-8 h-8 rounded-full bg-gray-300"/>
+          <a href="login.html" className="hover:underline">로그인</a>
+              <a href="login.html" className="hover:underline">회원가입</a>
+          <a href="mypage.html">
+    <img src="https://via.placeholder.com/30" alt="profile" class="w-8 h-8 rounded-full bg-gray-300" />
+  </a>
         </div>
       </header>
     );
 
     const NavigationBar = () => (
-      <nav className="bg-white text-black p-2 border-b sticky top-12 z-50">
-        <ul className="flex justify-between text-sm">
-          {navItems.map((item, index) => (
-            <li key={index} className="hover:text-red-600 flex-1 text-center">
-              <a href="#" className="block">{item}</a>
-            </li>
-          ))}
-        </ul>
-      </nav>
-    );
+  <nav className="bg-white text-black p-2 border-b sticky top-12 z-50">
+    <ul className="flex justify-between text-sm">
+      {navItems.map((item, index) => {
+        // 실제 링크를 꺼내고, 없으면 "#" 처리
+        const href = navLinkMap[item] || "#";
+
+        return (
+          <li
+            key={index}
+            className={`
+              hover:text-red-600 flex-1 text-center cursor-pointer
+              ${item === "리뷰 전체보기" ? "text-red-600 font-bold" : ""}
+            `}
+          >
+            <a href={href} className="block">
+              {item}
+            </a>
+          </li>
+        );
+      })}
+    </ul>
+  </nav>
+);
+
 
     const ReviewPage = ({ setIsPopupOpen, userReviews, openOptions, setOpenOptions, handleEdit, handleDelete }) => {
       const [activeRank, setActiveRank] = React.useState(1);
