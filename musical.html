@@ -73,7 +73,34 @@
     </nav>
   );
 
-    
+    const LeisurePage = () => (
+          <div className="p-8 max-w-7xl mx-auto">
+            {/* 메인 이미지와 카드 리스트 */}
+            <div className="grid grid-cols-4 gap-4 mb-4">
+              <div className="border p-4 bg-white">
+                <img src="leisure/에버랜드.webp" alt="에버랜드"/>
+                <h3 className="font-bold mt-2">에버랜드 튤립축제</h3>
+                <p className="text-gray-600">2025.3.21 ~ 6.15</p>
+              </div>
+              <div className="border p-4 bg-white">
+                <img src="leisure/한강.jpg" alt="행사 이름" />
+                <h3 className="font-bold mt-2">한강 요트 투어</h3>
+                <p className="text-gray-600">2025.4.15 ~ 9.15</p>
+              </div>
+              <div className="border p-4 bg-white">
+                <img src="leisure/송도.gif" alt="행사 이름" />
+                <h3 className="font-bold mt-2">송도 국제캠핑장</h3>
+                <p className="text-gray-600">2025.6.1 ~ 10.1</p>
+              </div>
+              <div className="border p-4 bg-white">
+                <img src="leisure/키자니아.jpg" alt="행사 이름" />
+                <h3 className="font-bold mt-2">키자니아</h3>
+                <p className="text-gray-600">2025.8.1 ~ 11.31</p>
+              </div>
+            </div>
+          </div>
+        );
+
 const FooterInfo = () => (
   <footer className="w-full border-t border-gray-300 mt-32 pt-6 px-8 text-xs text-gray-600">
     {/* 상단 링크 */}
@@ -194,6 +221,7 @@ const handleSearch = () => {
         <div className="w-full">
           <Header />
           <NavigationBar />
+          <LeisurePage />
           <div className="flex justify-center">
             <div className="w-2/3 mt-4 flex justify-between items-center">
               <div className="flex space-x-4 items-center">
