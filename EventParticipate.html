@@ -151,23 +151,60 @@ const Footer = () => (
     </section>
 
     {/* 이벤트 카드 목록 */}
-    <section className="max-w-[1000px] mx-auto px-4 pb-10 space-y-6">
-      {[1, 2, 3].map((_, idx) => (
-        <div key={idx} className="border rounded-lg p-4 flex space-x-4 items-center bg-white shadow">
-          <div className="w-[180px] h-[120px] bg-gray-200 flex items-center justify-center text-gray-500">
-            이미지 자리
-          </div>
-          <div className="flex-1">
-            <div className={`text-sm font-semibold mb-1 ${idx === 2 ? "text-green-500" : "text-red-500"}`}>
-              {idx === 2 ? "완료" : "선정중"}
-            </div>
-            <h2 className="text-lg font-bold mb-2">제8회 티켓페이지 콘서트 티켓 선예매 응모</h2>
-            <p className="text-sm text-gray-700">이벤트 기간: 2025.04.XX ~ 2025.05.XX</p>
-            <p className="text-sm text-gray-700">당첨 혜택 : 제8회 티켓페이지 콘서트 티켓 선예매 추첨</p>
-          </div>
-        </div>
-      ))}
-    </section>
+   <section className="max-w-[1000px] mx-auto px-4 pb-10 space-y-6">
+
+  {/* 박스 1 */}
+  <div className="border rounded-lg p-4 flex bg-white shadow">
+  <div className="w-[180px] flex items-center justify-center">
+        <img
+    src="event/participate3.png"       
+    alt="이벤트 이미지"
+    className="w-full h-full object-contain"
+  />
+    </div>
+    <div className="flex-1 ml-6">
+      <div className="text-sm font-semibold mb-1 text-red-500">선정중</div>
+      <h2 className="text-lg font-bold mb-2">[사인 프로그램북 증정] 뮤지컬 &lt;멤피스&gt; 관람후기 이벤트</h2>
+      <p className="text-sm text-gray-700">이벤트 기간: 2025.06.17 ~ 2025.08.03</p>
+      <p className="text-sm text-gray-700">당첨 혜택: 사인 프로그램북</p>
+    </div>
+  </div>
+
+  {/* 박스 2 */}
+  <div className="border rounded-lg p-4 flex bg-white shadow">
+  <div className="w-[180px] flex items-center justify-center">
+       <img
+    src="event/participate2.png"       
+    alt="이벤트 이미지"
+    className="w-full h-full object-contain"
+  />
+    </div>
+    <div className="flex-1 ml-6">
+      <div className="text-sm font-semibold mb-1 text-red-500">선정중</div>
+      <h2 className="text-lg font-bold mb-2">[티켓봉투 증정] 뮤지컬 &lt;팬텀&gt; 멜론티켓 예매자 혜택</h2>
+      <p className="text-sm text-gray-700">이벤트 기간: 2025.05.21 ~ 2025.06.29</p>
+      <p className="text-sm text-gray-700">당첨 혜택: 팬텀 스페셜 티켓봉투</p>
+    </div>
+  </div>
+
+  {/* 박스 3 */}
+  <div className="border rounded-lg p-4 flex bg-white shadow">
+  <div className="w-[180px] flex items-center justify-center">
+       <img
+    src="event/participate1.png"       
+    alt="이벤트 이미지"
+    className="w-full h-full object-contain"
+  />
+    </div>
+    <div className="flex-1 ml-6">
+      <div className="text-sm font-semibold mb-1 text-green-500">완료</div>
+      <h2 className="text-lg font-bold mb-2">제8회 티켓페이지 콘서트 티켓 선예매 응모</h2>
+      <p className="text-sm text-gray-700">이벤트 기간: 2018.12.19 ~ 2018.12.21</p>
+      <p className="text-sm text-gray-700">당첨 혜택: 제8회 티켓페이지 콘서트 티켓 선예매 추첨</p>
+    </div>
+  </div>
+
+</section>
   </>
 );
 

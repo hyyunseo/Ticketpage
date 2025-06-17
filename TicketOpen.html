@@ -19,47 +19,26 @@
       <button class="p-2 bg-white text-black rounded">🔍</button>
     </div>
     <div class="flex items-center space-x-4">
-      <a href="login.html" className="hover:underline">로그인</a>
-              <a href="login.html" className="hover:underline">회원가입</a>
-      <a href="mypage.html">
-    <img src="https://via.placeholder.com/30" alt="profile" class="w-8 h-8 rounded-full bg-gray-300" />
-  </a>
+      <a href="#" class="hover:underline">로그인</a>
+      <a href="#" class="hover:underline">회원가입</a>
+      <img src="https://via.placeholder.com/30" alt="profile" class="w-8 h-8 rounded-full bg-gray-300" />
     </div>
   </header>
 
   <!-- 내비게이션 바 -->
   <nav class="bg-white text-black p-2 border-b w-full relative z-0">
-  <ul class="flex justify-between text-sm w-full">
-    <li class="hover:text-red-600 flex-1 text-center cursor-pointer">
-      <a href="under_construction.html" class="block">뮤지컬/연극</a>
-    </li>
-    <li class="hover:text-red-600 flex-1 text-center cursor-pointer">
-      <a href="under_construction.html" class="block">콘서트</a>
-    </li>
-    <li class="hover:text-red-600 flex-1 text-center cursor-pointer">
-      <a href="sport.html" class="block">스포츠</a>
-    </li>
-    <li class="hover:text-red-600 flex-1 text-center cursor-pointer">
-      <a href="under_construction.html" class="block">전시/행사</a>
-    </li>
-    <li class="hover:text-red-600 flex-1 text-center cursor-pointer">
-      <a href="leisure.html" class="block">레저</a>
-    </li>
-    <li class="hover:text-red-600 flex-1 text-center cursor-pointer">
-      <a href="theme.html" class="block">테마/지역</a>
-    </li>
-    <li class="hover:text-red-600 flex-1 text-center cursor-pointer">
-      <a href="testMDSHOP.html" class="block">MD샵</a>
-    </li>
-    <li class="hover:text-red-600 flex-1 text-center cursor-pointer">
-      <a href="EventALL.html" class="block">이벤트</a>
-    </li>
-    <li class="text-red-600 font-semibold flex-1 text-center">
-      <a href="TicketOpen.html" class="block">티켓오픈소식</a>
-    </li>
-  </ul>
-</nav>
-
+    <ul class="flex justify-between text-sm w-full">
+      <li class="hover:text-red-600 flex-1 text-center cursor-pointer">뮤지컬/연극</li>
+      <li class="hover:text-red-600 flex-1 text-center cursor-pointer">콘서트</li>
+      <li class="hover:text-red-600 flex-1 text-center cursor-pointer">스포츠</li>
+      <li class="hover:text-red-600 flex-1 text-center cursor-pointer">전시/행사</li>
+      <li class="hover:text-red-600 flex-1 text-center cursor-pointer">레저</li>
+      <li class="hover:text-red-600 flex-1 text-center cursor-pointer">테마/지역</li>
+      <li class="hover:text-red-600 flex-1 text-center cursor-pointer">MD샵</li>
+      <li class="hover:text-red-600 flex-1 text-center cursor-pointer">이벤트</li>
+      <li class="text-red-600 font-semibold flex-1 text-center">티켓오픈소식</li>
+    </ul>
+  </nav>
 
   <!-- HOT 공연 오픈 소식 + 배너 -->
   <section class="max-w-[1000px] mx-auto px-4 flex justify-between py-6 items-start bg-gray-100">
@@ -77,19 +56,24 @@
     </div>
 
     <!-- 오른쪽 배너 -->
-    <aside class="w-36 shrink-0">
-      <div class="border rounded-lg p-4 bg-white shadow">
-        <div class="flex flex-col items-center mb-6">
-          <div class="w-28 h-36 bg-gray-300"></div>
-          <p class="text-red-500 text-sm mt-2 font-semibold">첫공 초대권 증정</p>
-        </div>
-        <hr class="my-4 border-gray-300" />
-        <div class="flex flex-col items-center mt-6">
-          <div class="w-28 h-36 bg-gray-300"></div>
-          <p class="text-red-500 text-sm mt-2 font-semibold">Time Sale</p>
-        </div>
+   <aside class="w-36 shrink-0">
+  <div class="border rounded-lg p-4 bg-white">
+    <div class="flex flex-col items-center mb-6">
+      <div class="w-28 h-36 overflow-hidden flex items-center justify-center">
+        <img src="ticketopen/rightbanner1.jpg" alt="첫공 초대권" class="object-cover w-full h-full rounded" />
       </div>
-    </aside>
+      <p class="text-red-500 text-sm mt-2 font-semibold">첫공 초대권 증정</p>
+    </div>
+    <hr class="my-4 border-gray-300" />
+    <div class="flex flex-col items-center mt-6">
+      <div class="w-28 h-36 overflow-hidden flex items-center justify-center">
+        <img src="ticketopen/rightbanner2.gif" alt="타임 세일" class="object-cover w-full h-full rounded" />
+      </div>
+      <p class="text-red-500 text-sm mt-2 font-semibold">Time Sale</p>
+    </div>
+  </div>
+</aside>
+
   </section>
 
   <!-- 티켓 오픈 리스트 -->
@@ -135,47 +119,47 @@
     </div>
   </footer>
 
-   <script>
+  <script>
  const hotItems = [
   {
     title: `TONE STUDIO LIVE…`,
     date: `[오픈]25.05.01(목)`,
-    img: `ticketopen1.jpeg`
+    img: `ticketopen/ticketopen1.jpeg`
   },
   {
     title: `NMIXX 1ST FAN ME…`,
     date: `[오픈]25.05.01(목)`,
-    img: `ticketopen2.jpg`
+    img: `ticketopen/ticketopen2.jpg`
   },
   {
     title: `뮤지컬 <멤피스> 3차…`,
     date: `오픈 일정 보기 >`,
-    img: `ticketopen3.gif`
+    img: `ticketopen/ticketopen3.gif`
   },
   {
     title: `먼데이프로젝트 IN…`,
     date: `[오픈]25.05.02(금)`,
-    img: `ticketopen4.jpg`
+    img: `ticketopen/ticketopen4.jpg`
   },
   {
     title: `백아 단독 콘서트…`,
     date: `[오픈]25.05.03(토)`,
-    img: `ticketopen5.webp`
+    img: `ticketopen/ticketopen5.webp`
   },
   {
     title: `Pinyo Live Tour 2025…`,
     date: `[오픈]25.05.03(토)`,
-    img: `ticketopen6.webp`
+    img: `ticketopen/ticketopen6.webp`
   },
   {
     title: `낯선 섬 티켓 오픈…`,
     date: `[오픈]25.05.03(토)`,
-    img: `ticketopen7.jpg`
+    img: `ticketopen/ticketopen7.jpg`
   },
   {
     title: `블랙홀 단독콘서트…`,
     date: `[오픈]25.05.04(일)`,
-    img: `ticketopen8.jpeg`
+    img: `ticketopen/ticketopen8.jpeg`
   }
 ];
 
@@ -214,26 +198,286 @@
     const totalPages = 3;
     let currentBlock = 1;
     const pagesPerBlock = 3;
-    const data = {};
-    let totalItems = totalPages * 10;
-  for (let p = 1; p <= totalPages; p++) {
-  const page = [];
-  for (let i = 0; i < 10; i++) {
-    const number = totalItems--;
-    const dateMonth = number < 30 ? '05' : '06';
-    const dateDay = (number % 30 + 1).toString().padStart(2, '0');
 
-    page.push({
-      title: `콘서트 이름 ${number}`,
-      date: `2025.${dateMonth}.${dateDay}`,
-      regDate: `2025.${dateMonth}.${(Math.max(1, number % 30 - 3)).toString().padStart(2, '0')}`,
-      time: `20:00`,
-      views: Math.floor(Math.random() * 100 + 10),
-      isExclusive: number % 3 !== 0
-    });
-  }
-  data[p] = page;
-}
+  
+    const data = {
+  1: [
+    {
+      title: "크라잉넛 30주년 기념 클럽 투어 (벤더) - NUT 30 티켓 오픈 안내",
+      date: "2025.06.19",
+      regDate: "2025.06.16",
+      time: "20:00",
+      views: 823,
+      isExclusive: true,
+      img: "ticketopen/poster2.webp"
+    },
+    {
+      title: "뮤지컬 〈매디슨 카운티의 다리〉 추가 티켓 오픈 안내",
+      date: "2025.06.18",
+      regDate: "2025.06.13",
+      time: "13:00",
+      views: 940,
+      isExclusive: true,
+      img: "ticketopen/poster1.jpg"
+    },
+    {
+      title: "서울숲재즈페스티벌 2025 티켓 오픈 안내",
+      date: "2025.06.17",
+      regDate: "2025.06.13",
+      time: "12:00",
+      views: 392,
+      isExclusive: false,
+      img: "ticketopen/poster3.gif"
+    },
+    {
+      title: "2025 UmYull 2nd Concert [Wishes of The Youth] Tour 티켓 오픈 안내",
+      date: "2025.06.16",
+      regDate: "2025.06.12",
+      time: "16:00",
+      views: 806,
+      isExclusive: true,
+      img: "ticketopen/poster4.jpeg"
+    },
+    {
+      title: "2025 SEVENUS FANMEETING [7 DAYS] 티켓 오픈 안내",
+      date: "2025.06.16",
+      regDate: "2025.06.12",
+      time: "18:00",
+      views: 913,
+      isExclusive: true,
+      img: "ticketopen/poster5.webp"
+    },
+    {
+      title: "025 BAE SEUNG MIN 1ST FAN MEETING [BAE’ST Friends] 티켓 오픈 안내",
+      date: "2025.06.18",
+      regDate: "2025.06.12",
+      time: "20:00",
+      views: 1241,
+      isExclusive: true,
+      img: "ticketopen/poster6.webp"
+    },
+    {
+      title: "적란운 단독 콘서트 : 회색지대 티켓 오픈 안내",
+      date: "2025.06.18",
+      regDate: "2025.06.12",
+      time: "20:00",
+      views: 201,
+      isExclusive: true,
+      img: "ticketopen/poster7.jpeg"
+    },
+    {
+      title: "크리스탈 티 단독 콘서트 [Crystal Tea Party vol.3 체육대회] 티켓 오픈 안내",
+      date: "2025.06.18",
+      regDate: "2025.06.12",
+      time: "19:30",
+      views: 253,
+      isExclusive: false,
+      img: "ticketopen/poster8.jpg"
+    },
+    {
+      title: "2025 B.I TOUR: The Last Parade Tour in SEOUL 티켓 오픈 안내",
+      date: "2025.06.16",
+      regDate: "2025.06.11",
+      time: "19:30",
+      views: 3017,
+      isExclusive: true,
+      img: "ticketopen/poster9.jpg"
+    },
+    {
+      title: "2025 fromis_9 WORLD TOUR [NOW TOMORROW.] IN SEOUL 티켓 오픈 안내",
+      date: "2025.07.08",
+      regDate: "2025.06.11",
+      time: "20:00",
+      views: 13367,
+      isExclusive: true,
+      img: "ticketopen/poster10.jpeg"
+    }
+  ],
+  2: [
+    {
+      title: "먼데이프로젝트 시즌8 Our Universe [To More Raw 단독 콘서트] 티켓 오픈 안내",
+      date: "2025.06.19",
+      regDate: "2025.06.11",
+      time: "19:00",
+      views: 122,
+      isExclusive: true,
+      img: "ticketopen/poster11.webp"
+    },
+     {
+      title: "티카콘(TIKACON) : UNXL(언오피셜) 티켓 오픈 안내",
+      date: "2025.06.13",
+      regDate: "2025.06.10",
+      time: "14:00",
+      views: 290,
+      isExclusive: true,
+      img: "ticketopen/poster12.webp"
+    },
+     {
+      title: "그_냥 여름 단독 콘서트 : 냥만적 하루 티켓 오픈 안내",
+      date: "2025.06.13",
+      regDate: "2025.06.10",
+      time: "19:00",
+      views: 469,
+      isExclusive: true,
+      img: "ticketopen/poster13.jpg"
+    },
+     {
+      title: "연극 〈셰익스피어 인 러브〉 2차 티켓 오픈 안내",
+      date: "2025.06.12",
+      regDate: "2025.06.10",
+      time: "14:00",
+      views: 317,
+      isExclusive: true,
+      img: "ticketopen/poster14.jpg"
+    },
+     {
+      title: "먼데이프로젝트 시즌8 [감귤서리단 단독 콘서트 : 예고장] 티켓 오픈 안내",
+      date: "2025.06.19",
+      regDate: "2025.06.10",
+      time: "20:00",
+      views: 90,
+      isExclusive: true,
+      img: "ticketopen/poster15.webp"
+    },
+     {
+      title: "루카마이너 단독콘서트 : Summer Jazz with Luca minor 티켓 오픈 안내",
+      date: "2025.06.16",
+      regDate: "2025.06.10",
+      time: "20:00",
+      views: 268,
+      isExclusive: false,
+      img: "ticketopen/poster16.jpeg"
+    },
+     {
+      title: "뮤지컬 〈팬텀〉 10주년 기념 공연 마지막 티켓 오픈 안내",
+      date: "2025.06.19",
+      regDate: "2025.06.09",
+      time: "11:00",
+      views: 1048,
+      isExclusive: true,
+      img: "ticketopen/poster17.jpg"
+    },
+     {
+      title: "SEKAI NO OWARI ASIA TOUR 2025 [Phoenix] in Seoul 티켓 오픈 안내",
+      date: "2025.06.19",
+      regDate: "2025.06.09",
+      time: "20:00",
+      views: 3510,
+      isExclusive: true,
+      img: "ticketopen/poster18.webp"
+    },
+     {
+      title: "2025 JUNG YONG HWA LIVE ‘Director’s Cut : Our Fine Days’ 티켓 오픈 안내",
+      date: "2025.06.12",
+      regDate: "2025.06.09",
+      time: "20:00",
+      views: 2814,
+      isExclusive: true,
+      img: "ticketopen/poster19.jpeg"
+    },
+     {
+      title: "2025 aespa LIVE TOUR - SYNK : aeXIS LINE - 티켓 오픈 안내",
+      date: "2025.06.26",
+      regDate: "2025.06.09",
+      time: "20:00",
+      views: 6327,
+      isExclusive: true,
+      img: "ticketopen/poster20.png"
+    },
+  ],
+  3: [
+   {
+      title: "CREZL‘s SPIN-OFF : MOULIN ROUZL 티켓 오픈 안내",
+      date: "2025.06.12",
+      regDate: "2025.06.05",
+      time: "19:00",
+      views: 759,
+      isExclusive: true,
+      img: "ticketopen/poster21.jpeg"
+    },
+     {
+      title: "2025 WayV Concert Tour [NO Way OUT] in SEOUL 티켓 오픈 안내",
+      date: "2025.05.16",
+      regDate: "2025.06.05",
+      time: "20:00",
+      views: 3603,
+      isExclusive: true,
+      img: "ticketopen/poster22.webp"
+    },
+     {
+      title: "2025 CRAVITY CONCERT [Dare to Crave] 티켓 오픈 안내",
+      date: "2025.06.11",
+      regDate: "2025.06.05",
+      time: "20:00",
+      views: 3276,
+      isExclusive: true,
+      img: "ticketopen/poster23.jpeg"
+    },
+     {
+      title: "뮤지컬 〈구텐버그〉 싱어롱 데이 티켓 오픈 안내",
+      date: "2025.06.11",
+      regDate: "2025.06.05",
+      time: "11:00",
+      views: 295,
+      isExclusive: false,
+      img: "ticketopen/poster24.jpg"
+    },
+     {
+      title: "TONE STUDIO LIVE 〈서울전자음악단(Seoul electric band)〉 티켓 오픈 안내",
+      date: "2025.06.12",
+      regDate: "2025.06.04",
+      time: "20:00",
+      views: 251,
+      isExclusive: true,
+      img: "ticketopen/poster25.jpeg"
+    },
+     {
+      title: "오드트리 콘서트 〈동그라미 노랫소리〉 티켓 오픈 안내",
+      date: "2025.06.09",
+      regDate: "2025.06.04",
+      time: "14:00",
+      views: 395,
+      isExclusive: true,
+      img: "ticketopen/poster26.jpeg"
+    },
+     {
+      title: "초승 단독 콘서트 ‘사랑 사랑 사랑’ : 롤링 30주년 기념 공연 티켓 오픈 안내",
+      date: "2025.06.10",
+      regDate: "2025.06.02",
+      time: "20:00",
+      views: 430,
+      isExclusive: true,
+      img: "ticketopen/poster27.webp"
+    },
+     {
+      title: "세이수미 EP [Time is Not Yours] 발매공연 in 서울 티켓 오픈 안내",
+      date: "2025.06.05",
+      regDate: "2025.05.30",
+      time: "17:00",
+      views: 279,
+      isExclusive: true,
+      img: "ticketopen/poster28.jpeg"
+    },
+     {
+      title: "SOMEDAY PLEROMA 2025 티켓 오픈 안내",
+      date: "2025.06.02",
+      regDate: "2025.05.30",
+      time: "18:00",
+      views: 769,
+      isExclusive: true,
+      img: "ticketopen/poster29.jpg"
+    },
+     {
+      title: "뮤직 코멘터리 : Talkback #8 ‘12BH’ 티켓 오픈 안내",
+      date: "2025.06.04",
+      regDate: "2025.05.30",
+      time: "20:00",
+      views: 127,
+      isExclusive: true,
+      img: "ticketopen/poster30.jpeg"
+    },
+  ]
+};
 
 
     function renderPagination() {
@@ -266,10 +510,12 @@
             </div>
             <div class="flex-1 pl-24 flex flex-col justify-center">
               ${item.isExclusive ? '<div class="inline-block text-xs bg-green-600 text-white px-2 py-0.5 rounded w-fit mb-1">단독판매</div>' : ''}
-              <div class="text-base font-medium">${item.title} 티켓 오픈 안내</div>
+              <div class="text-base font-medium">${item.title}</div>
               <div class="mt-1 text-sm text-gray-500">등록일 ${item.regDate} │ 조회 ${item.views}</div>
             </div>
-            <div class="w-[90px] h-[120px] bg-gray-200 flex-shrink-0"></div>
+           <div class="w-[90px] h-[120px] flex-shrink-0">
+  <img src="${item.img}" alt="${item.title}" class="w-full h-full object-cover rounded" />
+</div>
           </div>
         `;
       });
