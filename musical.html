@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>테마/지역</title>
+  <title>뮤지컬/연극</title>
   <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
   <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -42,7 +42,7 @@
           <a href="login.html" className="hover:underline">로그인</a>
               <a href="login.html" className="hover:underline">회원가입</a>
           <a href="mypage.html">
-    <img src="my.png" alt="profile" class="w-8 h-8 rounded-full bg-gray-300" />
+    <img src="my.png" alt="profile" class="w-8 h-8 rounded-full" />
   </a>
         </div>
       </header>
@@ -60,7 +60,7 @@
               key={index}
               className={`
                 hover:text-red-600 flex-1 text-center cursor-pointer
-                ${item === "테마/지역" ? "text-red-600 font-bold" : ""}
+                ${item === "뮤지컬/연극" ? "text-red-600 font-bold" : ""}
               `}
             >
               <a href={href} className="block">
@@ -73,71 +73,7 @@
     </nav>
   );
 
-    const FilterBox = ({ handleSearch, setSelectedTheme, setSelectedGenre, setSelectedRegion, setSelectedStatus }) => (
-      <div className="w-2/3 border shadow-sm mt-6">
-        <div className="bg-gray-50 p-10">
-          <div className="grid grid-cols-4 gap-6">
-            <div>
-              <h2 className="font-semibold text-xl mb-4 pl-8">테마별</h2>
-              <ul className="space-y-3 text-base pl-8">
-                {["전체", "내한공연", "홍대/소극장", "아이돌", "효 콘서트", "페스티벌/콜라보", "키즈/패밀리"].map(option => (
-                  <li key={option}>
-                    <label>
-                      <input type="radio" name="theme" value={option} onChange={(e) => setSelectedTheme(e.target.value)} className="mr-1 accent-red-600" />
-                      {option}
-                    </label>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <h2 className="font-semibold text-xl mb-4 pl-8">장르별</h2>
-              <ul className="space-y-3 text-base pl-8">
-                {["전체", "콘서트", "뮤지컬/연극", "팬클럽/팬미팅", "클래식", "전시/행사"].map(option => (
-                  <li key={option}>
-                    <label>
-                      <input type="radio" name="genre" value={option} onChange={(e) => setSelectedGenre(e.target.value)} className="mr-1 accent-red-600" />
-                      {option}
-                    </label>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <h2 className="font-semibold text-xl mb-4 pl-8">지역별</h2>
-              <ul className="space-y-3 text-base pl-8">
-                {["전체", "서울", "경기/인천", "대전/충청/강원", "부산/대구/경상", "광주/전라/제주"].map(option => (
-                  <li key={option}>
-                    <label>
-                      <input type="radio" name="region" value={option} onChange={(e) => setSelectedRegion(e.target.value)} className="mr-1 accent-red-600" />
-                      {option}
-                    </label>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <h2 className="font-semibold text-xl mb-4 pl-8">판매상태</h2>
-              <ul className="space-y-2 text-base pl-8">
-                {["전체", "판매중", "판매예정"].map(option => (
-                  <li key={option}>
-                    <label>
-                      <input type="radio" name="status" value={option} onChange={(e) => setSelectedStatus(e.target.value)} className="mr-1 accent-red-600" />
-                      {option}
-                    </label>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div className="border-t border-gray-300 bg-white p-4 flex justify-end">
-          <button onClick={handleSearch} className="bg-gray-400 text-white py-3 px-16 text-lg mr-6 hover:bg-gray-500">
-            조회
-          </button>
-        </div>
-      </div>
-    );
+    
 const FooterInfo = () => (
   <footer className="w-full border-t border-gray-300 mt-32 pt-6 px-8 text-xs text-gray-600">
     {/* 상단 링크 */}
@@ -181,10 +117,6 @@ const FooterInfo = () => (
       const [viewType, setViewType] = React.useState('card');
       const [sortType, setSortType] = React.useState('인기순');
       const [filteredItems, setFilteredItems] = React.useState([]);
-      const [selectedTheme, setSelectedTheme] = React.useState('전체');
-      const [selectedGenre, setSelectedGenre] = React.useState('전체');
-      const [selectedRegion, setSelectedRegion] = React.useState('전체');
-      const [selectedStatus, setSelectedStatus] = React.useState('전체');
 const getRandomEndDate = (startDate) => {
   const randomDays = Math.floor(Math.random() * 2) + 1; // 1~2일 추가
   const endDate = new Date(startDate);
@@ -235,17 +167,13 @@ const items = rawItems.map(item => ({
   endDate: getRandomEndDate(item.date)
 }));
 
+const handleSortChange = (type) => {
+  setSortType(type);
+  handleSearch();
+};
 
-
-      const handleSearch = () => {
-  let result = items.filter(item =>
-    (selectedTheme === '전체' || item.theme === selectedTheme) &&
-    (selectedGenre === '전체' || item.genre === selectedGenre) &&
-    (selectedRegion === '전체' || item.region === selectedRegion) &&
-    (selectedStatus === '전체' || item.status === selectedStatus)
-  );
-
-  // 정렬 적용
+const handleSearch = () => {
+  let result = items; // 필터 조건 제거
   if (sortType === '인기순') {
     result.sort((a, b) => b.popularity - a.popularity);
   } else if (sortType === '공연임박순') {
@@ -253,23 +181,7 @@ const items = rawItems.map(item => ({
   } else if (sortType === '최신순') {
     result.sort((a, b) => b.createdAt - a.createdAt);
   }
-
   setFilteredItems(result);
-};
-
-const handleSortChange = (newSort) => {
-  setSortType(newSort);
-
-  let sortedItems = [...filteredItems];
-  if (newSort === '인기순') {
-    sortedItems.sort((a, b) => b.popularity - a.popularity);
-  } else if (newSort === '공연임박순') {
-    sortedItems.sort((a, b) => a.date - b.date);
-  } else if (newSort === '최신순') {
-    sortedItems.sort((a, b) => b.createdAt - a.createdAt);
-  }
-
-  setFilteredItems(sortedItems);
 };
 
 
@@ -282,15 +194,6 @@ const handleSortChange = (newSort) => {
         <div className="w-full">
           <Header />
           <NavigationBar />
-          <div className="flex justify-center">
-            <FilterBox
-              handleSearch={handleSearch}
-              setSelectedTheme={setSelectedTheme}
-              setSelectedGenre={setSelectedGenre}
-              setSelectedRegion={setSelectedRegion}
-              setSelectedStatus={setSelectedStatus}
-            />
-          </div>
           <div className="flex justify-center">
             <div className="w-2/3 mt-4 flex justify-between items-center">
               <div className="flex space-x-4 items-center">
@@ -352,10 +255,10 @@ const handleSortChange = (newSort) => {
     {filteredItems.map(item => (
       <div key={item.id} className="grid grid-cols-3 items-center text-center py-8 border-b">
         <div className="flex items-center space-x-4 pl-4">
-          <img src={`https://via.placeholder.com/80x100?text=${item.title}`} alt={item.title} className="w-20 h-24 object-cover" />
+          <img src={item.image} alt={item.title} className="w-28 h-32 object-cover" />
           <div className="text-left">
   <div className={`inline-block text-xs mb-1 px-2 py-1 border rounded ${
-    item.status === '판매중' ? 'border-green-600 text-green-600' : 'border-gray-600 text-gray-600'
+    item.status === '판매중' ? 'border-red-600 text-red-600' : 'border-gray-600 text-gray-600'
   }`}>
     {item.status}
   </div>
