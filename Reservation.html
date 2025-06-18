@@ -397,19 +397,10 @@
       position: mapOption.center
     });
     marker.setMap(map);
-
-    const iwContent = `
-      <div style="padding:5px;">
-        우리금융아트홀<br>
-        <a href="https://map.kakao.com/link/map/우리금융아트홀,37.519789,127.121401" target="_blank" style="color:blue;">
-          큰지도보기
-        </a>
-      </div>`;
-    const infowindow = new kakao.maps.InfoWindow({ content: iwContent });
-    infowindow.open(map, marker);
+    setTimeout(() => {
+      kakao.maps.event.trigger(map, 'resize');
+    }, 200);
   }
-
-  // 탭 전환 로직에 initMap() 호출 추가
   const tabButtons = document.querySelectorAll("#tab-menu .cursor-pointer");
   const tabDetail = document.getElementById("tab-detail");
   const tabVenue = document.getElementById("tab-venue");
