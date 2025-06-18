@@ -16,7 +16,8 @@
       border-bottom: none !important;
     }
   </style>
-  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=508c124c8ec10d15353d3ec0d454ba61&libraries=services"></script>
+  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=508c124c8ec10d15353d3ec0d454ba61&autoload=false"></script>
+
 
 </head>
 <body class="bg-gray-100 text-black">
@@ -381,30 +382,33 @@
   </script>
 
 <script>
-  // 탭에서 공연장 정보 클릭 시 호출될 지도 초기화 함수
-  function initMap() {
-  const mapContainer = document.getElementById('map');
-  if (!mapContainer) return;
+function initMap() {
+  if (!window.kakao || !kakao.maps) return;
 
-  // 강제 사이즈 설정
-  mapContainer.style.width = '100%';
-  mapContainer.style.height = '400px';
+  kakao.maps.load(function () {
+    const mapContainer = document.getElementById('map');
+    if (!mapContainer) return;
 
-  const mapOption = {
-    center: new kakao.maps.LatLng(37.519789, 127.121401),
-    level: 3
-  };
+    mapContainer.style.width = '100%';
+    mapContainer.style.height = '400px';
 
-  const map = new kakao.maps.Map(mapContainer, mapOption);
+    const mapOption = {
+      center: new kakao.maps.LatLng(37.519789, 127.121401),
+      level: 3
+    };
 
-  const marker = new kakao.maps.Marker({
-    position: mapOption.center
+    const map = new kakao.maps.Map(mapContainer, mapOption);
+
+    const marker = new kakao.maps.Marker({
+      position: mapOption.center
+    });
+    marker.setMap(map);
+
+    kakao.maps.event.trigger(map, 'resize');
   });
-  marker.setMap(map);
-
-  // 지도가 보이고 나서 resize
-  kakao.maps.event.trigger(map, 'resize');
 }
+</script>
+
 
 
   const tabButtons = document.querySelectorAll("#tab-menu .cursor-pointer");
