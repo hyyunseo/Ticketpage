@@ -16,7 +16,10 @@
       border-bottom: none !important;
     }
   </style>
-  <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=508c124c8ec10d15353d3ec0d454ba61&libraries=services"></script>
+  <script
+      defer
+      src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=508c124c8ec10d15353d3ec0d454ba61&libraries=services&autoload=false"
+    ></script>
 
 </head>
 <body class="bg-gray-100 text-black">
@@ -100,8 +103,6 @@
   }
 </script>
 
-
-</script>
   <!-- 콘텐츠 영역 수정 -->
   <main class="max-w-[1000px] mx-auto px-4 py-6 ">
     <h2 class="text-2xl font-bold mb-4">뮤지컬 〈위키드〉 내한 공연(WICKED The Musical)</h2>
@@ -370,64 +371,48 @@
   </script>
 
 <script>
-  // 탭에서 공연장 정보 클릭 시 호출될 지도 초기화 함수
+  // Kakao Map 초기화 함수 (변경 없음)
   function initMap() {
-  const mapContainer = document.getElementById('map');
-  if (!mapContainer) return;
+    const container = document.getElementById('map');
+    if (!container) return;
+    const options = {
+      center: new kakao.maps.LatLng(37.566099, 127.015160),
+      level: 3
+    };
+    const map = new kakao.maps.Map(container, options);
+    new kakao.maps.Marker({ position: options.center, map });
+  }
 
-  // 강제로 고정 크기 지정
-  mapContainer.style.width = '100%';
-  mapContainer.style.height = '400px';
-
-  const mapOption = {
-    center: new kakao.maps.LatLng(37.519789, 127.121401),
-    level: 3
-  };
-
-  const map = new kakao.maps.Map(mapContainer, mapOption);
-  const marker = new kakao.maps.Marker({ position: mapOption.center });
-  marker.setMap(map);
-
-  setTimeout(() => {
-    map.relayout();
-    map.setCenter(mapOption.center);
-  }, 100);
-}
-
-
+  // 탭 메뉴 동작
   const tabButtons = document.querySelectorAll("#tab-menu .cursor-pointer");
-  const tabDetail = document.getElementById("tab-detail");
-  const tabVenue = document.getElementById("tab-venue");
+  const tabDetail  = document.getElementById("tab-detail");
+  const tabVenue   = document.getElementById("tab-venue");
 
   tabButtons.forEach((btn, index) => {
     btn.addEventListener("click", () => {
-      if (!(index === 0 || index === 3)) return;
-
+      // 탭 스타일 토글
       tabButtons.forEach(b =>
         b.classList.remove("text-red-600", "font-semibold", "border-b-2", "border-red-600")
       );
       btn.classList.add("text-red-600", "font-semibold", "border-b-2", "border-red-600");
 
+      // 탭 내용 전환
       tabDetail.classList.add("hidden");
       tabVenue.classList.add("hidden");
 
-      if (index === 0) tabDetail.classList.remove("hidden");
-     if (index === 3) {
-  tabVenue.classList.remove("hidden");
-
-  const mapContainer = document.getElementById("map");
-  mapContainer.style.display = "block";
-
-  requestAnimationFrame(() => {
-    setTimeout(() => {
-      initMap();
-    }, 100); // 충분한 여유시간
-  });
-}
-
+      if (index === 0) {
+        tabDetail.classList.remove("hidden");
+      } else if (index === 3) {
+        tabVenue.classList.remove("hidden");
+        // SDK + 내부 라이브러리 로드 후 initMap 호출
+        kakao.maps.load(() => {
+          initMap();
+        });
+      }
     });
   });
 </script>
+
 
 
 </body>
