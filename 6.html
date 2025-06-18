@@ -386,47 +386,50 @@
   </script>
 
  <script>
-  // Kakao Map 초기화 함수 (변경 없음)
+  // 1) Geocoder로 주소 검색 후 정확한 좌표에 마커 찍기
   function initMap() {
     const container = document.getElementById('map');
     if (!container) return;
-    const options = {
-      center: new kakao.maps.LatLng(37.5218287295, 127.1243145673),
-      level: 3
-    };
-    const map = new kakao.maps.Map(container, options);
-    new kakao.maps.Marker({ position: options.center, map });
+
+    // 지도 생성 (초기 중심·레벨은 검색 후 설정)
+    const map = new kakao.maps.Map(container, { level: 3 });
+    const geocoder = new kakao.maps.services.Geocoder();
+
+    // 우리금융아트홀 정확 주소
+    geocoder.addressSearch(
+      '서울 송파구 올림픽로 424 우리금융아트홀',
+      (results, status) => {
+        if (status === kakao.maps.services.Status.OK && results.length > 0) {
+          const { x, y } = results[0];      // x: 경도, y: 위도
+          const coords = new kakao.maps.LatLng(y, x);
+          map.setCenter(coords);
+          new kakao.maps.Marker({ position: coords, map });
+        } else {
+          console.error('주소 검색 실패:', status);
+        }
+      }
+    );
   }
 
-  // 탭 메뉴 동작
-  const tabButtons = document.querySelectorAll("#tab-menu .cursor-pointer");
-  const tabDetail  = document.getElementById("tab-detail");
-  const tabVenue   = document.getElementById("tab-venue");
+  // 2) 탭 메뉴 클릭 시에만 initMap 실행
+  document.querySelectorAll('#tab-menu .cursor-pointer').forEach((btn, idx) => {
+    btn.addEventListener('click', () => {
+      document.getElementById('tab-detail').classList.add('hidden');
+      document.getElementById('tab-venue').classList.add('hidden');
+      btn.classList.add('text-red-600','font-semibold','border-b-2','border-red-600');
+      // (다른 탭들 스타일 리셋 로직도 여기에 두시면 됩니다)
 
-  tabButtons.forEach((btn, index) => {
-    btn.addEventListener("click", () => {
-      // 탭 스타일 토글
-      tabButtons.forEach(b =>
-        b.classList.remove("text-red-600", "font-semibold", "border-b-2", "border-red-600")
-      );
-      btn.classList.add("text-red-600", "font-semibold", "border-b-2", "border-red-600");
-
-      // 탭 내용 전환
-      tabDetail.classList.add("hidden");
-      tabVenue.classList.add("hidden");
-
-      if (index === 0) {
-        tabDetail.classList.remove("hidden");
-      } else if (index === 3) {
-        tabVenue.classList.remove("hidden");
-        // SDK + 내부 라이브러리 로드 후 initMap 호출
-        kakao.maps.load(() => {
-          initMap();
-        });
+      if (idx === 0) {
+        document.getElementById('tab-detail').classList.remove('hidden');
+      } else if (idx === 3) {
+        document.getElementById('tab-venue').classList.remove('hidden');
+        // SDK+services 로드 완료되면 initMap 실행
+        kakao.maps.load(initMap);
       }
     });
   });
 </script>
+
 
 
 </body>
