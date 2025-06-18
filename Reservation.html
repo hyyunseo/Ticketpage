@@ -16,7 +16,7 @@
       border-bottom: none !important;
     }
   </style>
-  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=508c124c8ec10d15353d3ec0d454ba61&autoload=false"></script>
+ 
 
 
 </head>
@@ -378,37 +378,53 @@
     };
 
     renderCalendar(currentMonth);
-
   </script>
-
+  
+ <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=508c124c8ec10d15353d3ec0d454ba61&autoload=false"></script>
 <script>
 let mapCreated = false;
 
 function initMap() {
-  if (!window.kakao || !kakao.maps) return;
-  if (mapCreated) return; // 이미 만들어졌으면 다시 생성하지 않음
+  const tryInit = () => {
+    if (!window.kakao || !kakao.maps) {
+      console.warn("Kakao map script not loaded yet");
+      return;
+    }
 
-  kakao.maps.load(function () {
-    const mapContainer = document.getElementById('map');
-    if (!mapContainer) return;
+    if (mapCreated) return;
 
-    mapContainer.style.width = '100%';
-    mapContainer.style.height = '400px';
+    kakao.maps.load(function () {
+      const mapContainer = document.getElementById('map');
+      if (!mapContainer) return;
 
-    const mapOption = {
-      center: new kakao.maps.LatLng(37.519789, 127.121401),
-      level: 3
-    };
+      const mapOption = {
+        center: new kakao.maps.LatLng(37.519789, 127.121401),
+        level: 3
+      };
 
-    const map = new kakao.maps.Map(mapContainer, mapOption);
+      const map = new kakao.maps.Map(mapContainer, mapOption);
 
-    const marker = new kakao.maps.Marker({
-      position: mapOption.center
+      const marker = new kakao.maps.Marker({
+        position: mapOption.center
+      });
+      marker.setMap(map);
+
+      mapCreated = true;
     });
-    marker.setMap(map);
+  };
 
-    mapCreated = true; // 한 번만 생성되도록 플래그 설정
-  });
+  // autoload=false라서 직접 불러오기
+  if (window.kakao && kakao.maps && kakao.maps.load) {
+    tryInit();
+  } else {
+    // 스크립트가 완전히 로드되기 전이라면 100ms마다 체크
+    const interval = setInterval(() => {
+      if (window.kakao && kakao.maps && kakao.maps.load) {
+        clearInterval(interval);
+        tryInit();
+      }
+    }, 100);
+  }
 }
 
 document.addEventListener("DOMContentLoaded", function () {
