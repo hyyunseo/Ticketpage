@@ -89,67 +89,54 @@
       </header>
     );
 
-      const NavigationBar = ({ activeHeader, setActiveHeader }) => (
-  <nav className="bg-white text-black p-2 border-b">
-    <ul className="flex justify-between text-sm w-full">
-      {navItems.map((item, idx) => (
-        <li key={idx} className="flex-1 text-center">
-          <a
-            href={navLinkMap[item]}
-            onClick={() => setActiveHeader(item)}
-            className={`block w-full py-1 ${
-              activeHeader === item
-                ? "text-red-600 font-bold"
-                : "hover:text-red-600"
-            }`}
-          >
-            {item}
-          </a>
-        </li>
-      ))}
-    </ul>
-  </nav>
-);
+     const NavigationBar = ({ activeHeader, setActiveHeader }) => (
+      <nav className="bg-white text-black p-2 border-b">
+        <ul className="flex justify-between text-sm w-full">
+          {navItems.map((item, idx) => (
+            <li
+              key={idx}
+              className={`flex-1 text-center cursor-pointer ${
+                activeHeader === item ? "text-red-600 font-bold" : "hover:text-red-600"
+              }`}
+              onClick={() => setActiveHeader(item)}
+            >
+              <a href={navLinkMap[item] || "#"} className="block w-full h-full">{item}</a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    );
 
 
-
- const SubNavigationBar = () => {
-  // 현재 html 파일 이름 가져오기 (예: EventAll.html, EventWinner.html…)
-  const currentPage = window.location.pathname.split('/').pop();
+  const SubNavigationBar = () => {
+  const [activeSubTab, setActiveSubTab] = useState("전체 이벤트");
 
   const subTabs = [
-    { name: "전체 이벤트",    link: "EventAll.html" },
-    { name: "당첨자 발표",   link: "EventWinner.html" },
-    { name: "참여 이벤트",   link: "EventParticipate.html" },
+    { name: "전체 이벤트", link: "EventAll.html" },
+    { name: "당첨자 발표", link: "EventWinner.html" },
+    { name: "참여 이벤트", link: "EventParticipate.html" }
   ];
 
   return (
-    <nav className="bg-gray-200 border-b">
-      <div className="max-w-[1200px] mx-auto px-4">
-        <ul className="flex justify-start space-x-12 py-2 text-sm">
-          {subTabs.map((tab) => {
-            const isActive = tab.link === currentPage;
-            return (
-              <li key={tab.link}>
-                <a
-                  href={tab.link}
-                  className={`${
-                    isActive
-                      ? "text-red-600 font-bold"
-                      : "hover:text-red-600"
-                  }`}
-                >
-                  {tab.name}
-                </a>
-              </li>
-            );
-          })}
-        </ul>
+    <nav className="bg-gray-200 text-black border-b">
+      <div className="w-full max-w-[1000px] mx-auto">
+        <div className="w-fit ml-auto transform translate-x-[166px] flex space-x-12 py-2 text-sm">
+          {subTabs.map((tab, idx) => (
+            <a
+              key={idx}
+              href={tab.link}
+              className={`${
+                activeSubTab === tab.name ? "text-red-600 font-bold" : "hover:text-red-600"
+              }`}
+            >
+              {tab.name}
+            </a>
+          ))}
+        </div>
       </div>
     </nav>
   );
 };
-
 
 
     const EventPage = () => {
