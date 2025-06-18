@@ -388,15 +388,28 @@
  <script>
   // Kakao Map 초기화 함수 (변경 없음)
   function initMap() {
-    const container = document.getElementById('map');
-    if (!container) return;
-    const options = {
-      center: new kakao.maps.LatLng(37.5218287295, 127.1243145673),
-      level: 3
-    };
-    const map = new kakao.maps.Map(container, options);
-    new kakao.maps.Marker({ position: options.center, map });
-  }
+  const container = document.getElementById('map');
+  if (!container) return;
+  const map = new kakao.maps.Map(container, { level: 3 });
+
+  // 주소 검색 객체
+  const geocoder = new kakao.maps.services.Geocoder();
+
+  geocoder.addressSearch('서울시 송파구 올림픽로 424', function(results, status) {
+    if (status === kakao.maps.services.Status.OK) {
+      const loc = results[0];
+      const coords = new kakao.maps.LatLng(loc.y, loc.x);
+      map.setCenter(coords);
+
+      // 마커 찍기
+      new kakao.maps.Marker({
+        position: coords,
+        map: map
+      });
+    }
+  });
+}
+
 
   // 탭 메뉴 동작
   const tabButtons = document.querySelectorAll("#tab-menu .cursor-pointer");
