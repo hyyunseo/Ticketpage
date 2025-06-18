@@ -22,10 +22,29 @@
       { title: "연극 '헤다 가블러' 후기...", date: "~ 6.4(수)", bg: "bg-pink-700", image: "event/banner4.png" },
     ];
 
-    const eventItems = [...Array(18).keys()].map(i => ({
-      title: `이벤트 ${i + 1}`,
-      image: `event/event${18 - i}.png`
-    }));
+    const eventItems = [
+  { title: "[사인 프로그램북 증정] 뮤지컬 〈멤피스〉 관람후기...", image: "event/event18.png" },
+  { title: "[싸인 포토카드 증정] 뮤지컬 〈팬텀〉 멜론티켓 예...", image: "event/event17.png" },
+  { title: "[초대권 증정] 뮤지컬 〈엘리자벳> 관람후기 이벤트...", image: "event/event16.png" },
+  { title: "[싸인 포스터 증정] 연극 <인형(들)의 집> 관람후...", image: "event/event15.png" },
+  { title: "[초대권 증정] 뮤지컬 〈프리다〉 기대평 이벤트", image: "event/event14.png" },
+  { title: "[싸인CD 증정] Soul Delivery 단독 콘서트 기대평...", image: "event/event13.png" },
+
+  { title: "[경품 증정] 프롬 단독 콘서트 기대평 이벤트", image: "event/event12.png" },
+  { title: "[초대권 증정] 뮤지컬 〈이프덴〉 기대평 이벤트", image: "event/event11.png" },
+  { title: "[경품 증정] Dive into CREZL 예매자 대상 공연 기...", image: "event/event10.png" },
+  { title: "[초대권 증정] 뮤지컬 〈4월은 너의 거짓말〉 공연...", image: "event/event9.png" },
+  { title: "[초대권 증정] 뮤지컬 〈벤자민 버튼〉 공연 기대평...", image: "event/event8.png" },
+  { title: "[경품 증정] 아일 전국투어 〈HERE I’ll AM〉 춘천...", image: "event/event7.png" },
+
+  { title: "[팬스토어] 뮤지컬 〈마리 앙투아네트〉 MD 사전 구...", image: "event/event6.png" },
+  { title: "[경품 증정] 연극 〈알앤제이(R&J)〉 공연 관람후기...", image: "event/event5.png" },
+  { title: "[팬스토어] 뮤지컬 〈몬테크리스토〉 MD 사전 구매...", image: "event/event4.png" },
+  { title: "[팬스토어] 뮤지컬 〈내 마음은 무지〉 MD 0원 구매...", image: "event/event3.png" },
+  { title: "[초대권 증정] 뮤지컬 〈헤드윅〉 공연 기대평 이벤트...", image: "event/event2.png" },
+  { title: "[초대권 증정] 뮤지컬 〈내 마음은 무지〉 공연 관람...", image: "event/event1.png" },
+];
+
 
     const totalPages = 3;
     const pagesPerBlock = 10;
@@ -42,7 +61,7 @@
       "레저": "leisure.html",
       "테마/지역": "theme.html",
       "MD샵": "testMDSHOP.html",
-      "이벤트": "EventALL.html",
+      "이벤트": "EventAll.html",
       "티켓오픈소식": "TicketOpen.html"
     };
 
@@ -67,28 +86,32 @@
     );
 
     const NavigationBar = ({ activeHeader, setActiveHeader }) => (
-      <nav className="bg-white text-black p-2 border-b">
-        <ul className="flex justify-between text-sm w-full">
-          {navItems.map((item, idx) => (
-            <li
-              key={idx}
-              className={`flex-1 text-center cursor-pointer ${
-                activeHeader === item ? "text-red-600 font-bold" : "hover:text-red-600"
-              }`}
-              onClick={() => setActiveHeader(item)}
-            >
-              <a href={navLinkMap[item] || "#"} className="block w-full h-full">{item}</a>
-            </li>
-          ))}
-        </ul>
-      </nav>
-    );
+  <nav className="bg-white text-black p-2 border-b">
+    <ul className="flex justify-between text-sm w-full">
+      {navItems.map((item, idx) => (
+        <li key={idx} className="flex-1 text-center">
+  <a
+    href={navLinkMap[item] || "#"}
+    className={`block w-full h-full ${activeHeader === item ? "text-red-600 font-bold" : "hover:text-red-600"}`}
+    onClick={() => setActiveHeader(item)} 
+  >
+    {item}
+  </a>
+</li>
+
+
+      ))}
+    </ul>
+  </nav>
+);
+
+
 
     const SubNavigationBar = () => {
   const [activeSubTab, setActiveSubTab] = useState("전체 이벤트");
 
   const subTabs = [
-    { name: "전체 이벤트", link: "EventALL.html" },
+    { name: "전체 이벤트", link: "EventAll.html" },
     { name: "당첨자 발표", link: "EventWinner.html" },
     { name: "참여 이벤트", link: "EventParticipate.html" }
   ];
