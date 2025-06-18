@@ -16,7 +16,7 @@
       border-bottom: none !important;
     }
   </style>
-  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=508c124c8ec10d15353d3ec0d454ba61&libraries=services"></script>
+  <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=508c124c8ec10d15353d3ec0d454ba61&libraries=services"></script>
 
 </head>
 <body class="bg-gray-100 text-black">
@@ -38,7 +38,7 @@
     "레저": "leisure.html",
     "테마/지역": "theme.html",
     "MD샵": "testMDSHOP.html",
-    "이벤트": "EventALL.html",
+    "이벤트": "EventAll.html",
     "티켓오픈소식": "TicketOpen.html"
   };
 
@@ -375,25 +375,25 @@
   const mapContainer = document.getElementById('map');
   if (!mapContainer) return;
 
+  // 강제로 고정 크기 지정
+  mapContainer.style.width = '100%';
+  mapContainer.style.height = '400px';
+
   const mapOption = {
     center: new kakao.maps.LatLng(37.519789, 127.121401),
     level: 3
   };
 
   const map = new kakao.maps.Map(mapContainer, mapOption);
-
-  const marker = new kakao.maps.Marker({
-    position: mapOption.center
-  });
+  const marker = new kakao.maps.Marker({ position: mapOption.center });
   marker.setMap(map);
 
-  // 강제로 style 지정 (tailwind 실패 대비)
-  mapContainer.style.width = '100%';
-  mapContainer.style.height = '100%';
-
-  // 리사이즈 강제 트리거
-  kakao.maps.event.trigger(map, 'resize');
+  setTimeout(() => {
+    map.relayout();
+    map.setCenter(mapOption.center);
+  }, 100);
 }
+
 
   const tabButtons = document.querySelectorAll("#tab-menu .cursor-pointer");
   const tabDetail = document.getElementById("tab-detail");
@@ -412,10 +412,19 @@
       tabVenue.classList.add("hidden");
 
       if (index === 0) tabDetail.classList.remove("hidden");
-      if (index === 3) {
-        tabVenue.classList.remove("hidden");
-        setTimeout(initMap, 300); // 지도는 보여질 때 생성해야 함
-      }
+     if (index === 3) {
+  tabVenue.classList.remove("hidden");
+
+  const mapContainer = document.getElementById("map");
+  mapContainer.style.display = "block";
+
+  requestAnimationFrame(() => {
+    setTimeout(() => {
+      initMap();
+    }, 100); // 충분한 여유시간
+  });
+}
+
     });
   });
 </script>

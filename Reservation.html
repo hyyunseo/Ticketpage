@@ -16,8 +16,7 @@
       border-bottom: none !important;
     }
   </style>
- 
-
+  <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=508c124c8ec10d15353d3ec0d454ba61&libraries=services"></script>
 
 </head>
 <body class="bg-gray-100 text-black">
@@ -39,7 +38,7 @@
     "레저": "leisure.html",
     "테마/지역": "theme.html",
     "MD샵": "testMDSHOP.html",
-    "이벤트": "EventALL.html",
+    "이벤트": "EventAll.html",
     "티켓오픈소식": "TicketOpen.html"
   };
 
@@ -240,7 +239,7 @@
           <div><a href="https://www.ksponco.or.kr/olympicpark/" class="text-blue-600 underline" target="_blank">https://www.ksponco.or.kr/olympicpark/</a></div>
         </div>
       </div>
-      <div id="map" style="width: 100%; height: 400px;" class="mt-6 border rounded"></div>
+      <div id="map" class="w-full h-96 mt-6 border rounded"></div>
     </div>
   </main>
 
@@ -378,56 +377,35 @@
     };
 
     renderCalendar(currentMonth);
+
   </script>
-  
- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=508c124c8ec10d15353d3ec0d454ba61&autoload=false"></script>
+
 <script>
-let mapCreated = false;
+  // 탭에서 공연장 정보 클릭 시 호출될 지도 초기화 함수
+  function initMap() {
+  const mapContainer = document.getElementById('map');
+  if (!mapContainer) return;
 
-function initMap() {
-  const tryInit = () => {
-    if (!window.kakao || !kakao.maps) {
-      console.warn("Kakao map script not loaded yet");
-      return;
-    }
+  // 강제로 고정 크기 지정
+  mapContainer.style.width = '100%';
+  mapContainer.style.height = '400px';
 
-    if (mapCreated) return;
-
-    kakao.maps.load(function () {
-      const mapContainer = document.getElementById('map');
-      if (!mapContainer) return;
-
-      const mapOption = {
-        center: new kakao.maps.LatLng(37.519789, 127.121401),
-        level: 3
-      };
-
-      const map = new kakao.maps.Map(mapContainer, mapOption);
-
-      const marker = new kakao.maps.Marker({
-        position: mapOption.center
-      });
-      marker.setMap(map);
-
-      mapCreated = true;
-    });
+  const mapOption = {
+    center: new kakao.maps.LatLng(37.519789, 127.121401),
+    level: 3
   };
 
-  // autoload=false라서 직접 불러오기
-  if (window.kakao && kakao.maps && kakao.maps.load) {
-    tryInit();
-  } else {
-    // 스크립트가 완전히 로드되기 전이라면 100ms마다 체크
-    const interval = setInterval(() => {
-      if (window.kakao && kakao.maps && kakao.maps.load) {
-        clearInterval(interval);
-        tryInit();
-      }
-    }, 100);
-  }
+  const map = new kakao.maps.Map(mapContainer, mapOption);
+  const marker = new kakao.maps.Marker({ position: mapOption.center });
+  marker.setMap(map);
+
+  setTimeout(() => {
+    map.relayout();
+    map.setCenter(mapOption.center);
+  }, 100);
 }
 
-document.addEventListener("DOMContentLoaded", function () {
+
   const tabButtons = document.querySelectorAll("#tab-menu .cursor-pointer");
   const tabDetail = document.getElementById("tab-detail");
   const tabVenue = document.getElementById("tab-venue");
@@ -436,29 +414,31 @@ document.addEventListener("DOMContentLoaded", function () {
     btn.addEventListener("click", () => {
       if (!(index === 0 || index === 3)) return;
 
-      // 탭 스타일 초기화 및 적용
       tabButtons.forEach(b =>
         b.classList.remove("text-red-600", "font-semibold", "border-b-2", "border-red-600")
       );
       btn.classList.add("text-red-600", "font-semibold", "border-b-2", "border-red-600");
 
-      // 탭 내용 초기화
       tabDetail.classList.add("hidden");
       tabVenue.classList.add("hidden");
 
-      if (index === 0) {
-        tabDetail.classList.remove("hidden");
-      }
+      if (index === 0) tabDetail.classList.remove("hidden");
+     if (index === 3) {
+  tabVenue.classList.remove("hidden");
 
-      if (index === 3) {
-        tabVenue.classList.remove("hidden");
-        setTimeout(initMap, 300); // visible 상태로 만든 뒤 0.3초 후에 initMap 호출
-      }
+  const mapContainer = document.getElementById("map");
+  mapContainer.style.display = "block";
+
+  requestAnimationFrame(() => {
+    setTimeout(() => {
+      initMap();
+    }, 100); // 충분한 여유시간
+  });
+}
+
     });
   });
-});
 </script>
-
 
 
 </body>
