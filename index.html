@@ -42,7 +42,7 @@ const navLinkMap = {
         ];
         /* Header Component */
         const Header = () => (
-          <header className="bg-red-600 text-white p-2 flex items-center justify-between sticky top-0 z-50">
+          <header className="bg-red-600 text-white p-2 flex items-center justify-between top-0 z-50">
             <a href="index.html" class="flex items-center space-x-4">
     <img src="logo.png" alt="logo" class="w-10 h-10" />
     <h1 class="text-xl font-bold">ticketpage</h1>
@@ -67,7 +67,7 @@ const navLinkMap = {
         );
 
     const NavigationBar = ({ activeHeader, setActiveHeader }) => (
-      <nav className="bg-white text-black p-2 border-b sticky top-12 z-50">
+      <nav className="bg-white text-black p-2 border-b top-12 z-50">
         <ul className="flex justify-between text-sm">
           {navItems.map((item, idx) => {
             // navLinkMap에서 해당 메뉴의 href를 가져오고, 없다면 "#"
