@@ -20,7 +20,7 @@
 
     // 메뉴 이름과 실제 HTML 파일명을 매핑
 const navLinkMap = {
-  "뮤지컬/연극": "under_construction.html",
+  "뮤지컬/연극": "musical.html",
   "콘서트":     "under_construction.html",
   "스포츠":     "sport.html",
   "전시/행사":   "under_construction.html",
@@ -44,7 +44,7 @@ const navLinkMap = {
         const Header = () => (
           <header className="bg-red-600 text-white p-2 flex items-center justify-between sticky top-0 z-50">
             <a href="testmain.html" class="flex items-center space-x-4">
-    <img src="https://via.placeholder.com/40" alt="logo" class="w-10 h-10" />
+    <img src="logo.png" alt="logo" class="w-10 h-10" />
     <h1 class="text-xl font-bold">ticketpage</h1>
   </a>
             <div className="flex items-center space-x-2">
@@ -54,13 +54,13 @@ const navLinkMap = {
                 className="p-2 rounded w-96"
               />
               <button className="p-2 bg-white text-black rounded">🔍</button>
-            </div>
+            </div> 
             <div className="flex items-center space-x-4">
           
               <a href="login.html" className="hover:underline">로그인</a>
               <a href="login.html" className="hover:underline">회원가입</a>
               <a href="mypage.html">
-    <img src="https://via.placeholder.com/30" alt="profile" class="w-8 h-8 rounded-full bg-gray-300" />
+    <img src="my.png" alt="profile" class="w-8 h-8 rounded-full" />
   </a>
             </div>
           </header>
@@ -381,18 +381,18 @@ const recommendedByKeyword = {
     { id: 5, category: "뮤지컬", title: "<지킬앤하이드>", location: "샤롯데씨어터", date: "2025.2.5 ~ 3.10", image: "main/musical_jekyll.gif" }
   ],
   "아이와 함께": [
-    { id: 1, category: "아직수정", title: "<이름>", location: "KT&G 상상마당 대치아트홀", date: "2025.2.14 ~ 3.20", image: "https://via.placeholder.com/300x200" },
-    { id: 2, category: "안함", title: "<티니핑>", location: "광림아트센터 BBCH홀", date: "2025.3.5 ~ 4.1", image: "https://via.placeholder.com/300x200" },
-    { id: 3, category: "연극", title: "<이름>", location: "이화여대 삼성홀", date: "2025.4.12 ~ 5.18", image: "https://via.placeholder.com/300x200" },
-    { id: 4, category: "행사", title: "<이름>", location: "세종문화회관 M씨어터", date: "2025.6.2 ~ 6.30", image: "https://via.placeholder.com/300x200" },
-    { id: 5, category: "뮤지컬", title: "<이름>", location: "예술의전당 CJ토월극장", date: "2025.7.7 ~ 8.9", image: "https://via.placeholder.com/300x200" }
+    { id: 1, title: "〈로보카폴리 - 브룸스타운의 에너지를 지켜라!〉", location: "영등포아트홀", date: "2025.08.30 ~2025.08.31", image: "main/로보카폴리.gif" },
+    { id: 2, title: "뮤지컬쇼 〈아기상어와 반짝반짝 최고의 파티〉", location: "연세대학교 백주년 기념관", date: "2025.07.04 ~2025.08.03", image: "main/아기상어.gif" },
+    { id: 3, title: "베베핀 뮤지컬 〈우당탕탕 패밀리〉 - 광주앵콜", location: "광주빛고을", date: "2025.06.28 ~ 08.03", image: "main/베베핀.gif" },
+    { id: 4, title: "당신의 특별한 부탁 <시간을 파는 상점>", location: "피랑씨어터", date: "2025.9.13", image: "main/시사점.gif" },
+    { id: 5, title: "뮤지컬 〈알사탕〉 - 대구 수성아트홀", location: "수성아트홀 대극장", date: "2025.06.01 ~07.31", image: "main/알사탕.gif" }
   ],
   "대학로 연극 추천": [
     { id: 1, category: "연극", title: "<모리스>", location: "LG아트센터", date: "2025.1.18 ~ 2.22", image: "main/musical_moris.gif" },
-    { id: 2, category: "뮤지컬", title: "<이름>", location: "두산아트센터 연강홀", date: "2025.2.20 ~ 3.25", image: "https://via.placeholder.com/300x200" },
-    { id: 3, category: "연극", title: "<이름>", location: "대학로 뮤즈라이브홀", date: "2025.4.5 ~ 5.10", image: "https://via.placeholder.com/300x200" },
-    { id: 4, category: "행사", title: "<이름>", location: "드림아트센터 1관", date: "2025.6.15 ~ 7.20", image: "https://via.placeholder.com/300x200" },
-    { id: 5, category: "뮤지컬", title: "<이름>", location: "아트원씨어터 3관", date: "2025.8.3 ~ 9.8", image: "https://via.placeholder.com/300x200" }
+    { id: 2,category: "연극", title: "<맘마미아>", location: "두산아트센터 연강홀", date: "2025.6.1 ~ 7.3", image: "main/맘마미아.gif" },
+    { id: 3,category: "연극", title: "<멤피스>", location: "예술의전당 오페라극장", date: "2025.7.7 ~ 8.15", image: "main/멤피스.gif" },
+    { id: 4,category: "연극", title: "<플레임즈>", location: "이화여대 삼성홀", date: "2025.8.10 ~ 9.18", image: "main/플레임즈.gif" },
+    { id: 5,category: "연극", title: "<등등곡>", location: "국립극장 해오름극장", date: "2025.9.20 ~ 10.25", image: "main/등등곡.gif" },
   ]
 };
  
