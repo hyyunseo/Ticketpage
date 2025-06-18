@@ -381,31 +381,21 @@
   </script>
 
 <script>
-  // 탭에서 공연장 정보 클릭 시 호출될 지도 초기화 함수
+  // Kakao Map 초기화 함수
   function initMap() {
-  const mapContainer = document.getElementById('map');
-  if (!mapContainer) return;
+    const container = document.getElementById('map');
+    if (!container) return;
 
-  // 강제로 고정 크기 지정
-  mapContainer.style.width = '100%';
-  mapContainer.style.height = '400px';
+    const options = {
+      center: new kakao.maps.LatLng(37.519789, 127.121401), // 올림픽공원
+      level: 3
+    };
+    const map = new kakao.maps.Map(container, options);
+    const marker = new kakao.maps.Marker({ position: options.center });
+    marker.setMap(map);
+  }
 
-  const mapOption = {
-    center: new kakao.maps.LatLng(37.519789, 127.121401),
-    level: 3
-  };
-
-  const map = new kakao.maps.Map(mapContainer, mapOption);
-  const marker = new kakao.maps.Marker({ position: mapOption.center });
-  marker.setMap(map);
-
-  setTimeout(() => {
-    map.relayout();
-    map.setCenter(mapOption.center);
-  }, 100);
-}
-
-
+  // 탭 메뉴 동작
   const tabButtons = document.querySelectorAll("#tab-menu .cursor-pointer");
   const tabDetail = document.getElementById("tab-detail");
   const tabVenue = document.getElementById("tab-venue");
@@ -414,31 +404,32 @@
     btn.addEventListener("click", () => {
       if (!(index === 0 || index === 3)) return;
 
+      // 탭 스타일 초기화
       tabButtons.forEach(b =>
         b.classList.remove("text-red-600", "font-semibold", "border-b-2", "border-red-600")
       );
       btn.classList.add("text-red-600", "font-semibold", "border-b-2", "border-red-600");
 
+      // 탭 내용 표시 전환
       tabDetail.classList.add("hidden");
       tabVenue.classList.add("hidden");
 
-      if (index === 0) tabDetail.classList.remove("hidden");
-     if (index === 3) {
-  tabVenue.classList.remove("hidden");
+      if (index === 0) {
+        tabDetail.classList.remove("hidden");
+      } else if (index === 3) {
+        tabVenue.classList.remove("hidden");
 
-  const mapContainer = document.getElementById("map");
-  mapContainer.style.display = "block";
-
-  requestAnimationFrame(() => {
-    setTimeout(() => {
-      initMap();
-    }, 100); // 충분한 여유시간
-  });
-}
-
+        // 지도가 들어갈 요소가 보여진 후 지도를 그리도록 약간 지연
+        setTimeout(() => {
+          initMap();
+        }, 300); // 시간 여유를 조금 줘서 container의 사이즈가 잡힌 후 동작
+      }
     });
   });
 </script>
+
+
+
 
 
 </body>

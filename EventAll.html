@@ -7,13 +7,31 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
-  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
 </head>
 <body class="bg-gray-100">
-
   <div id="root"></div>
 
   <script type="text/babel">
+    const { useState } = React;
+
+    const navItems = [
+      "뮤지컬/연극", "콘서트", "스포츠", "전시/행사", "레저", "테마/지역", "MD샵", "이벤트", "티켓오픈소식"
+    ];
+
+    const navLinkMap = {
+      "뮤지컬/연극": "musical.html",
+      "콘서트": "under_construction.html",
+      "스포츠": "sport.html",
+      "전시/행사": "under_construction.html",
+      "레저": "leisure.html",
+      "테마/지역": "theme.html",
+      "MD샵": "testMDSHOP.html",
+      "이벤트": "EventAll.html",
+      "티켓오픈소식": "TicketOpen.html"
+    };
+
     const bannerOptions = [
       { title: "공연 관람 후기 적고 공식...", date: "~ 6.1(일)", bg: "bg-green-700", image: "event/banner1.png" },
       { title: "매튜 본의 백조의 호수 기...", date: "~ 6.2(월)", bg: "bg-blue-700", image: "event/banner2.png" },
@@ -21,36 +39,117 @@
       { title: "연극 '헤다 가블러' 후기...", date: "~ 6.4(수)", bg: "bg-pink-700", image: "event/banner4.png" },
     ];
 
-   const eventItems = [
-    { title: "[사인 프로그램북 증정] 뮤지컬 〈멤피스〉 관람후기...", image: "event/event18.png" },
-    { title: "[싸인 포토카드 증정] 뮤지컬 〈팬텀〉 멜론티켓 예...", image: "event/event17.png" },
-    { title: "[초대권 증정] 뮤지컬 〈엘리자벳> 관람후기 이벤트...", image: "event/event16.png" },
-    { title: "[싸인 포스터 증정] 연극 <인형(들)의 집> 관람후...", image: "event/event15.png" },
-    { title: "[초대권 증정] 뮤지컬 〈프리다〉 기대평 이벤트", image: "event/event14.png" },
-    { title: "[싸인CD 증정] Soul Delivery 단독 콘서트 기대평...", image: "event/event13.png" },
-    
-    { title: "[경품 증정] 프롬 단독 콘서트 기대평 이벤트", image: "event/event12.png" },
-    { title: "[초대권 증정] 뮤지컬 〈이프덴〉 기대평 이벤트", image: "event/event11.png" },
-    { title: "[경품 증정] Dive into CREZL 예매자 대상 공연 기...", image: "event/event10.png" },
-    { title: "[초대권 증정] 뮤지컬 〈4월은 너의 거짓말〉 공연...", image: "event/event9.png" },
-    { title: "[초대권 증정] 뮤지컬 〈벤자민 버튼〉 공연 기대평...", image: "event/event8.png" },
-    { title: "[경품 증정] 아일 전국투어 〈HERE I’ll AM〉 춘천...", image: "event/event7.png" },
+    const eventItems = [
+  { title: "[사인 프로그램북 증정] 뮤지컬 〈멤피스〉 관람후기...", image: "event/event18.png" },
+  { title: "[싸인 포토카드 증정] 뮤지컬 〈팬텀〉 멜론티켓 예...", image: "event/event17.png" },
+  { title: "[초대권 증정] 뮤지컬 〈엘리자벳> 관람후기 이벤트...", image: "event/event16.png" },
+  { title: "[싸인 포스터 증정] 연극 <인형(들)의 집> 관람후...", image: "event/event15.png" },
+  { title: "[초대권 증정] 뮤지컬 〈프리다〉 기대평 이벤트", image: "event/event14.png" },
+  { title: "[싸인CD 증정] Soul Delivery 단독 콘서트 기대평...", image: "event/event13.png" },
 
-    { title: "[팬스토어] 뮤지컬 〈마리 앙투아네트〉 MD 사전 구...", image: "event/event6.png" },
-    { title: "[경품 증정] 연극 〈알앤제이(R&J)〉 공연 관람후기...", image: "event/event5.png" },
-    { title: "[팬스토어] 뮤지컬 〈몬테크리스토〉 MD 사전 구매...", image: "event/event4.png" },
-    { title: "[팬스토어] 뮤지컬 〈내 마음은 무지〉 MD 0원 구매...", image: "event/event3.png" },
-    { title: "[초대권 증정] 뮤지컬 〈헤드윅〉 공연 기대평 이벤트...", image: "event/event2.png" },
-    { title: "[초대권 증정] 뮤지컬 〈내 마음은 무지〉 공연 관람...", image: "event/event1.png" },
-    
-    ];
+  { title: "[경품 증정] 프롬 단독 콘서트 기대평 이벤트", image: "event/event12.png" },
+  { title: "[초대권 증정] 뮤지컬 〈이프덴〉 기대평 이벤트", image: "event/event11.png" },
+  { title: "[경품 증정] Dive into CREZL 예매자 대상 공연 기...", image: "event/event10.png" },
+  { title: "[초대권 증정] 뮤지컬 〈4월은 너의 거짓말〉 공연...", image: "event/event9.png" },
+  { title: "[초대권 증정] 뮤지컬 〈벤자민 버튼〉 공연 기대평...", image: "event/event8.png" },
+  { title: "[경품 증정] 아일 전국투어 〈HERE I’ll AM〉 춘천...", image: "event/event7.png" },
+
+  { title: "[팬스토어] 뮤지컬 〈마리 앙투아네트〉 MD 사전 구...", image: "event/event6.png" },
+  { title: "[경품 증정] 연극 〈알앤제이(R&J)〉 공연 관람후기...", image: "event/event5.png" },
+  { title: "[팬스토어] 뮤지컬 〈몬테크리스토〉 MD 사전 구매...", image: "event/event4.png" },
+  { title: "[팬스토어] 뮤지컬 〈내 마음은 무지〉 MD 0원 구매...", image: "event/event3.png" },
+  { title: "[초대권 증정] 뮤지컬 〈헤드윅〉 공연 기대평 이벤트...", image: "event/event2.png" },
+  { title: "[초대권 증정] 뮤지컬 〈내 마음은 무지〉 공연 관람...", image: "event/event1.png" },
+];
+
 
     const totalPages = 3;
     const pagesPerBlock = 10;
+
     
+
+
+    const Header = () => (
+      <header className="bg-red-600 text-white p-2 flex items-center justify-between">
+        <a href="index.html" className="flex items-center space-x-4">
+          <img src="logo.png" alt="logo" className="w-10 h-10" />
+          <h1 className="text-xl font-bold">ticketpage</h1>
+        </a>
+        <div className="flex items-center space-x-2">
+          <input type="text" placeholder="검색어를 입력하세요" className="p-2 rounded w-96 text-black" />
+          <button className="p-2 bg-white text-black rounded">🔍</button>
+        </div>
+        <div className="flex items-center space-x-4">
+          <a href="#" className="hover:underline">로그인</a>
+          <a href="#" className="hover:underline">회원가입</a>
+          <a href="mypage.html">
+            <img src="my.png" alt="profile" className="w-8 h-8 rounded-full" />
+          </a>
+        </div>
+      </header>
+    );
+
+    const NavigationBar = () => (
+  <nav className="bg-white text-black border-b">
+    <div className="max-w-[1200px] mx-auto px-4 flex items-center py-2">
+      <ul className="flex justify-between w-full text-sm">
+        {navItems.map((item) => (
+          <li key={item}>
+            <a
+              href={navLinkMap[item]}
+              className={`block py-1 ${
+                item === "이벤트"
+                  ? "text-red-600 font-bold"
+                  : "hover:text-red-600"
+              }`}
+            >
+              {item}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </nav>
+);
+
+// 서브 메뉴
+const SubNavigationBar = () => {
+  const current = window.location.pathname.split('/').pop();
+  const subTabs = [
+    { name: "전체 이벤트", link: "EventAll.html" },
+    { name: "당첨자 발표", link: "EventWinner.html" },
+    { name: "참여 이벤트", link: "EventParticipate.html" },
+  ];
+
+  return (
+    <nav className="bg-gray-200 border-b">
+      <div className="max-w-[1200px] mx-auto px-4">
+        <ul className="flex justify-center space-x-12 py-2 text-sm">
+          {subTabs.map((tab) => (
+            <li key={tab.link}>
+              <a
+                href={tab.link}
+                className={
+                  tab.link === current
+                    ? "text-red-600 font-bold"
+                    : "hover:text-red-600"
+                }
+              >
+                {tab.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </nav>
+  );
+};
+
+
     const EventPage = () => {
       const [banner, setBanner] = React.useState(bannerOptions[0]);
       const [currentPage, setCurrentPage] = React.useState(1);
+      const [activeHeader, setActiveHeader] = React.useState("이벤트");
       const currentBlock = Math.ceil(currentPage / pagesPerBlock);
       const itemsPerPage = 6;
       const startIdx = (currentPage - 1) * itemsPerPage;
@@ -81,9 +180,9 @@
         return (
           <div className="flex justify-center space-x-2">
             <button onClick={() => handlePageChange(1)} className="px-3 py-1 rounded border border-gray-300 text-gray-500 bg-white">&laquo;</button>
-            <button onClick={() => { if (currentPage > 10) handlePageChange(1); }} className="px-3 py-1 rounded border border-gray-300 text-gray-500 bg-white">&lt;</button>
+            <button onClick={() => handlePageChange(currentPage - 1)} className="px-3 py-1 rounded border border-gray-300 text-gray-500 bg-white">&lt;</button>
             {buttons}
-            <button onClick={() => { if (currentPage <= 10) handlePageChange(11); }} className="px-3 py-1 rounded border border-gray-300 text-gray-500 bg-white">&gt;</button>
+            <button onClick={() => handlePageChange(currentPage + 1)} className="px-3 py-1 rounded border border-gray-300 text-gray-500 bg-white">&gt;</button>
             <button onClick={() => handlePageChange(totalPages)} className="px-3 py-1 rounded border border-gray-300 text-gray-500 bg-white">&raquo;</button>
           </div>
         );
@@ -91,64 +190,15 @@
 
       return (
         <div className="min-h-screen">
-          {/* 헤더: 전체 너비 */}
-          <header className="bg-red-600 text-white p-2 flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <img src="logo.png" alt="logo" className="w-10 h-10" />
-              <h1 className="text-xl font-bold">ticketpage</h1>
-            </div>
-            <div className="flex items-center space-x-2">
-              <input type="text" placeholder="검색어를 입력하세요" className="p-2 rounded w-96 text-black" />
-              <button className="p-2 bg-white text-black rounded">🔍</button>
-            </div>
-            <div className="flex items-center space-x-4">
-              <a href="#" className="hover:underline">로그인</a>
-              <a href="#" className="hover:underline">회원가입</a>
-              <img src="my.png" alt="profile" className="w-8 h-8 rounded-full bg-gray-300" />
-            </div>
-            
-          </header>
-
-          {/* 내비: 전체 너비 */}
-          <nav className="bg-white text-black p-2 border-b w-full">
-            <ul className="flex justify-between text-sm w-full">
-              <li className="hover:text-red-600 flex-1 text-center cursor-pointer">뮤지컬/연극</li>
-              <li className="hover:text-red-600 flex-1 text-center cursor-pointer">콘서트</li>
-              <li className="hover:text-red-600 flex-1 text-center cursor-pointer">스포츠</li>
-              <li className="hover:text-red-600 flex-1 text-center cursor-pointer">전시/행사</li>
-              <li className="hover:text-red-600 flex-1 text-center cursor-pointer">레저</li>
-              <li className="hover:text-red-600 flex-1 text-center cursor-pointer">테마/지역</li>
-              <li className="hover:text-red-600 flex-1 text-center cursor-pointer">MD샵</li>
-              <li className="text-red-600 font-semibold flex-1 text-center cursor-pointer">이벤트</li>
-              <li className="hover:text-red-600 flex-1 text-center cursor-pointer">티켓오픈소식</li>
-            </ul>
-          </nav>
-
-
-       {/* 이벤트 서브탭 */}
-     <nav className="bg-gray-200 text-black border-b">
-            <div className="w-full max-w-[1000px] mx-auto">
-              <div className="w-fit ml-auto transform translate-x-[166px] flex space-x-12 py-2 text-sm">
-                <a href="#" className="text-red-600 font-bold">전체 이벤트</a>
-                <a href="#" className="hover:text-red-600">당첨자 발표</a>
-                <a href="#" className="hover:text-red-600">참여 이벤트</a>
-              </div>
-            </div>
-          </nav>
-
-          {/* 본문: 너비 제한 */}
+          <Header />
+          <NavigationBar activeHeader={activeHeader} setActiveHeader={setActiveHeader} />
+          <SubNavigationBar />
           <main className="max-w-[1200px] mx-auto px-4">
             <section className="px-4 pt-6">
               <div className="flex space-x-4 items-start">
                 <div className="w-3/5">
                   <div className={`${banner.bg} h-[380px] text-white p-6 relative overflow-hidden`}>
-              
-                
-                    <img
-                    src={banner.image}
-                    alt="이벤트 배너"
-                    className="absolute top-0 left-0 w-full h-full object-cover"
-                    />
+                    <img src={banner.image} alt="이벤트 배너" className="absolute top-0 left-0 w-full h-full object-cover" />
                   </div>
                   <div className="bg-white border grid grid-cols-4 divide-x divide-gray-300">
                     {bannerOptions.map((opt, i) => (
@@ -163,35 +213,23 @@
                   </div>
                 </div>
                 <div className="flex-1 h-[421px] bg-white">
-                <img src="event/banner5.png" alt="배너 우측 이미지" className="w-full h-full object-cover" />
+                  <img src="event/banner5.png" alt="배너 우측 이미지" className="w-full h-full object-cover" />
                 </div>
-
-
-            <aside className="w-36 shrink-0">
-              <div className="border rounded-lg p-4 bg-white">
-              <div className="flex flex-col items-center mb-6">
-              <img
-                src="event/rightbanner1.jpg"
-                alt="첫공 초대권"
-                className="w-28 h-36 object-cover rounded"
-                />
-              <p className="text-red-500 text-sm mt-2 font-semibold">첫공 초대권 증정</p>
-              </div>
-              <hr className="my-4 border-gray-300" />
-              <div className="flex flex-col items-center mt-6">
-              <img
-                src="event/rightbanner2.gif"
-                alt="타임 세일"
-                className="w-28 h-36 object-cover rounded"
-              />
-              <p className="text-red-500 text-sm mt-2 font-semibold">Time Sale</p>
-              </div>
-              </div>
-            </aside>
-
+                <aside className="w-36 shrink-0">
+                  <div className="border rounded-lg p-4 bg-white">
+                    <div className="flex flex-col items-center mb-6">
+                      <img src="event/rightbanner1.jpg" alt="첫공 초대권" className="w-28 h-36 object-cover rounded" />
+                      <p className="text-red-500 text-sm mt-2 font-semibold">첫공 초대권 증정</p>
+                    </div>
+                    <hr className="my-4 border-gray-300" />
+                    <div className="flex flex-col items-center mt-6">
+                      <img src="event/rightbanner2.gif" alt="타임 세일" className="w-28 h-36 object-cover rounded" />
+                      <p className="text-red-500 text-sm mt-2 font-semibold">Time Sale</p>
+                    </div>
+                  </div>
+                </aside>
               </div>
             </section>
-
             <section className="px-4 pt-20 pb-6">
               <div className="w-full flex justify-end">
                 <input type="text" placeholder="이벤트 검색" className="p-2 border rounded w-80" />
@@ -208,7 +246,6 @@
                 ))}
               </div>
             </section>
-
             <section className="px-4 pb-12">
               {renderPagination()}
             </section>
@@ -221,7 +258,7 @@
   </script>
 
   <footer class="bg-gray-100 w-full border-t border-gray-300 mt-32 pt-6 px-8 text-xs text-gray-600">
-  <!-- 상단 링크 -->
+ 
   <nav class="flex flex-wrap justify-center gap-x-20 gap-y-2 mb-4 text-gray-500">
     <a href="#" class="hover:underline">회사소개</a>
     <a href="#" class="hover:underline">이용약관</a>
@@ -234,7 +271,7 @@
     <a href="#" class="hover:underline">고객센터</a>
   </nav>
 
-  <!-- 하단 회사 정보 -->
+  
   <div class="flex flex-wrap justify-between text-gray-600 px-16 gap-x-20">
     <div class="w-[300px] mb-4">
       <p class="font-bold mb-1">(주)숙명여자협회</p>
