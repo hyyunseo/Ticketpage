@@ -89,15 +89,16 @@
       </header>
     );
 
-    const NavigationBar = () => (
+   // 메인 네비 (흰색 바)
+const NavigationBar = () => (
   <nav className="bg-white text-black border-b">
-    <div className="max-w-[1200px] mx-auto px-4 flex items-center py-2">
-      <ul className="flex justify-between w-full text-sm">
+    <div className="max-w-[1200px] mx-auto px-4">
+      <ul className="flex justify-between text-sm">
         {navItems.map((item) => (
           <li key={item}>
             <a
               href={navLinkMap[item]}
-              className={`block py-1 ${
+              className={`block py-2 ${
                 item === "이벤트"
                   ? "text-red-600 font-bold"
                   : "hover:text-red-600"
@@ -112,28 +113,28 @@
   </nav>
 );
 
-// 서브 메뉴
+// 서브 네비 (회색 바)
 const SubNavigationBar = () => {
   const current = window.location.pathname.split('/').pop();
   const subTabs = [
-    { name: "전체 이벤트", link: "EventAll.html" },
-    { name: "당첨자 발표", link: "EventWinner.html" },
-    { name: "참여 이벤트", link: "EventParticipate.html" },
+    { name: "전체 이벤트",    link: "EventAll.html"       },
+    { name: "당첨자 발표",   link: "EventWinner.html"    },
+    { name: "참여 이벤트",   link: "EventParticipate.html"},
   ];
 
   return (
     <nav className="bg-gray-200 border-b">
       <div className="max-w-[1200px] mx-auto px-4">
-        <ul className="flex justify-center space-x-12 py-2 text-sm">
+        <ul className="flex justify-start space-x-12 py-2 text-sm">
           {subTabs.map((tab) => (
             <li key={tab.link}>
               <a
                 href={tab.link}
-                className={
+                className={`block ${
                   tab.link === current
                     ? "text-red-600 font-bold"
                     : "hover:text-red-600"
-                }
+                }`}
               >
                 {tab.name}
               </a>
@@ -144,6 +145,7 @@ const SubNavigationBar = () => {
     </nav>
   );
 };
+
 
 
     const EventPage = () => {
