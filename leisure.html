@@ -33,7 +33,7 @@
 
         /* Header Component */
         const Header = () => (
-          <header className="bg-red-600 text-white p-2 flex items-center justify-between sticky top-0 z-50">
+          <header className="bg-red-600 text-white p-2 flex items-center justify-between">
             <a href="testmain.html" class="flex items-center space-x-4">
     <img src="logo.png" alt="logo" class="w-10 h-10" />
     <h1 class="text-xl font-bold">ticketpage</h1>
@@ -58,7 +58,7 @@
 
         /* Navigation Component */
         const NavigationBar = () => (
-  <nav className="bg-white text-black p-2 border-b sticky top-12 z-50">
+  <nav className="bg-white text-black p-2 border-b">
     <ul className="flex justify-between text-sm">
       {navItems.map((item, index) => {
         // 실제 링크를 꺼내고, 없으면 "#" 처리

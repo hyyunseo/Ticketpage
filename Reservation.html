@@ -16,6 +16,8 @@
       border-bottom: none !important;
     }
   </style>
+  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=508c124c8ec10d15353d3ec0d454ba61&libraries=services"></script>
+
 </head>
 <body class="bg-gray-100 text-black">
      <div id="root"></div>
@@ -51,8 +53,8 @@
         <button className="p-2 bg-white text-black rounded">🔍</button>
       </div>
       <div className="flex items-center space-x-4">
-        <a href="#" className="hover:underline">로그인</a>
-        <a href="#" className="hover:underline">회원가입</a>
+        <a href="login.html" className="hover:underline">로그인</a>
+        <a href="login.html" className="hover:underline">회원가입</a>
         <a href="mypage.html">
           <img src="my.png" alt="profile" className="w-8 h-8 rounded-full" />
         </a>
@@ -377,32 +379,59 @@
     renderCalendar(currentMonth);
 
   </script>
-  <script>
- const tabButtons = document.querySelectorAll("#tab-menu .cursor-pointer");
+
+<script>
+  // 탭에서 공연장 정보 클릭 시 호출될 지도 초기화 함수
+  function initMap() {
+  const mapContainer = document.getElementById('map');
+  if (!mapContainer) return;
+
+  const mapOption = {
+    center: new kakao.maps.LatLng(37.519789, 127.121401),
+    level: 3
+  };
+
+  const map = new kakao.maps.Map(mapContainer, mapOption);
+
+  const marker = new kakao.maps.Marker({
+    position: mapOption.center
+  });
+  marker.setMap(map);
+
+  // 강제로 style 지정 (tailwind 실패 대비)
+  mapContainer.style.width = '100%';
+  mapContainer.style.height = '100%';
+
+  // 리사이즈 강제 트리거
+  kakao.maps.event.trigger(map, 'resize');
+}
+
+  const tabButtons = document.querySelectorAll("#tab-menu .cursor-pointer");
   const tabDetail = document.getElementById("tab-detail");
   const tabVenue = document.getElementById("tab-venue");
 
   tabButtons.forEach((btn, index) => {
     btn.addEventListener("click", () => {
-      // index 0 = 상세 정보, index 3 = 공연장 정보만 허용
       if (!(index === 0 || index === 3)) return;
 
-      // 스타일 리셋
       tabButtons.forEach(b =>
         b.classList.remove("text-red-600", "font-semibold", "border-b-2", "border-red-600")
       );
       btn.classList.add("text-red-600", "font-semibold", "border-b-2", "border-red-600");
 
-      // 콘텐츠 표시/숨김
       tabDetail.classList.add("hidden");
       tabVenue.classList.add("hidden");
 
       if (index === 0) tabDetail.classList.remove("hidden");
-      if (index === 3) tabVenue.classList.remove("hidden");
+      if (index === 3) {
+        tabVenue.classList.remove("hidden");
+        setTimeout(initMap, 300); // 지도는 보여질 때 생성해야 함
+      }
     });
   });
-
 </script>
+
+
 </body>
 </html>
 
