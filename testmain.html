@@ -58,7 +58,7 @@ const navLinkMap = {
             <div className="flex items-center space-x-4">
           
               <a href="login.html" className="hover:underline">로그인</a>
-              <a href="login.html" className="hover:underline">회원가입</a>
+              <a href="signup.html" className="hover:underline">회원가입</a>
               <a href="mypage.html">
     <img src="my.png" alt="profile" class="w-8 h-8 rounded-full" />
   </a>
@@ -125,11 +125,11 @@ const navLinkMap = {
     // 장르별 더미 데이터 (탭 메뉴 및 작품 리스트용) >>>> 포스터 사이즈 수정 예정!!
     const genreData = {
   "뮤지컬/연극": [
-    { id: 1, title: "노트르담 드 파리", location: "LG아트센터", date: "2025.1.15 ~ 2.20", image: "main/노트르담드파리.gif" },
-    { id: 2, title: "지킬 앤 하이드", location: "샤롯데씨어터", date: "2025.2.5 ~ 3.10", image: "main/지킬앤.gif" },
-    { id: 3, title: "매디슨 카운티의 다리", location: "블루스퀘어 인터파크홀", date: "2025.3.12 ~ 4.18", image: "main/매디슨카운티의다리.gif" },
-    { id: 4, title: "팬텀", location: "예스24라이브홀", date: "2025.4.2 ~ 5.9", image: "main/phanton.gif" },
-    { id: 5, title: "위키드", location: "충무아트센터 대극장", date: "2025.5.8 ~ 6.14", image: "main/위키드.gif" },
+    { id: 1, title: "노트르담 드 파리", location: "LG아트센터", date: "2025.1.15 ~ 2.20", image: "main/노트르담드파리.gif",link: "1.html"  },
+    { id: 2, title: "지킬 앤 하이드", location: "샤롯데씨어터", date: "2025.2.5 ~ 3.10", image: "main/지킬앤.gif",link: "2.html"  },
+    { id: 3, title: "매디슨 카운티의 다리", location: "블루스퀘어 인터파크홀", date: "2025.3.12 ~ 4.18", image: "main/매디슨카운티의다리.gif",link: "3.html"  },
+    { id: 4, title: "팬텀", location: "예스24라이브홀", date: "2025.4.2 ~ 5.9", image: "main/phanton.gif",link: "4.html"  },
+    { id: 5, title: "위키드", location: "충무아트센터 대극장", date: "2025.5.8 ~ 6.14", image: "main/위키드.gif",link: "5.html"  },
     { id: 6, title: "맘마미아", location: "두산아트센터 연강홀", date: "2025.6.1 ~ 7.3", image: "main/맘마미아.gif" },
     { id: 7, title: "멤피스", location: "예술의전당 오페라극장", date: "2025.7.7 ~ 8.15", image: "main/멤피스.gif" },
     { id: 8, title: "플레임즈", location: "이화여대 삼성홀", date: "2025.8.10 ~ 9.18", image: "main/플레임즈.gif" },
@@ -262,7 +262,7 @@ const handleShowLess = () => {
  {/* 장르별 상자 */}
 <section className="bg-gray-100 grid grid-cols-5 gap-6 justify-center max-w-7xl mx-auto">
   {displayData.map((item, index) => (
-    <a key={item.id} href={`Reservation.html?id=${item.id}`} className="block focus:outline-none border-0"          // 전체 영역이 클릭되도록 block 처리
+    <a key={item.id} href="Reservation.html" className="block focus:outline-none border-0"          // 전체 영역이 클릭되도록 block 처리
 >
     <div className="bg-white rounded-lg p-4 shadow-md relative w-60 h-90 flex flex-col border-0">
       <img
@@ -325,44 +325,50 @@ const handleShowLess = () => {
       );
     };
 // 베스트 리뷰 섹션 >> 안에 베스트 제목 뽑고 이런식으로 내용수정 예정정
-    const BestReviewSection = () => {
-      const reviews = [
-        { id: 1, category: "스포츠", title: "2025 FInal K League : 경남FC vs 성남FC", text: "열정 넘쳤던 경기!", img: "main/수원축구.jpg" },
-        { id: 2, category: "뮤지컬", title: "<구텐버그>", text: "내 최고의 깔깔극, 매회차 너무 재미있고 어디서 웃길지 예상할 수 없어서 더 기대되고 즐거워요ㅋㅋㅋㅋ", img: "main/musical_gutenbug.gif"},
-        { id: 3, category: "콘서트", title: "2025 RIIZE CONCERT TOUR [RIIZING LOUD] IN SEOUL", text: "원빈 너무 잘생겼네요...허거걱", img: "main/라이즈.jpg" },
-        { id: 4, category: "연극", title: "<보호받지 못한 사람들 ORPHANS>", text: "큰 기대 안 하고 봤던 연극입니다...눈물이 나왔네요", img: "main/act_orphans.gif" },
-      ];
+const BestReviewSection = () => {
+  const reviews = [
+    { id: 1, category: "스포츠", title: "2025 FInal K League : 경남FC vs 성남FC", text: "열정 넘쳤던 경기!", img: "main/수원축구.jpg" },
+    { id: 2, category: "뮤지컬", title: "<구텐버그>", text: "내 최고의 깔깔극, 매회차 너무 재미있고 어디서 웃길지 예상할 수 없어서 더 기대되고 즐거워요ㅋㅋㅋㅋ", img: "main/musical_gutenbug.gif" },
+    { id: 3, category: "콘서트", title: "2025 RIIZE CONCERT TOUR [RIIZING LOUD] IN SEOUL", text: "원빈 너무 잘생겼네요...허거걱", img: "main/라이즈.jpg" },
+    { id: 4, category: "뮤지컬", title: "쇼뮤지컬 어게인 <드림하이>", text: "큰 기대 안 하고 봤던 뮤지컬입니다...눈물이 나왔네요", img: "main/드림하이.jpg", link: "6.html" },
+  ];
 
-      return (
-        <section className="bg-gray-100 w-[90%] mx-auto my-12">
+  return (
+    <section className="bg-gray-100 w-[90%] mx-auto my-12">
+      <h2 className="text-3xl font-bold mb-10 text-center">베스트 리뷰</h2>
 
-          <h2 className="text-3xl font-bold mb-10 text-center">베스트 리뷰</h2>
+      <div className="grid grid-cols-2 gap-x-8 gap-y-10 w-[96%] max-w-7xl mx-auto">
+        {reviews.map((review) => (
+          <div key={review.id} className="w-full bg-white p-5 shadow-md rounded-lg flex items-center">
+            <img src={review.img} alt={review.title} className="w-24 h-32 object-cover mr-5" />
+            <div>
+              <p className="text-sm text-gray-500">{review.category}</p>
+              <p className="font-bold">{review.title}</p>
+              <p className="text-gray-600 text-sm">{review.text}</p>
+              {review.link && (
+                <a href={review.link} className="text-red-600 hover:underline mt-2 inline-block">
+                  더보기
+                </a>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
 
-          <div className="grid grid-cols-2 gap-x-8 gap-y-10 w-[96%] max-w-7xl mx-auto">
-            {reviews.map((review) => (
-              <div key={review.id} className="w-full bg-white p-5 shadow-md rounded-lg flex items-center">
-                <img src={review.img} alt={review.title} className="w-24 h-32 object-cover mr-5" />
-                   
-                      <div>
-                        <p className="text-sm text-gray-500">{review.category}</p>
-                        <p className="font-bold">{review.title}</p>
-                        <p className="text-gray-600 text-sm">{review.text}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                <div className="col-span-5 text-center mt-10">
-    <a href="review.html" className="inline-block">
+      {/* 리뷰 전체 보기 버튼 추가 */}
+      <div className="col-span-5 text-center mt-10">
+        <a href="review.html" className="inline-block">
           <button className="bg-white px-5 py-2 border rounded-lg hover:bg-gray-100 transition">
             리뷰 전체 보기 &gt;
           </button>
         </a>
-  </div>
-                
-              </section>
-            );
-          };
-    
+      </div>
+    </section>
+  );
+};
+
+
+ 
       
 // 광고 배너
     const AdBanner = () => (
@@ -440,20 +446,7 @@ const RecommendedSection = () => {
           <p className="col-span-5 text-gray-500">해당 카테고리에 추천 아이템이 없습니다.</p>
         ) : (
           filteredItems.map((item) => (
-            <a
-  key={item.id}
-  href={
-    activeTab === "뮤지컬/연극" && item.id >= 1 && item.id <= 5
-      ? `${item.id}.html`
-      : null
-  }
-  className={`block focus:outline-none border-0 ${
-    !(activeTab === "뮤지컬/연극" && item.id >= 1 && item.id <= 5)
-      ? "pointer-events-none opacity-60"
-      : ""
-  }`}
->
-
+            <a  key={item.id} href="Reservation.html" className="block focus:outline-none border-0">
               <div className="bg-white border rounded-lg p-4 shadow-md relative w-60 h-90 flex flex-col">
               <img
                 src={item.image}
