@@ -7,13 +7,31 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
-  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
 </head>
 <body class="bg-gray-100">
   <div id="root"></div>
 
-  <script type="text/babel">
+  <script type="text/babel" data-presets="react,env">
+  console.log('🔧 스크립트 로드됨');
     const { useState } = React;
+
+    const navItems = [
+      "뮤지컬/연극", "콘서트", "스포츠", "전시/행사", "레저", "테마/지역", "MD샵", "이벤트", "티켓오픈소식"
+    ];
+
+    const navLinkMap = {
+      "뮤지컬/연극": "musical.html",
+      "콘서트": "under_construction.html",
+      "스포츠": "sport.html",
+      "전시/행사": "under_construction.html",
+      "레저": "leisure.html",
+      "테마/지역": "theme.html",
+      "MD샵": "testMDSHOP.html",
+      "이벤트": "EventAll.html",
+      "티켓오픈소식": "TicketOpen.html"
+    };
 
     const bannerOptions = [
       { title: "공연 관람 후기 적고 공식...", date: "~ 6.1(일)", bg: "bg-green-700", image: "event/banner1.png" },
@@ -49,21 +67,8 @@
     const totalPages = 3;
     const pagesPerBlock = 10;
 
-    const navItems = [
-      "뮤지컬/연극", "콘서트", "스포츠", "전시/행사", "레저", "테마/지역", "MD샵", "이벤트", "티켓오픈소식"
-    ];
+    
 
-    const navLinkMap = {
-      "뮤지컬/연극": "musical.html",
-      "콘서트": "under_construction.html",
-      "스포츠": "sport.html",
-      "전시/행사": "under_construction.html",
-      "레저": "leisure.html",
-      "테마/지역": "theme.html",
-      "MD샵": "testMDSHOP.html",
-      "이벤트": "EventAll.html",
-      "티켓오픈소식": "TicketOpen.html"
-    };
 
     const Header = () => (
       <header className="bg-red-600 text-white p-2 flex items-center justify-between">
@@ -85,29 +90,21 @@
       </header>
     );
 
-    const NavigationBar = ({ activeHeader, setActiveHeader }) => (
-  <nav className="bg-white text-black p-2 border-b">
-    <ul className="flex justify-between text-sm w-full">
-      {navItems.map((item, idx) => (
-        <li key={idx} className="flex-1 text-center">
-  <a
-    href={navLinkMap[item] || "#"}
-    className={`block w-full h-full ${activeHeader === item ? "text-red-600 font-bold" : "hover:text-red-600"}`}
-    onClick={() => setActiveHeader(item)} 
-  >
-    {item}
-  </a>
-</li>
+      const NavigationBar = ({ activeHeader, setActiveHeader }) => (
+        <nav className="bg-white text-black p-2 border-b">
+          <ul className="flex justify-between text-sm w-full">
+            {navItems.map((item, idx) => (
+             <li key={idx}>
+            <a href={navLinkMap[item]} className="hover:text-red-600">
+              {item}
+            </a>
+          </li>
+            ))}
+          </ul>
+        </nav>
+      );
 
-
-      ))}
-    </ul>
-  </nav>
-);
-
-
-
-    const SubNavigationBar = () => {
+  const SubNavigationBar = () => {
   const [activeSubTab, setActiveSubTab] = useState("전체 이벤트");
 
   const subTabs = [
