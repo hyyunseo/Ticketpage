@@ -262,7 +262,7 @@ const handleShowLess = () => {
  {/* 장르별 상자 */}
 <section className="bg-gray-100 grid grid-cols-5 gap-6 justify-center max-w-7xl mx-auto">
   {displayData.map((item, index) => (
-    <a key={item.id} href="Reservation.html" className="block focus:outline-none border-0"          // 전체 영역이 클릭되도록 block 처리
+    <a key={item.id} href={`Reservation.html?id=${item.id}`} className="block focus:outline-none border-0"          // 전체 영역이 클릭되도록 block 처리
 >
     <div className="bg-white rounded-lg p-4 shadow-md relative w-60 h-90 flex flex-col border-0">
       <img
@@ -440,7 +440,20 @@ const RecommendedSection = () => {
           <p className="col-span-5 text-gray-500">해당 카테고리에 추천 아이템이 없습니다.</p>
         ) : (
           filteredItems.map((item) => (
-            <a  key={item.id} href="Reservation.html" className="block focus:outline-none border-0">
+            <a
+  key={item.id}
+  href={
+    activeTab === "뮤지컬/연극" && item.id >= 1 && item.id <= 5
+      ? `${item.id}.html`
+      : null
+  }
+  className={`block focus:outline-none border-0 ${
+    !(activeTab === "뮤지컬/연극" && item.id >= 1 && item.id <= 5)
+      ? "pointer-events-none opacity-60"
+      : ""
+  }`}
+>
+
               <div className="bg-white border rounded-lg p-4 shadow-md relative w-60 h-90 flex flex-col">
               <img
                 src={item.image}

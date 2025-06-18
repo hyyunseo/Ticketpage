@@ -440,7 +440,6 @@ const RecommendedSection = () => {
           <p className="col-span-5 text-gray-500">해당 카테고리에 추천 아이템이 없습니다.</p>
         ) : (
           filteredItems.map((item) => (
-            <a  key={item.id} href="Reservation.html" className="block focus:outline-none border-0">
               <div className="bg-white border rounded-lg p-4 shadow-md relative w-60 h-90 flex flex-col">
               <img
                 src={item.image}
@@ -455,7 +454,6 @@ const RecommendedSection = () => {
                 <p className="text-gray-500 text-sm">{item.date}</p>
               </div>
             </div>
-            </a>
           ))
         )}
       </div>
