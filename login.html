@@ -39,7 +39,7 @@
     <div class="flex justify-between text-sm text-gray-600 mt-4 mb-4">
       <a href="#" class="hover:underline">아이디 찾기</a>
       <a href="#" class="hover:underline">비밀번호 찾기</a>
-      <a href="signup_cookie.html" class="hover:underline">회원가입</a>
+      <a href="signup.html" class="hover:underline">회원가입</a>
     </div>
 
     <!-- 5. 소셜 로그인 -->
@@ -85,7 +85,7 @@
       localStorage.setItem('loggedInUser', userId);
 
       alert('로그인 성공!');
-      window.location.href = 'testmain.html'; // 로그인 후 홈으로 리디렉션
+      window.location.href = 'index.html'; // 로그인 후 홈으로 리디렉션
     });
 
     // 카카오 로그인 버튼 클릭 이벤트
@@ -99,7 +99,7 @@
           localStorage.setItem('loggedInUser', kakaoUserId); // 카카오 아이디로 로그인 저장
 
           alert('카카오 로그인 성공!');
-          window.location.href = 'testmain.html'; // 로그인 후 홈으로 리디렉션
+          window.location.href = 'index.html'; // 로그인 후 홈으로 리디렉션
         },
         fail: function(err) {
           console.error('카카오 로그인 실패', err);
