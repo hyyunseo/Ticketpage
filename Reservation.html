@@ -382,8 +382,11 @@
   </script>
 
 <script>
+let mapCreated = false;
+
 function initMap() {
   if (!window.kakao || !kakao.maps) return;
+  if (mapCreated) return; // 이미 만들어졌으면 다시 생성하지 않음
 
   kakao.maps.load(function () {
     const mapContainer = document.getElementById('map');
@@ -404,13 +407,11 @@ function initMap() {
     });
     marker.setMap(map);
 
-    kakao.maps.event.trigger(map, 'resize');
+    mapCreated = true; // 한 번만 생성되도록 플래그 설정
   });
 }
-</script>
 
-
-
+document.addEventListener("DOMContentLoaded", function () {
   const tabButtons = document.querySelectorAll("#tab-menu .cursor-pointer");
   const tabDetail = document.getElementById("tab-detail");
   const tabVenue = document.getElementById("tab-venue");
@@ -419,22 +420,29 @@ function initMap() {
     btn.addEventListener("click", () => {
       if (!(index === 0 || index === 3)) return;
 
+      // 탭 스타일 초기화 및 적용
       tabButtons.forEach(b =>
         b.classList.remove("text-red-600", "font-semibold", "border-b-2", "border-red-600")
       );
       btn.classList.add("text-red-600", "font-semibold", "border-b-2", "border-red-600");
 
+      // 탭 내용 초기화
       tabDetail.classList.add("hidden");
       tabVenue.classList.add("hidden");
 
-      if (index === 0) tabDetail.classList.remove("hidden");
+      if (index === 0) {
+        tabDetail.classList.remove("hidden");
+      }
+
       if (index === 3) {
         tabVenue.classList.remove("hidden");
-        setTimeout(initMap, 300); // 지도는 보여질 때 생성해야 함
+        setTimeout(initMap, 300); // visible 상태로 만든 뒤 0.3초 후에 initMap 호출
       }
     });
   });
+});
 </script>
+
 
 
 </body>
