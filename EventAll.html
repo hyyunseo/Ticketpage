@@ -13,8 +13,7 @@
 <body class="bg-gray-100">
   <div id="root"></div>
 
-  <script type="text/babel" data-presets="react,env">
-  console.log('🔧 스크립트 로드됨');
+  <script type="text/babel">
     const { useState } = React;
 
     const navItems = [
@@ -91,18 +90,27 @@
     );
 
       const NavigationBar = ({ activeHeader, setActiveHeader }) => (
-        <nav className="bg-white text-black p-2 border-b">
-          <ul className="flex justify-between text-sm w-full">
-            {navItems.map((item, idx) => (
-             <li key={idx}>
-            <a href={navLinkMap[item]} className="hover:text-red-600">
-              {item}
-            </a>
-          </li>
-            ))}
-          </ul>
-        </nav>
-      );
+  <nav className="bg-white text-black p-2 border-b">
+    <ul className="flex justify-between text-sm w-full">
+      {navItems.map((item, idx) => (
+        <li key={idx} className="flex-1 text-center">
+          <a
+            href={navLinkMap[item]}
+            onClick={() => setActiveHeader(item)}
+            className={`block w-full py-1 ${
+              activeHeader === item
+                ? "text-red-600 font-bold"
+                : "hover:text-red-600"
+            }`}
+          >
+            {item}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+);
+
 
   const SubNavigationBar = () => {
   const [activeSubTab, setActiveSubTab] = useState("전체 이벤트");
