@@ -379,57 +379,62 @@
     renderCalendar(currentMonth);
 
   </script>
-  <script>
- const tabButtons = document.querySelectorAll("#tab-menu .cursor-pointer");
+
+<script>
+  // 탭에서 공연장 정보 클릭 시 호출될 지도 초기화 함수
+  function initMap() {
+    const mapContainer = document.getElementById('map');
+    if (!mapContainer) return;
+
+    const mapOption = {
+      center: new kakao.maps.LatLng(37.519789, 127.121401),
+      level: 3
+    };
+
+    const map = new kakao.maps.Map(mapContainer, mapOption);
+
+    const marker = new kakao.maps.Marker({
+      position: mapOption.center
+    });
+    marker.setMap(map);
+
+    const iwContent = `
+      <div style="padding:5px;">
+        우리금융아트홀<br>
+        <a href="https://map.kakao.com/link/map/우리금융아트홀,37.519789,127.121401" target="_blank" style="color:blue;">
+          큰지도보기
+        </a>
+      </div>`;
+    const infowindow = new kakao.maps.InfoWindow({ content: iwContent });
+    infowindow.open(map, marker);
+  }
+
+  // 탭 전환 로직에 initMap() 호출 추가
+  const tabButtons = document.querySelectorAll("#tab-menu .cursor-pointer");
   const tabDetail = document.getElementById("tab-detail");
   const tabVenue = document.getElementById("tab-venue");
 
   tabButtons.forEach((btn, index) => {
     btn.addEventListener("click", () => {
-      // index 0 = 상세 정보, index 3 = 공연장 정보만 허용
       if (!(index === 0 || index === 3)) return;
 
-      // 스타일 리셋
       tabButtons.forEach(b =>
         b.classList.remove("text-red-600", "font-semibold", "border-b-2", "border-red-600")
       );
       btn.classList.add("text-red-600", "font-semibold", "border-b-2", "border-red-600");
 
-      // 콘텐츠 표시/숨김
       tabDetail.classList.add("hidden");
       tabVenue.classList.add("hidden");
 
       if (index === 0) tabDetail.classList.remove("hidden");
-      if (index === 3) tabVenue.classList.remove("hidden");
+      if (index === 3) {
+        tabVenue.classList.remove("hidden");
+        setTimeout(initMap, 100); // 지도는 보여질 때 생성해야 함
+      }
     });
   });
-
 </script>
-<script>
-  window.addEventListener("DOMContentLoaded", function () {
-    const mapContainer = document.getElementById('map');
-    const mapOption = {
-      center: new kakao.maps.LatLng(37.519789, 127.121401), // 올림픽공원 좌표
-      level: 3 // 확대 레벨
-    };
 
-    const map = new kakao.maps.Map(mapContainer, mapOption);
-
-    // 마커 생성
-    const markerPosition  = new kakao.maps.LatLng(37.519789, 127.121401);
-    const marker = new kakao.maps.Marker({
-        position: markerPosition
-    });
-    marker.setMap(map);
-
-    // 인포윈도우
-    const iwContent = '<div style="padding:5px;">우리금융아트홀<br><a href="https://map.kakao.com/link/map/우리금융아트홀,37.519789,127.121401" style="color:blue" target="_blank">큰지도보기</a></div>';
-    const infowindow = new kakao.maps.InfoWindow({
-        content : iwContent
-    });
-    infowindow.open(map, marker);
-  });
-</script>
 
 </body>
 </html>
