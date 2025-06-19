@@ -372,7 +372,6 @@
   </script>
 
 <script>
-<<<<<<< HEAD
   function initMap() {
   const mapContainer = document.getElementById('map');
   if (!mapContainer) return;
@@ -392,19 +391,6 @@
   mapContainer.style.height = '100%';
   kakao.maps.event.trigger(map, 'resize');
 }
-=======
-  // Kakao Map 초기화 함수 (변경 없음)
-  function initMap() {
-    const container = document.getElementById('map');
-    if (!container) return;
-    const options = {
-      center: new kakao.maps.LatLng(37.540873, 127.002701),
-      level: 3
-    };
-    const map = new kakao.maps.Map(container, options);
-    new kakao.maps.Marker({ position: options.center, map });
-  }
->>>>>>> dd9137f8ddee34ae1928550a50163d70c0f4bf31
 
   // 탭 메뉴 동작
   const tabButtons = document.querySelectorAll("#tab-menu .cursor-pointer");
@@ -427,14 +413,7 @@
         tabDetail.classList.remove("hidden");
       } else if (index === 3) {
         tabVenue.classList.remove("hidden");
-<<<<<<< HEAD
         setTimeout(initMap, 300); 
-=======
-        // SDK + 내부 라이브러리 로드 후 initMap 호출
-        kakao.maps.load(() => {
-          initMap();
-        });
->>>>>>> dd9137f8ddee34ae1928550a50163d70c0f4bf31
       }
     });
   });
