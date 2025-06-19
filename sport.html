@@ -25,60 +25,57 @@
     const Header = () => (
       <header className="bg-red-600 text-white p-2 flex items-center justify-between">
         <a href="index.html" class="flex items-center space-x-4">
-    <img src="logo.png" alt="logo" class="w-10 h-10" />
-    <h1 class="text-xl font-bold">ticketpage</h1>
-  </a>
+          <img src="logo.png" alt="logo" class="w-10 h-10" />
+          <h1 class="text-xl font-bold">ticketpage</h1>
+        </a>
         <div className="flex items-center space-x-2">
           <input type="text" placeholder="검색어를 입력하세요" className="p-2 rounded w-96 text-black" />
           <button className="p-2 bg-white text-black rounded">🔍</button>
         </div>
         <div className="flex items-center space-x-4">
           <a href="login.html" className="hover:underline">로그인</a>
-              <a href="login.html" className="hover:underline">회원가입</a>
+          <a href="login.html" className="hover:underline">회원가입</a>
           <a href="mypage.html">
-    <img src="my.png" alt="profile" class="w-8 h-8 rounded-full" />
-  </a>
+            <img src="my.png" alt="profile" class="w-8 h-8 rounded-full" />
+          </a>
         </div>
       </header>
     );
 
     const navLinkMap = {
-  "뮤지컬/연극": "musical.html",
-  "콘서트":     "under_construction.html",
-  "스포츠":     "sport.html",
-  "전시/행사":   "under_construction.html",
-  "레저":       "leisure.html",
-  "테마/지역":   "theme.html",
-  "MD샵":      "testMDSHOP.html",
-  "이벤트":     "EventAll.html",
-  "티켓오픈소식": "TicketOpen.html",
-};
+      "뮤지컬/연극": "musical.html",
+      "콘서트": "under_construction.html",
+      "스포츠": "sport.html",
+      "전시/행사": "under_construction.html",
+      "레저": "leisure.html",
+      "테마/지역": "theme.html",
+      "MD샵": "testMDSHOP.html",
+      "이벤트": "EventAll.html",
+      "티켓오픈소식": "TicketOpen.html"
+    };
 
-const NavigationBar = () => (
-  <nav className="bg-white text-black p-2 border-b">
-    <ul className="flex justify-between text-sm">
-      {navItems.map((item, index) => {
-        // 실제 이동할 href를 꺼냄. 없으면 "#" 처리
-        const href = navLinkMap[item] || "#";
-
-        return (
-          <li
-            key={index}
-            className={`
-              hover:text-red-600 flex-1 text-center cursor-pointer
-              ${item === "스포츠" ? "text-red-600 font-bold" : ""}
-            `}
-          >
-            <a href={href} className="block">
-              {item}
-            </a>
-          </li>
-        );
-      })}
-    </ul>
-  </nav>
-);
-
+    const NavigationBar = () => (
+      <nav className="bg-white text-black p-2 border-b">
+        <ul className="flex justify-between text-sm">
+          {navItems.map((item, index) => {
+            const href = navLinkMap[item] || "#";
+            return (
+              <li
+                key={index}
+                className={`
+                  hover:text-red-600 flex-1 text-center cursor-pointer
+                  ${item === "스포츠" ? "text-red-600 font-bold" : ""}
+                `}
+              >
+                <a href={href} className="block">
+                  {item}
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </nav>
+    );
 
     const SportsSubNav = () => (
       <nav className="bg-gray-200 text-black border-b">
@@ -92,68 +89,66 @@ const NavigationBar = () => (
       </nav>
     );
 
-      function getOpenDate(dateStr) {
-          const year = 2025;
-          const [month, day] = dateStr.split(".").map(Number);
-          const matchDate = new Date(year, month - 1, day);
-          matchDate.setDate(matchDate.getDate() - 7);
-          const openMonth = String(matchDate.getMonth() + 1).padStart(2, "0");
-          const openDay = String(matchDate.getDate()).padStart(2, "0");
-          return `${year}.${openMonth}.${openDay}`;
+    function getOpenDate(dateStr) {
+      const year = 2025;
+      const [month, day] = dateStr.split(".").map(Number);
+      const matchDate = new Date(year, month - 1, day);
+      matchDate.setDate(matchDate.getDate() - 7);
+      const openMonth = String(matchDate.getMonth() + 1).padStart(2, "0");
+      const openDay = String(matchDate.getDate()).padStart(2, "0");
+      return `${year}.${openMonth}.${openDay}`;
+    }
+
+    const CalendarView = ({ calendarYear, calendarMonth, setCalendarYear, setCalendarMonth, matches }) => {
+      const handlePrevMonth = () => {
+        if (calendarMonth === 1) {
+          setCalendarYear(calendarYear - 1);
+          setCalendarMonth(12);
+        } else {
+          setCalendarMonth(calendarMonth - 1);
         }
+      };
 
-      const CalendarView = ({ calendarYear, calendarMonth, setCalendarYear, setCalendarMonth, matches }) => {
-        const handlePrevMonth = () => {
-          if (calendarMonth === 1) {
-            setCalendarYear(calendarYear - 1);
-            setCalendarMonth(12);
-          } else {
-            setCalendarMonth(calendarMonth - 1);
-          }
-        };
-
-        const handleNextMonth = () => {
-          if (calendarMonth === 12) {
-            setCalendarYear(calendarYear + 1);
-            setCalendarMonth(1);
-          } else {
-            setCalendarMonth(calendarMonth + 1);
-          }
-        };
-
-        const displayMonth = String(calendarMonth).padStart(2, '0');
-
-        const firstDay = new Date(calendarYear, calendarMonth - 1, 1);
-        const lastDay = new Date(calendarYear, calendarMonth, 0);
-        const startWeekday = (firstDay.getDay() + 6) % 7;  // 0(일)→6, 1(월)→0로 맞춤
-        const totalDays = lastDay.getDate();
-        const prevLastDay = new Date(calendarYear, calendarMonth - 1, 0).getDate();
-
-        const dates = [];
-        for (let i = 1; i <= startWeekday; i++) {
-          dates.push({ day: prevLastDay - startWeekday + i, isGray: true });
+      const handleNextMonth = () => {
+        if (calendarMonth === 12) {
+          setCalendarYear(calendarYear + 1);
+          setCalendarMonth(1);
+        } else {
+          setCalendarMonth(calendarMonth + 1);
         }
-        for (let i = 1; i <= totalDays; i++) {
-          dates.push({ day: i, isGray: false });
-        }
-        while (dates.length % 7 !== 0) {
-          dates.push({ day: dates.length % 7 + 1, isGray: true });
-        }
+      };
 
-        const rows = [];
-        for (let i = 0; i < dates.length; i += 7) {
-          rows.push(dates.slice(i, i + 7));
-        }
+      const displayMonth = String(calendarMonth).padStart(2, '0');
+      const firstDay = new Date(calendarYear, calendarMonth - 1, 1);
+      const lastDay = new Date(calendarYear, calendarMonth, 0);
+      const startWeekday = (firstDay.getDay() + 6) % 7;
+      const totalDays = lastDay.getDate();
+      const prevLastDay = new Date(calendarYear, calendarMonth - 1, 0).getDate();
 
-        return (
-          <div className="mt-4">
-            <div className="flex justify-between items-center mb-2 w-40 mx-auto">
-              <button onClick={handlePrevMonth} className="text-gray-500 hover:text-black">&lt;</button>
-              <span className="font-bold">{calendarYear}.{displayMonth}</span>
-              <button onClick={handleNextMonth} className="text-gray-500 hover:text-black">&gt;</button>
-            </div>
+      const dates = [];
+      for (let i = 1; i <= startWeekday; i++) {
+        dates.push({ day: prevLastDay - startWeekday + i, isGray: true });
+      }
+      for (let i = 1; i <= totalDays; i++) {
+        dates.push({ day: i, isGray: false });
+      }
+      while (dates.length % 7 !== 0) {
+        dates.push({ day: dates.length % 7 + 1, isGray: true });
+      }
 
-          <div className="p-0 m-0 mb-10">
+      const rows = [];
+      for (let i = 0; i < dates.length; i += 7) {
+        rows.push(dates.slice(i, i + 7));
+      }
+
+      return (
+        <div className="mt-4">
+          <div className="flex justify-between items-center mb-2 w-40 mx-auto">
+            <button onClick={handlePrevMonth} className="text-gray-500 hover:text-black">&lt;</button>
+            <span className="font-bold">{calendarYear}.{displayMonth}</span>
+            <button onClick={handleNextMonth} className="text-gray-500 hover:text-black">&gt;</button>
+          </div>
+                    <div className="p-0 m-0 mb-10">
             <table className="bg-white w-full text-center border border-gray-300 border-collapse">
               <thead>
                 <tr>
@@ -203,48 +198,45 @@ const NavigationBar = () => (
               </tbody>
             </table>
           </div>
+        </div>
+      );
+    };
+
+    const FooterInfo = () => (
+      <footer className="w-full border-t border-gray-300 mt-32 pt-6 px-8 text-xs text-gray-600">
+        <nav className="flex flex-wrap justify-center gap-x-20 gap-y-2 mb-4 text-gray-500">
+          {[
+            "회사소개", "이용약관", "개인정보처리방침", "위치기반서비스 이용약관",
+            "여행약관", "여행자보험 가입내역", "티켓판매안내", "공지사항", "고객센터"
+          ].map((item) => (
+            <a href="#" key={item} className="hover:underline">
+              {item}
+            </a>
+          ))}
+        </nav>
+        <div className="flex flex-wrap justify-between text-gray-600 px-16 gap-x-20">
+          <div className="w-[300px] mb-4">
+            <p className="font-bold mb-1">(주)숙명여자협회</p>
+            <p>주소 서울특별시 용산구 청파로</p>
+            <p>사업자등록번호 824-91-09283</p>
+            <p>통신판매업신고 2025-숙명-0504</p>
+            <p>관광사업등록번호 제2025-000001호</p>
           </div>
-        );
-      };
-const FooterInfo = () => (
-  <footer className="w-full border-t border-gray-300 mt-32 pt-6 px-8 text-xs text-gray-600">
-    {/* 상단 링크 */}
-    <nav className="flex flex-wrap justify-center gap-x-20 gap-y-2 mb-4 text-gray-500">
-      {[
-        "회사소개", "이용약관", "개인정보처리방침", "위치기반서비스 이용약관",
-        "여행약관", "여행자보험 가입내역", "티켓판매안내", "공지사항", "고객센터"
-      ].map((item) => (
-        <a href="#" key={item} className="hover:underline">
-          {item}
-        </a>
-      ))}
-    </nav>
-
-    {/* 하단 회사 정보 */}
-    <div className="flex flex-wrap justify-between text-gray-600 px-16 gap-x-20">
-      <div className="w-[300px] mb-4">
-        <p className="font-bold mb-1">(주)숙명여자협회</p>
-        <p>주소 서울특별시 용산구 청파로</p>
-        <p>사업자등록번호 824-91-09283</p>
-        <p>통신판매업신고 2025-숙명-0504</p>
-        <p>관광사업등록번호 제2025-000001호</p>
-      </div>
-      <div className="w-[300px] mb-4">
-        <p className="font-bold mb-1">고객센터</p>
-        <p>1:1문의</p>
-        <p>팩스 02-842-1029</p>
-        <p>이메일 websystem@smu.ac.kr</p>
-      </div>
-      <div className="w-[300px] mb-4">
-        <p className="font-bold mb-1">전자금융거래 분쟁처리 담당정보</p>
-        <p>팩스 02-482-1203</p>
-        <p>이메일 may04@smu.ac.kr</p>
-        <p>개인정보보호책임자 privacy@smu.ac.kr</p>
-      </div>
-    </div>
-  </footer>
-);
-
+          <div className="w-[300px] mb-4">
+            <p className="font-bold mb-1">고객센터</p>
+            <p>1:1문의</p>
+            <p>팩스 02-842-1029</p>
+            <p>이메일 websystem@smu.ac.kr</p>
+          </div>
+          <div className="w-[300px] mb-4">
+            <p className="font-bold mb-1">전자금융거래 분쟁처리 담당정보</p>
+            <p>팩스 02-482-1203</p>
+            <p>이메일 may04@smu.ac.kr</p>
+            <p>개인정보보호책임자 privacy@smu.ac.kr</p>
+          </div>
+        </div>
+      </footer>
+    );
 
     const App = () => {
       const matches = [
@@ -278,14 +270,12 @@ const FooterInfo = () => (
       const [showHomeOnly, setShowHomeOnly] = React.useState(false);
       const [isCalendarView, setIsCalendarView] = React.useState(false);
       const [calendarYear, setCalendarYear] = React.useState(2025);
-      const [calendarMonth, setCalendarMonth] = React.useState(5); // 1~12
+      const [calendarMonth, setCalendarMonth] = React.useState(5);
       const teams = Object.keys(teamStadiums);
 
       const filteredMatches = matches.filter(match => {
-        const isSelectedTeamInvolved =
-          match.homeName === selectedTeam || match.awayName === selectedTeam;
-        const isHomeStadium =
-          !showHomeOnly || match.stadium === teamStadiums[selectedTeam];
+        const isSelectedTeamInvolved = match.homeName === selectedTeam || match.awayName === selectedTeam;
+        const isHomeStadium = !showHomeOnly || match.stadium === teamStadiums[selectedTeam];
         return isSelectedTeamInvolved && isHomeStadium;
       });
 
@@ -345,11 +335,11 @@ const FooterInfo = () => (
               <div>
                 {isCalendarView ? (
                   <CalendarView
-                  calendarYear={calendarYear}
-                  calendarMonth={calendarMonth}
-                  setCalendarYear={setCalendarYear}
-                  setCalendarMonth={setCalendarMonth}
-                  matches={filteredMatches}
+                    calendarYear={calendarYear}
+                    calendarMonth={calendarMonth}
+                    setCalendarYear={setCalendarYear}
+                    setCalendarMonth={setCalendarMonth}
+                    matches={filteredMatches}
                   />
                 ) : (
                   <div>
@@ -360,40 +350,40 @@ const FooterInfo = () => (
                           <div className="flex flex-col items-start leading-tight">
                             <p className="text-sm text-gray-500">({match.day})</p>
                             <p className="text-sm text-gray-600">{match.time}</p>
+                          </div>
+                        </div>
+
+                        <div className="flex items-center">
+                          <div className="flex items-center w-60 space-x-8">
+                            <img src={match.homeLogo} alt="홈팀" className="w-20 h-20" />
+                            <span className="text-400">VS</span>
+                            <img src={match.awayLogo} alt="원정팀" className="w-20 h-20" />
+                          </div>
+                        </div>
+
+                        <div className="flex flex-col w-80 text-center">
+                          <span className="text-base">{match.homeName} vs {match.awayName}</span>
+                        </div>
+
+                        <div className="w-32 text-sm text-gray-500 text-center">{match.stadium}</div>
+
+                        <div>
+                          {match.status === "예매하기" ? (
+                            <button className="bg-red-500 text-white w-28 h-11 rounded text-sm hover:bg-red-600">
+                              예매하기
+                            </button>
+                          ) : (
+                            <div className="bg-gray-300 text-white w-28 h-12 rounded text-xs flex flex-col items-center justify-center text-center">
+                              <div>{getOpenDate(match.date)}</div>
+                              <div>18:00 오픈예정</div>
+                            </div>
+                          )}
                         </div>
                       </div>
-
-                    <div className="flex items-center">
-                      <div className="flex items-center w-60 space-x-8">
-                        <img src={match.homeLogo} alt="홈팀" className="w-20 h-20" />
-                        <span className="text-400">VS</span>
-                        <img src={match.awayLogo} alt="원정팀" className="w-20 h-20" />
-                      </div>
-                    </div>
-                    
-                    <div className="flex flex-col w-80 text-center">
-                      <span className="text-base">{match.homeName} vs {match.awayName}</span>
-                    </div>
-
-                    <div className="w-32 text-sm text-gray-500 text-center">{match.stadium}</div>
-
-                    <div>
-                      {match.status === "예매하기" ? (
-                        <button className="bg-red-500 text-white w-28 h-11 rounded text-sm hover:bg-red-600">
-                          예매하기
-                        </button>
-                      ) : (
-                        <div className="bg-gray-300 text-white w-28 h-12 rounded text-xs flex flex-col items-center justify-center text-center">
-                          <div>{getOpenDate(match.date)}</div>
-                          <div>18:00 오픈예정</div>
-                        </div>
-                      )}
-                    </div>
+                    ))}
                   </div>
-                ))}
+                )}
               </div>
-              )}
-            </div>
             </div>
           </main>
           <FooterInfo />
@@ -405,3 +395,4 @@ const FooterInfo = () => (
   </script>
 </body>
 </html>
+

@@ -1,121 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>레저</title>
-    <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
-    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>레저</title>
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
 </head>
 <body>
-    <div id="root"></div>
+  <div id="root"></div>
 
-    <script type="text/babel">
-      const navLinkMap = {
-  "뮤지컬/연극": "musical.html",
-  "콘서트":     "under_construction.html",
-  "스포츠":     "sport.html",
-  "전시/행사":   "under_construction.html",
-  "레저":       "leisure.html",
-  "테마/지역":   "theme.html",
-  "MD샵":      "testMDSHOP.html",  // 현재 보고 있는 페이지
-  "이벤트":     "EventAll.html",
-  "티켓오픈소식": "TicketOpen.html",
-};
+  <script type="text/babel">
+    const navLinkMap = {
+      "뮤지컬/연극": "musical.html",
+      "콘서트": "under_construction.html",
+      "스포츠": "sport.html",
+      "전시/행사": "under_construction.html",
+      "레저": "leisure.html",
+      "테마/지역": "theme.html",
+      "MD샵": "testMDSHOP.html",
+      "이벤트": "EventAll.html",
+      "티켓오픈소식": "TicketOpen.html"
+    };
 
-        /* 네비게이션 메뉴 목록>> 이렇~게 이렇게? 흠 흠흠흠흠*/
-        const navItems = [
-          "뮤지컬/연극", "콘서트", "스포츠", "전시/행사", 
-          "레저", "테마/지역", "MD샵", "이벤트", "티켓오픈소식"
-        ];
+    const navItems = [
+      "뮤지컬/연극", "콘서트", "스포츠", "전시/행사",
+      "레저", "테마/지역", "MD샵", "이벤트", "티켓오픈소식"
+    ];
 
-        /* Header Component */
-        const Header = () => (
-          <header className="bg-red-600 text-white p-2 flex items-center justify-between">
-            <a href="index.html" class="flex items-center space-x-4">
-    <img src="logo.png" alt="logo" class="w-10 h-10" />
-    <h1 class="text-xl font-bold">ticketpage</h1>
-  </a>
-            <div className="flex items-center space-x-2">
-              <input
-                type="text"
-                placeholder="검색어를 입력하세요"
-                className="p-2 rounded w-96"
-              />
-              <button className="p-2 bg-white text-black rounded">🔍</button>
-            </div>
-            <div className="flex items-center space-x-4">
-              <a href="login.html" className="hover:underline">로그인</a>
-              <a href="login.html" className="hover:underline">회원가입</a>
-              <a href="mypage.html">
-    <img src="my.png" alt="profile" class="w-8 h-8 rounded-full" />
-  </a>
-            </div>
-          </header>
-        );
+    const Header = () => (
+      <header className="bg-red-600 text-white p-2 flex items-center justify-between">
+        <a href="index.html" class="flex items-center space-x-4">
+          <img src="logo.png" alt="logo" class="w-10 h-10" />
+          <h1 class="text-xl font-bold">ticketpage</h1>
+        </a>
+        <div className="flex items-center space-x-2">
+          <input
+            type="text"
+            placeholder="검색어를 입력하세요"
+            className="p-2 rounded w-96"
+          />
+          <button className="p-2 bg-white text-black rounded">🔍</button>
+        </div>
+        <div className="flex items-center space-x-4">
+          <a href="login.html" className="hover:underline">로그인</a>
+          <a href="login.html" className="hover:underline">회원가입</a>
+          <a href="mypage.html">
+            <img src="my.png" alt="profile" class="w-8 h-8 rounded-full" />
+          </a>
+        </div>
+      </header>
+    );
 
-        /* Navigation Component */
-        const NavigationBar = () => (
-  <nav className="bg-white text-black p-2 border-b">
-    <ul className="flex justify-between text-sm">
-      {navItems.map((item, index) => {
-        // 실제 링크를 꺼내고, 없으면 "#" 처리
-        const href = navLinkMap[item] || "#";
+    const NavigationBar = () => (
+      <nav className="bg-white text-black p-2 border-b">
+        <ul className="flex justify-between text-sm">
+          {navItems.map((item, index) => {
+            const href = navLinkMap[item] || "#";
+            return (
+              <li
+                key={index}
+                className={`
+                  hover:text-red-600 flex-1 text-center cursor-pointer
+                  ${item === "레저" ? "text-red-600 font-bold" : ""}
+                `}
+              >
+                <a href={href} className="block">
+                  {item}
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </nav>
+    );
 
-        return (
-          <li
-            key={index}
-            className={`
-              hover:text-red-600 flex-1 text-center cursor-pointer
-              ${item === "레저" ? "text-red-600 font-bold" : ""}
-            `}
-          >
-            <a href={href} className="block">
-              {item}
-            </a>
-          </li>
-        );
-      })}
-    </ul>
-  </nav>
-);
-
-
-        /* Leisure Page Component */
-        const LeisurePage = () => (
-          <div className="p-8 max-w-7xl mx-auto">
-            {/* 메인 이미지와 카드 리스트 */}
-            <div className="grid grid-cols-4 gap-4 mb-4">
-              <div className="border p-4 bg-white">
-                <img src="leisure/에버랜드.webp" alt="에버랜드"/>
-                <h3 className="font-bold mt-2">에버랜드 튤립축제</h3>
-                <p className="text-gray-600">2025.3.21 ~ 6.15</p>
-              </div>
-              <div className="border p-4 bg-white">
-                <img src="leisure/한강.jpg" alt="행사 이름" />
-                <h3 className="font-bold mt-2">한강 요트 투어</h3>
-                <p className="text-gray-600">2025.4.15 ~ 9.15</p>
-              </div>
-              <div className="border p-4 bg-white">
-                <img src="leisure/송도.gif" alt="행사 이름" />
-                <h3 className="font-bold mt-2">송도 국제캠핑장</h3>
-                <p className="text-gray-600">2025.6.1 ~ 10.1</p>
-              </div>
-              <div className="border p-4 bg-white">
-                <img src="leisure/키자니아.jpg" alt="행사 이름" />
-                <h3 className="font-bold mt-2">키자니아</h3>
-                <p className="text-gray-600">2025.8.1 ~ 11.31</p>
-              </div>
-            </div>
-            <LeisureCategory />
+    const LeisurePage = () => (
+      <div className="p-8 max-w-7xl mx-auto">
+        <div className="grid grid-cols-4 gap-4 mb-4">
+          <div className="border p-4 bg-white">
+            <img src="leisure/에버랜드.webp" alt="에버랜드"/>
+            <h3 className="font-bold mt-2">에버랜드 튤립축제</h3>
+            <p className="text-gray-600">2025.3.21 ~ 6.15</p>
           </div>
-        );
+          <div className="border p-4 bg-white">
+            <img src="leisure/한강.jpg" alt="행사 이름" />
+            <h3 className="font-bold mt-2">한강 요트 투어</h3>
+            <p className="text-gray-600">2025.4.15 ~ 9.15</p>
+          </div>
+          <div className="border p-4 bg-white">
+            <img src="leisure/송도.gif" alt="행사 이름" />
+            <h3 className="font-bold mt-2">송도 국제캠핑장</h3>
+            <p className="text-gray-600">2025.6.1 ~ 10.1</p>
+          </div>
+          <div className="border p-4 bg-white">
+            <img src="leisure/키자니아.jpg" alt="행사 이름" />
+            <h3 className="font-bold mt-2">키자니아</h3>
+            <p className="text-gray-600">2025.8.1 ~ 11.31</p>
+          </div>
+        </div>
+        <LeisureCategory />
+      </div>
+    );
 
-        const FooterInfo = () => (
+    const FooterInfo = () => (
       <footer className="w-full border-t border-gray-300 mt-12 pt-6 px-8 text-xs text-gray-600">
-        {/* 상단 링크 메뉴 */}
         <nav className="flex flex-wrap justify-center gap-x-20 gap-y-2 mb-4 text-gray-500">
           {[
             "회사소개",
@@ -126,17 +117,14 @@
             "여행자보험 가입내역",
             "티켓판매안내",
             "공지사항",
-            "고객센터",
+            "고객센터"
           ].map((item) => (
             <a href="#" key={item} className="hover:underline">
               {item}
             </a>
           ))}
         </nav>
-
-        {/* 하단 회사 및 고객센터 정보 */}
         <div className="flex flex-wrap justify-between text-gray-600 px-16 gap-x-20">
-
           <div className="w-[300px] mb-4">
             <p className="font-bold mb-1">(주)숙명여자협회</p>
             <p>주소 서울특별시 용산구 청파로</p>
@@ -144,14 +132,12 @@
             <p>통신판매업신고 2025-숙명-0504</p>
             <p>관광사업등록번호 제2025-000001호</p>
           </div>
-
           <div className="w-[300px] mb-4">
             <p className="font-bold mb-1">고객센터</p>
             <p>1:1문의</p>
             <p>팩스 02-842-1029</p>
             <p>이메일 websystem@smu.ac.kr</p>
           </div>
-
           <div className="w-[300px] mb-4">
             <p className="font-bold mb-1">전자금융거래 분쟁처리 담당정보</p>
             <p>팩스 02-482-1203</p>
@@ -161,100 +147,94 @@
         </div>
       </footer>
     );
-        /* LeisureCategory Component */
-        const LeisureCategory = () => {
-            const [activeCategory, setActiveCategory] = React.useState("전체보기");
 
-            const leisureData = {
-    "전체보기": [
-        { id: 1, title: "크루즈 투어", date: "2025.6.1 ~ 2025.8.31", image: "leisure/크루즈.jpg" },
-        { id: 2, title: "경주월드 자유이용권 5월", date: "2025.5.1 ~ 2025.5.31", image: "leisure/경주월드.jpg" },
-        { id: 3, title: "고양시 킨텍스 캠핑장", date: "2025.7.1 ~ 2025.9.15", image: "leisure/고양킨텍스.png" },
-        { id: 4, title: "주렁주렁", date: "2025.5.20 ~ 2025.6.10", image: "leisure/주렁주렁.jpg" },
-        { id: 5, title: "부산 요트 투어", date: "2025.6.5 ~ 2025.9.5", image: "leisure/부산요트.webp" },
-        { id: 6, title: "이월드 자유이용권 5월", date: "2025.5.1 ~ 2025.5.31", image: "leisure/이월드.png" },
-        { id: 7, title: "뽀로로 키즈카페", date: "2025.5.1 ~ 2025.6.30", image: "leisure/뽀로로.jpg" },
-        { id: 8, title: "포항 요트 투어", date: "2025.6.5 ~ 2025.9.5", image: "leisure/포항요트.jpg" },
-        { id: 9, title: "롯데월드 자유이용권 5월", date: "2025.5.1 ~ 2025.5.31", image: "leisure/롯데월드.jpg" },
-        { id: 10, title: "송도 국제캠핑장", date: "2025.6.1 ~ 10.1", image: "leisure/송도2.jpg" },
-        { id: 11, title: "한강 요트 투어", date: "22025.4.15 ~ 9.15", image: "leisure/한강2.jpg" },
-        { id: 12, title: "한탄강 오토캠핑장", date: "2025.5.20 ~ 2025.8.20", image: "leisure/한탄강.jpg" },
-        { id: 13, title: "에버랜드 튤립축제", date: "2025.3.21 ~ 6.15", image: "leisure/에버랜드2.jpg" },
-        { id: 14, title: "인천대공원 캠핑장", date: "2025.5.10 ~ 2025.7.10", image: "leisure/인천대공원.jpg" },
-        { id: 15, title: "어린이대공원", date: "2025.5.1 ~ 2025.6.15", image: "leisure/어린이대공원.jpg" },
-        { id: 16, title: "키자니아", date: "2025.8.1 ~ 11.31", image: "leisure/키자니아2.jpg" }
-    ],
-    "테마파크": [
-        { id: 1, title: "에버랜드 튤립축제", date: "2025.3.21 ~ 6.15", image: "leisure/에버랜드2.jpg" },
-        { id: 2, title: "롯데월드 자유이용권 5월", date: "2025.5.1 ~ 2025.5.31", image: "leisure/롯데월드.jpg" },
-        { id: 3, title: "경주월드 자유이용권 5월", date: "2025.5.1 ~ 2025.5.31", image: "leisure/경주월드.jpg" },
-        { id: 4, title: "이월드 자유이용권 5월", date: "2025.5.1 ~ 2025.5.31", image: "leisure/이월드.png" }
-    ],
-    "요트/크루즈": [
-        { id: 1, title: "부산 요트 투어", date: "2025.6.5 ~ 2025.9.5", image: "leisure/부산요트.webp" },
-        { id: 2, title: "포항 요트 투어", date: "2025.6.5 ~ 2025.9.5", image: "leisure/포항요트.jpg" },
-        { id: 3, title: "한강 요트 투어", date: "2025.4.15 ~ 9.15", image: "leisure/한강2.jpg" },
-        { id: 4, title: "크루즈 투어", date: "2025.6.1 ~ 2025.8.31", image: "leisure/크루즈.jpg" }
-    ],
-    "캠핑": [
-        { id: 1, title: "한탄강 오토캠핑장", date: "2025.5.20 ~ 2025.8.20", image: "leisure/한탄강.jpg" },
-        { id: 2, title: "고양시 킨텍스 캠핑장", date: "2025.7.1 ~ 2025.9.15", image: "leisure/고양킨텍스.png" },
-        { id: 3, title: "인천대공원 캠핑장", date: "2025.5.10 ~ 2025.7.10", image: "leisure/인천대공원.jpg" },
-        { id: 4, title: "송도 국제캠핑장", date: "2025.6.1 ~ 10.1", image: "leisure/송도2.jpg" }
-    ],
-    "키즈": [
-        { id: 1, title: "뽀로로 키즈카페", date: "2025.5.1 ~ 2025.6.30", image: "leisure/뽀로로.jpg" },
-        { id: 2, title: "키자니아", date: "2025.8.1 ~ 11.31", image: "leisure/키자니아2.jpg" },
-        { id: 3, title: "어린이대공원", date: "2025.5.1 ~ 2025.6.15", image: "leisure/어린이대공원.jpg" },
-        { id: 4, title: "주렁주렁", date: "2025.5.20 ~ 2025.6.10", image: "leisure/주렁주렁.jpg" }
-    ]
-};
+    const LeisureCategory = () => {
+      const [activeCategory, setActiveCategory] = React.useState("전체보기");
 
-            return (
-                <div className="p-8">
-                    {/* ✅ 버튼 목록 */}
-                    <div className="flex space-x-4 mb-8 justify-center">
-                        {Object.keys(leisureData).map((category) => (
-                            <button
-                                key={category}
-                                className={`px-4 py-2 border rounded-full bg-white hover:bg-gray-100 ${
-                                    activeCategory === category ? "bg-gray-200" : ""
-                                }`}
-                                onClick={() => setActiveCategory(category)}
-                            >
-                                {category} &gt;
-                            </button>
-                        ))}
-                    </div>
+      const leisureData = {
+        "전체보기": [
+          { id: 1, title: "크루즈 투어", date: "2025.6.1 ~ 2025.8.31", image: "leisure/크루즈.jpg" },
+          { id: 2, title: "경주월드 자유이용권 5월", date: "2025.5.1 ~ 2025.5.31", image: "leisure/경주월드.jpg" },
+          { id: 3, title: "고양시 킨텍스 캠핑장", date: "2025.7.1 ~ 2025.9.15", image: "leisure/고양킨텍스.png" },
+          { id: 4, title: "주렁주렁", date: "2025.5.20 ~ 2025.6.10", image: "leisure/주렁주렁.jpg" },
+          { id: 5, title: "부산 요트 투어", date: "2025.6.5 ~ 2025.9.5", image: "leisure/부산요트.webp" },
+          { id: 6, title: "이월드 자유이용권 5월", date: "2025.5.1 ~ 2025.5.31", image: "leisure/이월드.png" },
+          { id: 7, title: "뽀로로 키즈카페", date: "2025.5.1 ~ 2025.6.30", image: "leisure/뽀로로.jpg" },
+          { id: 8, title: "포항 요트 투어", date: "2025.6.5 ~ 2025.9.5", image: "leisure/포항요트.jpg" },
+          { id: 9, title: "롯데월드 자유이용권 5월", date: "2025.5.1 ~ 2025.5.31", image: "leisure/롯데월드.jpg" },
+          { id: 10, title: "송도 국제캠핑장", date: "2025.6.1 ~ 10.1", image: "leisure/송도2.jpg" },
+          { id: 11, title: "한강 요트 투어", date: "22025.4.15 ~ 9.15", image: "leisure/한강2.jpg" },
+          { id: 12, title: "한탄강 오토캠핑장", date: "2025.5.20 ~ 2025.8.20", image: "leisure/한탄강.jpg" },
+          { id: 13, title: "에버랜드 튤립축제", date: "2025.3.21 ~ 6.15", image: "leisure/에버랜드2.jpg" },
+          { id: 14, title: "인천대공원 캠핑장", date: "2025.5.10 ~ 2025.7.10", image: "leisure/인천대공원.jpg" },
+          { id: 15, title: "어린이대공원", date: "2025.5.1 ~ 2025.6.15", image: "leisure/어린이대공원.jpg" },
+          { id: 16, title: "키자니아", date: "2025.8.1 ~ 11.31", image: "leisure/키자니아2.jpg" }
+        ],
+        "테마파크": [
+          { id: 1, title: "에버랜드 튤립축제", date: "2025.3.21 ~ 6.15", image: "leisure/에버랜드2.jpg" },
+          { id: 2, title: "롯데월드 자유이용권 5월", date: "2025.5.1 ~ 2025.5.31", image: "leisure/롯데월드.jpg" },
+          { id: 3, title: "경주월드 자유이용권 5월", date: "2025.5.1 ~ 2025.5.31", image: "leisure/경주월드.jpg" },
+          { id: 4, title: "이월드 자유이용권 5월", date: "2025.5.1 ~ 2025.5.31", image: "leisure/이월드.png" }
+        ],
+        "요트/크루즈": [
+          { id: 1, title: "부산 요트 투어", date: "2025.6.5 ~ 2025.9.5", image: "leisure/부산요트.webp" },
+          { id: 2, title: "포항 요트 투어", date: "2025.6.5 ~ 2025.9.5", image: "leisure/포항요트.jpg" },
+          { id: 3, title: "한강 요트 투어", date: "2025.4.15 ~ 9.15", image: "leisure/한강2.jpg" },
+          { id: 4, title: "크루즈 투어", date: "2025.6.1 ~ 2025.8.31", image: "leisure/크루즈.jpg" }
+        ],
+        "캠핑": [
+          { id: 1, title: "한탄강 오토캠핑장", date: "2025.5.20 ~ 2025.8.20", image: "leisure/한탄강.jpg" },
+          { id: 2, title: "고양시 킨텍스 캠핑장", date: "2025.7.1 ~ 2025.9.15", image: "leisure/고양킨텍스.png" },
+          { id: 3, title: "인천대공원 캠핑장", date: "2025.5.10 ~ 2025.7.10", image: "leisure/인천대공원.jpg" },
+          { id: 4, title: "송도 국제캠핑장", date: "2025.6.1 ~ 10.1", image: "leisure/송도2.jpg" }
+        ],
+        "키즈": [
+          { id: 1, title: "뽀로로 키즈카페", date: "2025.5.1 ~ 2025.6.30", image: "leisure/뽀로로.jpg" },
+          { id: 2, title: "키자니아", date: "2025.8.1 ~ 11.31", image: "leisure/키자니아2.jpg" },
+          { id: 3, title: "어린이대공원", date: "2025.5.1 ~ 2025.6.15", image: "leisure/어린이대공원.jpg" },
+          { id: 4, title: "주렁주렁", date: "2025.5.20 ~ 2025.6.10", image: "leisure/주렁주렁.jpg" }
+        ]
+      };
 
-                    <h2 className="text-2xl font-bold mb-4 text-left">{activeCategory}</h2>
-
-                    <div className="grid grid-cols-2 gap-4">
-                        {leisureData[activeCategory].map((item) => (
-                            <div key={item.id} className="border p-4 bg-white">
-                                <img src={item.image} alt={item.title} className="w-full h-40 object-cover mb-2" />
-                                <h3 className="font-bold mt-2">{item.title}</h3>
-                                <p className="text-gray-600">{item.date}</p>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            );
-        };
-
-
-        /* 메인 렌더링 */
-        const App = () => (
-          <div className="bg-gray-100">
-            <Header />
-            <NavigationBar />
-            <LeisurePage />
-            <FooterInfo />
+      return (
+        <div className="p-8">
+          <div className="flex space-x-4 mb-8 justify-center">
+            {Object.keys(leisureData).map((category) => (
+              <button
+                key={category}
+                className={`px-4 py-2 border rounded-full bg-white hover:bg-gray-100 ${
+                  activeCategory === category ? "bg-gray-200" : ""
+                }`}
+                onClick={() => setActiveCategory(category)}
+              >
+                {category} &gt;
+              </button>
+            ))}
           </div>
-        );
+          <h2 className="text-2xl font-bold mb-4 text-left">{activeCategory}</h2>
+          <div className="grid grid-cols-2 gap-4">
+            {leisureData[activeCategory].map((item) => (
+              <div key={item.id} className="border p-4 bg-white">
+                <img src={item.image} alt={item.title} className="w-full h-40 object-cover mb-2" />
+                <h3 className="font-bold mt-2">{item.title}</h3>
+                <p className="text-gray-600">{item.date}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      );
+    };
 
-        /* ReactDOM에 마운트 */
-        ReactDOM.createRoot(document.getElementById('root')).render(<App />);
-    </script>
+    const App = () => (
+      <div className="bg-gray-100">
+        <Header />
+        <NavigationBar />
+        <LeisurePage />
+        <FooterInfo />
+      </div>
+    );
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
 </body>
 </html>
