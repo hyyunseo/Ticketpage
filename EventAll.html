@@ -8,7 +8,6 @@
   <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-
 </head>
 <body class="bg-gray-100">
   <div id="root"></div>
@@ -88,7 +87,7 @@
         </div>
       </header>
     );
-const NavigationBar = ({ activeHeader, setActiveHeader }) => (
+    const NavigationBar = ({ activeHeader, setActiveHeader }) => (
       <nav className="bg-white text-black p-2 border-b">
         <ul className="flex justify-between text-sm w-full">
           {navItems.map((item, idx) => (
@@ -107,79 +106,79 @@ const NavigationBar = ({ activeHeader, setActiveHeader }) => (
     );
 
     const SubNavigationBar = () => {
-  const [activeSubTab, setActiveSubTab] = useState("전체 이벤트");
+    const [activeSubTab, setActiveSubTab] = useState("전체 이벤트");
 
-  const subTabs = [
+    const subTabs = [
     { name: "전체 이벤트", link: "EventAll.html" },
     { name: "당첨자 발표", link: "EventWinner.html" },
     { name: "참여 이벤트", link: "EventParticipate.html" }
   ];
 
-  return (
-    <nav className="bg-gray-200 text-black border-b">
-      <div className="w-full max-w-[1000px] mx-auto">
-        <div className="w-fit ml-auto transform translate-x-[166px] flex space-x-12 py-2 text-sm">
-          {subTabs.map((tab, idx) => (
-            <a
-              key={idx}
-              href={tab.link}
-              className={`${
-                activeSubTab === tab.name ? "text-red-600 font-bold" : "hover:text-red-600"
-              }`}
-            >
-              {tab.name}
-            </a>
-          ))}
-        </div>
-      </div>
-    </nav>
-  );
-};
+    return (
+        <nav className="bg-gray-200 text-black border-b">
+          <div className="w-full max-w-[1000px] mx-auto">
+            <div className="w-fit ml-auto transform translate-x-[166px] flex space-x-12 py-2 text-sm">
+              {subTabs.map((tab, idx) => (
+                <a
+                  key={idx}
+                  href={tab.link}
+                  className={`${
+                    activeSubTab === tab.name ? "text-red-600 font-bold" : "hover:text-red-600"
+                  }`}
+                >
+                  {tab.name}
+                </a>
+              ))}
+            </div>
+          </div>
+        </nav>
+      );
+    };
 
 
     const EventPage = () => {
-      const [banner, setBanner] = React.useState(bannerOptions[0]);
-      const [currentPage, setCurrentPage] = React.useState(1);
-      const [activeHeader, setActiveHeader] = React.useState("이벤트");
-      const currentBlock = Math.ceil(currentPage / pagesPerBlock);
-      const itemsPerPage = 6;
-      const startIdx = (currentPage - 1) * itemsPerPage;
-      const currentItems = eventItems.slice(startIdx, startIdx + itemsPerPage);
+    const [banner, setBanner] = React.useState(bannerOptions[0]);
+    const [currentPage, setCurrentPage] = React.useState(1);
+    const [activeHeader, setActiveHeader] = React.useState("이벤트");
+    const currentBlock = Math.ceil(currentPage / pagesPerBlock);
+    const itemsPerPage = 6;
+    const startIdx = (currentPage - 1) * itemsPerPage;
+    const currentItems = eventItems.slice(startIdx, startIdx + itemsPerPage);
 
-      const handlePageChange = (page) => {
-        if (page < 1 || page > totalPages) return;
-        setCurrentPage(page);
-      };
+    const handlePageChange = (page) => {
+      if (page < 1 || page > totalPages) return;
+      setCurrentPage(page);
+    };
 
-      const renderPagination = () => {
-        const startPage = (currentBlock - 1) * pagesPerBlock + 1;
-        const endPage = Math.min(currentBlock * pagesPerBlock, totalPages);
+    const renderPagination = () => {
+    const startPage = (currentBlock - 1) * pagesPerBlock + 1;
+    const endPage = Math.min(currentBlock * pagesPerBlock, totalPages);
 
-        const buttons = [];
-        for (let i = startPage; i <= endPage; i++) {
-          buttons.push(
-            <button
-              key={i}
-              onClick={() => handlePageChange(i)}
-              className={`px-3 py-1 rounded border border-gray-300 bg-white ${currentPage === i ? 'text-green-600 font-bold' : ''}`}
-            >
-              {i}
-            </button>
-          );
-        }
+    const buttons = [];
+    for (let i = startPage; i <= endPage; i++) {
+      buttons.push(
+        <button
+          key={i}
+          onClick={() => handlePageChange(i)}
+          className={`px-3 py-1 rounded border border-gray-300 bg-white ${currentPage === i ? 'text-green-600 font-bold' : ''}`}
+         >
+           {i}
+        </button>
+      );
+     }
 
-        return (
-          <div className="flex justify-center space-x-2">
-            <button onClick={() => handlePageChange(1)} className="px-3 py-1 rounded border border-gray-300 text-gray-500 bg-white">&laquo;</button>
-            <button onClick={() => handlePageChange(currentPage - 1)} className="px-3 py-1 rounded border border-gray-300 text-gray-500 bg-white">&lt;</button>
-            {buttons}
-            <button onClick={() => handlePageChange(currentPage + 1)} className="px-3 py-1 rounded border border-gray-300 text-gray-500 bg-white">&gt;</button>
-            <button onClick={() => handlePageChange(totalPages)} className="px-3 py-1 rounded border border-gray-300 text-gray-500 bg-white">&raquo;</button>
-          </div>
-        );
-      };
+    return (
+      <div className="flex justify-center space-x-2">
+        <button onClick={() => handlePageChange(1)} className="px-3 py-1 rounded border border-gray-300 text-gray-500 bg-white">&laquo;</button>
+        <button onClick={() => handlePageChange(currentPage - 1)} className="px-3 py-1 rounded border border-gray-300 text-gray-500 bg-white">&lt;</button>
+        {buttons}
+        <button onClick={() => handlePageChange(currentPage + 1)} className="px-3 py-1 rounded border border-gray-300 text-gray-500 bg-white">&gt;</button>
+        <button onClick={() => handlePageChange(totalPages)} className="px-3 py-1 rounded border border-gray-300 text-gray-500 bg-white">&raquo;</button>
+      </div>
+    );
+   };
 
-      return (
+   return (
         <div className="min-h-screen">
           <Header />
           <NavigationBar activeHeader={activeHeader} setActiveHeader={setActiveHeader} />
@@ -285,6 +284,5 @@ const NavigationBar = ({ activeHeader, setActiveHeader }) => (
     </div>
   </div>
 </footer>
-  
 </body>
 </html>

@@ -13,42 +13,42 @@
    <div id="root"></div>
 
     <script type="text/babel">
-      const { useState } = React;
+    const { useState } = React;
 
- const customTitles = [
-    "[컴튼 투 서울] 진짜 힙합페스티벌, 백스테이지 PASS를 잡아라",
-    "뮤지컬 <난쟁이들> 기대평을 남겨주세요!",
-    "멜론티켓 카카오 플러스친구 런칭 EVENT",
-    "연극 <슈퍼맨닷컴> 커튼콜 인증 이벤트",
-    "대림미술관 SUNDAY LIVE 예매 인증 이벤트",
-    "HPHOPPLAYA FESTIVAL 초대 이벤트",
-    "뮤지컬 <닥터지바고> M/V 공개! 기대평 초대 이벤트",
-    "연극 <룸넘버13> 초대 이벤트",
-    "뮤지컬 <엑스칼리버> 멜론티켓 회원 초대 이벤트",
-    "쿠키와 함께하는 시리즈 페스티벌 (홍대야 놀자) 초대 이벤트",
+    const customTitles = [
+        "[컴튼 투 서울] 진짜 힙합페스티벌, 백스테이지 PASS를 잡아라",
+        "뮤지컬 <난쟁이들> 기대평을 남겨주세요!",
+        "멜론티켓 카카오 플러스친구 런칭 EVENT",
+        "연극 <슈퍼맨닷컴> 커튼콜 인증 이벤트",
+        "대림미술관 SUNDAY LIVE 예매 인증 이벤트",
+        "HPHOPPLAYA FESTIVAL 초대 이벤트",
+        "뮤지컬 <닥터지바고> M/V 공개! 기대평 초대 이벤트",
+        "연극 <룸넘버13> 초대 이벤트",
+        "뮤지컬 <엑스칼리버> 멜론티켓 회원 초대 이벤트",
+        "쿠키와 함께하는 시리즈 페스티벌 (홍대야 놀자) 초대 이벤트",
 
-    "[집콘] 초대 이벤트 - 문화가 있는 날",
-    "멜론티켓 플친하고 멜뮤어 같이가요!",
-    "뮤지컬 <천사에 관하여: 타락천사 편> 관람후기 이벤트",
-    "연극 <쉬어매드니스> 초대 이벤트",
-    "이선희 콘서트 <Climax> 관람 후기 이벤트",
-    "아드만 애니메이션 윌레스 & 그로밋과 친구들 초대 이벤트",
-    "창작가무극 <나빌레라> 멜론티켓 회원 초대 이벤트",
-    "필름콘서트 <해리포터와 마법사의 돌> 기대평 이벤트",
-    "뮤지컬 <엑스칼리버> 리허설 초대 이벤트",
-    "[폴라로이드 추첨] 재관람 고객 대상 단독 이벤트!",
+        "[집콘] 초대 이벤트 - 문화가 있는 날",
+        "멜론티켓 플친하고 멜뮤어 같이가요!",
+        "뮤지컬 <천사에 관하여: 타락천사 편> 관람후기 이벤트",
+        "연극 <쉬어매드니스> 초대 이벤트",
+        "이선희 콘서트 <Climax> 관람 후기 이벤트",
+        "아드만 애니메이션 윌레스 & 그로밋과 친구들 초대 이벤트",
+        "창작가무극 <나빌레라> 멜론티켓 회원 초대 이벤트",
+        "필름콘서트 <해리포터와 마법사의 돌> 기대평 이벤트",
+        "뮤지컬 <엑스칼리버> 리허설 초대 이벤트",
+        "[폴라로이드 추첨] 재관람 고객 대상 단독 이벤트!",
 
-    "뮤지컬 <보디가드> 콘서트 초대 이벤트",
-    "카카오 베스트 캐릭터상 투표하고 초대권 받기!",
-    "[관람후기 이벤트] 뮤지컬 <모차르트!> 10주년 기념 공연",
-    "[경품] 모노극 <그라운디드> 관람후기 이벤트",
-    "신비아파트 미디어 어드벤처 : 내가 구하리! 기대평 이벤트",
-    "[초대] 헐리우드 필름 콘서트 기대평 이벤트",
-    "[경품] 뮤지컬 <몬테크리스토> 기대평 이벤트",
-    "[경품] 뮤지컬 <모차르트!> 예매자 대상 이벤트",
-    "[초대권 증정] 뮤지컬 <멤피스> 기대평 이벤트",
-    "[초대권 증정] 뮤지컬 <프라다> 기대평 이벤트"
-  ];
+        "뮤지컬 <보디가드> 콘서트 초대 이벤트",
+        "카카오 베스트 캐릭터상 투표하고 초대권 받기!",
+        "[관람후기 이벤트] 뮤지컬 <모차르트!> 10주년 기념 공연",
+        "[경품] 모노극 <그라운디드> 관람후기 이벤트",
+        "신비아파트 미디어 어드벤처 : 내가 구하리! 기대평 이벤트",
+        "[초대] 헐리우드 필름 콘서트 기대평 이벤트",
+        "[경품] 뮤지컬 <몬테크리스토> 기대평 이벤트",
+        "[경품] 뮤지컬 <모차르트!> 예매자 대상 이벤트",
+        "[초대권 증정] 뮤지컬 <멤피스> 기대평 이벤트",
+        "[초대권 증정] 뮤지컬 <프라다> 기대평 이벤트"
+      ];
 
       const navItems = [
         "뮤지컬/연극", "콘서트", "스포츠", "전시/행사", "레저", "테마/지역", "MD샵", "이벤트", "티켓오픈소식"
@@ -105,34 +105,34 @@
       );
 
       const SubNavigationBar = () => {
-  const [activeSubTab, setActiveSubTab] = useState("당첨자 발표");
+      const [activeSubTab, setActiveSubTab] = useState("당첨자 발표");
 
-  const subTabs = [
-    { name: "전체 이벤트", link: "EventAll.html" },
-    { name: "당첨자 발표", link: "EventWinner.html" },
-    { name: "참여 이벤트", link: "EventParticipate.html" }
-  ];
+      const subTabs = [
+        { name: "전체 이벤트", link: "EventAll.html" },
+        { name: "당첨자 발표", link: "EventWinner.html" },
+        { name: "참여 이벤트", link: "EventParticipate.html" }
+      ];
 
-  return (
-    <nav className="bg-gray-200 text-black border-b">
-      <div className="w-full max-w-[1000px] mx-auto">
-        <div className="w-fit ml-auto transform translate-x-[166px] flex space-x-12 py-2 text-sm">
-          {subTabs.map((tab, idx) => (
-            <a
-              key={idx}
-              href={tab.link}
-              className={`${
-                activeSubTab === tab.name ? "text-red-600 font-bold" : "hover:text-red-600"
-              }`}
-            >
-              {tab.name}
-            </a>
-          ))}
-        </div>
-      </div>
-    </nav>
-  );
-};
+      return (
+        <nav className="bg-gray-200 text-black border-b">
+          <div className="w-full max-w-[1000px] mx-auto">
+            <div className="w-fit ml-auto transform translate-x-[166px] flex space-x-12 py-2 text-sm">
+              {subTabs.map((tab, idx) => (
+                <a
+                  key={idx}
+                  href={tab.link}
+                  className={`${
+                    activeSubTab === tab.name ? "text-red-600 font-bold" : "hover:text-red-600"
+                  }`}
+                >
+                  {tab.name}
+                </a>
+              ))}
+            </div>
+          </div>
+        </nav>
+      );
+    };
 
       const Footer = () => (
         <footer className="bg-gray-100 w-full border-t border-gray-300 mt-32 pt-6 px-8 text-xs text-gray-600">
@@ -171,98 +171,95 @@
         </footer>
       );
 
-    // 검색창 컴포넌트
-    const SearchBar = () => (
-      <section className="pt-20 pb-6 max-w-[1000px] mx-auto px-4">
-        <div className="w-full flex justify-end">
-          <div className="flex mr-1">
-            <input type="text" placeholder="이벤트 검색" className="p-2 border rounded w-80" />
-            <button className="ml-2 px-4 py-2 bg-black text-white rounded">검색</button>
+      const SearchBar = () => (
+        <section className="pt-20 pb-6 max-w-[1000px] mx-auto px-4">
+          <div className="w-full flex justify-end">
+            <div className="flex mr-1">
+              <input type="text" placeholder="이벤트 검색" className="p-2 border rounded w-80" />
+              <button className="ml-2 px-4 py-2 bg-black text-white rounded">검색</button>
+            </div>
           </div>
-        </div>
-      </section>
-    );
+        </section>
+      );
 
-    // 당첨자 테이블 컴포넌트
-    const WinnerTable = ({ data }) => (
-      <table className="w-full border-t border-gray-300 table-fixed" id="winnerTable">
-        <thead>
-          <tr className="border-b border-gray-300 text-gray-600">
-            <th className="w-[60px] py-3"></th>
-            <th className="py-3 text-center">당첨자 발표</th>
-            <th className="py-3 text-center w-[120px]">발표일</th>
-          </tr>
-        </thead>
-        <tbody className="text-sm">
-          {data.map((row) => (
-            <tr className="border-b" key={row.number}>
-              <td className="py-3 pr-1 align-top">{row.number}</td>
-              <td className="py-3 pl-1 align-top">{row.title}</td>
-              <td className="py-3 px-2 text-center align-top">{row.date}</td>
+      // 당첨자 테이블 
+      const WinnerTable = ({ data }) => (
+        <table className="w-full border-t border-gray-300 table-fixed" id="winnerTable">
+          <thead>
+            <tr className="border-b border-gray-300 text-gray-600">
+              <th className="w-[60px] py-3"></th>
+              <th className="py-3 text-center">당첨자 발표</th>
+              <th className="py-3 text-center w-[120px]">발표일</th>
             </tr>
+          </thead>
+          <tbody className="text-sm">
+            {data.map((row) => (
+              <tr className="border-b" key={row.number}>
+                <td className="py-3 pr-1 align-top">{row.number}</td>
+                <td className="py-3 pl-1 align-top">{row.title}</td>
+                <td className="py-3 px-2 text-center align-top">{row.date}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      );
+
+    // 페이지네이션 
+      const Pagination = ({ currentPage, totalPages, onPageChange }) => {
+      const pagesPerBlock = 10;
+      const currentBlock = Math.ceil(currentPage / pagesPerBlock);
+      const startPage = (currentBlock - 1) * pagesPerBlock + 1;
+      const endPage = Math.min(currentBlock * pagesPerBlock, totalPages);
+
+      return (
+        <div className="flex justify-center mt-6 space-x-2">
+          <button onClick={() => onPageChange(1)} className="px-3 py-1 border rounded bg-white text-gray-400">&laquo;</button>
+          <button onClick={() => onPageChange(startPage - pagesPerBlock)} className="px-3 py-1 border rounded bg-white text-gray-400">&lt;</button>
+          {Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i).map((page) => (
+            <button
+              key={page}
+              onClick={() => onPageChange(page)}
+              className={`px-3 py-1 border rounded bg-white ${
+                currentPage === page ? "text-green-600 font-bold" : "text-black"
+              }`}
+            >
+              {page}
+            </button>
           ))}
-        </tbody>
-      </table>
-    );
+          <button onClick={() => onPageChange(endPage + 1)} className="px-3 py-1 border rounded bg-white text-gray-500">&gt;</button>
+          <button onClick={() => onPageChange(totalPages)} className="px-3 py-1 border rounded bg-white text-gray-500">&raquo;</button>
+        </div>
+      );
+    };
 
-    // 페이지네이션 컴포넌트
-   const Pagination = ({ currentPage, totalPages, onPageChange }) => {
-  const pagesPerBlock = 10;
-  const currentBlock = Math.ceil(currentPage / pagesPerBlock);
-  const startPage = (currentBlock - 1) * pagesPerBlock + 1;
-  const endPage = Math.min(currentBlock * pagesPerBlock, totalPages);
+        // 데이터 생성 함수
+      const generateData = (totalPages = 20) => {
+      const data = {};
+      let num = totalPages * 10;
+      const startDate = new Date(2025, 3, 1);
 
-  return (
-    <div className="flex justify-center mt-6 space-x-2">
-      <button onClick={() => onPageChange(1)} className="px-3 py-1 border rounded bg-white text-gray-400">&laquo;</button>
-      <button onClick={() => onPageChange(startPage - pagesPerBlock)} className="px-3 py-1 border rounded bg-white text-gray-400">&lt;</button>
-      {Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i).map((page) => (
-        <button
-          key={page}
-          onClick={() => onPageChange(page)}
-          className={`px-3 py-1 border rounded bg-white ${
-            currentPage === page ? "text-green-600 font-bold" : "text-black"
-          }`}
-        >
-          {page}
-        </button>
-      ))}
-      <button onClick={() => onPageChange(endPage + 1)} className="px-3 py-1 border rounded bg-white text-gray-500">&gt;</button>
-      <button onClick={() => onPageChange(totalPages)} className="px-3 py-1 border rounded bg-white text-gray-500">&raquo;</button>
-    </div>
-  );
-};
+      for (let p = 1; p <= totalPages; p++) {
+        const pageData = [];
+        for (let i = 9; i >= 0; i--) {
+          const date = new Date(startDate);
+          date.setDate(date.getDate() + (num - 1));
+          const y = date.getFullYear();
+          const m = (date.getMonth() + 1).toString().padStart(2, '0');
+          const d = date.getDate().toString().padStart(2, '0');
 
-    // 데이터 생성 함수
-   const generateData = (totalPages = 20) => {
-  const data = {};
-  let num = totalPages * 10;
-  const startDate = new Date(2025, 3, 1);
+          pageData.push({
+            number: num,
+            title: customTitles[num - 1] || `[이벤트] 기대평 이벤트 ${num}`, // ✅ 변경된 부분
+            date: `${y}.${m}.${d}`
+          });
+          num--;
+        }
+        data[p] = pageData;
+      }
+      return data;
+    };
 
-  for (let p = 1; p <= totalPages; p++) {
-    const pageData = [];
-    for (let i = 9; i >= 0; i--) {
-      const date = new Date(startDate);
-      date.setDate(date.getDate() + (num - 1));
-      const y = date.getFullYear();
-      const m = (date.getMonth() + 1).toString().padStart(2, '0');
-      const d = date.getDate().toString().padStart(2, '0');
-
-      pageData.push({
-        number: num,
-        title: customTitles[num - 1] || `[이벤트] 기대평 이벤트 ${num}`, // ✅ 변경된 부분
-        date: `${y}.${m}.${d}`
-      });
-      num--;
-    }
-    data[p] = pageData;
-  }
-  return data;
-};
-
-
-    // 전체 App 구성
-    const App = () => {
+      const App = () => {
       const [activeHeader, setActiveHeader] = useState("이벤트");
       const [currentPage, setCurrentPage] = useState(1);
       const totalPages = 3;
