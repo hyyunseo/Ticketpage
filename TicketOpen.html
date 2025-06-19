@@ -90,7 +90,7 @@
     }
   </script>
 
-  <!-- HOT 공연 오픈 소식 + 배너 -->
+  <!-- HOT 공연 오픈 소식 -->
   <section class="max-w-[1000px] mx-auto px-4 flex justify-between py-6 items-start bg-gray-100">
     <!-- 왼쪽 HOT 공연 -->
    <div class="flex-1 mr-6 p-4">
@@ -107,23 +107,22 @@
 
     <!-- 오른쪽 배너 -->
    <aside class="w-36 shrink-0">
-  <div class="border rounded-lg p-4 bg-white">
-    <div class="flex flex-col items-center mb-6">
-      <div class="w-28 h-36 overflow-hidden flex items-center justify-center">
-        <img src="ticketopen/rightbanner1.jpg" alt="첫공 초대권" class="object-cover w-full h-full rounded" />
-      </div>
+    <div class="border rounded-lg p-4 bg-white">
+      <div class="flex flex-col items-center mb-6">
+        <div class="w-28 h-36 overflow-hidden flex items-center justify-center">
+          <img src="ticketopen/rightbanner1.jpg" alt="첫공 초대권" class="object-cover w-full h-full rounded" />
+        </div>
       <p class="text-red-500 text-sm mt-2 font-semibold">첫공 초대권 증정</p>
-    </div>
-    <hr class="my-4 border-gray-300" />
-    <div class="flex flex-col items-center mt-6">
-      <div class="w-28 h-36 overflow-hidden flex items-center justify-center">
-        <img src="ticketopen/rightbanner2.gif" alt="타임 세일" class="object-cover w-full h-full rounded" />
       </div>
-      <p class="text-red-500 text-sm mt-2 font-semibold">Time Sale</p>
+      <hr class="my-4 border-gray-300" />
+      <div class="flex flex-col items-center mt-6">
+        <div class="w-28 h-36 overflow-hidden flex items-center justify-center">
+          <img src="ticketopen/rightbanner2.gif" alt="타임 세일" class="object-cover w-full h-full rounded" />
+        </div>
+        <p class="text-red-500 text-sm mt-2 font-semibold">Time Sale</p>
+      </div>
     </div>
-  </div>
-</aside>
-
+  </aside>
   </section>
 
   <!-- 티켓 오픈 리스트 -->
@@ -132,7 +131,6 @@
     <div class="flex justify-center mt-6 space-x-2" id="pagination"></div>
   </main>
 
-  <!-- 푸터 -->
   <footer class="bg-gray-100 w-full border-t border-gray-300 mt-32 pt-6 px-8 text-xs text-gray-600">
     <nav class="flex flex-wrap justify-center gap-x-20 gap-y-2 mb-4 text-gray-500">
       <a href="#" class="hover:underline">회사소개</a>
@@ -170,48 +168,48 @@
   </footer>
 
   <script>
- const hotItems = [
-  {
-    title: `TONE STUDIO LIVE…`,
-    date: `[오픈]25.05.01(목)`,
-    img: `ticketopen/ticketopen1.jpeg`
-  },
-  {
-    title: `NMIXX 1ST FAN ME…`,
-    date: `[오픈]25.05.01(목)`,
-    img: `ticketopen/ticketopen2.jpg`
-  },
-  {
-    title: `뮤지컬 <멤피스> 3차…`,
-    date: `오픈 일정 보기 >`,
-    img: `ticketopen/ticketopen3.gif`
-  },
-  {
-    title: `먼데이프로젝트 IN…`,
-    date: `[오픈]25.05.02(금)`,
-    img: `ticketopen/ticketopen4.jpg`
-  },
-  {
-    title: `백아 단독 콘서트…`,
-    date: `[오픈]25.05.03(토)`,
-    img: `ticketopen/ticketopen5.webp`
-  },
-  {
-    title: `Pinyo Live Tour 2025…`,
-    date: `[오픈]25.05.03(토)`,
-    img: `ticketopen/ticketopen6.webp`
-  },
-  {
-    title: `낯선 섬 티켓 오픈…`,
-    date: `[오픈]25.05.03(토)`,
-    img: `ticketopen/ticketopen7.jpg`
-  },
-  {
-    title: `블랙홀 단독콘서트…`,
-    date: `[오픈]25.05.04(일)`,
-    img: `ticketopen/ticketopen8.jpeg`
-  }
-];
+  const hotItems = [
+    {
+      title: `TONE STUDIO LIVE…`,
+      date: `[오픈]25.05.01(목)`,
+      img: `ticketopen/ticketopen1.jpeg`
+    },
+    {
+      title: `NMIXX 1ST FAN ME…`,
+      date: `[오픈]25.05.01(목)`,
+      img: `ticketopen/ticketopen2.jpg`
+    },
+    {
+      title: `뮤지컬 <멤피스> 3차…`,
+      date: `오픈 일정 보기 >`,
+      img: `ticketopen/ticketopen3.gif`
+    },
+    {
+      title: `먼데이프로젝트 IN…`,
+      date: `[오픈]25.05.02(금)`,
+      img: `ticketopen/ticketopen4.jpg`
+    },
+    {
+      title: `백아 단독 콘서트…`,
+      date: `[오픈]25.05.03(토)`,
+      img: `ticketopen/ticketopen5.webp`
+    },
+    {
+      title: `Pinyo Live Tour 2025…`,
+      date: `[오픈]25.05.03(토)`,
+      img: `ticketopen/ticketopen6.webp`
+    },
+    {
+      title: `낯선 섬 티켓 오픈…`,
+      date: `[오픈]25.05.03(토)`,
+      img: `ticketopen/ticketopen7.jpg`
+    },
+    {
+      title: `블랙홀 단독콘서트…`,
+      date: `[오픈]25.05.04(일)`,
+      img: `ticketopen/ticketopen8.jpeg`
+    }
+  ];
 
 
     let currentHotPage = 1;
@@ -219,24 +217,24 @@
     const totalHotPages = Math.ceil(hotItems.length / hotItemsPerPage);
 
     function renderHotItems() {
-  const container = document.getElementById("hotItems");
-  container.innerHTML = "";
-  const start = (currentHotPage - 1) * hotItemsPerPage;
-  const end = start + hotItemsPerPage;
-  const pageItems = hotItems.slice(start, end);
+    const container = document.getElementById("hotItems");
+    container.innerHTML = "";
+    const start = (currentHotPage - 1) * hotItemsPerPage;
+    const end = start + hotItemsPerPage;
+    const pageItems = hotItems.slice(start, end);
 
-  pageItems.forEach((item, i) => {
-    container.innerHTML += `
-      <div class="text-center">
-        <img src="${item.img}" alt="${item.title}" class="h-60 w-full object-cover mb-2 rounded" />
-        <div class="font-semibold">${item.title}</div>
-        <div class="text-sm text-gray-600">${i === 2 && currentHotPage === 1 ? '오픈일정 보기 &gt;' : item.date}</div>
-      </div>
-    `;
-  });
+    pageItems.forEach((item, i) => {
+      container.innerHTML += `
+        <div class="text-center">
+          <img src="${item.img}" alt="${item.title}" class="h-60 w-full object-cover mb-2 rounded" />
+          <div class="font-semibold">${item.title}</div>
+          <div class="text-sm text-gray-600">${i === 2 && currentHotPage === 1 ? '오픈일정 보기 &gt;' : item.date}</div>
+        </div>
+      `;
+    });
 
-  document.getElementById("hotPageIndicator").textContent = `${currentHotPage} / ${totalHotPages}`;
-}
+      document.getElementById("hotPageIndicator").textContent = `${currentHotPage} / ${totalHotPages}`;
+    }
 
     function changeHotPage(direction) {
       if (direction === 'prev' && currentHotPage > 1) currentHotPage--;
@@ -564,9 +562,9 @@
               <div class="mt-1 text-sm text-gray-500">등록일 ${item.regDate} │ 조회 ${item.views}</div>
             </div>
            <div class="w-[90px] h-[120px] flex-shrink-0">
-  <img src="${item.img}" alt="${item.title}" class="w-full h-full object-cover rounded" />
-</div>
-          </div>
+          <img src="${item.img}" alt="${item.title}" class="w-full h-full object-cover rounded" />
+        </div>
+        </div>
         `;
       });
 

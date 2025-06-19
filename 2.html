@@ -16,7 +16,15 @@
       border-bottom: none !important;
     }
   </style>
+<<<<<<< HEAD
   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=508c124c8ec10d15353d3ec0d454ba61&libraries=services"></script>
+=======
+   <script
+      defer
+      src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=508c124c8ec10d15353d3ec0d454ba61&libraries=services&autoload=false"
+    ></script>
+
+>>>>>>> dd9137f8ddee34ae1928550a50163d70c0f4bf31
 </head>
 
 <body class="bg-gray-100 text-black">
@@ -96,8 +104,13 @@
     rootRender.render(<App />);
   }
 </script>
+<<<<<<< HEAD
 </script>
 
+=======
+
+  <!-- 콘텐츠 영역 수정 -->
+>>>>>>> dd9137f8ddee34ae1928550a50163d70c0f4bf31
   <main class="max-w-[1000px] mx-auto px-4 py-6 ">
     <h2 class="text-2xl font-bold mb-4">뮤지컬 지킬앤하이드 (Jekyll ＆ Hyde) - 20주년</h2>
     <div class="flex flex-wrap lg:flex-nowrap lg:space-x-8">
@@ -372,6 +385,7 @@
   </script>
 
 <script>
+<<<<<<< HEAD
   function initMap() {
   const mapContainer = document.getElementById('map');
   if (!mapContainer) return;
@@ -391,32 +405,53 @@
   mapContainer.style.height = '100%';
   kakao.maps.event.trigger(map, 'resize');
 }
+=======
+  // Kakao Map 초기화 함수 (변경 없음)
+  function initMap() {
+    const container = document.getElementById('map');
+    if (!container) return;
+    const options = {
+      center: new kakao.maps.LatLng(37.510784, 127.099882),
+      level: 3
+    };
+    const map = new kakao.maps.Map(container, options);
+    new kakao.maps.Marker({ position: options.center, map });
+  }
+>>>>>>> dd9137f8ddee34ae1928550a50163d70c0f4bf31
 
+  // 탭 메뉴 동작
   const tabButtons = document.querySelectorAll("#tab-menu .cursor-pointer");
-  const tabDetail = document.getElementById("tab-detail");
-  const tabVenue = document.getElementById("tab-venue");
+  const tabDetail  = document.getElementById("tab-detail");
+  const tabVenue   = document.getElementById("tab-venue");
 
   tabButtons.forEach((btn, index) => {
     btn.addEventListener("click", () => {
-      if (!(index === 0 || index === 3)) return;
-
+      // 탭 스타일 토글
       tabButtons.forEach(b =>
         b.classList.remove("text-red-600", "font-semibold", "border-b-2", "border-red-600")
       );
       btn.classList.add("text-red-600", "font-semibold", "border-b-2", "border-red-600");
 
+      // 탭 내용 전환
       tabDetail.classList.add("hidden");
       tabVenue.classList.add("hidden");
 
-      if (index === 0) tabDetail.classList.remove("hidden");
-      if (index === 3) {
+      if (index === 0) {
+        tabDetail.classList.remove("hidden");
+      } else if (index === 3) {
         tabVenue.classList.remove("hidden");
+<<<<<<< HEAD
         setTimeout(initMap, 300); 
+=======
+        // SDK + 내부 라이브러리 로드 후 initMap 호출
+        kakao.maps.load(() => {
+          initMap();
+        });
+>>>>>>> dd9137f8ddee34ae1928550a50163d70c0f4bf31
       }
     });
   });
 </script>
-
 
 </body>
 </html>

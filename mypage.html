@@ -14,63 +14,61 @@
 
   <script type="text/babel">
     const navLinkMap = {
-  "뮤지컬/연극": "musical.html",
-  "콘서트":     "under_construction.html",
-  "스포츠":     "sport.html",
-  "전시/행사":   "under_construction.html",
-  "레저":       "leisure.html",
-  "테마/지역":   "theme.html",
-  "MD샵":      "testMDSHOP.html",  // 현재 보고 있는 페이지
-  "이벤트":     "EventAll.html",
-  "티켓오픈소식": "TicketOpen.html",
-};
+      "뮤지컬/연극": "musical.html",
+      "콘서트": "under_construction.html",
+      "스포츠": "sport.html",
+      "전시/행사": "under_construction.html",
+      "레저": "leisure.html",
+      "테마/지역": "theme.html",
+      "MD샵": "testMDSHOP.html",
+      "이벤트": "EventAll.html",
+      "티켓오픈소식": "TicketOpen.html"
+    };
 
     const navItems = ["뮤지컬/연극", "콘서트", "스포츠", "전시/행사", "레저", "테마/지역", "MD샵", "이벤트", "티켓오픈소식"];
 
     const Header = () => (
       <header className="bg-red-600 text-white p-2 flex items-center justify-between">
-        <a href="index.html" class="flex items-center space-x-4">
-    <img src="logo.png" alt="logo" class="w-10 h-10" />
-    <h1 class="text-xl font-bold">ticketpage</h1>
-  </a>
+        <a href="index.html" className="flex items-center space-x-4">
+          <img src="logo.png" alt="logo" className="w-10 h-10" />
+          <h1 className="text-xl font-bold">ticketpage</h1>
+        </a>
         <div className="flex items-center space-x-2">
           <input type="text" placeholder="검색어를 입력하세요" className="p-2 rounded w-96 text-black" />
           <button className="p-2 bg-white text-black rounded">🔍</button>
         </div>
         <div className="flex items-center space-x-4">
           <a href="login.html" className="hover:underline">로그인</a>
-              <a href="login.html" className="hover:underline">회원가입</a>
+          <a href="login.html" className="hover:underline">회원가입</a>
           <a href="mypage.html">
-    <img src="my.png" alt="profile" class="w-8 h-8 rounded-full" />
-  </a>
+            <img src="my.png" alt="profile" className="w-8 h-8 rounded-full" />
+          </a>
         </div>
       </header>
     );
 
-   const NavigationBar = () => (
-  <nav className="bg-white text-black p-2 border-b">
-    <ul className="flex justify-between text-sm">
-      {navItems.map((item, index) => {
-        // 실제 링크를 꺼내고, 없으면 "#" 처리
-        const href = navLinkMap[item] || "#";
-
-        return (
-          <li
-            key={index}
-            className={`
-              hover:text-red-600 flex-1 text-center cursor-pointer
-              ${item === "프로필" ? "text-red-600 font-bold" : ""}
-            `}
-          >
-            <a href={href} className="block">
-              {item}
-            </a>
-          </li>
-        );
-      })}
-    </ul>
-  </nav>
-);
+    const NavigationBar = () => (
+      <nav className="bg-white text-black p-2 border-b">
+        <ul className="flex justify-between text-sm">
+          {navItems.map((item, index) => {
+            const href = navLinkMap[item] || "#";
+            return (
+              <li
+                key={index}
+                className={`
+                  hover:text-red-600 flex-1 text-center cursor-pointer
+                  ${item === "프로필" ? "text-red-600 font-bold" : ""}
+                `}
+              >
+                <a href={href} className="block">
+                  {item}
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </nav>
+    );
 
     const UserInfo = () => (
       <div className="flex rounded-lg overflow-hidden shadow w-full h-40">
@@ -105,9 +103,9 @@
         </div>
       </div>
     );
+
     const FooterInfo = () => (
       <footer className="w-full border-t border-gray-300 mt-32 pt-6 px-8 text-xs text-gray-600">
-        {/* 상단 링크 메뉴 */}
         <nav className="flex flex-wrap justify-center gap-x-20 gap-y-2 mb-4 text-gray-500">
           {[
             "회사소개",
@@ -118,17 +116,14 @@
             "여행자보험 가입내역",
             "티켓판매안내",
             "공지사항",
-            "고객센터",
+            "고객센터"
           ].map((item) => (
             <a href="#" key={item} className="hover:underline">
               {item}
             </a>
           ))}
         </nav>
-
-        {/* 하단 회사 및 고객센터 정보 */}
         <div className="flex flex-wrap justify-between text-gray-600 px-16 gap-x-20">
-
           <div className="w-[300px] mb-4">
             <p className="font-bold mb-1">(주)숙명여자협회</p>
             <p>주소 서울특별시 용산구 청파로</p>
@@ -136,14 +131,12 @@
             <p>통신판매업신고 2025-숙명-0504</p>
             <p>관광사업등록번호 제2025-000001호</p>
           </div>
-
           <div className="w-[300px] mb-4">
             <p className="font-bold mb-1">고객센터</p>
             <p>1:1문의</p>
             <p>팩스 02-842-1029</p>
             <p>이메일 websystem@smu.ac.kr</p>
           </div>
-
           <div className="w-[300px] mb-4">
             <p className="font-bold mb-1">전자금융거래 분쟁처리 담당정보</p>
             <p>팩스 02-482-1203</p>
@@ -161,7 +154,6 @@
         <div className="max-w-7xl mx-auto flex gap-6 px-4 mt-6">
           <div className="w-4/5">
             <UserInfo />
-
             <section className="mt-8">
               <h2 className="text-lg font-semibold mb-2">최근 예매/취소</h2>
               <div className="bg-white border rounded overflow-hidden">
@@ -173,7 +165,7 @@
                 </div>
                 <div className="grid grid-cols-4 gap-x-6 text-center py-4 items-start">
                   <div className="text-sm flex items-center justify-center h-full">
-                      <div className="font-semibold mb-1">2025.05.21</div>
+                    <div className="font-semibold mb-1">2025.05.21</div>
                   </div>
                   <div className="flex space-x-2 items-start">
                     <img src="mypage/라이즈.jpg" alt="공연포스터" className="w-20 h-28 object-cover rounded" />
@@ -196,7 +188,6 @@
                   </div>
                 </div>
                 <hr className="my-2 border-t border-gray-300" />
-
                 <div className="grid grid-cols-4 gap-x-6 text-center py-4 items-start">
                   <div className="text-sm flex items-center justify-center h-full">
                     <div className="font-semibold mb-1">2024.11.22</div>
@@ -223,7 +214,6 @@
                 </div>
               </div>
             </section>
-
             <section className="grid grid-cols-2 gap-6 mt-6 mb-12">
               <div className="bg-white border rounded p-4">
                 <div className="flex justify-between mb-2">
@@ -240,17 +230,13 @@
                 </div>
                 <div className="text-center text-gray-600 py-6">
                   <p className="mb-4">문의하신 내역이 없습니다.</p>
-                  <button
-  className="text-sm border px-4 py-1 rounded hover:bg-gray-100"
-  onClick={() => window.location.href = 'customerservice.html'}
->
-  1:1 문의/고객센터
-</button>
+                  <button className="text-sm border px-4 py-1 rounded hover:bg-gray-100" onClick={() => window.location.href = 'customerservice.html'}>
+                    1:1 문의/고객센터
+                  </button>
                 </div>
               </div>
             </section>
           </div>
-
           <aside className="w-36 shrink-0">
             <div className="bg-white border rounded-lg p-4">
               <div className="flex flex-col items-center mb-6">

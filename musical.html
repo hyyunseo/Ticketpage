@@ -15,207 +15,200 @@
 
   <script type="text/babel">
     const navLinkMap = {
-  "뮤지컬/연극": "musical.html",
-  "콘서트":     "under_construction.html",
-  "스포츠":     "sport.html",
-  "전시/행사":   "under_construction.html",
-  "레저":       "leisure.html",
-  "테마/지역":   "theme.html",
-  "MD샵":      "testMDSHOP.html",  // 현재 보고 있는 페이지
-  "이벤트":     "EventAll.html",
-  "티켓오픈소식": "TicketOpen.html",
-};
+      "뮤지컬/연극": "musical.html",
+      "콘서트":     "under_construction.html",
+      "스포츠":     "sport.html",
+      "전시/행사":   "under_construction.html",
+      "레저":       "leisure.html",
+      "테마/지역":   "theme.html",
+      "MD샵":      "testMDSHOP.html",
+      "이벤트":     "EventAll.html",
+      "티켓오픈소식": "TicketOpen.html",
+    };
 
     const navItems = ["뮤지컬/연극", "콘서트", "스포츠", "전시/행사", "레저", "테마/지역", "MD샵", "이벤트", "티켓오픈소식"];
 
     const Header = () => (
       <header className="bg-red-600 text-white p-2 flex items-center justify-between  top-0 z-50">
         <a href="index.html" class="flex items-center space-x-4">
-    <img src="logo.png" alt="logo" class="w-10 h-10" />
-    <h1 class="text-xl font-bold">ticketpage</h1>
-  </a>
+          <img src="logo.png" alt="logo" class="w-10 h-10" />
+          <h1 class="text-xl font-bold">ticketpage</h1>
+        </a>
         <div className="flex items-center space-x-2">
           <input type="text" placeholder="검색어를 입력하세요" className="p-2 rounded w-96 text-black" />
           <button className="p-2 bg-white text-black rounded">🔍</button>
         </div>
         <div className="flex items-center space-x-4">
           <a href="login.html" className="hover:underline">로그인</a>
-              <a href="login.html" className="hover:underline">회원가입</a>
+          <a href="login.html" className="hover:underline">회원가입</a>
           <a href="mypage.html">
-    <img src="my.png" alt="profile" class="w-8 h-8 rounded-full" />
-  </a>
+            <img src="my.png" alt="profile" class="w-8 h-8 rounded-full" />
+          </a>
         </div>
       </header>
     );
 
     const NavigationBar = () => (
-    <nav className="bg-white text-black p-2 border-b top-12 z-50">
-      <ul className="flex justify-between text-sm">
-        {navItems.map((item, index) => {
-          // 실제 링크를 꺼내고, 없으면 "#" 처리
-          const href = navLinkMap[item] || "#";
-
-          return (
-            <li
-              key={index}
-              className={`
-                hover:text-red-600 flex-1 text-center cursor-pointer
-                ${item === "뮤지컬/연극" ? "text-red-600 font-bold" : ""}
-              `}
-            >
-              <a href={href} className="block">
-                {item}
-              </a>
-            </li>
-          );
-        })}
-      </ul>
-    </nav>
-  );
+      <nav className="bg-white text-black p-2 border-b top-12 z-50">
+        <ul className="flex justify-between text-sm">
+          {navItems.map((item, index) => {
+            const href = navLinkMap[item] || "#";
+            return (
+              <li
+                key={index}
+                className={`
+                  hover:text-red-600 flex-1 text-center cursor-pointer
+                  ${item === "뮤지컬/연극" ? "text-red-600 font-bold" : ""}
+                `}
+              >
+                <a href={href} className="block">
+                  {item}
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </nav>
+    );
 
     const LeisurePage = () => (
-  <div className="p-8 max-w-7xl mx-auto">
-    {/* 메인 이미지와 카드 리스트 */}
-    <div className="grid grid-cols-4 gap-4 mb-4">
-      <a href="1.html" className="border p-4 bg-white">
-        <img src="main/노트르담드파리.gif" alt="노트드람드파리" />
-        <h3 className="font-bold mt-2">노트드람 드 파리</h3>
-        <p className="text-gray-600">2025.3.21 ~ 6.15</p>
-      </a>
-      <a href="2.html" className="border p-4 bg-white">
-        <img src="main/지킬앤.gif" alt="행사 이름" />
-        <h3 className="font-bold mt-2">지킬 앤 하이드</h3>
-        <p className="text-gray-600">2025.4.15 ~ 9.15</p>
-      </a>
-      <a href="3.html" className="border p-4 bg-white">
-        <img src="main/매디슨카운티의다리.gif" alt="행사 이름" />
-        <h3 className="font-bold mt-2">매디슨 카운티의 다리</h3>
-        <p className="text-gray-600">2025.6.1 ~ 10.1</p>
-      </a>
-      <a href="4.html" className="border p-4 bg-white">
-        <img src="main/phanton.gif" alt="행사 이름" />
-        <h3 className="font-bold mt-2">팬텀</h3>
-        <p className="text-gray-600">2025.8.1 ~ 11.31</p>
-      </a>
-    </div>
-  </div>
-);
+      <div className="p-8 max-w-7xl mx-auto">
+        <div className="grid grid-cols-4 gap-4 mb-4">
+          <a href="1.html" className="border p-4 bg-white">
+            <img src="main/노트르담드파리.gif" alt="노트드람드파리" />
+            <h3 className="font-bold mt-2">노트드람 드 파리</h3>
+            <p className="text-gray-600">2025.3.21 ~ 6.15</p>
+          </a>
+          <a href="2.html" className="border p-4 bg-white">
+            <img src="main/지킬앤.gif" alt="행사 이름" />
+            <h3 className="font-bold mt-2">지킬 앤 하이드</h3>
+            <p className="text-gray-600">2025.4.15 ~ 9.15</p>
+          </a>
+          <a href="3.html" className="border p-4 bg-white">
+            <img src="main/매디슨카운티의다리.gif" alt="행사 이름" />
+            <h3 className="font-bold mt-2">매디슨 카운티의 다리</h3>
+            <p className="text-gray-600">2025.6.1 ~ 10.1</p>
+          </a>
+          <a href="4.html" className="border p-4 bg-white">
+            <img src="main/phanton.gif" alt="행사 이름" />
+            <h3 className="font-bold mt-2">팬텀</h3>
+            <p className="text-gray-600">2025.8.1 ~ 11.31</p>
+          </a>
+        </div>
+      </div>
+    );
 
-const FooterInfo = () => (
-  <footer className="w-full border-t border-gray-300 mt-32 pt-6 px-8 text-xs text-gray-600">
-    {/* 상단 링크 */}
-    <nav className="flex flex-wrap justify-center gap-x-20 gap-y-2 mb-4 text-gray-500">
-      {[
-        "회사소개", "이용약관", "개인정보처리방침", "위치기반서비스 이용약관",
-        "여행약관", "여행자보험 가입내역", "티켓판매안내", "공지사항", "고객센터"
-      ].map((item) => (
-        <a href="#" key={item} className="hover:underline">
-          {item}
-        </a>
-      ))}
-    </nav>
+    const FooterInfo = () => (
+      <footer className="w-full border-t border-gray-300 mt-32 pt-6 px-8 text-xs text-gray-600">
+        <nav className="flex flex-wrap justify-center gap-x-20 gap-y-2 mb-4 text-gray-500">
+          {[
+            "회사소개", "이용약관", "개인정보처리방침", "위치기반서비스 이용약관",
+            "여행약관", "여행자보험 가입내역", "티켓판매안내", "공지사항", "고객센터"
+          ].map((item) => (
+            <a href="#" key={item} className="hover:underline">
+              {item}
+            </a>
+          ))}
+        </nav>
 
-    {/* 하단 회사 정보 */}
-    <div className="flex flex-wrap justify-between text-gray-600 px-16 gap-x-20">
-      <div className="w-[300px] mb-4">
-        <p className="font-bold mb-1">(주)숙명여자협회</p>
-        <p>주소 서울특별시 용산구 청파로</p>
-        <p>사업자등록번호 824-91-09283</p>
-        <p>통신판매업신고 2025-숙명-0504</p>
-        <p>관광사업등록번호 제2025-000001호</p>
+      <div className="flex flex-wrap justify-between text-gray-600 px-16 gap-x-20">
+        <div className="w-[300px] mb-4">
+          <p className="font-bold mb-1">(주)숙명여자협회</p>
+          <p>주소 서울특별시 용산구 청파로</p>
+          <p>사업자등록번호 824-91-09283</p>
+          <p>통신판매업신고 2025-숙명-0504</p>
+          <p>관광사업등록번호 제2025-000001호</p>
+        </div>
+        <div className="w-[300px] mb-4">
+          <p className="font-bold mb-1">고객센터</p>
+          <p>1:1문의</p>
+          <p>팩스 02-842-1029</p>
+          <p>이메일 websystem@smu.ac.kr</p>
+        </div>
+        <div className="w-[300px] mb-4">
+          <p className="font-bold mb-1">전자금융거래 분쟁처리 담당정보</p>
+          <p>팩스 02-482-1203</p>
+          <p>이메일 may04@smu.ac.kr</p>
+          <p>개인정보보호책임자 privacy@smu.ac.kr</p>
+        </div>
       </div>
-      <div className="w-[300px] mb-4">
-        <p className="font-bold mb-1">고객센터</p>
-        <p>1:1문의</p>
-        <p>팩스 02-842-1029</p>
-        <p>이메일 websystem@smu.ac.kr</p>
-      </div>
-      <div className="w-[300px] mb-4">
-        <p className="font-bold mb-1">전자금융거래 분쟁처리 담당정보</p>
-        <p>팩스 02-482-1203</p>
-        <p>이메일 may04@smu.ac.kr</p>
-        <p>개인정보보호책임자 privacy@smu.ac.kr</p>
-      </div>
-    </div>
-  </footer>
-);
+    </footer>
+  );
 
     const App = () => {
-      const [viewType, setViewType] = React.useState('card');
-      const [sortType, setSortType] = React.useState('인기순');
-      const [filteredItems, setFilteredItems] = React.useState([]);
-const getRandomEndDate = (startDate) => {
-  const randomDays = Math.floor(Math.random() * 2) + 1; // 1~2일 추가
-  const endDate = new Date(startDate);
-  endDate.setDate(endDate.getDate() + randomDays);
-  return endDate;
-};
-const getRandomVenue = (region) => {
-  const venues = regionVenues[region];
-  return venues[Math.floor(Math.random() * venues.length)];
-};   
-const rawItems = [
-  { id: 1, title: "노트르담 드 파리", image: "main/노트르담드파리.gif", theme: "아이돌", genre: "콘서트", region: "서울", venue: "LG아트센터", status: "판매중", popularity: 85, date: new Date(2025, 6, 4), createdAt: new Date(2025, 4, 1) },
-  { id: 2, title: "지킬 앤 하이드", image: "main/지킬앤.gif", theme: "페스티벌/콜라보", genre: "콘서트", region: "경기/인천", venue: "샤롯데씨어터", status: "판매예정", popularity: 72, date: new Date(2025, 7, 21), createdAt: new Date(2025, 4, 5) },
-  { id: 3, title: "매디슨 카운티의 다리", image: "main/매디슨카운티의다리.gif", theme: "", genre: "콘서트", region: "부산/대구/경상", venue: "블루스퀘어 인터파크홀", status: "판매중", popularity: 60, date: new Date(2025, 5, 15), createdAt: new Date(2025, 4, 10) },
-  { id: 4, title: "뮤지컬 <프리다>", theme: "홍대/소극장", image: "theme/프리다.jpg", genre: "뮤지컬/연극", region: "서울", venue: "NOL 유니플렉스 1관(구 인터파크 유니플렉스)", status: "판매예정", popularity: 95, date: new Date(2025, 8, 12), createdAt: new Date(2025, 4, 12) },
-  { id: 5, title: "팬텀", image: "main/phanton.gif", theme: "아이돌", genre: "콘서트", region: "서울", venue: "고려대학교 화정체육관", status: "판매중", popularity: 78, date: new Date(2025, 9, 1), createdAt: new Date(2025, 4, 15) },
-  { id: 6, title: "해리 포터와 죽음의 성물™ Part I 인 콘서트", image: "theme/해리포터.jpg", theme: "", genre: "클래식", region: "서울", venue: "세종문화회관 대극장", status: "판매예정", popularity: 88, date: new Date(2025, 7, 30), createdAt: new Date(2025, 4, 18) },
-  { id: 7, title: "위키드", image: "main/위키드.gif", theme: "페스티벌/콜라보", genre: "콘서트", region: "부산/대구/경상", venue: "충무아트센터 대극장", status: "판매중", popularity: 99, date: new Date(2025, 6, 26), createdAt: new Date(2025, 4, 20) },
-  { id: 8, title: "뮤지컬 〈써니텐〉 - JTN 아트홀 1관", image: "main/써니텐.gif", theme: "", genre: "뮤지컬/연극", region: "서울", venue: "세종문화회관 대극장", status: "판매예정", popularity: 74, date: new Date(2025, 9, 18), createdAt: new Date(2025, 4, 22) },
-  { id: 9, title: "맘마미아", image: "main/맘마미아.gif", theme: "아이돌", genre: "콘서트", region: "서울", venue: "올림픽공원 핸드볼경기장", status: "판매중", popularity: 81, date: new Date(2025, 10, 5), createdAt: new Date(2025, 4, 25) },
-  { id: 10, title: "멤피스", image: "main/멤피스.gif", theme: "페스티벌/콜라보", genre: "콘서트", region: "경기/인천", venue: "일산 킨텍스(KINTEX) 제2전시장 9홀", status: "판매예정", popularity: 53, date: new Date(2025, 11, 10), createdAt: new Date(2025, 4, 28) },
-  { id: 11, title: "플레임즈", image: "main/플레임즈.gif", theme: "", genre: "콘서트", region: "부산/대구/경상", venue: " 이화여대 삼성홀", status: "판매중", popularity: 92, date: new Date(2025, 5, 25), createdAt: new Date(2025, 5, 1) },
-  { id: 12, title: "연극 〈셰익스피어 인 러브〉", image: "theme/셰익.jpg", theme: "", genre: "뮤지컬/연극", region: "서울", venue: "예술의전당 CJ 토월극장", status: "판매예정", status: "판매예정", popularity: 79, date: new Date(2025, 6, 10), createdAt: new Date(2025, 5, 5) },
-  { id: 13, title: "등등곡", image: "main/등등곡.gif", theme: "아이돌", genre: "콘서트", region: "서울", venue: "고척스카이돔", status: "판매중", popularity: 84, date: new Date(2025, 7, 15), createdAt: new Date(2025, 5, 8) },
-  { id: 14, title: "다시, 동물원", image: "main/다시, 동물원.gif", theme: "홍대/소극장", genre: "콘서트", region: "서울", venue: "KT&G 상상마당 홍대 라이브홀", status: "판매예정", popularity: 65, date: new Date(2025, 8, 20), createdAt: new Date(2025, 5, 12) },
-  { id: 15, title: "뮤지컬 〈구텐버그〉", image: "main/구텐버그.gif", theme: "페스티벌/콜라보", genre: "콘서트", region: "부산/대구/경상", venue: "대구 엑스포(EXPO)", status: "판매중", popularity: 71, date: new Date(2025, 5, 28), createdAt: new Date(2025, 5, 15) },
-  { id: 16, title: "뮤지컬 〈더 크리처〉", image: "main/더크리쳐.gif", theme: "", genre: "클래식", region: "광주/전라/제주", venue: "제주아트센터", status: "판매예정", popularity: 90, date: new Date(2025, 5, 19), createdAt: new Date(2025, 5, 18) },
-  { id: 17, title: "뮤지컬 〈뱀프 X 헌터〉", image: "main/뱀프.gif", theme: "아이돌", genre: "팬클럽/팬미팅", region: "서울", venue: "올림픽공원 KSPO DOME", status: "판매중", popularity: 66, date: new Date(2025, 11, 5), createdAt: new Date(2025, 5, 20) },
-  { id: 18, title: "뮤지컬 〈하모니〉", image: "main/하모니.gif", theme: "", genre: "콘서트", region: "경기/인천", venue: "용인 포은아트홀", status: "판매예정", popularity: 83, date: new Date(2025, 6, 15), createdAt: new Date(2025, 5, 22) },
-  { id: 19, title: "온가족 뮤지컬 〈판타지 재난뮤지컬〉 ＇1초＇", image: "main/1초.gif", theme: "", genre: "콘서트", region: "부산/대구/경상", venue: " KT&G 상상마당 부산 라이브홀", status: "판매중", popularity: 75, date: new Date(2025, 7, 20), createdAt: new Date(2025, 5, 25) },
-  { id: 20, title: "뮤지컬 〈사랑은 비를 타고 〉 30주년 공연", image: "main/사랑비.gif", theme: "페스티벌/콜라보", genre: "콘서트", region: "광주/전라/제주", venue: "전북대학교 대운동장", status: "판매예정", popularity: 69, date: new Date(2025, 8, 25), createdAt: new Date(2025, 5, 28) },
-  { id: 21, title: "뮤지컬 〈두 낫 디스터브〉", image: "main/두낫.gif", theme: "", genre: "전시/행사", region: "서울", venue: "현대카드 스토리지", status: "판매중", popularity: 82, date: new Date(2025, 6, 4), createdAt: new Date(2025, 4, 30) },
-  { id: 22, title: "뮤지컬 〈마하고니〉", image: "main/마하고니.gif", theme: "아이돌", genre: "콘서트", region: "경기/인천", venue: "일산 킨텍스(KINTEX) 제2전시장 10홀", status: "판매예정", popularity: 77, date: new Date(2025, 7, 12), createdAt: new Date(2025, 5, 2) },
-  { id: 23, title: "〈보이스 오브 햄릿〉", image: "main/보이스.gif", theme: "", genre: "콘서트", region: "대전/충청/강원", venue: "KT&G 상상마당 춘천 사운드홀", status: "판매중", popularity: 74, date: new Date(2025, 8, 5), createdAt: new Date(2025, 5, 4) },
-  { id: 24, title: "신화 : 시작하는 이야기", image: "theme/울산연극.jpg", theme: "", genre: "뮤지컬/연극", region: "부산/대구/경상", venue: "울산문화예술회관", status: "판매예정", popularity: 69, date: new Date(2025, 9, 14), createdAt: new Date(2025, 5, 6) },
-  { id: 25, title: "엔들링스", image: "theme/제주아트센터2.jpg", theme: "", genre: "뮤지컬/연극", region: "광주/전라/제주", venue: "제주아트센터", status: "판매중", popularity: 91, date: new Date(2025, 5, 27), createdAt: new Date(2025, 5, 8) },
-  { id: 26, title: "뮤지컬 〈머피〉", image: "main/머피.gif", theme: "내한공연", genre: "클래식", region: "서울", venue: "LG아트센터 서울 LG SIGNATURE 홀", status: "판매예정", popularity: 87, date: new Date(2025, 11, 18), createdAt: new Date(2025, 5, 10) },
-  { id: 27, title: "뮤지컬 〈매디슨 카운티의 다리〉", image: "theme/매디슨.jpg", theme: "", genre: "뮤지컬/연극", region: "서울", venue: "광림아트센터 BBCH홀", status: "판매중", popularity: 80, date: new Date(2025, 12, 9), createdAt: new Date(2025, 5, 12) },
-  { id: 28, title: "뮤지컬 〈빨래〉 - 20년의 시간 30번째 무대", image: "main/빨래.gif", theme: "", genre: "콘서트", region: "대전/충청/강원", venue: "인터플레이", status: "판매예정", popularity: 85, date: new Date(2026, 1, 6), createdAt: new Date(2025, 5, 14) },
-  { id: 29, title: "아빠와 난 초등학교 1학년", image: "theme/울산연극1.jpg", theme: "키즈/패밀리", genre: "뮤지컬/연극", region: "부산/대구/경상", venue: "울산 중구 문화의전당", status: "판매중", popularity: 89, date: new Date(2025, 6, 25), createdAt: new Date(2025, 5, 16) },
-  { id: 30, title: "코믹 마샬아츠 퍼포먼스 〈점프 JUMP〉", image: "main/점프.gif", theme: "", genre: "클래식", region: "광주/전라/제주", venue: "제주아트센터", status: "판매예정", popularity: 86, date: new Date(2025, 5, 22), createdAt: new Date(2025, 5, 18) }
-];
+    const [viewType, setViewType] = React.useState('card');
+    const [sortType, setSortType] = React.useState('인기순');
+    const [filteredItems, setFilteredItems] = React.useState([]);
+    const getRandomEndDate = (startDate) => {
+    const randomDays = Math.floor(Math.random() * 2) + 1; 
+    const endDate = new Date(startDate);
+    endDate.setDate(endDate.getDate() + randomDays);
+    return endDate;
+  };
+    const getRandomVenue = (region) => {
+    const venues = regionVenues[region];
+    return venues[Math.floor(Math.random() * venues.length)];
+  };   
+    const rawItems = [
+      { id: 1, title: "노트르담 드 파리", image: "main/노트르담드파리.gif", theme: "아이돌", genre: "콘서트", region: "서울", venue: "LG아트센터", status: "판매중", popularity: 85, date: new Date(2025, 6, 4), createdAt: new Date(2025, 4, 1) },
+      { id: 2, title: "지킬 앤 하이드", image: "main/지킬앤.gif", theme: "페스티벌/콜라보", genre: "콘서트", region: "경기/인천", venue: "샤롯데씨어터", status: "판매예정", popularity: 72, date: new Date(2025, 7, 21), createdAt: new Date(2025, 4, 5) },
+      { id: 3, title: "매디슨 카운티의 다리", image: "main/매디슨카운티의다리.gif", theme: "", genre: "콘서트", region: "부산/대구/경상", venue: "블루스퀘어 인터파크홀", status: "판매중", popularity: 60, date: new Date(2025, 5, 15), createdAt: new Date(2025, 4, 10) },
+      { id: 4, title: "뮤지컬 <프리다>", theme: "홍대/소극장", image: "theme/프리다.jpg", genre: "뮤지컬/연극", region: "서울", venue: "NOL 유니플렉스 1관(구 인터파크 유니플렉스)", status: "판매예정", popularity: 95, date: new Date(2025, 8, 12), createdAt: new Date(2025, 4, 12) },
+      { id: 5, title: "팬텀", image: "main/phanton.gif", theme: "아이돌", genre: "콘서트", region: "서울", venue: "고려대학교 화정체육관", status: "판매중", popularity: 78, date: new Date(2025, 9, 1), createdAt: new Date(2025, 4, 15) },
+      { id: 6, title: "해리 포터와 죽음의 성물™ Part I 인 콘서트", image: "theme/해리포터.jpg", theme: "", genre: "클래식", region: "서울", venue: "세종문화회관 대극장", status: "판매예정", popularity: 88, date: new Date(2025, 7, 30), createdAt: new Date(2025, 4, 18) },
+      { id: 7, title: "위키드", image: "main/위키드.gif", theme: "페스티벌/콜라보", genre: "콘서트", region: "부산/대구/경상", venue: "충무아트센터 대극장", status: "판매중", popularity: 99, date: new Date(2025, 6, 26), createdAt: new Date(2025, 4, 20) },
+      { id: 8, title: "뮤지컬 〈써니텐〉 - JTN 아트홀 1관", image: "main/써니텐.gif", theme: "", genre: "뮤지컬/연극", region: "서울", venue: "세종문화회관 대극장", status: "판매예정", popularity: 74, date: new Date(2025, 9, 18), createdAt: new Date(2025, 4, 22) },
+      { id: 9, title: "맘마미아", image: "main/맘마미아.gif", theme: "아이돌", genre: "콘서트", region: "서울", venue: "올림픽공원 핸드볼경기장", status: "판매중", popularity: 81, date: new Date(2025, 10, 5), createdAt: new Date(2025, 4, 25) },
+      { id: 10, title: "멤피스", image: "main/멤피스.gif", theme: "페스티벌/콜라보", genre: "콘서트", region: "경기/인천", venue: "일산 킨텍스(KINTEX) 제2전시장 9홀", status: "판매예정", popularity: 53, date: new Date(2025, 11, 10), createdAt: new Date(2025, 4, 28) },
+      { id: 11, title: "플레임즈", image: "main/플레임즈.gif", theme: "", genre: "콘서트", region: "부산/대구/경상", venue: " 이화여대 삼성홀", status: "판매중", popularity: 92, date: new Date(2025, 5, 25), createdAt: new Date(2025, 5, 1) },
+      { id: 12, title: "연극 〈셰익스피어 인 러브〉", image: "theme/셰익.jpg", theme: "", genre: "뮤지컬/연극", region: "서울", venue: "예술의전당 CJ 토월극장", status: "판매예정", status: "판매예정", popularity: 79, date: new Date(2025, 6, 10), createdAt: new Date(2025, 5, 5) },
+      { id: 13, title: "등등곡", image: "main/등등곡.gif", theme: "아이돌", genre: "콘서트", region: "서울", venue: "고척스카이돔", status: "판매중", popularity: 84, date: new Date(2025, 7, 15), createdAt: new Date(2025, 5, 8) },
+      { id: 14, title: "다시, 동물원", image: "main/다시, 동물원.gif", theme: "홍대/소극장", genre: "콘서트", region: "서울", venue: "KT&G 상상마당 홍대 라이브홀", status: "판매예정", popularity: 65, date: new Date(2025, 8, 20), createdAt: new Date(2025, 5, 12) },
+      { id: 15, title: "뮤지컬 〈구텐버그〉", image: "main/구텐버그.gif", theme: "페스티벌/콜라보", genre: "콘서트", region: "부산/대구/경상", venue: "대구 엑스포(EXPO)", status: "판매중", popularity: 71, date: new Date(2025, 5, 28), createdAt: new Date(2025, 5, 15) },
+      { id: 16, title: "뮤지컬 〈더 크리처〉", image: "main/더크리쳐.gif", theme: "", genre: "클래식", region: "광주/전라/제주", venue: "제주아트센터", status: "판매예정", popularity: 90, date: new Date(2025, 5, 19), createdAt: new Date(2025, 5, 18) },
+      { id: 17, title: "뮤지컬 〈뱀프 X 헌터〉", image: "main/뱀프.gif", theme: "아이돌", genre: "팬클럽/팬미팅", region: "서울", venue: "올림픽공원 KSPO DOME", status: "판매중", popularity: 66, date: new Date(2025, 11, 5), createdAt: new Date(2025, 5, 20) },
+      { id: 18, title: "뮤지컬 〈하모니〉", image: "main/하모니.gif", theme: "", genre: "콘서트", region: "경기/인천", venue: "용인 포은아트홀", status: "판매예정", popularity: 83, date: new Date(2025, 6, 15), createdAt: new Date(2025, 5, 22) },
+      { id: 19, title: "온가족 뮤지컬 〈판타지 재난뮤지컬〉 ＇1초＇", image: "main/1초.gif", theme: "", genre: "콘서트", region: "부산/대구/경상", venue: " KT&G 상상마당 부산 라이브홀", status: "판매중", popularity: 75, date: new Date(2025, 7, 20), createdAt: new Date(2025, 5, 25) },
+      { id: 20, title: "뮤지컬 〈사랑은 비를 타고 〉 30주년 공연", image: "main/사랑비.gif", theme: "페스티벌/콜라보", genre: "콘서트", region: "광주/전라/제주", venue: "전북대학교 대운동장", status: "판매예정", popularity: 69, date: new Date(2025, 8, 25), createdAt: new Date(2025, 5, 28) },
+      { id: 21, title: "뮤지컬 〈두 낫 디스터브〉", image: "main/두낫.gif", theme: "", genre: "전시/행사", region: "서울", venue: "현대카드 스토리지", status: "판매중", popularity: 82, date: new Date(2025, 6, 4), createdAt: new Date(2025, 4, 30) },
+      { id: 22, title: "뮤지컬 〈마하고니〉", image: "main/마하고니.gif", theme: "아이돌", genre: "콘서트", region: "경기/인천", venue: "일산 킨텍스(KINTEX) 제2전시장 10홀", status: "판매예정", popularity: 77, date: new Date(2025, 7, 12), createdAt: new Date(2025, 5, 2) },
+      { id: 23, title: "〈보이스 오브 햄릿〉", image: "main/보이스.gif", theme: "", genre: "콘서트", region: "대전/충청/강원", venue: "KT&G 상상마당 춘천 사운드홀", status: "판매중", popularity: 74, date: new Date(2025, 8, 5), createdAt: new Date(2025, 5, 4) },
+      { id: 24, title: "신화 : 시작하는 이야기", image: "theme/울산연극.jpg", theme: "", genre: "뮤지컬/연극", region: "부산/대구/경상", venue: "울산문화예술회관", status: "판매예정", popularity: 69, date: new Date(2025, 9, 14), createdAt: new Date(2025, 5, 6) },
+      { id: 25, title: "엔들링스", image: "theme/제주아트센터2.jpg", theme: "", genre: "뮤지컬/연극", region: "광주/전라/제주", venue: "제주아트센터", status: "판매중", popularity: 91, date: new Date(2025, 5, 27), createdAt: new Date(2025, 5, 8) },
+      { id: 26, title: "뮤지컬 〈머피〉", image: "main/머피.gif", theme: "내한공연", genre: "클래식", region: "서울", venue: "LG아트센터 서울 LG SIGNATURE 홀", status: "판매예정", popularity: 87, date: new Date(2025, 11, 18), createdAt: new Date(2025, 5, 10) },
+      { id: 27, title: "뮤지컬 〈매디슨 카운티의 다리〉", image: "theme/매디슨.jpg", theme: "", genre: "뮤지컬/연극", region: "서울", venue: "광림아트센터 BBCH홀", status: "판매중", popularity: 80, date: new Date(2025, 12, 9), createdAt: new Date(2025, 5, 12) },
+      { id: 28, title: "뮤지컬 〈빨래〉 - 20년의 시간 30번째 무대", image: "main/빨래.gif", theme: "", genre: "콘서트", region: "대전/충청/강원", venue: "인터플레이", status: "판매예정", popularity: 85, date: new Date(2026, 1, 6), createdAt: new Date(2025, 5, 14) },
+      { id: 29, title: "아빠와 난 초등학교 1학년", image: "theme/울산연극1.jpg", theme: "키즈/패밀리", genre: "뮤지컬/연극", region: "부산/대구/경상", venue: "울산 중구 문화의전당", status: "판매중", popularity: 89, date: new Date(2025, 6, 25), createdAt: new Date(2025, 5, 16) },
+      { id: 30, title: "코믹 마샬아츠 퍼포먼스 〈점프 JUMP〉", image: "main/점프.gif", theme: "", genre: "클래식", region: "광주/전라/제주", venue: "제주아트센터", status: "판매예정", popularity: 86, date: new Date(2025, 5, 22), createdAt: new Date(2025, 5, 18) }
+    ];
 
 
-const items = rawItems.map(item => ({
-  ...item,
-  venue: item.venue || getRandomVenue(item.region), // venue 없을 때만 랜덤
-  endDate: getRandomEndDate(item.date)
-}));
+    const items = rawItems.map(item => ({
+      ...item,
+      venue: item.venue || getRandomVenue(item.region), 
+      endDate: getRandomEndDate(item.date)
+    }));
 
-const handleSortChange = (type) => {
-  setSortType(type);
-  handleSearch();
-};
+    const handleSortChange = (type) => {
+      setSortType(type);
+      handleSearch();
+    };
 
-const handleSearch = () => {
-  let result = items; // 필터 조건 제거
-  if (sortType === '인기순') {
-    result.sort((a, b) => b.popularity - a.popularity);
-  } else if (sortType === '공연임박순') {
-    result.sort((a, b) => a.date - b.date);
-  } else if (sortType === '최신순') {
-    result.sort((a, b) => b.createdAt - a.createdAt);
-  }
-  setFilteredItems(result);
-};
-
+    const handleSearch = () => {
+      let result = items;
+      if (sortType === '인기순') {
+        result.sort((a, b) => b.popularity - a.popularity);
+      } else if (sortType === '공연임박순') {
+        result.sort((a, b) => a.date - b.date);
+      } else if (sortType === '최신순') {
+        result.sort((a, b) => b.createdAt - a.createdAt);
+      }
+      setFilteredItems(result);
+    };
 
       React.useEffect(() => {
         handleSearch();
       }, []);
-
 
       return (
         <div className="w-full">
@@ -229,78 +222,71 @@ const handleSearch = () => {
                 <button onClick={() => setViewType('list')} className="p-2 border rounded hover:bg-gray-200">📃</button>
               </div>
               <div className="flex space-x-4 text-normal">
-  {['인기순', '공연임박순', '최신순'].map(type => (
-    <button
-      key={type}
-      onClick={() => handleSortChange(type)}
-      className={`hover:text-red-600 ${sortType === type ? 'text-red-600 font-bold' : 'text-black'}`}
-    >
-      {type}
-    </button>
-  )).reduce((prev, curr) => [prev, <span key={curr.key + '-sep'}>|</span>, curr])}
-</div>
-
+              {['인기순', '공연임박순', '최신순'].map(type => (
+                <button
+                  key={type}
+                  onClick={() => handleSortChange(type)}
+                  className={`hover:text-red-600 ${sortType === type ? 'text-red-600 font-bold' : 'text-black'}`}
+                >
+                  {type}
+                </button>
+              )).reduce((prev, curr) => [prev, <span key={curr.key + '-sep'}>|</span>, curr])}
+            </div>
             </div>
           </div>
           <div className="flex justify-center mt-4">
             <div className="w-2/3">
               {filteredItems.length === 0 ? (
-  <div className="text-center text-gray-500 py-10">조건에 맞는 작품이 없습니다.</div>
-) : viewType === 'card' ? (
-                  <div className="grid grid-cols-4 gap-6">
-  {filteredItems.map(item => (
-    <div key={item.id} className="border">
-      <img src={item.image} alt={item.title} className="block mx-auto mt-4 w-[200px] h-[275px]" />
-      <div className="p-4">
-        <div className="font-bold text-base truncate">{item.title}</div>
-        <div className="text-sm text-gray-500 mt-1">
-  {item.date.toLocaleDateString()} – {item.endDate.toLocaleDateString()}
-</div>
+              <div className="text-center text-gray-500 py-10">조건에 맞는 작품이 없습니다.</div>
+              ) : viewType === 'card' ? (
+                                <div className="grid grid-cols-4 gap-6">
+                {filteredItems.map(item => (
+                  <div key={item.id} className="border">
+                    <img src={item.image} alt={item.title} className="block mx-auto mt-4 w-[200px] h-[275px]" />
+                    <div className="p-4">
+                      <div className="font-bold text-base truncate">{item.title}</div>
+                      <div className="text-sm text-gray-500 mt-1">
+                {item.date.toLocaleDateString()} – {item.endDate.toLocaleDateString()}
+              </div>
 
-        <div className="text-sm text-gray-500">{item.venue}</div>
-        <div className={`inline-block text-xs mt-1 px-2 py-1 border rounded ${
-  item.status === '판매중' ? 'border-red-600 text-red-600' : 'border-gray-600 text-gray-600'
-}`}>
-  {item.status}
-</div>
-
-      </div>
-    </div>
-  ))}
-</div>
-
-
-              ) : (
-  <div>
-    {/* 표 헤더 */}
-    <div className="grid grid-cols-3 text-center font-semibold py-2 border-t border-b">
-      <div>공연명</div>
-      <div>공연일시</div>
-      <div>공연장소</div>
-    </div>
-
-    {/* 공연 아이템들 */}
-    {filteredItems.map(item => (
-      <div key={item.id} className="grid grid-cols-3 items-center text-center py-8 border-b">
-        <div className="flex items-center space-x-4 pl-4">
-          <img src={item.image} alt={item.title} className="w-28 h-32 object-cover" />
-          <div className="text-left">
-  <div className={`inline-block text-xs mb-1 px-2 py-1 border rounded ${
-    item.status === '판매중' ? 'border-red-600 text-red-600' : 'border-gray-600 text-gray-600'
-  }`}>
-    {item.status}
-  </div>
-  <div className="font-semibold">{item.title}</div>
-</div>
-
+          <div className="text-sm text-gray-500">{item.venue}</div>
+          <div className={`inline-block text-xs mt-1 px-2 py-1 border rounded ${
+            item.status === '판매중' ? 'border-red-600 text-red-600' : 'border-gray-600 text-gray-600'
+          }`}>
+            {item.status}
+          </div>
+          </div>
         </div>
-        <div>{item.date.toLocaleDateString()} ~ {item.endDate.toLocaleDateString()}</div>
-        <div>{item.venue}</div>
+      ))}
+    </div>
+              ) : (
+      <div>
+        <div className="grid grid-cols-3 text-center font-semibold py-2 border-t border-b">
+          <div>공연명</div>
+          <div>공연일시</div>
+          <div>공연장소</div>
+        </div>
+
+        {filteredItems.map(item => (
+          <div key={item.id} className="grid grid-cols-3 items-center text-center py-8 border-b">
+            <div className="flex items-center space-x-4 pl-4">
+              <img src={item.image} alt={item.title} className="w-28 h-32 object-cover" />
+              <div className="text-left">
+            <div className={`inline-block text-xs mb-1 px-2 py-1 border rounded ${
+              item.status === '판매중' ? 'border-red-600 text-red-600' : 'border-gray-600 text-gray-600'
+            }`}>
+              {item.status}
+            </div>
+            <div className="font-semibold">{item.title}</div>
+            </div>
+            </div>
+            <div>{item.date.toLocaleDateString()} ~ {item.endDate.toLocaleDateString()}</div>
+            <div>{item.venue}</div>
+          </div>
+        ))}
       </div>
-    ))}
-  </div>
-)
-}
+    )
+    }
             </div>
           </div>
           <FooterInfo />

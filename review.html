@@ -14,64 +14,61 @@
 
   <script type="text/babel">
     const navLinkMap = {
-  "뮤지컬/연극": "musical.html",
-  "콘서트":     "under_construction.html",
-  "스포츠":     "sport.html",
-  "전시/행사":   "under_construction.html",
-  "레저":       "leisure.html",
-  "테마/지역":   "theme.html",
-  "MD샵":      "testMDSHOP.html",  // 현재 보고 있는 페이지
-  "이벤트":     "EventAll.html",
-  "티켓오픈소식": "TicketOpen.html",
-};
+      "뮤지컬/연극": "musical.html",
+      "콘서트": "under_construction.html",
+      "스포츠": "sport.html",
+      "전시/행사": "under_construction.html",
+      "레저": "leisure.html",
+      "테마/지역": "theme.html",
+      "MD샵": "testMDSHOP.html",
+      "이벤트": "EventAll.html",
+      "티켓오픈소식": "TicketOpen.html",
+    };
 
     const navItems = ["뮤지컬/연극", "콘서트", "스포츠", "전시/행사", "레저", "테마/지역", "MD샵", "이벤트", "티켓오픈소식"];
 
     const Header = () => (
       <header className="bg-red-600 text-white p-2 flex items-center justify-between">
         <a href="index.html" class="flex items-center space-x-4">
-    <img src="logo.png" alt="logo" class="w-10 h-10" />
-    <h1 class="text-xl font-bold">ticketpage</h1>
-  </a>
+          <img src="logo.png" alt="logo" class="w-10 h-10" />
+          <h1 class="text-xl font-bold">ticketpage</h1>
+        </a>
         <div className="flex items-center space-x-2">
           <input type="text" placeholder="검색어를 입력하세요" className="p-2 rounded w-96"/>
           <button className="p-2 bg-white text-black rounded">🔍</button>
         </div>
         <div className="flex items-center space-x-4">
           <a href="login.html" className="hover:underline">로그인</a>
-              <a href="login.html" className="hover:underline">회원가입</a>
+          <a href="login.html" className="hover:underline">회원가입</a>
           <a href="mypage.html">
-    <img src="my.png" alt="profile" class="w-8 h-8 rounded-ful" />
-  </a>
+            <img src="my.png" alt="profile" class="w-8 h-8 rounded-ful" />
+          </a>
         </div>
       </header>
     );
 
     const NavigationBar = () => (
-  <nav className="bg-white text-black p-2 border-b">
-    <ul className="flex justify-between text-sm">
-      {navItems.map((item, index) => {
-        // 실제 링크를 꺼내고, 없으면 "#" 처리
-        const href = navLinkMap[item] || "#";
-
-        return (
-          <li
-            key={index}
-            className={`
-              hover:text-red-600 flex-1 text-center cursor-pointer
-              ${item === "리뷰 전체보기" ? "text-red-600 font-bold" : ""}
-            `}
-          >
-            <a href={href} className="block">
-              {item}
-            </a>
-          </li>
-        );
-      })}
-    </ul>
-  </nav>
-);
-
+      <nav className="bg-white text-black p-2 border-b">
+        <ul className="flex justify-between text-sm">
+          {navItems.map((item, index) => {
+            const href = navLinkMap[item] || "#";
+            return (
+              <li
+                key={index}
+                className={`
+                  hover:text-red-600 flex-1 text-center cursor-pointer
+                  ${item === "리뷰 전체보기" ? "text-red-600 font-bold" : ""}
+                `}
+              >
+                <a href={href} className="block">
+                  {item}
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </nav>
+    );
 
     const ReviewPage = ({ setIsPopupOpen, userReviews, openOptions, setOpenOptions, handleEdit, handleDelete }) => {
       const [activeRank, setActiveRank] = React.useState(1);
@@ -83,21 +80,20 @@
         4: { title: "맨오브라만차", image: "review/맨오브라만차.webp", score: "★ 4.5" },
         5: { title: "헤드윅", image: "review/헤드윅.webp", score: "★ 4.4" }
       };
-const toggleOptions = (index) => {
-  if (openOptions === index) {
-    setOpenOptions(null);
-  } else {
-    setOpenOptions(index);
-  }
-};
+
+      const toggleOptions = (index) => {
+        if (openOptions === index) {
+          setOpenOptions(null);
+        } else {
+          setOpenOptions(index);
+        }
+      };
 
       const selected = rankingData[activeRank];
 
       return (
         <div className="flex p-6 space-x-6 max-w-7xl mx-auto">
-          {/* 왼쪽 영역 */}
           <div className="flex-1 space-y-8">
-            {/* 베스트 후기 */}
             <div className="bg-white border p-4 rounded shadow">
               <div className="flex items-center mb-2">
                 <span className="text-lg font-bold mr-2">⭐ 베스트 후기</span>
@@ -121,311 +117,265 @@ const toggleOptions = (index) => {
                     특히 엘파바 역 배우의 고음 처리와 감정선은 심장을 울립니다.  
                     관람 후, 며칠이 지나도 여운이 가시지 않았고,  
                     이래서 위키드가 전설이라고 불리는구나, 라는 생각이 들었어요.
-
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* 조회수 높은 관람후기 */}
             <div className="bg-white border p-4 rounded shadow">
-                <h2 className="text-lg font-bold mb-2">조회수 높은 관람후기</h2>
-
-                {/* 1위 후기 */}
-                <div className="mb-4">
-                    <p className="font-semibold">1. 레미제라블</p>
-                    <div className="bg-gray-100 h-16 rounded mt-1 flex items-center px-4 text-sm text-gray-800">
-                    숨 막히는 감동... 커튼콜에서도 눈물이 났어요.
-                    </div>
-                </div>
-
-                {/* 2위 후기 */}
-                <div className="mb-4">
-                    <p className="font-semibold">2. 캣츠</p>
-                    <div className="bg-gray-100 h-16 rounded mt-1 flex items-center px-4 text-sm text-gray-800">
-                    고양이가 아니라 예술이 무대 위를 뛰어다녔다.
-                    </div>
-                </div>
-
-                {/* 3위 후기 */}
-                <div className="mb-4">
-                    <p className="font-semibold">3. 데스노트</p>
-                    <div className="bg-gray-100 h-16 rounded mt-1 flex items-center px-4 text-sm text-gray-800">
-                    이 무대에선 진짜 라이토가 살아 있었어.
-                    </div>
+              <h2 className="text-lg font-bold mb-2">조회수 높은 관람후기</h2>
+              <div className="mb-4">
+                <p className="font-semibold">1. 레미제라블</p>
+                <div className="bg-gray-100 h-16 rounded mt-1 flex items-center px-4 text-sm text-gray-800">
+                  숨 막히는 감동... 커튼콜에서도 눈물이 났어요.
                 </div>
               </div>
-{/* 내가 작성한 관람후기 별도 박스 */}
-<div className="bg-white border p-4 rounded shadow mt-8">
-  <h2 className="text-lg font-bold mb-4">내가 작성한 관람후기</h2>
-  {userReviews.length === 0 ? (
-    <p className="text-sm text-gray-500">아직 작성한 후기가 없습니다.</p>
-  ) : (
-    userReviews.map((review, index) => (
-  <div key={index} className="mb-4 relative">
-  <div className="flex justify-between items-center mb-1">
-    <p className="font-semibold">{review.title}</p>
-    <div className="relative">
-      <span
-        className="cursor-pointer"
-        onClick={() => toggleOptions(index)}
-      >
-        ⋮
-      </span>
-      {openOptions === index && (
-        <div className="absolute right-0 mt-1 bg-white border rounded shadow z-10 w-24 text-sm">
-  <button
-    className="block w-full px-4 py-1 text-left hover:bg-gray-100"
-    onClick={() => handleEdit(index)}
-  >
-    수정하기
-  </button>
-  <button
-    className="block w-full px-4 py-1 text-left hover:bg-gray-100"
-    onClick={() => handleDelete(index)}
-  >
-    삭제하기
-  </button>
-</div>
+              <div className="mb-4">
+                <p className="font-semibold">2. 캣츠</p>
+                <div className="bg-gray-100 h-16 rounded mt-1 flex items-center px-4 text-sm text-gray-800">
+                  고양이가 아니라 예술이 무대 위를 뛰어다녔다.
+                </div>
+              </div>
+              <div className="mb-4">
+                <p className="font-semibold">3. 데스노트</p>
+                <div className="bg-gray-100 h-16 rounded mt-1 flex items-center px-4 text-sm text-gray-800">
+                  이 무대에선 진짜 라이토가 살아 있었어.
+                </div>
+              </div>
+            </div>
 
-
-      )}
-    </div>
-  </div>
-  <div className="mt-1 text-xs text-gray-500 text-right">{review.date}</div>
-  <div className="mt-2 text-sm text-gray-800">
-    {review.content}
-  </div>
-</div>
-
-))
-
-  )}
-</div>
+            <div className="bg-white border p-4 rounded shadow mt-8">
+              <h2 className="text-lg font-bold mb-4">내가 작성한 관람후기</h2>
+              {userReviews.length === 0 ? (
+                <p className="text-sm text-gray-500">아직 작성한 후기가 없습니다.</p>
+              ) : (
+                userReviews.map((review, index) => (
+                  <div key={index} className="mb-4 relative">
+                    <div className="flex justify-between items-center mb-1">
+                      <p className="font-semibold">{review.title}</p>
+                      <div className="relative">
+                        <span className="cursor-pointer" onClick={() => toggleOptions(index)}>⋮</span>
+                        {openOptions === index && (
+                          <div className="absolute right-0 mt-1 bg-white border rounded shadow z-10 w-24 text-sm">
+                            <button className="block w-full px-4 py-1 text-left hover:bg-gray-100" onClick={() => handleEdit(index)}>수정하기</button>
+                            <button className="block w-full px-4 py-1 text-left hover:bg-gray-100" onClick={() => handleDelete(index)}>삭제하기</button>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                    <div className="mt-1 text-xs text-gray-500 text-right">{review.date}</div>
+                    <div className="mt-2 text-sm text-gray-800">{review.content}</div>
+                  </div>
+                ))
+              )}
+            </div>
           </div>
-          {/* 오른쪽 영역 */}
           <aside className="w-80">
             <div className="bg-white border p-4 rounded shadow w-64">
-                <h2 className="text-lg font-bold mb-2">공연 평점 랭킹</h2>
-
-                <ul className="space-y-2">
+              <h2 className="text-lg font-bold mb-2">공연 평점 랭킹</h2>
+              <ul className="space-y-2">
                 {[1, 2, 3, 4, 5].map((rank) => (
-                    <li
+                  <li
                     key={rank}
                     onMouseEnter={() => setActiveRank(rank)}
                     className="cursor-pointer transition-all duration-300"
-                    >
+                  >
                     {activeRank === rank ? (
-                        <div className="flex items-start space-x-3 p-2 bg-gray-50 rounded">
+                      <div className="flex items-start space-x-3 p-2 bg-gray-50 rounded">
                         <span className="text-base font-bold w-5">{rank}</span>
                         <img
-                            src={rankingData[rank].image}
-                            alt={`${rank}위 포스터`}
-                            className="w-14 h-20 object-cover rounded"
+                          src={rankingData[rank].image}
+                          alt={`${rank}위 포스터`}
+                          className="w-14 h-20 object-cover rounded"
                         />
                         <div className="text-sm">
-                            <p className="font-semibold">{rankingData[rank].title}</p>
-                            <p className="text-gray-500 text-xs">{rankingData[rank].score}</p>
+                          <p className="font-semibold">{rankingData[rank].title}</p>
+                          <p className="text-gray-500 text-xs">{rankingData[rank].score}</p>
                         </div>
-                        </div>
+                      </div>
                     ) : (
-                        <div className="text-sm pl-1">
+                      <div className="text-sm pl-1">
                         <span className="font-semibold mr-1">{rank}</span>
                         {rankingData[rank].title}
-                        </div>
+                      </div>
                     )}
-                    </li>
+                  </li>
                 ))}
-                </ul>
-                <div className="text-center mt-40">
-                    <button
-  className="border px-6 py-2 rounded hover:bg-gray-100"
-  onClick={() => setIsPopupOpen(true)}
->
-  관람 후기 작성하기
-</button>
-
-                </div>
+              </ul>
+              <div className="text-center mt-40">
+                <button
+                  className="border px-6 py-2 rounded hover:bg-gray-100"
+                  onClick={() => setIsPopupOpen(true)}
+                >
+                  관람 후기 작성하기
+                </button>
+              </div>
             </div>
-
           </aside>
         </div>
       );
     };
-const FooterInfo = () => (
-  <footer className="w-full border-t border-gray-300 mt-32 pt-6 px-8 text-xs text-gray-600">
-    {/* 상단 링크 */}
-    <nav className="flex flex-wrap justify-center gap-x-20 gap-y-2 mb-4 text-gray-500">
-      {[
-        "회사소개", "이용약관", "개인정보처리방침", "위치기반서비스 이용약관",
-        "여행약관", "여행자보험 가입내역", "티켓판매안내", "공지사항", "고객센터"
-      ].map((item) => (
-        <a href="#" key={item} className="hover:underline">
-          {item}
-        </a>
-      ))}
-    </nav>
 
-    {/* 하단 회사 정보 */}
-    <div className="flex flex-wrap justify-between text-gray-600 px-16 gap-x-20">
-      <div className="w-[300px] mb-4">
-        <p className="font-bold mb-1">(주)숙명여자협회</p>
-        <p>주소 서울특별시 용산구 청파로</p>
-        <p>사업자등록번호 824-91-09283</p>
-        <p>통신판매업신고 2025-숙명-0504</p>
-        <p>관광사업등록번호 제2025-000001호</p>
-      </div>
-      <div className="w-[300px] mb-4">
-        <p className="font-bold mb-1">고객센터</p>
-        <p>1:1문의</p>
-        <p>팩스 02-842-1029</p>
-        <p>이메일 websystem@smu.ac.kr</p>
-      </div>
-      <div className="w-[300px] mb-4">
-        <p className="font-bold mb-1">전자금융거래 분쟁처리 담당정보</p>
-        <p>팩스 02-482-1203</p>
-        <p>이메일 may04@smu.ac.kr</p>
-        <p>개인정보보호책임자 privacy@smu.ac.kr</p>
-      </div>
-    </div>
-  </footer>
-);
+    const FooterInfo = () => (
+      <footer className="w-full border-t border-gray-300 mt-32 pt-6 px-8 text-xs text-gray-600">
+        <nav className="flex flex-wrap justify-center gap-x-20 gap-y-2 mb-4 text-gray-500">
+          {[
+            "회사소개", "이용약관", "개인정보처리방침", "위치기반서비스 이용약관",
+            "여행약관", "여행자보험 가입내역", "티켓판매안내", "공지사항", "고객센터"
+          ].map((item) => (
+            <a href="#" key={item} className="hover:underline">
+              {item}
+            </a>
+          ))}
+        </nav>
+        <div className="flex flex-wrap justify-between text-gray-600 px-16 gap-x-20">
+          <div className="w-[300px] mb-4">
+            <p className="font-bold mb-1">(주)숙명여자협회</p>
+            <p>주소 서울특별시 용산구 청파로</p>
+            <p>사업자등록번호 824-91-09283</p>
+            <p>통신판매업신고 2025-숙명-0504</p>
+            <p>관광사업등록번호 제2025-000001호</p>
+          </div>
+          <div className="w-[300px] mb-4">
+            <p className="font-bold mb-1">고객센터</p>
+            <p>1:1문의</p>
+            <p>팩스 02-842-1029</p>
+            <p>이메일 websystem@smu.ac.kr</p>
+          </div>
+          <div className="w-[300px] mb-4">
+            <p className="font-bold mb-1">전자금융거래 분쟁처리 담당정보</p>
+            <p>팩스 02-482-1203</p>
+            <p>이메일 may04@smu.ac.kr</p>
+            <p>개인정보보호책임자 privacy@smu.ac.kr</p>
+          </div>
+        </div>
+      </footer>
+    );
 
     const App = () => {
-  const [isPopupOpen, setIsPopupOpen] = React.useState(false);
-  const [reviewTitle, setReviewTitle] = React.useState('');
-const [reviewContent, setReviewContent] = React.useState('');
-  const [userReviews, setUserReviews] = React.useState([]);
-  const [isEditing, setIsEditing] = React.useState(false); // 수정 모드 여부 >>수정되나용??
-const [editingIndex, setEditingIndex] = React.useState(null); // 수정 중인 후기 인덱스
-const [openOptions, setOpenOptions] = React.useState(null);
+      const [isPopupOpen, setIsPopupOpen] = React.useState(false);
+      const [reviewTitle, setReviewTitle] = React.useState('');
+      const [reviewContent, setReviewContent] = React.useState('');
+      const [userReviews, setUserReviews] = React.useState([]);
+      const [isEditing, setIsEditing] = React.useState(false);
+      const [editingIndex, setEditingIndex] = React.useState(null);
+      const [openOptions, setOpenOptions] = React.useState(null);
 
+      const handleClose = () => {
+        if (reviewTitle.trim() !== '' || reviewContent.trim() !== '') {
+          const confirmClose = window.confirm('작성된 후기가 삭제됩니다. 닫으시겠습니까?');
+          if (!confirmClose) return;
+        }
+        setIsPopupOpen(false);
+        setReviewTitle('');
+        setReviewContent('');
+      };
 
-const handleClose = () => {
-  if (reviewTitle.trim() !== '' || reviewContent.trim() !== '') {
-    const confirmClose = window.confirm('작성된 후기가 삭제됩니다. 닫으시겠습니까?');
-    if (!confirmClose) return;
-  }
-  setIsPopupOpen(false);
-  setReviewTitle('');
-  setReviewContent('');
-};
+      const handleSubmit = () => {
+        if (reviewTitle.trim() === '' || reviewContent.trim() === '') {
+          alert('공연 이름과 후기를 모두 작성해주세요!');
+          return;
+        }
 
-const handleSubmit = () => {
-  if (reviewTitle.trim() === '' || reviewContent.trim() === '') {
-    alert('공연 이름과 후기를 모두 작성해주세요!');
-    return;
-  }
+        const today = new Date();
+        const formattedDate = `${today.getFullYear()}. ${today.getMonth() + 1}. ${today.getDate()}.`;
 
-  const today = new Date();
-  const formattedDate = `${today.getFullYear()}. ${today.getMonth() + 1}. ${today.getDate()}.`;
+        if (isEditing) {
+          const updatedReviews = [...userReviews];
+          updatedReviews[editingIndex] = {
+            ...updatedReviews[editingIndex],
+            title: reviewTitle,
+            content: reviewContent,
+            date: formattedDate
+          };
+          setUserReviews(updatedReviews);
+          alert('후기가 수정되었습니다.');
+        } else {
+          setUserReviews([
+            ...userReviews,
+            { title: reviewTitle, content: reviewContent, date: formattedDate }
+          ]);
+          alert('후기가 저장되었습니다.');
+        }
 
-  if (isEditing) {
-    const updatedReviews = [...userReviews];
-    updatedReviews[editingIndex] = {
-      ...updatedReviews[editingIndex],
-      title: reviewTitle,
-      content: reviewContent,
-      date: formattedDate
+        setIsPopupOpen(false);
+        setIsEditing(false);
+        setEditingIndex(null);
+        setReviewTitle('');
+        setReviewContent('');
+      };
+
+      const handleEdit = (index) => {
+        setIsEditing(true);
+        setEditingIndex(index);
+        setReviewTitle(userReviews[index].title);
+        setReviewContent(userReviews[index].content);
+        setIsPopupOpen(true);
+      };
+
+      const handleDelete = (index) => {
+        const confirmDelete = window.confirm('삭제하시겠습니까?');
+        if (confirmDelete) {
+          const updatedReviews = userReviews.filter((_, i) => i !== index);
+          setUserReviews(updatedReviews);
+          alert('후기가 삭제되었습니다.');
+        }
+      };
+
+      return (
+        <div className="bg-gray-100">
+          <Header />
+          <NavigationBar />
+          <ReviewPage
+            setIsPopupOpen={setIsPopupOpen}
+            userReviews={userReviews}
+            openOptions={openOptions}
+            setOpenOptions={setOpenOptions}
+            handleEdit={handleEdit}
+            handleDelete={handleDelete}
+          />
+          {isPopupOpen && (
+            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+              <div className="bg-white p-6 rounded shadow w-96">
+                <h2 className="text-lg font-bold mb-4">
+                  {isEditing ? '관람 후기 수정' : '관람 후기 작성'}
+                </h2>
+                <label className="block text-sm font-semibold mb-1">공연 이름</label>
+                <input
+                  type="text"
+                  placeholder="공연 이름을 입력하세요..."
+                  className="w-full p-2 border rounded mb-4"
+                  value={reviewTitle}
+                  onChange={(e) => setReviewTitle(e.target.value)}
+                />
+                <label className="block text-sm font-semibold mb-1">후기 작성</label>
+                <textarea
+                  className="w-full h-32 p-2 border rounded mb-4"
+                  placeholder="후기를 입력하세요..."
+                  value={reviewContent}
+                  onChange={(e) => setReviewContent(e.target.value)}
+                ></textarea>
+                <div className="flex justify-end space-x-2">
+                  <button
+                    className="px-4 py-2 border rounded hover:bg-gray-100"
+                    onClick={handleClose}
+                  >
+                    닫기
+                  </button>
+                  <button
+                    className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+                    onClick={handleSubmit}
+                  >
+                    {isEditing ? '수정 완료' : '제출'}
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+          <FooterInfo />
+        </div>
+      );
     };
-    setUserReviews(updatedReviews);
-    alert('후기가 수정되었습니다.');
-  } else {
-    setUserReviews([
-      ...userReviews,
-      { title: reviewTitle, content: reviewContent, date: formattedDate }
-    ]);
-    alert('후기가 저장되었습니다.');
-  }
-
-  setIsPopupOpen(false);
-  setIsEditing(false);
-  setEditingIndex(null);
-  setReviewTitle('');
-  setReviewContent('');
-};
-const handleEdit = (index) => {
-  setIsEditing(true);
-  setEditingIndex(index);
-  setReviewTitle(userReviews[index].title);
-  setReviewContent(userReviews[index].content);
-  setIsPopupOpen(true);
-};
-
-const handleDelete = (index) => {
-  const confirmDelete = window.confirm('삭제하시겠습니까?');
-  if (confirmDelete) {
-    const updatedReviews = userReviews.filter((_, i) => i !== index);
-    setUserReviews(updatedReviews);
-    alert('후기가 삭제되었습니다.');
-  }
-};
-
-  return (
-    <div className="bg-gray-100">
-      <Header />
-      <NavigationBar />
-      <ReviewPage
-  setIsPopupOpen={setIsPopupOpen}
-  userReviews={userReviews}
-  openOptions={openOptions}
-  setOpenOptions={setOpenOptions}
-  handleEdit={handleEdit}
-  handleDelete={handleDelete}
-/>
-
-
-      {isPopupOpen && (
-  <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-    <div className="bg-white p-6 rounded shadow w-96">
-      {/* 제목 */}
-      <h2 className="text-lg font-bold mb-4">
-  {isEditing ? '관람 후기 수정' : '관람 후기 작성'}
-</h2>
-
-
-      {/* 공연 이름 */}
-<label className="block text-sm font-semibold mb-1">공연 이름</label>
-<input
-  type="text"
-  placeholder="공연 이름을 입력하세요..."
-  className="w-full p-2 border rounded mb-4"
-  value={reviewTitle}
-  onChange={(e) => setReviewTitle(e.target.value)}
-/>
-
-{/* 후기 작성 */}
-<label className="block text-sm font-semibold mb-1">후기 작성</label>
-<textarea
-  className="w-full h-32 p-2 border rounded mb-4"
-  placeholder="후기를 입력하세요..."
-  value={reviewContent}
-  onChange={(e) => setReviewContent(e.target.value)}
-></textarea>
-
-{/* 버튼 영역 */}
-<div className="flex justify-end space-x-2">
-  <button
-    className="px-4 py-2 border rounded hover:bg-gray-100"
-    onClick={handleClose}
-  >
-    닫기
-  </button>
-  <button
-  className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
-  onClick={handleSubmit}
->
-  {isEditing ? '수정 완료' : '제출'}
-</button>
-</div>
-    </div>
-  </div>
-)}
-<FooterInfo />
-    </div>
-  );
-};
-
 
     ReactDOM.createRoot(document.getElementById('root')).render(<App />);
   </script>

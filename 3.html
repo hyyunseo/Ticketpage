@@ -16,7 +16,15 @@
       border-bottom: none !important;
     }
   </style>
+<<<<<<< HEAD
   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=508c124c8ec10d15353d3ec0d454ba61&libraries=services"></script>
+=======
+  <script
+      defer
+      src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=508c124c8ec10d15353d3ec0d454ba61&libraries=services&autoload=false"
+    ></script>
+
+>>>>>>> dd9137f8ddee34ae1928550a50163d70c0f4bf31
 </head>
 
 <body class="bg-gray-100 text-black">
@@ -97,8 +105,13 @@
     rootRender.render(<App />);
   }
 </script>
+<<<<<<< HEAD
 </script>
 
+=======
+
+  <!-- 콘텐츠 영역 수정 -->
+>>>>>>> dd9137f8ddee34ae1928550a50163d70c0f4bf31
   <main class="max-w-[1000px] mx-auto px-4 py-6 ">
     <h2 class="text-2xl font-bold mb-4">뮤지컬 〈매디슨 카운티의 다리〉</h2>
     <div class="flex flex-wrap lg:flex-nowrap lg:space-x-8">
@@ -106,7 +119,7 @@
         <img src="main/매디슨카운티의다리.gif" alt="매디슨카운티의다리" class="w-full h-[460px] object-cover rounded" />
       </div>
       <div class="w-full lg:flex-1 space-y-2 text-sm">
-        <div><span class="inline-block w-20">장소</span>블루스퀘어 인터파크홀</div>
+        <div><span class="inline-block w-20">장소</span>블루스퀘어 신한카드홀</div>
         <div><span class="inline-block w-20">공연기간</span>2025.03.12 ~ 2025.04.18</div>
         <div><span class="inline-block w-20">공연시간</span>150분</div>
         <div><span class="inline-block w-20">관람연령</span>8세 이상</div>
@@ -216,7 +229,7 @@
       <div class="flex items-start space-x-8">
         <img src="reservation/블루.svg" alt="Olympic Park" class="w-40 h-auto border" />
         <div class="space-y-2 text-sm">
-          <div>블루스퀘어 인터파크홀</div>
+          <div>블루스퀘어 신한카드홀</div>
           <div>서울특별시 용산구 이태원로 294 (한남동)</div>
           <div>1544-1591</div>
           <div><a href="https://mticket.interpark.com/Place/Detail?placeCode=16000376" class="text-blue-600 underline" target="_blank">https://mticket.interpark.com/Place/Detail?placeCode=16000376</a></div>
@@ -359,6 +372,7 @@
   </script>
 
 <script>
+<<<<<<< HEAD
   function initMap() {
   const mapContainer = document.getElementById('map');
   if (!mapContainer) return;
@@ -378,27 +392,49 @@
   mapContainer.style.height = '100%';
   kakao.maps.event.trigger(map, 'resize');
 }
+=======
+  // Kakao Map 초기화 함수 (변경 없음)
+  function initMap() {
+    const container = document.getElementById('map');
+    if (!container) return;
+    const options = {
+      center: new kakao.maps.LatLng(37.540873, 127.002701),
+      level: 3
+    };
+    const map = new kakao.maps.Map(container, options);
+    new kakao.maps.Marker({ position: options.center, map });
+  }
+>>>>>>> dd9137f8ddee34ae1928550a50163d70c0f4bf31
 
+  // 탭 메뉴 동작
   const tabButtons = document.querySelectorAll("#tab-menu .cursor-pointer");
-  const tabDetail = document.getElementById("tab-detail");
-  const tabVenue = document.getElementById("tab-venue");
+  const tabDetail  = document.getElementById("tab-detail");
+  const tabVenue   = document.getElementById("tab-venue");
 
   tabButtons.forEach((btn, index) => {
     btn.addEventListener("click", () => {
-      if (!(index === 0 || index === 3)) return;
-
+      // 탭 스타일 토글
       tabButtons.forEach(b =>
         b.classList.remove("text-red-600", "font-semibold", "border-b-2", "border-red-600")
       );
       btn.classList.add("text-red-600", "font-semibold", "border-b-2", "border-red-600");
 
+      // 탭 내용 전환
       tabDetail.classList.add("hidden");
       tabVenue.classList.add("hidden");
 
-      if (index === 0) tabDetail.classList.remove("hidden");
-      if (index === 3) {
+      if (index === 0) {
+        tabDetail.classList.remove("hidden");
+      } else if (index === 3) {
         tabVenue.classList.remove("hidden");
+<<<<<<< HEAD
         setTimeout(initMap, 300); 
+=======
+        // SDK + 내부 라이브러리 로드 후 initMap 호출
+        kakao.maps.load(() => {
+          initMap();
+        });
+>>>>>>> dd9137f8ddee34ae1928550a50163d70c0f4bf31
       }
     });
   });
