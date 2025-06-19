@@ -8,10 +8,9 @@
   <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
   <link rel="stylesheet" href="styles.css" />
   <style>
-    /* <로그인 화면> */
     #loginSection input:focus {
       outline: none;
-      border-color: #f87171; /* tailwind red-400 */
+      border-color: #f87171; 
       box-shadow: 0 0 0 1px #f87171;
     }
   </style>
@@ -56,10 +55,7 @@
   </section>
 
   <script>
-    // 카카오 SDK 초기화
-    Kakao.init('YOUR_APP_KEY'); // YOUR_APP_KEY를 실제 앱 키로 변경
-
-    // 로그인 버튼 클릭 이벤트 처리
+    Kakao.init('YOUR_APP_KEY'); 
     document.getElementById('loginBtn').addEventListener('click', function() {
       const userId = document.getElementById('userId').value.trim();
       const password = document.getElementById('password').value.trim();
@@ -69,8 +65,7 @@
         return;
       }
 
-      const storedPassword = localStorage.getItem(userId); // 로컬스토리지에서 읽기
-
+      const storedPassword = localStorage.getItem(userId); 
       if (!storedPassword) {
         alert('존재하지 않는 아이디입니다.');
         return;
@@ -81,25 +76,22 @@
         return;
       }
 
-      // 로그인 성공 시 로컬스토리지에 아이디 저장
       localStorage.setItem('loggedInUser', userId);
 
       alert('로그인 성공!');
-      window.location.href = 'index.html'; // 로그인 후 홈으로 리디렉션
+      window.location.href = 'index.html';
     });
 
-    // 카카오 로그인 버튼 클릭 이벤트
     document.getElementById('kakaoLoginBtn').addEventListener('click', function() {
       Kakao.Auth.login({
         success: function(authObj) {
           console.log('카카오 로그인 성공', authObj);
 
-          // 카카오 로그인 후 사용자 정보를 로컬스토리지에 저장
           const kakaoUserId = authObj.id;
-          localStorage.setItem('loggedInUser', kakaoUserId); // 카카오 아이디로 로그인 저장
+          localStorage.setItem('loggedInUser', kakaoUserId); 
 
           alert('카카오 로그인 성공!');
-          window.location.href = 'index.html'; // 로그인 후 홈으로 리디렉션
+          window.location.href = 'index.html';
         },
         fail: function(err) {
           console.error('카카오 로그인 실패', err);

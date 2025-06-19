@@ -181,7 +181,6 @@
     border-radius: 4px;
   }
 
-  /* 모달 스타일 */
   #modal {
     display: none;
     position: fixed;
@@ -259,7 +258,6 @@
 </style>
 </head>
 <body>
-
 <div class="container">
   <div class="big-box">
     <div class="seats-area">
@@ -385,7 +383,6 @@
 </div>
 
 <style>
-  /* 모달 기본 스타일 */
   #modal {
     display: none;
     position: fixed;
@@ -469,7 +466,6 @@
   const modalSelectedSeats = document.getElementById('modal-selected-seats');
   const closeBtn = document.querySelector('.close-btn');
   const paymentForm = document.getElementById('payment-form');
-
   let selectedSeatsInfo = [];
 
   seats.forEach(seat => {
@@ -517,20 +513,15 @@
 
   paymentForm.addEventListener('submit', e => {
     e.preventDefault();
-    // 결제 완료 후 처리 로직
     alert('결제가 완료되었습니다!');
-
-    // 결제된 좌석을 occupied로 변경하고, 클릭 불가 처리
     const selectedSeats = document.querySelectorAll('.seats li.selected');
     selectedSeats.forEach(seat => {
         seat.classList.remove('selected');
         seat.classList.add('occupied');
     });
-
     modal.classList.remove('active');
 });
 
 </script>
-
 </body>
 </html>

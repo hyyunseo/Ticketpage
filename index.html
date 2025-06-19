@@ -7,93 +7,73 @@
   <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
   <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
-  <link
-    href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css"
-    rel="stylesheet"
-  />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet" />
 </head>
-<body>  
+<body>
   <div id="root"></div>
-  
 
   <script type="text/babel">
+    const navLinkMap = {
+      "뮤지컬/연극": "musical.html",
+      "콘서트": "under_construction.html",
+      "스포츠": "sport.html",
+      "전시/행사": "under_construction.html",
+      "레저": "leisure.html",
+      "테마/지역": "theme.html",
+      "MD샵": "testMDSHOP.html",
+      "이벤트": "EventAll.html",
+      "티켓오픈소식": "TicketOpen.html",
+    };
 
-    // 메뉴 이름과 실제 HTML 파일명을 매핑
-const navLinkMap = {
-  "뮤지컬/연극": "musical.html",
-  "콘서트":     "under_construction.html",
-  "스포츠":     "sport.html",
-  "전시/행사":   "under_construction.html",
-  "레저":       "leisure.html",
-  "테마/지역":   "theme.html",
-  "MD샵":      "testMDSHOP.html",
-  "이벤트":     "EventAll.html",
-  "티켓오픈소식": "TicketOpen.html",
-};
+    const navItems = [
+      "뮤지컬/연극", "콘서트", "스포츠", "전시/행사",
+      "레저", "테마/지역", "MD샵", "이벤트", "티켓오픈소식"
+    ];
 
-     /* 네비게이션 메뉴 목록>> 이렇~게 이렇게? 흠 흠흠흠흠*/
-        const navItems = [
-          "뮤지컬/연극", "콘서트", "스포츠", "전시/행사", 
-          "레저", "테마/지역", "MD샵", "이벤트", "티켓오픈소식"
-        ];
- const navranking = [
-          "뮤지컬/연극", "콘서트", "아동/가족", "전시/행사", 
-          "레저/캠핑", "클래식/무용", "MD샵", "이벤트", "티켓오픈소식"
-        ];
-        /* Header Component */
-        const Header = () => (
-          <header className="bg-red-600 text-white p-2 flex items-center justify-between top-0 z-50">
-            <a href="index.html" class="flex items-center space-x-4">
-    <img src="logo.png" alt="logo" class="w-10 h-10" />
-    <h1 class="text-xl font-bold">ticketpage</h1>
-  </a>
-            <div className="flex items-center space-x-2">
-              <input
-                type="text"
-                placeholder="검색어를 입력하세요"
-                className="p-2 rounded w-96"
-              />
-              <button className="p-2 bg-white text-black rounded">🔍</button>
-            </div> 
-            <div className="flex items-center space-x-4">
-          
-              <a href="login.html" className="hover:underline">로그인</a>
-              <a href="signup.html" className="hover:underline">회원가입</a>
-              <a href="mypage.html">
-    <img src="my.png" alt="profile" class="w-8 h-8 rounded-full" />
-  </a>
-            </div>
-          </header>
-        );
+    const navranking = [
+      "뮤지컬/연극", "콘서트", "아동/가족", "전시/행사",
+      "레저/캠핑", "클래식/무용", "MD샵", "이벤트", "티켓오픈소식"
+    ];
+
+    const Header = () => (
+      <header className="bg-red-600 text-white p-2 flex items-center justify-between top-0 z-50">
+        <a href="index.html" className="flex items-center space-x-4">
+          <img src="logo.png" alt="logo" className="w-10 h-10" />
+          <h1 className="text-xl font-bold">ticketpage</h1>
+        </a>
+        <div className="flex items-center space-x-2">
+          <input type="text" placeholder="검색어를 입력하세요" className="p-2 rounded w-96" />
+          <button className="p-2 bg-white text-black rounded">🔍</button>
+        </div>
+        <div className="flex items-center space-x-4">
+          <a href="login.html" className="hover:underline">로그인</a>
+          <a href="signup.html" className="hover:underline">회원가입</a>
+          <a href="mypage.html">
+            <img src="my.png" alt="profile" className="w-8 h-8 rounded-full" />
+          </a>
+        </div>
+      </header>
+    );
 
     const NavigationBar = ({ activeHeader, setActiveHeader }) => (
       <nav className="bg-white text-black p-2 border-b top-12 z-50">
         <ul className="flex justify-between text-sm">
           {navItems.map((item, idx) => {
-            // navLinkMap에서 해당 메뉴의 href를 가져오고, 없다면 "#"
             const href = navLinkMap[item] || "#";
-
             return (
               <li
                 key={idx}
-                className={`
-                  hover:text-red-600 flex-1 text-center cursor-pointer
-                  ${activeHeader === item ? "text-red-600 font-bold" : ""}
-                `}
+                className={`hover:text-red-600 flex-1 text-center cursor-pointer
+                  ${activeHeader === item ? "text-red-600 font-bold" : ""}`}
                 onClick={() => setActiveHeader(item)}
               >
-                <a href={href} className="block">
-                  {item}
-                </a>
+                <a href={href} className="block">{item}</a>
               </li>
             );
           })}
         </ul>
       </nav>
     );
-
-
-
     const banners = [
   {
     title: "제1회 눈송이 잘그리기 대회",
@@ -115,21 +95,15 @@ const navLinkMap = {
   },
 ];
 
-    const { useState } = React;
+const { useState } = React;
 
-
-
-
-
-
-    // 장르별 더미 데이터 (탭 메뉴 및 작품 리스트용) >>>> 포스터 사이즈 수정 예정!!
-    const genreData = {
+const genreData = {
   "뮤지컬/연극": [
-    { id: 1, title: "노트르담 드 파리", location: "세종문화회관 대극장", date: "2025.1.15 ~ 2.20", image: "main/노트르담드파리.gif",link: "1.html" },
-    { id: 2, title: "지킬 앤 하이드", location: "샤롯데씨어터", date: "2025.2.5 ~ 3.10", image: "main/지킬앤.gif",link: "2.html" },
-    { id: 3, title: "매디슨 카운티의 다리", location: "블루스퀘어 인터파크홀", date: "2025.3.12 ~ 4.18", image: "main/매디슨카운티의다리.gif",link: "3.html" },
-    { id: 4, title: "팬텀", location: "예스24라이브홀", date: "2025.4.2 ~ 5.9", image: "main/phanton.gif",link: "4.html" },
-    { id: 5, title: "위키드", location: "충무아트센터 대극장", date: "2025.5.8 ~ 6.14", image: "main/위키드.gif",link: "5.html" },
+    { id: 1, title: "노트르담 드 파리", location: "세종문화회관 대극장", date: "2025.1.15 ~ 2.20", image: "main/노트르담드파리.gif", link: "1.html" },
+    { id: 2, title: "지킬 앤 하이드", location: "샤롯데씨어터", date: "2025.2.5 ~ 3.10", image: "main/지킬앤.gif", link: "2.html" },
+    { id: 3, title: "매디슨 카운티의 다리", location: "블루스퀘어 인터파크홀", date: "2025.3.12 ~ 4.18", image: "main/매디슨카운티의다리.gif", link: "3.html" },
+    { id: 4, title: "팬텀", location: "예스24라이브홀", date: "2025.4.2 ~ 5.9", image: "main/phanton.gif", link: "4.html" },
+    { id: 5, title: "위키드", location: "충무아트센터 대극장", date: "2025.5.8 ~ 6.14", image: "main/위키드.gif", link: "5.html" },
     { id: 6, title: "맘마미아", location: "두산아트센터 연강홀", date: "2025.6.1 ~ 7.3", image: "main/맘마미아.gif" },
     { id: 7, title: "멤피스", location: "예술의전당 오페라극장", date: "2025.7.7 ~ 8.15", image: "main/멤피스.gif" },
     { id: 8, title: "플레임즈", location: "이화여대 삼성홀", date: "2025.8.10 ~ 9.18", image: "main/플레임즈.gif" },
@@ -151,7 +125,7 @@ const navLinkMap = {
   ],
 
   "아동/가족": [
-      { id: 1, title: "〈로보카폴리 - 브룸스타운의 에너지를 지켜라!〉", location: "영등포아트홀", date: "2025.08.30 ~2025.08.31", image: "main/로보카폴리.gif" },
+    { id: 1, title: "〈로보카폴리 - 브룸스타운의 에너지를 지켜라!〉", location: "영등포아트홀", date: "2025.08.30 ~2025.08.31", image: "main/로보카폴리.gif" },
     { id: 2, title: "뮤지컬쇼 〈아기상어와 반짝반짝 최고의 파티〉", location: "연세대학교 백주년 기념관", date: "2025.07.04 ~2025.08.03", image: "main/아기상어.gif" },
     { id: 3, title: "베베핀 뮤지컬 〈우당탕탕 패밀리〉 - 광주앵콜", location: "광주빛고을", date: "2025.06.28 ~ 08.03", image: "main/베베핀.gif" },
     { id: 4, title: "당신의 특별한 부탁 <시간을 파는 상점>", location: "피랑씨어터", date: "2025.9.13", image: "main/시사점.gif" },
@@ -170,6 +144,7 @@ const navLinkMap = {
     { id: 9, title: "대구_환상 속 공룡세상 탐험展. 다이노 판타지", location: "이월드 83타워", date: "2025.9.12 ~ 10.13", image: "main/다이노.gif" },
     { id: 10, title: "Keiichi Tanaami : I‘M THE ORIGIN", location: "대림미술관", date: "2024.12.14 ~2025.06.29", image: "main/타나이미.gif" }
   ],
+
   "레저/캠핑": [
     { id: 1, title: "［경기 가평］ 남이섬 입장권 (~25.06.30)", location: "남이섬", date: "2025.6.11 ~ 6.30", image: "main/남이섬.gif" },
     { id: 2, title: "［충남/보령］ 제28회 보령머드축제 일반존", location: "충남/보령", date: "2025.2.14 ~ 3.19", image: "main/보령.gif" },
@@ -182,6 +157,7 @@ const navLinkMap = {
     { id: 9, title: "안성맞춤 남사당공연장 ［남사당놀이 6마당］", location: "남사당 공연장", date: "2025.5.15 ~ 6.17", image: "main/남사당.gif" },
     { id: 10, title: "상주 감꽃마을 서울캠핑장", location: "상주 감꽃마을 서울캠핑장", date: "2025.05.01 ~07.31", image: "main/캠핑장 상주.gif" }
   ],
+
   "클래식/무용": [
     { id: 1, title: "파리 오페라 발레 에투알 갈라 2025", location: "예술의전당 오페라극장", date: "2025.6.11 ~ 6.30", image: "main/에투알.gif" },
     { id: 2, title: "제22회 한국을 빛내는 해외무용스타 초청공연", location: "나루아트센터", date: "2025.2.14 ~ 3.19", image: "main/해외무용스타.gif" },
@@ -191,9 +167,6 @@ const navLinkMap = {
   ],
 };
 
-
-
-
 const keywords = [
   { id: 1, label: "뮤지컬" },
   { id: 2, label: "콘서트" },
@@ -201,47 +174,43 @@ const keywords = [
   { id: 4, label: "전시/행사" },
   { id: 5, label: "클래식/무용" },
 ];
+// 메인 컴포넌트
+const TicketPage = () => {
+  // 헤더 네비게이션 활성 상태
+  const [activeHeader, setActiveHeader] = useState("");
 
+  // 아래 탭 메뉴 활성 상태
+  const [activeTab, setActiveTab] = useState("뮤지컬/연극");
+  // 랭킹 전체보기
+  const [showAll, setShowAll] = useState(false);
+  // 탭 메뉴 기준 데이터
+  const data = genreData[activeTab] || [];
 
-    // 메인 컴포넌트
-    const TicketPage = () => {
-      // 헤더 네비게이션 활성 상태>>아무것도 안눌린상태로(수정)
-     const [activeHeader, setActiveHeader] = useState("");
+  // 전체보기 버튼 클릭 시 동작
+  const handleShowAll = () => {
+    setShowAll(true);  
+  };
 
-      // 아래 탭 메뉴 활성 상태
-      const [activeTab, setActiveTab] = useState("뮤지컬/연극");
-      // 랭킹 전체보기
-        const [showAll, setShowAll] = useState(false); // 랭킹 전체보기 상태
-      // 탭 메뉴 기준 데이터
-      const data = genreData[activeTab] || [];
+  // 접기 버튼 클릭 시 동작
+  const handleShowLess = () => {
+    setShowAll(false);  
+  };
 
-      
+  const displayData = showAll ? data : data.slice(0, 5);  
 
-
-      // 전체보기 버튼 클릭 시 동작
-const handleShowAll = () => {
-  setShowAll(true);  // showAll 상태를 true로 설정하여 6위부터 10위까지 보이게 함
-};
-
-// 접기 버튼 클릭 시 동작
-const handleShowLess = () => {
-  setShowAll(false);  // 1~5위만 보기 상태로 설정
-};
-  // 보여줄 데이터는 showAll 상태에 따라 다름
-  const displayData = showAll ? data : data.slice(0, 5);  // showAll이 true일 때 전체 데이터(6~10위 포함) 보이도록 변경
-// 4. return문 JSX
   return (
     <div className="bg-gray-100">
       <Header />
       <NavigationBar activeHeader={activeHeader} setActiveHeader={setActiveHeader} />
-      
+
       {/* 메인 배너 슬라이드 */}
       <MainBannerSlider />
-      
+
       {/* 장르별 랭킹 */}
       <section className="bg-gray-100 p-8 text-center text-black bg-gray-100 mt-10">
         <h2 className="text-3xl font-bold mb-1 text-center">장르별 랭킹</h2>
       </section>
+
       {/* 장르별 탭 메뉴 */}
       <nav className="bg-gray-100 flex justify-center space-x-4 mb-8">
         {navranking.slice(0, 6).map((item) => (
@@ -258,71 +227,71 @@ const handleShowLess = () => {
           </button>
         ))}
       </nav>
- 
-{/* 장르별 상자 */}
-<section className="bg-gray-100 grid grid-cols-5 gap-6 justify-center max-w-7xl mx-auto">
-  {displayData.map((item, index) => (
-    <a key={item.id} href={item.link || "#"} className="block focus:outline-none border-0">
-      <div className="bg-white rounded-lg p-4 shadow-md relative w-60 h-90 flex flex-col border-0">
-        <img
-          src={item.image}
-          className="w-full h-65 object-cover mb-3 rounded-sm flex-shrink-0"
-        />
-        <div
-          className="absolute left-3 top-3 text-3xl font-bold text-white bg-black p-2 rounded-full select-none"
-          style={{ transform: "translateX(15%)" }}
-        >
-          {index + 1}
-        </div>
-        <div className="flex-grow">
-          <h3 className="font-extrabold text-lg mb-1">{item.title}</h3>
-          <p className="text-gray-700 text-sm">{item.location}</p>
-          <p className="text-gray-500 text-sm">{item.date}</p>
-        </div>
-      </div>
-    </a>
-  ))}
 
-  {/* '전체 보기' 버튼 */}
-  {!showAll && (
-    <div className="col-span-5 text-center mt-6">
-      <button
-        onClick={handleShowAll}
-        className="bg-white px-5 py-2 border rounded-lg hover:bg-gray-100 transition"
-      >
-        랭킹 전체 보기 &gt;
-      </button>
-    </div>
-  )}
-   {/* 접기 버튼 */}
-  {showAll && (
-    <div className="col-span-5 text-center mt-6">
-      <button
-        onClick={handleShowLess}
-        className="bg-white px-5 py-2 border rounded-lg hover:bg-gray-100 transition"
-      >
-        접기 &lt;
-      </button>
-      </div>
-  )}
-</section>
-            {/* 베스트 리뷰 */}
-          <BestReviewSection />
+      {/* 장르별 상자 */}
+      <section className="bg-gray-100 grid grid-cols-5 gap-6 justify-center max-w-7xl mx-auto">
+        {displayData.map((item, index) => (
+          <a key={item.id} href={item.link || "#"} className="block focus:outline-none border-0">
+            <div className="bg-white rounded-lg p-4 shadow-md relative w-60 h-90 flex flex-col border-0">
+              <img
+                src={item.image}
+                className="w-full h-65 object-cover mb-3 rounded-sm flex-shrink-0"
+              />
+              <div
+                className="absolute left-3 top-3 text-3xl font-bold text-white bg-black p-2 rounded-full select-none"
+                style={{ transform: "translateX(15%)" }}
+              >
+                {index + 1}
+              </div>
+              <div className="flex-grow">
+                <h3 className="font-extrabold text-lg mb-1">{item.title}</h3>
+                <p className="text-gray-700 text-sm">{item.location}</p>
+                <p className="text-gray-500 text-sm">{item.date}</p>
+              </div>
+            </div>
+          </a>
+        ))}
 
-          {/* 광고 배너 */}
-          <AdBanner />
+        {/* '전체 보기' 버튼 */}
+        {!showAll && (
+          <div className="col-span-5 text-center mt-6">
+            <button
+              onClick={handleShowAll}
+              className="bg-white px-5 py-2 border rounded-lg hover:bg-gray-100 transition"
+            >
+              랭킹 전체 보기 &gt;
+            </button>
+          </div>
+        )}
 
-        {/* 추천 섹션 추가 */}
+        {/* 접기 버튼 */}
+        {showAll && (
+          <div className="col-span-5 text-center mt-6">
+            <button
+              onClick={handleShowLess}
+              className="bg-white px-5 py-2 border rounded-lg hover:bg-gray-100 transition"
+            >
+              접기 &lt;
+            </button>
+          </div>
+        )}
+      </section>
+
+      {/* 베스트 리뷰 */}
+      <BestReviewSection />
+
+      {/* 광고 배너 */}
+      <AdBanner />
+
+      {/* 추천 섹션 추가 */}
       <RecommendedSection />
 
-        {/* 푸터 */}
-          <FooterInfo />
-      
-        </div>
-        
-      );
-    };
-// 베스트 리뷰 섹션 >> 안에 베스트 제목 뽑고 이런식으로 내용수정완
+      {/* 푸터 */}
+      <FooterInfo />
+    </div>
+  );
+};
+
 const BestReviewSection = () => {
   const reviews = [
     { id: 1, category: "스포츠", title: "2025 FInal K League : 경남FC vs 성남FC", text: "열정 넘쳤던 경기!", img: "main/수원축구.jpg", link: "sport.html" },
@@ -366,15 +335,13 @@ const BestReviewSection = () => {
   );
 };
 
-      
-// 광고 배너
-    const AdBanner = () => (
-      <div className="bg-red-600 text-white text-center py-8 -mt-4 text-lg font-bold flex items-center justify-center space-x-3">
-        <span className="text-red-100">관람 후기/기대평</span> 작성하고 <span className="text-yellow-300">공연 초대장 받아가세요!</span>
-        <img src="main/ticket.png" alt="ticket icon" className="w-12 h-12" />
-      </div>
-    );
-//키워드별
+const AdBanner = () => (
+  <div className="bg-red-600 text-white text-center py-8 -mt-4 text-lg font-bold flex items-center justify-center space-x-3">
+    <span className="text-red-100">관람 후기/기대평</span> 작성하고 <span className="text-yellow-300">공연 초대장 받아가세요!</span>
+    <img src="main/ticket.png" alt="ticket icon" className="w-12 h-12" />
+  </div>
+);
+
 const recommendedByKeyword = {
   "재관람률 높은": [
     { id: 1, category: "연극", title: "<모리스>", location: "LG아트센터", date: "2025.1.18 ~ 2.22", image: "main/musical_moris.gif" },
@@ -392,13 +359,13 @@ const recommendedByKeyword = {
   ],
   "대학로 연극 추천": [
     { id: 1, category: "연극", title: "<모리스>", location: "LG아트센터", date: "2025.1.18 ~ 2.22", image: "main/musical_moris.gif" },
-    { id: 2,category: "연극", title: "<맘마미아>", location: "두산아트센터 연강홀", date: "2025.6.1 ~ 7.3", image: "main/맘마미아.gif" },
-    { id: 3,category: "연극", title: "<멤피스>", location: "예술의전당 오페라극장", date: "2025.7.7 ~ 8.15", image: "main/멤피스.gif" },
-    { id: 4,category: "연극", title: "<플레임즈>", location: "이화여대 삼성홀", date: "2025.8.10 ~ 9.18", image: "main/플레임즈.gif" },
-    { id: 5,category: "연극", title: "<등등곡>", location: "국립극장 해오름극장", date: "2025.9.20 ~ 10.25", image: "main/등등곡.gif" },
+    { id: 2, category: "연극", title: "<맘마미아>", location: "두산아트센터 연강홀", date: "2025.6.1 ~ 7.3", image: "main/맘마미아.gif" },
+    { id: 3, category: "연극", title: "<멤피스>", location: "예술의전당 오페라극장", date: "2025.7.7 ~ 8.15", image: "main/멤피스.gif" },
+    { id: 4, category: "연극", title: "<플레임즈>", location: "이화여대 삼성홀", date: "2025.8.10 ~ 9.18", image: "main/플레임즈.gif" },
+    { id: 5, category: "연극", title: "<등등곡>", location: "국립극장 해오름극장", date: "2025.9.20 ~ 10.25", image: "main/등등곡.gif" },
   ]
 };
- 
+
 const keywordList = [
   { id: 1, label: "👍재관람률 높은", category: "재관람률 높은" },
   { id: 2, label: "👶아이와 함께", category: "아이와 함께" },
@@ -423,10 +390,9 @@ const RecommendedKeywords = ({ activeCategory, setActiveCategory }) => (
   </nav>
 );
 
+
 const RecommendedSection = () => {
   const [activeCategory, setActiveCategory] = React.useState("재관람률 높은");
-
-  // 선택된 카테고리의 데이터만 필터링해서 보여줌
   const filteredItems = recommendedByKeyword[activeCategory] || [];
 
   return (
@@ -437,148 +403,146 @@ const RecommendedSection = () => {
         activeCategory={activeCategory}
         setActiveCategory={setActiveCategory}
       />
-      
+
       <div className="bg-gray-100 grid grid-cols-5 gap-10 justify-center max-w-7xl mx-auto">
         {filteredItems.length === 0 ? (
           <p className="col-span-5 text-gray-500">해당 카테고리에 추천 아이템이 없습니다.</p>
         ) : (
           filteredItems.map((item) => (
             <a key={item.id} className="block focus:outline-none border-0">
-  <div className="bg-white border rounded-lg p-4 shadow-md relative w-60 h-90 flex flex-col">
-    <img
-      src={item.image}
-      className="w-full h-65 object-cover mb-3 rounded-sm flex-shrink-0"
-    />
-    <div className="flex-grow text-left">
-      <p className="font-extrabold text-lg mb-1">
-        {item.category} {item.title}
-      </p>
-      <p className="text-gray-700 text-sm mb-1">{item.location}</p>
-      <p className="text-gray-500 text-sm">{item.date}</p>
-    </div>
-  </div>
-</a>
-
+              <div className="bg-white border rounded-lg p-4 shadow-md relative w-60 h-90 flex flex-col">
+                <img
+                  src={item.image}
+                  className="w-full h-65 object-cover mb-3 rounded-sm flex-shrink-0"
+                />
+                <div className="flex-grow text-left">
+                  <p className="font-extrabold text-lg mb-1">
+                    {item.category} {item.title}
+                  </p>
+                  <p className="text-gray-700 text-sm mb-1">{item.location}</p>
+                  <p className="text-gray-500 text-sm">{item.date}</p>
+                </div>
+              </div>
+            </a>
           ))
         )}
       </div>
     </section>
   );
 };
+
 // 푸터
-    const FooterInfo = () => (
-      <footer className="bg-gray-100 w-full border-t border-gray-300 mt-12 pt-6 px-8 text-xs text-gray-600">
-        {/* 상단 링크 메뉴 */}
-        <nav className="flex flex-wrap justify-center gap-x-20 gap-y-2 mb-4 text-gray-500">
-          {[
-            "회사소개",
-            "이용약관",
-            "개인정보처리방침",
-            "위치기반서비스 이용약관",
-            "여행약관",
-            "여행자보험 가입내역",
-            "티켓판매안내",
-            "공지사항",
-            "고객센터",
-          ].map((item) => (
-            <a href="#" key={item} className="hover:underline">
-              {item}
-            </a>
-          ))}
-        </nav>
+const FooterInfo = () => (
+  <footer className="bg-gray-100 w-full border-t border-gray-300 mt-12 pt-6 px-8 text-xs text-gray-600">
+    {/* 상단 링크 메뉴 */}
+    <nav className="flex flex-wrap justify-center gap-x-20 gap-y-2 mb-4 text-gray-500">
+      {[
+        "회사소개",
+        "이용약관",
+        "개인정보처리방침",
+        "위치기반서비스 이용약관",
+        "여행약관",
+        "여행자보험 가입내역",
+        "티켓판매안내",
+        "공지사항",
+        "고객센터",
+      ].map((item) => (
+        <a href="#" key={item} className="hover:underline">
+          {item}
+        </a>
+      ))}
+    </nav>
 
-        {/* 하단 회사 및 고객센터 정보 */}
-        <div className="flex flex-wrap justify-between text-gray-600 px-16 gap-x-20">
+    {/* 하단 회사 및 고객센터 정보 */}
+    <div className="flex flex-wrap justify-between text-gray-600 px-16 gap-x-20">
+      <div className="w-[300px] mb-4">
+        <p className="font-bold mb-1">(주)숙명여자협회</p>
+        <p>주소 서울특별시 용산구 청파로</p>
+        <p>사업자등록번호 824-91-09283</p>
+        <p>통신판매업신고 2025-숙명-0504</p>
+        <p>관광사업등록번호 제2025-000001호</p>
+      </div>
 
-          <div className="w-[300px] mb-4">
-            <p className="font-bold mb-1">(주)숙명여자협회</p>
-            <p>주소 서울특별시 용산구 청파로</p>
-            <p>사업자등록번호 824-91-09283</p>
-            <p>통신판매업신고 2025-숙명-0504</p>
-            <p>관광사업등록번호 제2025-000001호</p>
-          </div>
+      <div className="w-[300px] mb-4">
+        <p className="font-bold mb-1">고객센터</p>
+        <p>1:1문의</p>
+        <p>팩스 02-842-1029</p>
+        <p>이메일 websystem@smu.ac.kr</p>
+      </div>
 
-          <div className="w-[300px] mb-4">
-            <p className="font-bold mb-1">고객센터</p>
-            <p>1:1문의</p>
-            <p>팩스 02-842-1029</p>
-            <p>이메일 websystem@smu.ac.kr</p>
-          </div>
+      <div className="w-[300px] mb-4">
+        <p className="font-bold mb-1">전자금융거래 분쟁처리 담당정보</p>
+        <p>팩스 02-482-1203</p>
+        <p>이메일 may04@smu.ac.kr</p>
+        <p>개인정보보호책임자 privacy@smu.ac.kr</p>
+      </div>
+    </div>
+  </footer>
+);
 
-          <div className="w-[300px] mb-4">
-            <p className="font-bold mb-1">전자금융거래 분쟁처리 담당정보</p>
-            <p>팩스 02-482-1203</p>
-            <p>이메일 may04@smu.ac.kr</p>
-            <p>개인정보보호책임자 privacy@smu.ac.kr</p>
-          </div>
-        </div>
-      </footer>
-    );
- //베너너 슬라이드
 const MainBannerSlider = () => {
   const [bannerIndex, setBannerIndex] = React.useState(0);
 
   React.useEffect(() => {
     const timer = setInterval(() => {
-      setBannerIndex((prev) => (prev + 1) % banners.length); // 배너 인덱스를 순차적으로 변경
-    }, 3000); // 3초마다 배너 전환
+      setBannerIndex((prev) => (prev + 1) % banners.length); 
+    }, 3000); 
 
-    return () => clearInterval(timer); // 컴포넌트 언마운트 시 interval 정리
+    return () => clearInterval(timer); 
   }, []);
-//수동 전환
-// 이전 배너로 이동
-      const prevBanner = () => {
-        setBannerIndex((prev) => (prev - 1 + banners.length) % banners.length); // 배너 인덱스를 이전으로 변경
-      };
 
-      // 다음 배너로 이동
-      const nextBanner = () => {
-        setBannerIndex((prev) => (prev + 1) % banners.length); // 배너 인덱스를 다음으로 변경
-      };
-  const currentBanner = banners[bannerIndex]; // 현재 배너 정보 가져오기
+  const prevBanner = () => {
+    setBannerIndex((prev) => (prev - 1 + banners.length) % banners.length); 
+  };
 
+  const nextBanner = () => {
+    setBannerIndex((prev) => (prev + 1) % banners.length); 
+  };
+
+  const currentBanner = banners[bannerIndex]; 
   return (
-      <section
-        className="relative h-96 mb-10"
+    <section
+      className="relative h-96 mb-10"
+      style={{
+        backgroundImage: `url(${currentBanner.bgImage})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
+    >
+      {/* 불투명 배경 */}
+      <div
+        className="absolute top-0 left-0 right-0 bottom-0 bg-black bg-opacity-50 flex flex-col justify-center items-start text-white p-5"
         style={{
-          backgroundImage: `url(${currentBanner.bgImage})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
+          width: '100%',
+          height: '100%',
         }}
       >
-        {/* 불투명 배경 */}
-        <div
-          className="absolute top-0 left-0 right-0 bottom-0 bg-black bg-opacity-50 flex flex-col justify-center items-start text-white p-5"
-          style={{
-            width: '100%',
-            height: '100%',
-          }}
-        >
-          <h2 className="text-4xl font-bold mb-2">{currentBanner.title}</h2>
-          <p>{currentBanner.subtitle}</p>
-          <p>{currentBanner.period}</p>
-        </div>
-        {/* 배경 수동 전환 버튼튼 */}
-           {/* 이전 버튼 */}
-          <button
-            onClick={prevBanner}
-            className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white bg-black bg-opacity-50 p-2 rounded-full hover:bg-opacity-70"
-          >
-            <span className="text-xl">&lt;</span>
-          </button>
+        <h2 className="text-4xl font-bold mb-2">{currentBanner.title}</h2>
+        <p>{currentBanner.subtitle}</p>
+        <p>{currentBanner.period}</p>
+      </div>
 
-          {/* 다음 버튼 */}
-          <button
-            onClick={nextBanner}
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white bg-black bg-opacity-50 p-2 rounded-full hover:bg-opacity-70"
-          >
-            <span className="text-xl">&gt;</span>
-          </button>
-      </section>
-    );
-  };
-    ReactDOM.createRoot(document.getElementById("root")).render(<TicketPage />);
+      {/* 배경 수동 전환 버튼 */}
+      {/* 이전 버튼 */}
+      <button
+        onClick={prevBanner}
+        className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white bg-black bg-opacity-50 p-2 rounded-full hover:bg-opacity-70"
+      >
+        <span className="text-xl">&lt;</span>
+      </button>
 
-  </script>
+      {/* 다음 버튼 */}
+      <button
+        onClick={nextBanner}
+        className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white bg-black bg-opacity-50 p-2 rounded-full hover:bg-opacity-70"
+      >
+        <span className="text-xl">&gt;</span>
+      </button>
+    </section>
+  );
+};
+
+ReactDOM.createRoot(document.getElementById("root")).render(<TicketPage />);
+</script>
 </body>
 </html>
